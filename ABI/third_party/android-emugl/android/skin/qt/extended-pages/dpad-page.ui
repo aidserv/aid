@@ -1,0 +1,344 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>DPadPage</class>
+ <widget class="QWidget" name="DPadPage">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>620</width>
+    <height>600</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <widget class="QLabel" name="dpad_noDPad_mask">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>10</y>
+     <width>600</width>
+     <height>580</height>
+    </rect>
+   </property>
+   <property name="autoFillBackground">
+    <bool>false</bool>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgba(128, 128, 128, 200)</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="dpad_noDPad_message">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>290</y>
+     <width>600</width>
+     <height>81</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Roboto</family>
+    </font>
+   </property>
+   <property name="autoFillBackground">
+    <bool>false</bool>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgba(128, 128, 128, 0)</string>
+   </property>
+   <property name="text">
+    <string>This emulated device does not support the directional pad.</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="dpad_downButton">
+   <property name="geometry">
+    <rect>
+     <x>240</x>
+     <y>206</y>
+     <width>142</width>
+     <height>100</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string notr="true"/>
+   </property>
+   <property name="icon">
+    <iconset resource="../resources.qrc">
+     <normaloff>:/dark/dpad_down</normaloff>:/dark/dpad_down</iconset>
+   </property>
+   <property name="iconSize">
+    <size>
+     <width>141</width>
+     <height>100</height>
+    </size>
+   </property>
+   <property name="flat">
+    <bool>true</bool>
+   </property>
+   <property name="themeIconName" stdset="0">
+    <string>dpad_down</string>
+   </property>
+   <property name="themeIconNamePressed" stdset="0">
+    <string>dpad_down_pressed</string>
+   </property>
+   <property name="report_metrics" stdset="0">
+    <bool>false</bool>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="dpad_leftButton">
+   <property name="geometry">
+    <rect>
+     <x>209</x>
+     <y>132</y>
+     <width>100</width>
+     <height>142</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string notr="true"/>
+   </property>
+   <property name="icon">
+    <iconset resource="../resources.qrc">
+     <normaloff>:/dark/dpad_left</normaloff>:/dark/dpad_left</iconset>
+   </property>
+   <property name="iconSize">
+    <size>
+     <width>100</width>
+     <height>141</height>
+    </size>
+   </property>
+   <property name="flat">
+    <bool>true</bool>
+   </property>
+   <property name="themeIconName" stdset="0">
+    <string>dpad_left</string>
+   </property>
+   <property name="themeIconNamePressed" stdset="0">
+    <string>dpad_left_pressed</string>
+   </property>
+   <property name="report_metrics" stdset="0">
+    <bool>false</bool>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="dpad_forwardButton">
+   <property name="geometry">
+    <rect>
+     <x>380</x>
+     <y>360</y>
+     <width>50</width>
+     <height>50</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string notr="true"/>
+   </property>
+   <property name="icon">
+    <iconset resource="../resources.qrc">
+     <normaloff>:/dark/dpad_forward</normaloff>:/dark/dpad_forward</iconset>
+   </property>
+   <property name="iconSize">
+    <size>
+     <width>50</width>
+     <height>50</height>
+    </size>
+   </property>
+   <property name="flat">
+    <bool>true</bool>
+   </property>
+   <property name="themeIconName" stdset="0">
+    <string>dpad_forward</string>
+   </property>
+   <property name="themeIconNamePressed" stdset="0">
+    <string>dpad_forward_pressed</string>
+   </property>
+   <property name="report_metrics" stdset="0">
+    <bool>false</bool>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="dpad_playButton">
+   <property name="geometry">
+    <rect>
+     <x>286</x>
+     <y>360</y>
+     <width>50</width>
+     <height>50</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string notr="true"/>
+   </property>
+   <property name="icon">
+    <iconset resource="../resources.qrc">
+     <normaloff>:/dark/dpad_play</normaloff>:/dark/dpad_play</iconset>
+   </property>
+   <property name="iconSize">
+    <size>
+     <width>50</width>
+     <height>50</height>
+    </size>
+   </property>
+   <property name="flat">
+    <bool>true</bool>
+   </property>
+   <property name="themeIconName" stdset="0">
+    <string>dpad_play</string>
+   </property>
+   <property name="themeIconNamePressed" stdset="0">
+    <string>dpad_play_pressed</string>
+   </property>
+   <property name="report_metrics" stdset="0">
+    <bool>false</bool>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="dpad_upButton">
+   <property name="geometry">
+    <rect>
+     <x>240</x>
+     <y>100</y>
+     <width>142</width>
+     <height>100</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string notr="true"/>
+   </property>
+   <property name="icon">
+    <iconset resource="../resources.qrc">
+     <normaloff>:/dark/dpad_up</normaloff>:/dark/dpad_up</iconset>
+   </property>
+   <property name="iconSize">
+    <size>
+     <width>141</width>
+     <height>100</height>
+    </size>
+   </property>
+   <property name="flat">
+    <bool>true</bool>
+   </property>
+   <property name="themeIconName" stdset="0">
+    <string>dpad_up</string>
+   </property>
+   <property name="themeIconNamePressed" stdset="0">
+    <string>dpad_up_pressed</string>
+   </property>
+   <property name="report_metrics" stdset="0">
+    <bool>false</bool>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="dpad_rightButton">
+   <property name="geometry">
+    <rect>
+     <x>313</x>
+     <y>132</y>
+     <width>100</width>
+     <height>142</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string notr="true"/>
+   </property>
+   <property name="icon">
+    <iconset resource="../resources.qrc">
+     <normaloff>:/dark/dpad_right</normaloff>:/dark/dpad_right</iconset>
+   </property>
+   <property name="iconSize">
+    <size>
+     <width>100</width>
+     <height>141</height>
+    </size>
+   </property>
+   <property name="flat">
+    <bool>true</bool>
+   </property>
+   <property name="themeIconName" stdset="0">
+    <string>dpad_right</string>
+   </property>
+   <property name="themeIconNamePressed" stdset="0">
+    <string>dpad_right_pressed</string>
+   </property>
+   <property name="report_metrics" stdset="0">
+    <bool>false</bool>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="dpad_backButton">
+   <property name="geometry">
+    <rect>
+     <x>192</x>
+     <y>360</y>
+     <width>50</width>
+     <height>50</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string notr="true"/>
+   </property>
+   <property name="icon">
+    <iconset resource="../resources.qrc">
+     <normaloff>:/dark/dpad_back</normaloff>:/dark/dpad_back</iconset>
+   </property>
+   <property name="iconSize">
+    <size>
+     <width>50</width>
+     <height>50</height>
+    </size>
+   </property>
+   <property name="flat">
+    <bool>true</bool>
+   </property>
+   <property name="themeIconName" stdset="0">
+    <string notr="true">dpad_back</string>
+   </property>
+   <property name="themeIconNamePressed" stdset="0">
+    <string>dpad_back_pressed</string>
+   </property>
+   <property name="report_metrics" stdset="0">
+    <bool>false</bool>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="dpad_selectButton">
+   <property name="geometry">
+    <rect>
+     <x>268</x>
+     <y>160</y>
+     <width>86</width>
+     <height>86</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string notr="true"/>
+   </property>
+   <property name="icon">
+    <iconset resource="../resources.qrc">
+     <normaloff>:/dark/dpad_select</normaloff>:/dark/dpad_select</iconset>
+   </property>
+   <property name="iconSize">
+    <size>
+     <width>85</width>
+     <height>85</height>
+    </size>
+   </property>
+   <property name="flat">
+    <bool>true</bool>
+   </property>
+   <property name="themeIconName" stdset="0">
+    <string>dpad_select</string>
+   </property>
+   <property name="themeIconNamePressed" stdset="0">
+    <string>dpad_select_pressed</string>
+   </property>
+   <property name="report_metrics" stdset="0">
+    <bool>false</bool>
+   </property>
+  </widget>
+ </widget>
+ <resources>
+  <include location="../resources.qrc"/>
+ </resources>
+ <connections/>
+</ui>

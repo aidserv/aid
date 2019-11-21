@@ -1,0 +1,860 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>VirtualSensorsPage</class>
+ <widget class="QWidget" name="VirtualSensorsPage">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>622</width>
+    <height>580</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <widget class="QTabWidget" name="tabWidget">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>20</y>
+     <width>630</width>
+     <height>561</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true"/>
+   </property>
+   <property name="currentIndex">
+    <number>0</number>
+   </property>
+   <widget class="QWidget" name="tab">
+    <attribute name="title">
+     <string>Accelerometer</string>
+    </attribute>
+    <widget class="Accelerometer3DWidget" name="accelWidget" native="true">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>10</y>
+       <width>584</width>
+       <height>291</height>
+      </rect>
+     </property>
+     <property name="report_metrics" stdset="0">
+      <bool>false</bool>
+     </property>
+    </widget>
+    <widget class="QRadioButton" name="accelModeRotate">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>321</y>
+       <width>103</width>
+       <height>25</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Rotate</string>
+     </property>
+     <property name="checked">
+      <bool>true</bool>
+     </property>
+     <property name="report_metrics" stdset="0">
+      <bool>false</bool>
+     </property>
+    </widget>
+    <widget class="QRadioButton" name="accelModeMove">
+     <property name="geometry">
+      <rect>
+       <x>130</x>
+       <y>321</y>
+       <width>103</width>
+       <height>25</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Move</string>
+     </property>
+     <property name="report_metrics" stdset="0">
+      <bool>false</bool>
+     </property>
+    </widget>
+    <widget class="RaisedMaterialButton" name="rotateToPortrait">
+     <property name="geometry">
+      <rect>
+       <x>324</x>
+       <y>330</y>
+       <width>36</width>
+       <height>36</height>
+      </rect>
+     </property>
+     <property name="toolTip">
+      <string>ROTATION_0</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="icon">
+      <iconset resource="../resources.qrc">
+       <normaloff>:/light/phone_portrait</normaloff>:/light/phone_portrait</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>24</width>
+       <height>24</height>
+      </size>
+     </property>
+     <property name="themeIconName" stdset="0">
+      <string>phone_portrait</string>
+     </property>
+     <property name="ColorGroup" stdset="0">
+      <string>Button</string>
+     </property>
+    </widget>
+    <widget class="RaisedMaterialButton" name="rotateToLandscape">
+     <property name="geometry">
+      <rect>
+       <x>480</x>
+       <y>330</y>
+       <width>36</width>
+       <height>36</height>
+      </rect>
+     </property>
+     <property name="toolTip">
+      <string>ROTATION_270</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="icon">
+      <iconset resource="../resources.qrc">
+       <normaloff>:/light/phone_landscape</normaloff>:/light/phone_landscape</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>24</width>
+       <height>24</height>
+      </size>
+     </property>
+     <property name="themeIconName" stdset="0">
+      <string>phone_landscape</string>
+     </property>
+     <property name="ColorGroup" stdset="0">
+      <string>Button</string>
+     </property>
+    </widget>
+    <widget class="RaisedMaterialButton" name="rotateToReversePortrait">
+     <property name="geometry">
+      <rect>
+       <x>428</x>
+       <y>330</y>
+       <width>36</width>
+       <height>36</height>
+      </rect>
+     </property>
+     <property name="toolTip">
+      <string>ROTATION_180</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="icon">
+      <iconset resource="../resources.qrc">
+       <normaloff>:/light/phone_reverse_portrait</normaloff>:/light/phone_reverse_portrait</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>24</width>
+       <height>24</height>
+      </size>
+     </property>
+     <property name="themeIconName" stdset="0">
+      <string>phone_reverse_portrait</string>
+     </property>
+     <property name="ColorGroup" stdset="0">
+      <string>Button</string>
+     </property>
+    </widget>
+    <widget class="RaisedMaterialButton" name="rotateToReverseLandscape">
+     <property name="geometry">
+      <rect>
+       <x>376</x>
+       <y>330</y>
+       <width>36</width>
+       <height>36</height>
+      </rect>
+     </property>
+     <property name="toolTip">
+      <string>ROTATION_90</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="icon">
+      <iconset resource="../resources.qrc">
+       <normaloff>:/light/phone_reverse_landscape</normaloff>:/light/phone_reverse_landscape</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>24</width>
+       <height>24</height>
+      </size>
+     </property>
+     <property name="themeIconName" stdset="0">
+      <string>phone_reverse_landscape</string>
+     </property>
+     <property name="ColorGroup" stdset="0">
+      <string>Button</string>
+     </property>
+    </widget>
+    <widget class="QStackedWidget" name="accelerometerSliders">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>350</y>
+       <width>300</width>
+       <height>170</height>
+      </rect>
+     </property>
+     <property name="currentIndex">
+      <number>0</number>
+     </property>
+     <widget class="QWidget" name="page">
+      <widget class="EditableSliderWidget" name="yawSlider" native="true">
+       <property name="geometry">
+        <rect>
+         <x>50</x>
+         <y>10</y>
+         <width>250</width>
+         <height>50</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="EditableSliderWidget" name="pitchSlider" native="true">
+       <property name="geometry">
+        <rect>
+         <x>50</x>
+         <y>70</y>
+         <width>250</width>
+         <height>50</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="EditableSliderWidget" name="rollSlider" native="true">
+       <property name="geometry">
+        <rect>
+         <x>50</x>
+         <y>130</y>
+         <width>250</width>
+         <height>50</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>20</y>
+         <width>30</width>
+         <height>15</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Yaw</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_2">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>80</y>
+         <width>30</width>
+         <height>15</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Pitch</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_3">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>140</y>
+         <width>30</width>
+         <height>15</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Roll</string>
+       </property>
+      </widget>
+     </widget>
+     <widget class="QWidget" name="page_2">
+      <widget class="QLabel" name="label_12">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>80</y>
+         <width>30</width>
+         <height>15</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Y</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_13">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>20</y>
+         <width>30</width>
+         <height>15</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>X</string>
+       </property>
+      </widget>
+      <widget class="EditableSliderWidget" name="positionYSlider" native="true">
+       <property name="geometry">
+        <rect>
+         <x>50</x>
+         <y>70</y>
+         <width>231</width>
+         <height>50</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="EditableSliderWidget" name="positionXSlider" native="true">
+       <property name="geometry">
+        <rect>
+         <x>49</x>
+         <y>10</y>
+         <width>231</width>
+         <height>50</height>
+        </rect>
+       </property>
+      </widget>
+     </widget>
+    </widget>
+    <widget class="QLabel" name="label_15">
+     <property name="geometry">
+      <rect>
+       <x>324</x>
+       <y>310</y>
+       <width>100</width>
+       <height>15</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Device rotation</string>
+     </property>
+    </widget>
+    <widget class="QTextBrowser" name="resultingAccelerometerValues">
+     <property name="geometry">
+      <rect>
+       <x>324</x>
+       <y>400</y>
+       <width>280</width>
+       <height>110</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_6">
+     <property name="geometry">
+      <rect>
+       <x>324</x>
+       <y>380</y>
+       <width>100</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Resulting values</string>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QWidget" name="tab_2">
+    <attribute name="title">
+     <string>Additional sensors</string>
+    </attribute>
+    <widget class="QLabel" name="label_4">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>30</y>
+       <width>160</width>
+       <height>15</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Ambient temperature (°C)</string>
+     </property>
+    </widget>
+    <widget class="EditableSliderWidget" name="temperatureSensorValueWidget" native="true">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>50</y>
+       <width>280</width>
+       <height>80</height>
+      </rect>
+     </property>
+     <property name="report_metrics" stdset="0">
+      <bool>false</bool>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_5">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>140</y>
+       <width>90</width>
+       <height>15</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Proximity (cm)</string>
+     </property>
+    </widget>
+    <widget class="EditableSliderWidget" name="proximitySensorValueWidget" native="true">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>160</y>
+       <width>280</width>
+       <height>80</height>
+      </rect>
+     </property>
+     <property name="report_metrics" stdset="0">
+      <bool>false</bool>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_7">
+     <property name="geometry">
+      <rect>
+       <x>324</x>
+       <y>30</y>
+       <width>120</width>
+       <height>15</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Magnetic field (μT)</string>
+     </property>
+    </widget>
+    <widget class="QWidget" name="horizontalLayoutWidget">
+     <property name="geometry">
+      <rect>
+       <x>324</x>
+       <y>50</y>
+       <width>271</width>
+       <height>40</height>
+      </rect>
+     </property>
+     <layout class="QHBoxLayout" name="horizontalLayout">
+      <property name="topMargin">
+       <number>0</number>
+      </property>
+      <item>
+       <widget class="QDoubleSpinBox" name="magNorthWidget">
+        <property name="minimum">
+         <double>-1000.000000000000000</double>
+        </property>
+        <property name="maximum">
+         <double>1000.000000000000000</double>
+        </property>
+        <property name="value">
+         <double>22.000000000000000</double>
+        </property>
+        <property name="class" stdset="0">
+         <string>EditableValue</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QDoubleSpinBox" name="magEastWidget">
+        <property name="minimum">
+         <double>-1000.000000000000000</double>
+        </property>
+        <property name="maximum">
+         <double>1000.000000000000000</double>
+        </property>
+        <property name="value">
+         <double>5.900000000000000</double>
+        </property>
+        <property name="class" stdset="0">
+         <string>EditableValue</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QDoubleSpinBox" name="magVerticalWidget">
+        <property name="minimum">
+         <double>-1000.000000000000000</double>
+        </property>
+        <property name="maximum">
+         <double>1000.000000000000000</double>
+        </property>
+        <property name="value">
+         <double>43.100000000000001</double>
+        </property>
+        <property name="class" stdset="0">
+         <string>EditableValue</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+    <widget class="EditableSliderWidget" name="lightSensorValueWidget" native="true">
+     <property name="geometry">
+      <rect>
+       <x>314</x>
+       <y>160</y>
+       <width>280</width>
+       <height>80</height>
+      </rect>
+     </property>
+     <property name="report_metrics" stdset="0">
+      <bool>false</bool>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_9">
+     <property name="geometry">
+      <rect>
+       <x>324</x>
+       <y>140</y>
+       <width>60</width>
+       <height>15</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Light (lux)</string>
+     </property>
+    </widget>
+    <widget class="EditableSliderWidget" name="pressureSensorValueWidget" native="true">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>280</y>
+       <width>280</width>
+       <height>80</height>
+      </rect>
+     </property>
+     <property name="report_metrics" stdset="0">
+      <bool>false</bool>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_10">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>260</y>
+       <width>90</width>
+       <height>15</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Pressure (hPa)</string>
+     </property>
+    </widget>
+    <widget class="EditableSliderWidget" name="humiditySensorValueWidget" native="true">
+     <property name="geometry">
+      <rect>
+       <x>314</x>
+       <y>280</y>
+       <width>280</width>
+       <height>80</height>
+      </rect>
+     </property>
+     <property name="report_metrics" stdset="0">
+      <bool>false</bool>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_11">
+     <property name="geometry">
+      <rect>
+       <x>324</x>
+       <y>260</y>
+       <width>130</width>
+       <height>15</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Relative humidity (%)</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="helpMagneticField">
+     <property name="geometry">
+      <rect>
+       <x>430</x>
+       <y>30</y>
+       <width>15</width>
+       <height>15</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="icon">
+      <iconset resource="../resources.qrc">
+       <normaloff>:/light/help_outline</normaloff>:/light/help_outline</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>15</width>
+       <height>15</height>
+      </size>
+     </property>
+     <property name="flat">
+      <bool>true</bool>
+     </property>
+     <property name="themeIconName" stdset="0">
+      <string>help_outline</string>
+     </property>
+     <property name="helpButton" stdset="0">
+      <bool>true</bool>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="helpLight">
+     <property name="geometry">
+      <rect>
+       <x>390</x>
+       <y>140</y>
+       <width>15</width>
+       <height>15</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="icon">
+      <iconset resource="../resources.qrc">
+       <normaloff>:/light/help_outline</normaloff>:/light/help_outline</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>15</width>
+       <height>15</height>
+      </size>
+     </property>
+     <property name="flat">
+      <bool>true</bool>
+     </property>
+     <property name="themeIconName" stdset="0">
+      <string>help_outline</string>
+     </property>
+     <property name="helpButton" stdset="0">
+      <bool>true</bool>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="helpPressure">
+     <property name="geometry">
+      <rect>
+       <x>110</x>
+       <y>260</y>
+       <width>15</width>
+       <height>15</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="icon">
+      <iconset resource="../resources.qrc">
+       <normaloff>:/light/help_outline</normaloff>:/light/help_outline</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>15</width>
+       <height>15</height>
+      </size>
+     </property>
+     <property name="flat">
+      <bool>true</bool>
+     </property>
+     <property name="themeIconName" stdset="0">
+      <string>help_outline</string>
+     </property>
+     <property name="helpButton" stdset="0">
+      <bool>true</bool>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="helpAmbientTemp">
+     <property name="geometry">
+      <rect>
+       <x>160</x>
+       <y>30</y>
+       <width>15</width>
+       <height>15</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="icon">
+      <iconset resource="../resources.qrc">
+       <normaloff>:/light/help_outline</normaloff>:/light/help_outline</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>15</width>
+       <height>15</height>
+      </size>
+     </property>
+     <property name="flat">
+      <bool>true</bool>
+     </property>
+     <property name="themeIconName" stdset="0">
+      <string>help_outline</string>
+     </property>
+     <property name="helpButton" stdset="0">
+      <bool>true</bool>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="helpProximity">
+     <property name="geometry">
+      <rect>
+       <x>110</x>
+       <y>140</y>
+       <width>15</width>
+       <height>15</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="icon">
+      <iconset resource="../resources.qrc">
+       <normaloff>:/light/help_outline</normaloff>:/light/help_outline</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>15</width>
+       <height>15</height>
+      </size>
+     </property>
+     <property name="flat">
+      <bool>true</bool>
+     </property>
+     <property name="themeIconName" stdset="0">
+      <string>help_outline</string>
+     </property>
+     <property name="helpButton" stdset="0">
+      <bool>true</bool>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="helpMagneticField_2">
+     <property name="geometry">
+      <rect>
+       <x>420</x>
+       <y>260</y>
+       <width>0</width>
+       <height>15</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="icon">
+      <iconset resource="../resources.qrc">
+       <normaloff>:/light/help_outline</normaloff>:/light/help_outline</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>15</width>
+       <height>15</height>
+      </size>
+     </property>
+     <property name="flat">
+      <bool>true</bool>
+     </property>
+     <property name="themeIconName" stdset="0">
+      <string>help_outline</string>
+     </property>
+     <property name="helpButton" stdset="0">
+      <bool>true</bool>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="helpHumidity">
+     <property name="geometry">
+      <rect>
+       <x>440</x>
+       <y>260</y>
+       <width>15</width>
+       <height>15</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="icon">
+      <iconset resource="../resources.qrc">
+       <normaloff>:/light/help_outline</normaloff>:/light/help_outline</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>15</width>
+       <height>15</height>
+      </size>
+     </property>
+     <property name="flat">
+      <bool>true</bool>
+     </property>
+     <property name="themeIconName" stdset="0">
+      <string>help_outline</string>
+     </property>
+     <property name="helpButton" stdset="0">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </widget>
+  </widget>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>EditableSliderWidget</class>
+   <extends>QWidget</extends>
+   <header>android/skin/qt/editable-slider-widget.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>Accelerometer3DWidget</class>
+   <extends>QWidget</extends>
+   <header>android/skin/qt/accelerometer-3d-widget.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>RaisedMaterialButton</class>
+   <extends>QPushButton</extends>
+   <header>android/skin/qt/raised-material-button.h</header>
+  </customwidget>
+ </customwidgets>
+ <tabstops>
+  <tabstop>tabWidget</tabstop>
+  <tabstop>accelModeRotate</tabstop>
+  <tabstop>accelModeMove</tabstop>
+  <tabstop>rotateToPortrait</tabstop>
+  <tabstop>rotateToReverseLandscape</tabstop>
+  <tabstop>rotateToReversePortrait</tabstop>
+  <tabstop>rotateToLandscape</tabstop>
+  <tabstop>resultingAccelerometerValues</tabstop>
+  <tabstop>helpAmbientTemp</tabstop>
+  <tabstop>helpMagneticField</tabstop>
+  <tabstop>magNorthWidget</tabstop>
+  <tabstop>magEastWidget</tabstop>
+  <tabstop>magVerticalWidget</tabstop>
+  <tabstop>helpProximity</tabstop>
+  <tabstop>helpLight</tabstop>
+  <tabstop>helpPressure</tabstop>
+  <tabstop>helpMagneticField_2</tabstop>
+  <tabstop>helpHumidity</tabstop>
+ </tabstops>
+ <resources>
+  <include location="../resources.qrc"/>
+ </resources>
+ <connections/>
+</ui>

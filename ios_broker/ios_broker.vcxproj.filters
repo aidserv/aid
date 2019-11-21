@@ -1,0 +1,255 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="ABI">
+      <UniqueIdentifier>{553dda3e-21bf-4269-9997-0196bc7d3db9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ABI\thirdparty">
+      <UniqueIdentifier>{edc9b653-435f-4be7-a9ae-65a2a5c69f95}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ABI\thirdparty\glog">
+      <UniqueIdentifier>{cfa08539-4d09-4f93-87c3-0c7461bf69b3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ABI\base">
+      <UniqueIdentifier>{0b8b8879-f5ab-4724-9a08-99e6bc702998}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ABI\base\string">
+      <UniqueIdentifier>{88f2d52c-8143-4922-ab03-3288ff85fc87}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ABI\zip_internal">
+      <UniqueIdentifier>{f051f434-f129-41d3-b4c7-a39d7da599c3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="PhoneCore">
+      <UniqueIdentifier>{324a3afb-caa2-4811-8f4e-39db0393774f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="PhoneCore\notifyer">
+      <UniqueIdentifier>{f2b3bd7d-5617-4ed3-920e-fe5975ba8f92}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="PhoneCore\interface">
+      <UniqueIdentifier>{d1afa2b5-bdf7-44d2-8bf4-931b16ad7214}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ABI\exception">
+      <UniqueIdentifier>{1fe6194e-8993-4eef-ad99-3dbb34402eca}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ABI\base\file">
+      <UniqueIdentifier>{40061c09-5a8a-4ade-a48e-18f6e2c133d8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ABI\afc_internal">
+      <UniqueIdentifier>{b28682ff-86eb-463e-8cb3-a1e1cef09ea2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ABI\ipa_internal">
+      <UniqueIdentifier>{da2ae16e-94bd-45c3-8d3c-96512e23ba8f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ios_broker">
+      <UniqueIdentifier>{2209e65b-e526-444a-bca1-f4bf4e0b52e8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ABI\thirdparty\libimobiledevice">
+      <UniqueIdentifier>{023e4856-a022-4d3f-887e-39fcd8de0a91}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ABI\thirdparty\libimobiledevice\common">
+      <UniqueIdentifier>{9cbbb783-cbd2-41ad-8600-b96f43aefd33}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="atl_dll_main.cc">
+      <Filter>ios_broker</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ABI\thirdparty\glog\logging.cc">
+      <Filter>ABI\thirdparty\glog</Filter>
+    </ClCompile>
+    <ClCompile Include="pair_device_trust.cc">
+      <Filter>ios_broker</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ABI\base\string\string_conv.cc">
+      <Filter>ABI\base\string</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ABI\zip_internal\zip_internal_impl.cc">
+      <Filter>ABI\zip_internal</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ABI\zip_internal\zip_object_reader.cc">
+      <Filter>ABI\zip_internal</Filter>
+    </ClCompile>
+    <ClCompile Include="pair_device_status.cc">
+      <Filter>ios_broker</Filter>
+    </ClCompile>
+    <ClCompile Include="pair_device_app.cc">
+      <Filter>ios_broker</Filter>
+    </ClCompile>
+    <ClCompile Include="pair_device_snapshot.cc">
+      <Filter>ios_broker</Filter>
+    </ClCompile>
+    <ClCompile Include="pair_connectioned.cc">
+      <Filter>ios_broker</Filter>
+    </ClCompile>
+    <ClCompile Include="pair_device_mounter.cc">
+      <Filter>ios_broker</Filter>
+    </ClCompile>
+    <ClCompile Include="..\PhoneCore\notifyer\basic_device_info.cc">
+      <Filter>PhoneCore\notifyer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\PhoneCore\notifyer\basic_notify_window.cc">
+      <Filter>PhoneCore\notifyer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\PhoneCore\notifyer\mobile_device_mgr.cc">
+      <Filter>PhoneCore\notifyer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\PhoneCore\notifyer\mobile_device_property.cc">
+      <Filter>PhoneCore\notifyer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ABI\exception\exception_dump.cc">
+      <Filter>ABI\exception</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ABI\base\file\path.cc">
+      <Filter>ABI\base\file</Filter>
+    </ClCompile>
+    <ClCompile Include="..\PhoneCore\interface\construction.cc">
+      <Filter>PhoneCore\interface</Filter>
+    </ClCompile>
+    <ClCompile Include="..\PhoneCore\interface\unque_pointer.cc">
+      <Filter>PhoneCore\interface</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ABI\afc_internal\afc_filesystem.cc">
+      <Filter>ABI\afc_internal</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ABI\afc_internal\afc_upload.cc">
+      <Filter>ABI\afc_internal</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ABI\ipa_internal\ipa_bundle_info.cc">
+      <Filter>ABI\ipa_internal</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ABI\ipa_internal\ipa_content.cc">
+      <Filter>ABI\ipa_internal</Filter>
+    </ClCompile>
+    <ClCompile Include="..\PhoneCore\interface\ipa_analyizer.cc">
+      <Filter>PhoneCore\interface</Filter>
+    </ClCompile>
+    <ClCompile Include="..\PhoneCore\interface\iconv_impl.cc">
+      <Filter>PhoneCore\interface</Filter>
+    </ClCompile>
+    <ClCompile Include="..\PhoneCore\interface\phone_udid.cc">
+      <Filter>PhoneCore\interface</Filter>
+    </ClCompile>
+    <ClCompile Include="..\PhoneCore\interface\authorize_id.cc">
+      <Filter>PhoneCore\interface</Filter>
+    </ClCompile>
+    <ClCompile Include="pair_device_shutdown.cc">
+      <Filter>ios_broker</Filter>
+    </ClCompile>
+    <ClCompile Include="pair_device_disk_usage.cc">
+      <Filter>ios_broker</Filter>
+    </ClCompile>
+    <ClCompile Include="pair_downloae_done_plist.cc">
+      <Filter>ios_broker</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ABI\thirdparty\libimobiledevice\libimobiledevice\common\utils.c">
+      <Filter>ABI\thirdparty\libimobiledevice\common</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="atl_dll_main.h">
+      <Filter>ios_broker</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ABI\thirdparty\glog\basictypes.h">
+      <Filter>ABI\thirdparty\glog</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ABI\thirdparty\glog\logging.h">
+      <Filter>ABI\thirdparty\glog</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ABI\thirdparty\glog\scoped_ptr.h">
+      <Filter>ABI\thirdparty\glog</Filter>
+    </ClInclude>
+    <ClInclude Include="pair_device_trust.h">
+      <Filter>ios_broker</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ABI\base\string\string_conv.h">
+      <Filter>ABI\base\string</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ABI\zip_internal\zip_internal_impl.h">
+      <Filter>ABI\zip_internal</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ABI\zip_internal\zip_object_reader.h">
+      <Filter>ABI\zip_internal</Filter>
+    </ClInclude>
+    <ClInclude Include="pair_device_status.h">
+      <Filter>ios_broker</Filter>
+    </ClInclude>
+    <ClInclude Include="pair_device_app.h">
+      <Filter>ios_broker</Filter>
+    </ClInclude>
+    <ClInclude Include="pair_device_snapshot.h">
+      <Filter>ios_broker</Filter>
+    </ClInclude>
+    <ClInclude Include="pair_connectioned.h">
+      <Filter>ios_broker</Filter>
+    </ClInclude>
+    <ClInclude Include="pair_device_mounter.h">
+      <Filter>ios_broker</Filter>
+    </ClInclude>
+    <ClInclude Include="..\PhoneCore\notifyer\basic_device_info.h">
+      <Filter>PhoneCore\notifyer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\PhoneCore\notifyer\basic_notify_window.h">
+      <Filter>PhoneCore\notifyer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\PhoneCore\notifyer\mobile_device_mgr.h">
+      <Filter>PhoneCore\notifyer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\PhoneCore\notifyer\mobile_device_property.h">
+      <Filter>PhoneCore\notifyer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ABI\exception\exception_dump.h">
+      <Filter>ABI\exception</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ABI\base\file\path.h">
+      <Filter>ABI\base\file</Filter>
+    </ClInclude>
+    <ClInclude Include="..\PhoneCore\interface\data_interface.h">
+      <Filter>PhoneCore\interface</Filter>
+    </ClInclude>
+    <ClInclude Include="..\PhoneCore\interface\atl_dll_main.h">
+      <Filter>PhoneCore\interface</Filter>
+    </ClInclude>
+    <ClInclude Include="..\PhoneCore\interface\construction.h">
+      <Filter>PhoneCore\interface</Filter>
+    </ClInclude>
+    <ClInclude Include="..\PhoneCore\interface\unque_pointer.h">
+      <Filter>PhoneCore\interface</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ABI\afc_internal\afc_filesystem.h">
+      <Filter>ABI\afc_internal</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ABI\afc_internal\afc_upload.h">
+      <Filter>ABI\afc_internal</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ABI\ipa_internal\ipa_bundle_info.h">
+      <Filter>ABI\ipa_internal</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ABI\ipa_internal\ipa_content.h">
+      <Filter>ABI\ipa_internal</Filter>
+    </ClInclude>
+    <ClInclude Include="..\PhoneCore\interface\ipa_analyizer.h">
+      <Filter>PhoneCore\interface</Filter>
+    </ClInclude>
+    <ClInclude Include="..\PhoneCore\interface\iconv_impl.h">
+      <Filter>PhoneCore\interface</Filter>
+    </ClInclude>
+    <ClInclude Include="..\PhoneCore\interface\phone_udid.h">
+      <Filter>PhoneCore\interface</Filter>
+    </ClInclude>
+    <ClInclude Include="..\PhoneCore\interface\authorize_id.h">
+      <Filter>PhoneCore\interface</Filter>
+    </ClInclude>
+    <ClInclude Include="pair_device_shutdown.h">
+      <Filter>ios_broker</Filter>
+    </ClInclude>
+    <ClInclude Include="pair_device_disk_usage.h">
+      <Filter>ios_broker</Filter>
+    </ClInclude>
+    <ClInclude Include="pair_downloae_done_plist.h">
+      <Filter>ios_broker</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ABI\thirdparty\libimobiledevice\libimobiledevice\common\utils.h">
+      <Filter>ABI\thirdparty\libimobiledevice\common</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

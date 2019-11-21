@@ -1,0 +1,41 @@
+syntax = "proto2";
+package android_emulator;
+
+// Reserved fields for crash server, so we can log
+// new numbers dynamically without having to synchronize
+// crash server and emulator proto updating
+message EmulatorCrashInfoReservedFields {
+    optional uint64 reserved_field_01 = 1;
+    optional uint64 reserved_field_02 = 2;
+    optional uint64 reserved_field_03 = 3;
+    optional uint64 reserved_field_04 = 4;
+    optional uint64 reserved_field_05 = 5;
+    optional uint64 reserved_field_06 = 6;
+    optional uint64 reserved_field_07 = 7;
+    optional uint64 reserved_field_08 = 8;
+    optional uint64 reserved_field_09 = 9;
+    optional uint64 reserved_field_10 = 10;
+    optional uint64 reserved_field_11 = 11;
+    optional uint64 reserved_field_12 = 12;
+    optional uint64 reserved_field_13 = 13;
+    optional uint64 reserved_field_14 = 14;
+    optional uint64 reserved_field_15 = 15;
+    optional uint64 reserved_field_16 = 16;
+    optional uint64 reserved_field_17 = 17;
+    optional uint64 reserved_field_18 = 18;
+    optional uint64 reserved_field_19 = 19;
+    optional uint64 reserved_field_20 = 20;
+    optional uint64 reserved_field_21 = 21;
+    optional uint64 reserved_field_22 = 22;
+    optional uint64 reserved_field_23 = 23;
+    optional uint64 reserved_field_24 = 24;
+    optional uint64 reserved_field_25 = 25;
+    optional uint64 reserved_field_26 = 26;
+    optional uint64 reserved_field_27 = 27;
+    optional uint64 reserved_field_28 = 28;
+    optional uint64 reserved_field_29 = 29;
+    optional uint64 reserved_field_30 = 30;
+    optional uint64 reserved_field_31 = 31;
+    optional uint64 reserved_field_32 = 32;
+    // Next tag: 33
+}

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="202px" height="284px" viewBox="0 0 202 284" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: Sketch 3.3.2 (12043) - http://www.bohemiancoding.com/sketch -->
+    <title>Artboard 1</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g transform="scale(2)" id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="Artboard-1" sketch:type="MSArtboardGroup">
+            <g id="Fill-2-Copy-+-ic_keyboard_arrow_right_white_24dp-copy-21" sketch:type="MSLayerGroup" transform="translate(50.500000, 71.000000) scale(-1, -1) rotate(-270.000000) translate(-50.500000, -71.000000) translate(-20.500000, 20.500000)">
+                <path d="M0.289,71.6837174 C18.331999,89.7797174 43.2573995,100.972717 70.789,100.972717 C98.3206005,100.972717 123.246001,89.7797174 141.289,71.6837174 L70.789,0.972717357 L0.289,71.6837174" id="Fill-2-Copy" fill="#E0E0E0" sketch:type="MSShapeGroup" transform="translate(70.789000, 50.972717) scale(1, -1) translate(-70.789000, -50.972717) "></path>
+                <g id="ic_keyboard_arrow_right_white_24dp-copy-21" transform="translate(70.850000, 32.486359) rotate(-90.000000) translate(-70.850000, -32.486359) translate(53.350000, 15.486359)" sketch:type="MSShapeGroup">
+                    <path d="M12.5111253,23.5450752 L19.1817834,17.1272611 L12.5111253,10.7094471 L14.5647558,8.73796178 L23.3036093,17.1272611 L14.5647558,25.5165605 L12.5111253,23.5450752 Z" id="Shape" fill="#9E9E9E"></path>
+                    <path d="M0,0.34866242 L34.955414,0.34866242 L34.955414,33.9058599 L0,33.9058599 L0,0.34866242 Z" id="Shape"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="img">
+      <UniqueIdentifier>{830cfe94-bafa-4ae7-8194-b8b8cfc71510}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ios_authorized">
+      <UniqueIdentifier>{c8ebea1c-676f-4c74-a351-b384a098f65c}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="resource.h">
+      <Filter>ios_authorized</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\img\AppChina.ico">
+      <Filter>img</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="ios_authorized.cc">
+      <Filter>ios_authorized</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="ios_authorized.rc">
+      <Filter>ios_authorized</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+</Project>

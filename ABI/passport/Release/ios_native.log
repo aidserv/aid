@@ -1,0 +1,23 @@
+﻿Build started 2014/12/30 17:54:24.
+     1>Project "D:\developer\windows\itunes_ssl\ios_native\ios_native.vcxproj" on node 2 (build target(s)).
+     1>InitializeBuildStatus:
+         Touching "Release\ios_native.unsuccessfulbuild".
+       ClCompile:
+         All outputs are up-to-date.
+       Link:
+         D:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"D:\developer\windows\itunes_ssl\Release\ios_native.dll" /NOLOGO /LIBPATH:"C:\Program Files (x86)\Visual Leak Detector\lib\Win32" kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /ManifestFile:"Release\ios_native.dll.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"D:\developer\windows\itunes_ssl\Release\ios_native.pdb" /OPT:REF /OPT:ICF /LTCG /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"D:\developer\windows\itunes_ssl\Release\ios_native.lib" /MACHINE:X86 /DLL Release\dllmain.obj
+         Release\itunes_native_interface.obj
+            Creating library D:\developer\windows\itunes_ssl\Release\ios_native.lib and object D:\developer\windows\itunes_ssl\Release\ios_native.exp
+         Generating code
+         Finished generating code
+         ios_native.vcxproj -> D:\developer\windows\itunes_ssl\Release\ios_native.dll
+       Manifest:
+         C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\mt.exe /nologo /verbose /outputresource:"D:\developer\windows\itunes_ssl\Release\ios_native.dll;#2" /manifest Release\ios_native.dll.intermediate.manifest
+       FinalizeBuildStatus:
+         Deleting file "Release\ios_native.unsuccessfulbuild".
+         Touching "Release\ios_native.lastbuildstate".
+     1>Done Building Project "D:\developer\windows\itunes_ssl\ios_native\ios_native.vcxproj" (build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:00.47

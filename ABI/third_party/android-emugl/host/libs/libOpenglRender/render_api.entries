@@ -1,0 +1,10 @@
+!render_api
+
+%#include "OpenglRender/RenderLib.h"
+%
+
+# Initializes the library and tries to load the corresponding EGL/GLES
+# translation libraries.
+# Returns either the library accessor smart pointer or null on failure.
+emugl::RenderLib* initLibrary(void);
+int StartOpenglServer(char* addr, size_t addrLen);

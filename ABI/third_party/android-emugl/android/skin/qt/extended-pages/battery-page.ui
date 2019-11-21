@@ -1,0 +1,319 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>BatteryPage</class>
+ <widget class="QWidget" name="BatteryPage">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>622</width>
+    <height>580</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <widget class="QGroupBox" name="bat_acGroup">
+   <property name="geometry">
+    <rect>
+     <x>324</x>
+     <y>20</y>
+     <width>131</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Roboto</family>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">border: 0px;</string>
+   </property>
+   <property name="title">
+    <string>Charger connection</string>
+   </property>
+   <property name="ColorGroup" stdset="0">
+    <string notr="true">Title</string>
+   </property>
+  </widget>
+  <widget class="QComboBox" name="bat_healthBox">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>112</y>
+     <width>280</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Roboto</family>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">padding: 3px 3px 3px 3px;</string>
+   </property>
+   <property name="report_metrics" stdset="0">
+    <bool>false</bool>
+   </property>
+   <item>
+    <property name="text">
+     <string>Good</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Failed</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Dead</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Overvoltage</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Overheated</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Unknown</string>
+    </property>
+   </item>
+  </widget>
+  <widget class="QGroupBox" name="bat_chargeGroup">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>20</y>
+     <width>280</width>
+     <height>61</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Roboto</family>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">border: 0px;</string>
+   </property>
+   <property name="title">
+    <string>Charge level</string>
+   </property>
+   <property name="ColorGroup" stdset="0">
+    <string notr="true">Title</string>
+   </property>
+   <widget class="QSlider" name="bat_levelSlider">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>38</y>
+      <width>221</width>
+      <height>29</height>
+     </rect>
+    </property>
+    <property name="accessibleName">
+     <string>Charge level</string>
+    </property>
+    <property name="maximum">
+     <number>100</number>
+    </property>
+    <property name="value">
+     <number>50</number>
+    </property>
+    <property name="orientation">
+     <enum>Qt::Horizontal</enum>
+    </property>
+    <property name="report_metrics" stdset="0">
+     <bool>false</bool>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="bat_chargeLevelText">
+    <property name="enabled">
+     <bool>true</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>229</x>
+      <y>38</y>
+      <width>51</width>
+      <height>29</height>
+     </rect>
+    </property>
+    <property name="sizePolicy">
+     <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+      <horstretch>0</horstretch>
+      <verstretch>0</verstretch>
+     </sizepolicy>
+    </property>
+    <property name="font">
+     <font>
+      <family>Roboto</family>
+     </font>
+    </property>
+    <property name="mouseTracking">
+     <bool>false</bool>
+    </property>
+    <property name="acceptDrops">
+     <bool>false</bool>
+    </property>
+    <property name="toolTip">
+     <string notr="true"/>
+    </property>
+    <property name="text">
+     <string notr="true">50%</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+    </property>
+    <property name="report_metrics" stdset="0">
+     <bool>false</bool>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QGroupBox" name="bat_statusGroup">
+   <property name="geometry">
+    <rect>
+     <x>324</x>
+     <y>94</y>
+     <width>251</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Roboto</family>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">border: 0px;</string>
+   </property>
+   <property name="title">
+    <string>Battery status</string>
+   </property>
+   <property name="ColorGroup" stdset="0">
+    <string notr="true">Title</string>
+   </property>
+  </widget>
+  <widget class="QComboBox" name="bat_statusBox">
+   <property name="geometry">
+    <rect>
+     <x>324</x>
+     <y>112</y>
+     <width>280</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Roboto</family>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">padding: 3px 3px 3px 3px;</string>
+   </property>
+   <property name="currentIndex">
+    <number>1</number>
+   </property>
+   <property name="report_metrics" stdset="0">
+    <bool>false</bool>
+   </property>
+   <item>
+    <property name="text">
+     <string>Unknown</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Charging</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Discharging</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Not charging</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Full</string>
+    </property>
+   </item>
+  </widget>
+  <widget class="QComboBox" name="bat_chargerBox">
+   <property name="geometry">
+    <rect>
+     <x>324</x>
+     <y>38</y>
+     <width>280</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Roboto</family>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">padding: 3px 3px 3px 3px;</string>
+   </property>
+   <property name="currentIndex">
+    <number>1</number>
+   </property>
+   <property name="maxVisibleItems">
+    <number>4</number>
+   </property>
+   <property name="report_metrics" stdset="0">
+    <bool>false</bool>
+   </property>
+   <item>
+    <property name="text">
+     <string>None</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>AC charger</string>
+    </property>
+   </item>
+  </widget>
+  <widget class="QGroupBox" name="bat_healthGroup">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>94</y>
+     <width>241</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Roboto</family>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">border: 0px;</string>
+   </property>
+   <property name="title">
+    <string>Battery health</string>
+   </property>
+   <property name="ColorGroup" stdset="0">
+    <string notr="true">Title</string>
+   </property>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

@@ -1,0 +1,8 @@
+﻿Build started 2014/12/4 15:20:55.
+     1>Project "D:\developer\windows\iTunesABI\iAuthedBroker\iAuthedBroker.vcxproj" on node 2 (build target(s)).
+     1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\Microsoft.CppBuild.targets(283,5): error MSB8013: This project doesn't contain the Configuration and Platform combination of Release|Win32.
+     1>Done Building Project "D:\developer\windows\iTunesABI\iAuthedBroker\iAuthedBroker.vcxproj" (build target(s)) -- FAILED.
+
+Build FAILED.
+
+Time Elapsed 00:00:00.01

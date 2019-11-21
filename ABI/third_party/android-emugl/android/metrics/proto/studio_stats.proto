@@ -1,0 +1,2713 @@
+// NOTE: Do not use oneof in this proto as we need to compile it with the
+// open source 2.5 version of the protobuf compiler for Android Studio which
+// does not support the oneof feature.
+syntax = "proto2";
+
+option java_package = "com.google.wireless.android.sdk.stats";
+option java_outer_classname = "AndroidStudioStats";
+
+// IntelliJ gets realy upset with the large proto files we generate
+// and disables auto-complete for the classes.
+// This option will generate multiple files and restore auto-completion.
+option java_multiple_files = true;
+
+package android_studio;
+
+
+message AndroidStudioEvent {
+  // Describes a group of event kinds related to each other.
+  // Necessary only for events that were originally being reported to Google
+  // Analytics (GA).
+  optional EventCategory category = 1;
+
+  // Specific kind of event, primary separation key of all Android Studio
+  // related events.
+  optional EventKind kind = 2;
+
+  // The session id is a UUID tracking a single instance of Android Studio
+  // to associate events together such as kind = TEST_RUN
+  optional string studio_session_id = 3;
+
+  // set when kind = STUDIO_PING
+  // or kind = EMULATOR_PING
+  // or ANDROID_STUDIO_TEST
+  // or ANDROID_STUDIO_THROUGH_GRADLE
+  optional ProductDetails product_details = 4;
+
+  // set when kind = MONITOR_ACTIVATED or kind = MONITOR_RUNNING
+  // Deprecated by AndroidProfilerEvent
+  optional MonitorType monitor_type = 5;
+
+  // set when kind = MONITOR_RUNNING
+  // Deprecated by AndroidProfilerEvent
+  optional bool monitor_paused = 6;
+
+  // set when kind = PROFILING_OPEN or PROFILING_CAPTURE
+  // Deprecated by AndroidProfilerEvent
+  optional ProfilerCaptureType profiler_capture_type = 7;
+
+  // set when kind = CLOUD_TESTING_BACKEND_ERROR
+  optional string cloud_testing_error_message = 8;
+
+  // set when kind = CLOUD_TESTING_COMPARE_SCREENSHOTS_OPENED
+  optional int32 cloud_testing_loaded_screenshots_count = 9;
+
+  // Deprecated, use debug_session_start_details instead.
+  // set when kind = LLDB_SESSION_STARTED
+  optional RunConfigurationType run_configuration_type = 10;
+
+  // Deprecated, use debug_session_start_details instead.
+  // set when kind = LLDB_SESSION_STARTED
+  optional DebuggerType debugger_type = 11;
+
+  // set when kind = LLDB_LAUNCHED
+  // or kind = DEPLOYMENT_APK
+  // or kind = DEPLOYMENT_EMULATOR
+  // or kind = CLOUD_TESTING_CONFIGURE_CLOUD_DEVICE
+  // or kind = CLOUD_TESTING_LAUNCH_CLOUD_DEVICE
+  // or kind = CLOUD_TESTING_DEBUG_FROM_RESULTS
+  // or kind = TEST_RUN
+  optional DeviceInfo device_info = 12;
+
+  // set when kind = LLDB_INSTALL_FAILED
+  // e.g. 'failed to get reply to handshake packet'
+  optional string lldb_session_failure_message = 13;
+
+  // set when kind = DEVELOPER_SERVICES_INSTALLED
+  // or kind = DEVELOPER_SERVICES_REMOVED
+  optional DeveloperServiceKind developer_service_kind = 14;
+
+  // set when category = GRADLE_SYNC
+  optional string gradle_version = 15;  // e.g. '2.10'
+
+  // set when kind = GRADLE_SYNC_FAILURE
+  optional GradleSyncFailure gradle_sync_failure = 16;
+
+  // set when kind = GRADLE_SYNC_FAILURE and gradle_sync_failure = *_NOT_FOUND
+  // e.g. 'org.gradle.api.internal.DemoClass.demoMethod'
+  optional string gradle_missing_signature = 17;
+
+  // set when kind = TEMPLATE_RENDERER
+  optional TemplateRenderer template_renderer = 18;
+
+  // set when kind = STUDIO_CRASH
+  optional StudioCrash studio_crash = 19;
+
+  // set when kind = GRADLE_BUILD_DETAILS or INSTANT_RUN
+  // In the case of INSTANT_RUN, only the plugin version information is included
+  optional GradleBuildDetails gradle_build_details = 20;
+
+  // set when kind = INSTANT_RUN
+  optional InstantRun instant_run = 21;
+
+  // set when kind = META_METRICS
+  optional MetaMetrics meta_metrics = 22;
+
+  // set when kind = EMULATOR_PING
+  optional EmulatorDetails emulator_details = 23;
+
+  // set when kind = TEST_RUN
+  optional TestRun test_run = 24;
+
+  // set when kind = EMULATOR_UI_EVENT
+  optional EmulatorUiEvent emulator_ui_event = 25;
+
+  // set when kind = HYPERVISOR
+  optional Hypervisor hypervisor = 26;
+
+  // set when kind = EMULATOR_HOST
+  optional EmulatorHost emulator_host = 27;
+
+  // set when kind = GRADLE_BUILD_PROFILE
+  optional GradleBuildProfile gradle_build_profile = 28;
+
+  // set when kind = LLDB_FRONTEND_EXITED
+  optional LLDBFrontendDetails lldb_frontend_details = 29;
+
+  // set when kind = FIREBASE_ASSISTANT_ERROR_PRESENTED or
+  // kind FIREBASE_ASSISTANT_SILENT_ERROR
+  optional FirebaseErrorDetails firebase_error_details = 30;
+
+  // Client-side salted (rotating every 28 days), sha256 of the project id.
+  // set when kind = PROJECT_STRUCTURE_* or kind = APK_ANALYZER_STATS
+  optional string project_id = 31;
+
+  // set when kind = GFX_TRACE_*
+  optional GfxTracingDetails gfx_tracing_details = 32;
+
+  // set when kind = TEST_RECORDER_GENERATE_TEST_CLASS
+  optional TestRecorderDetails test_recorder_details = 33;
+
+  // set when kind = STUDIO_UI_ACTION_STATS
+  optional UIActionStats ui_action_stats = 34;
+
+  // set when kind = STUDIO_PING
+  optional MachineDetails machine_details = 35;
+
+  // set when kind = STUDIO_PING
+  optional JvmDetails jvm_details = 36;
+
+  // set when kind = STUDIO_PROCESS_STATS or kind = GRADLE_BUILD_PROFILE
+  optional JavaProcessStats java_process_stats = 37;
+
+  // set when kind = STUDIO_PERFORMANCE_STATS
+  optional StudioPerformanceStats studio_performance_stats = 38;
+
+  // set when kind = LLDB_PERFORMANCE_STATS
+  optional LldbPerformanceStats lldb_performance_stats = 39;
+
+  // set when kind = STUDIO_PROJECT_OPENED or STUDIO_PROJECT_CLOSED
+  optional StudioProjectChange studio_project_change = 40;
+
+  // optionally set when kind = FIREBASE_ASSISTANT_* (except for errors).
+  optional FirebaseContextDetails firebase_context_details = 41;
+
+  // set when kind = LAYOUT_EDITOR_EVENT
+  optional LayoutEditorEvent layout_editor_event = 42;
+
+  // set when kind = APP_LINKS_ASSISTANT_STATS
+  optional AppLinksAssistantEvent app_links_assistant_event = 43;
+
+  // set when kind = EMULATOR_PERFORMANCE_STATS
+  optional EmulatorPerformanceStats emulator_performance_stats = 44;
+
+  // set when kind = ADB_ASSISTANT_STATS
+  optional AdbAssistantStats adb_assistant_stats = 45;
+
+  // set when kind = LLDB_SESSION_STARTED
+  optional LldbSessionStartDetails lldb_session_start_details = 46;
+
+  // set when kind = LLDB_SESSION_ENDED
+  optional LldbSessionEndDetails lldb_session_end_details = 47;
+
+  // set when kind = ANDROID_PROFILER
+  optional AndroidProfilerEvent android_profiler_event = 48;
+
+  // set when kind = APK_ANALYZER_STATS
+  optional ApkAnalyzerStats apk_analyzer_stats = 49;
+
+  // set when kind = GRADLE_SYNC_ENDED, GRADLE_SYNC_FAILURE or
+  // GRADLE_SYNC_SETUP_STARTED
+  optional GradleSyncStats gradle_sync_stats = 50;
+
+  // Describes a group of event kinds related to each other.
+  // This is redundant in the presence of EventKind + event specific message,
+  // and is only necessary for events originally sent to GA.
+  enum EventCategory {
+    // The event was not grouped into any specific category (default).
+    NO_EVENT_CATEGORY = 0;
+    // The event is related to deployment to a device or emulator.
+    DEPLOYMENT = 1;
+    // Stats on builds from Studio.
+    STUDIO_BUILD = 2;
+    // The event is related to usage of 'Google Developer Services'
+    // inside Android Studio.
+    DEVELOPER_SERVICES = 3;
+    // The event is related to interaction between Android Studio and Gradle.
+    GRADLE_SYNC = 4;
+    // The event is related to Performance Profiling.
+    // Deprecated by AndroidProfilerEvent
+    PROFILING = 5;
+    // The event is related to Performance Monitoring.
+    // Deprecated by AndroidProfilerEvent
+    MONITOR = 6;
+    // The event is related to the SDK Manager.
+    SDK_MANAGER = 7;
+    // The event is related to project/file templates.
+    TEMPLATE = 8;
+    // The event is related to Theme Editor.
+    THEME_EDITOR = 9;
+    // The event is related to App Indexing integration.
+    // (http://go/studio-app-indexing)
+    APP_INDEXING = 10;
+    // The event is related to C++ debugging.
+    LLDB = 11;
+    // The event is related to Google Cloud Test Lab integration.
+    CLOUD_TESTING = 12;
+    // The event is a regular ping from the application.
+    PING = 13;
+    // The event is related to running tests.
+    TESTS = 14;
+    // The event is a meta event reporting metrics on metrics.
+    META = 15;
+    // The event is related to the Emulator UI
+    EMULATOR_UI = 16;
+    // The event describes System Info
+    SYSTEM = 17;
+    // The event is related to the Project Structure Dialog.
+    PROJECT_STRUCTURE_DIALOG = 18;
+    // The event is from the Android Gradle plugin.
+    GRADLE = 19;
+    // The event is related to the Firebase assistant.
+    FIREBASE_ASSISTANT = 20;
+    // The event is related to the GPU Profiler.
+    // Deprecated by AndroidProfilerEvent
+    GPU_PROFILER = 21;
+    // the event is related to the test recorder (Cassette)
+    TEST_RECORDER = 22;
+    // the event is related to the Android Studio UI.
+    STUDIO_UI = 23;
+    // the event is related to the layout editor
+    LAYOUT_EDITOR = 24;
+  }
+
+  // Specific kind of event, primary separation key of all Android Studio
+  // related events.
+  enum EventKind {
+    UNKNOWN_EVENT_KIND = 0;
+    // An APK (android application) is deployed.
+    DEPLOYMENT_APK = 1;
+    // A deployment to the emulator.
+    DEPLOYMENT_TO_EMULATOR = 2;
+    // The developer added a Google Developer Service to their app.
+    DEVELOPER_SERVICES_INSTALLED = 3;
+    // The developer removed  a Google Developer Service from their app.
+    DEVELOPER_SERVICES_REMOVED = 4;
+    // A sync between Android Studio and Gradle started.
+    GRADLE_SYNC_STARTED = 5;
+    // A sync between Android Studio and Gradle ended.
+    GRADLE_SYNC_ENDED = 6;
+    // A sync between Android Studio and Gradle was skipped.
+    GRADLE_SYNC_SKIPPED = 7;
+    // A sync between Android Studio and Gradle failed.
+    GRADLE_SYNC_FAILURE = 8;
+    // A sync between Android Studio and Gradle C++ support completed.
+    GRADLE_CPP_SYNC_COMPLETED = 9;
+    // Performance profiling capture started.
+    PROFILING_CAPTURE = 10;
+    // Performance profiling capture opened in the IDE.
+    PROFILING_OPEN = 11;
+    // Conversion of hprof profiling data in progress.
+    PROFILING_CONVERT_HPROF = 12;
+    // Analysis of the profiling data in progress.
+    PROFILING_ANALYSIS_RUN = 13;
+    // Performance monitoring has been activated.
+    // Deprecated by AndroidProfilerEvent
+    MONITOR_ACTIVATED = 14;
+    // Performance monitoring is running.
+    // Deprecated by AndroidProfilerEvent
+    MONITOR_RUNNING = 15;
+    // The user selected an action from the SDK Manager Toolbar.
+    SDK_MANAGER_TOOLBAR_CLICKED = 16;
+    // The standalone SDK Manager was launched.
+    SDK_MANAGER_STANDALONE_LAUNCHED = 17;
+    // The built-in SDK Manager was launched.
+    SDK_MANAGER_LOADED = 18;
+    // A new file/project is created based on a template.
+    TEMPLATE_RENDER = 19;
+    // User opened the Theme Editor.
+    THEME_EDITOR_OPEN = 20;
+    // A deep link was created for app indexing.
+    APP_INDEXING_DEEP_LINK_CREATED = 21;
+    // An api code was created for app indexing.
+    APP_INDEXING_API_CODE_CREATED = 22;
+    // An app indexing deep link was launched.
+    APP_INDEXING_DEEP_LINK_LAUNCHED = 23;
+    // An app indexing quick fix was applied.
+    APP_INDEXING_TRIGGER_QUICKFIX = 24;
+    // App Indexing Fetch As Google dialog is shown.
+    APP_INDEXING_SHOW_FEAG_DIALOG = 25;
+    // App Indexing Fetch As Google task has started.
+    APP_INDEXING_START_FEAG_TASK = 26;
+    // Native debugger is launched.
+    LLDB_LAUNCHED = 27;
+    // Native debugger session has started.
+    LLDB_SESSION_STARTED = 28;
+    // Deprecated, use LLDB_SESSION_ENDED instead.
+    // Native debugger session has failed.
+    LLDB_SESSION_FAILED = 29;
+    // Deprecated, use DEBUG_SESSION_ENDED instead.
+    // Native debugger session has completed successfully.
+    LLDB_SESSION_COMPLETED = 30;
+    // SDK Manager QuickFix Wizard is invoked to install LLDB package.
+    LLDB_INSTALL_STARTED = 31;
+    // SDK Manager QuickFix Wizard invocation to install LLDB package failed.
+    LLDB_INSTALL_FAILED = 32;
+    // SDK Manager QuickFix Wizard invocation to install LLDB package completed
+    // successfully.
+    LLDB_INSTALL_COMPLETED = 33;
+    // A watchpoint was added to native code.
+    LLDB_SESSION_USED_WATCHPOINTS = 34;
+    // A Cloud Device was configured for Cloud Testing.
+    CLOUD_TESTING_CONFIGURE_CLOUD_DEVICE = 35;
+    // A Matrix of Cloud Devices was configured for Cloud Testing.
+    CLOUD_TESTING_CONFIGURE_MATRIX = 36;
+    // A Cloud Devices was launched for Cloud Testing.
+    CLOUD_TESTING_LAUNCH_CLOUD_DEVICE = 37;
+    // A Matrix of Cloud Devices was run for Cloud Testing.
+    CLOUD_TESTING_RUN_TEST_MATRIX = 38;
+    // Cloud Testing reported a backend error.
+    CLOUD_TESTING_BACKEND_ERROR = 39;
+    // A Debug session was launched from Cloud Testing results.
+    CLOUD_TESTING_DEBUG_FROM_RESULTS = 40;
+    // The compare screenshots window was opened from a Cloud Testing run.
+    CLOUD_TESTING_COMPARE_SCREENSHOTS_OPENED = 41;
+    // Studio crash statistics were sent.
+    STUDIO_CRASH = 42;
+    // A Gradle Build was run and statistics are available.
+    GRADLE_BUILD_DETAILS = 44;
+    // Stats on Instant Run.
+    INSTANT_RUN = 45;
+    // Daily Android Studio ping with version & os details.
+    STUDIO_PING = 46;
+    // Daily emulator ping with version & os details.
+    EMULATOR_PING = 47;
+    // Metrics on Metrics.
+    META_METRICS = 48;
+    // User ran tests.
+    TEST_RUN = 50;
+    // User clicked something in the Emulator UI.
+    EMULATOR_UI_EVENT = 51;
+    // Information on the host OS's hypervisor support.
+    HYPERVISOR = 52;
+    // Provides info on the Emulator Host
+    EMULATOR_HOST = 53;
+    // Various UI events in the Project Structure Dialog.
+    PROJECT_STRUCTURE_DIALOG_OPEN = 54;
+    PROJECT_STRUCTURE_DIALOG_SAVE = 55;
+    PROJECT_STRUCTURE_DIALOG_TOP_TAB_CLICK = 56;
+    PROJECT_STRUCTURE_DIALOG_TOP_TAB_SAVE = 57;
+    PROJECT_STRUCTURE_DIALOG_LEFT_NAV_CLICK = 58;
+    PROJECT_STRUCTURE_DIALOG_LEFT_NAV_SAVE = 59;
+    // A gradle build profile
+    GRADLE_BUILD_PROFILE = 60;
+
+    // The LLDB Frontend has unexpectedly exited
+    LLDB_FRONTEND_EXITED = 61;
+
+    // The Firebase assistant created a project.
+    FIREBASE_ASSISTANT_PROJECT_CREATED = 62;
+    // The Firebase assistant failed to create a project.
+    FIREBASE_ASSISTANT_PROJECT_CREATE_FAILED = 63;
+    // The Firebase assistant upgraded a project.
+    FIREBASE_ASSISTANT_PROJECT_UPGRADED = 64;
+    // The Firebase assistant failed to upgrade a project.
+    FIREBASE_ASSISTANT_PROJECT_UPGRADE_FAILED = 66;
+    // The Firebase assistant failed to create a config.
+    FIREBASE_ASSISTANT_PROJECT_CONFIG_CREATE_FAILED = 67;
+    // The Firebase assistant updated a project.
+    FIREBASE_ASSISTANT_PROJECT_UPDATED = 68;
+    // The Firebase assistant failed to update a project.
+    FIREBASE_ASSISTANT_PROJECT_UPDATE_FAILED = 69;
+    // The Firebase assistant failed to write the project config.
+    FIREBASE_ASSISTANT_PROJECT_CONFIG_WRITE_FAILED = 70;
+    // The Firebase assistant failed as the user did not accept the TOS.
+    FIREBASE_ASSISTANT_TOS_FAILED = 71;
+    // The Firebase assistant is trying to login.
+    FIREBASE_ASSISTANT_ATTEMPT_LOGIN = 72;
+    // The Firebase assistant successfully logged in.
+    FIREBASE_ASSISTANT_LOGIN_SUCCESS = 73;
+    // The Firebase assistant showed the dialog to offer to reconnect.
+    FIREBASE_ASSISTANT_RECONNECT_DIALOG_SYNC = 74;
+    // The Firebase assistant was requested to connect to the server.
+    FIREBASE_ASSISTANT_CONNECT_REQUESTED = 75;
+    // The Firebase assistant panel was opened.
+    FIREBASE_ASSISTANT_OPEN = 76;
+    // The Firebase assistant connect dialog was opened.
+    FIREBASE_ASSISTANT_CONNECT_DIALOG_OPENED = 77;
+    // The Firebase assistant connect dialog was asked to connect.
+    FIREBASE_ASSISTANT_CONNECT_DIALOG_SYNC = 78;
+    // The Firebase assistant presented an error to the user.
+    FIREBASE_ASSISTANT_ERROR_PRESENTED = 79;
+    // The Firebase assistant encounted an error but didn't inform the user.
+    FIREBASE_ASSISTANT_SILENT_ERROR = 80;
+    // The Firebase assistant reconnect dialog was opened.
+    FIREBASE_ASSISTANT_RECONNECT_DIALOG_OPENED = 81;
+
+    // The GPU Debugger tracing had an initialization failure.
+    GFX_TRACE_INIT_ERROR = 82;
+    // The GPU Debugger tracing was closed.
+    GFX_TRACE_CLOSED = 83;
+    // The GPU Debugger tracing had a parameter edited.
+    GFX_TRACE_PARAMETER_EDITED = 84;
+    // The GPU Debugger tracing was started.
+    GFX_TRACE_TRACE_STARTED = 85;
+    // The GPU Debugger tracing was stopped.
+    GFX_TRACE_TRACE_STOPPED = 86;
+    // A UI command influencing the the GPU Debugger was selected.
+    GFX_TRACE_COMMAND_SELECTED = 87;
+    // A link from  the GPU Debugger tracing results was clicked.
+    GFX_TRACE_LINK_CLICKED = 88;
+    // A memory snapshot from  the GPU Debugger tracing results was clicked.
+    GFX_TRACE_MEMORY_VIEWED = 89;
+    // A texture from the GPU Debugger tracing results was viewed.
+    GFX_TRACE_TEXTURE_VIEWED = 90;
+
+    // A "legacy" IntelliJ style project was loaded.
+    LEGACY_IDEA_ANDROID_PROJECT = 91;
+
+    // The user requested the test recorder to generate a test class.
+    TEST_RECORDER_GENERATE_TEST_CLASS = 92;
+    // The test recorder detected missing espresso dependencies.
+    TEST_RECORDER_MISSING_ESPRESSO_DEPENDENCIES = 93;
+    // The test recorder detected missing instrumentation test folder.
+    TEST_RECORDER_MISSING_INSTRUMENTATION_TEST_FOLDER = 94;
+    // The test recorder was launched.
+    TEST_RECORDER_LAUNCH = 95;
+
+    // A GPU Debugger Trace session was opened but not started yet.
+    GFX_TRACE_OPEN = 96;
+
+    // Statistics on user actions in the Android Studio UI.
+    STUDIO_UI_ACTION_STATS = 97;
+
+    // Stats on the current running Android Studio process.
+    STUDIO_PROCESS_STATS = 98;
+
+    // Stats on Studio's performance
+    STUDIO_PERFORMANCE_STATS = 99;
+
+    // Performance stats for LLDB operations.
+    LLDB_PERFORMANCE_STATS = 100;
+
+    // User opened a project in the IDE.
+    STUDIO_PROJECT_OPENED = 101;
+
+    // User closed a project in the IDE.
+    STUDIO_PROJECT_CLOSED = 102;
+
+    // Feature grouping of tutorials expanded.
+    FIREBASE_ASSISTANT_FEATURE_EXPANDED = 103;
+    // Tutorial opened.
+    FIREBASE_ASSISTANT_TUTORIAL_OPENED = 104;
+    // Tutorial closed via navigation.
+    FIREBASE_ASSISTANT_TUTORIAL_CLOSED = 105;
+    // Project update failed due to permissions issue.
+    FIREBASE_ASSISTANT_PROJECT_UPDATE_DENIED = 106;
+    // Terms of service accepted by user.
+    FIREBASE_ASSISTANT_TOS_ACCEPTED = 107;
+    // Dependency added.
+    FIREBASE_ASSISTANT_DEPENDENCY_ADDED = 108;
+
+    // Layout editor event
+    LAYOUT_EDITOR_EVENT = 109;
+
+    // Receive sync response and start to setup project in IDE.
+    GRADLE_SYNC_SETUP_STARTED = 110;
+
+    // For event from App Links Assistant.
+    APP_LINKS_ASSISTANT_STATS = 111;
+
+    // Emulator performance tracking.
+    EMULATOR_PERFORMANCE_STATS = 112;
+
+    // The user saved a recorded Robo bootstrap script.
+    TEST_RECORDER_SAVE_ROBO_SCRIPT = 113;
+
+    // Opened ADB Connection Help Link
+    ADB_ASSISTANT_STATS = 114;
+
+    // A native debug session ended.
+    LLDB_SESSION_ENDED = 115;
+
+    // Android Profiler event
+    ANDROID_PROFILER = 116;
+
+    // APK Analyzer Statistics
+    APK_ANALYZER_STATS = 117;
+
+    // The user launched the test recorder to record a Robo bootstrap script.
+    TEST_RECORDER_RECORD_ROBO_SCRIPT = 118;
+
+    // Instant Run Notification Tracking
+    INSTANT_RUN_PROMPT_FOR_APPLY_CHANGES_SHOWN = 119;
+  }
+
+  // Represents different Performance Monitoring types.
+  enum MonitorType {
+    UNKNOWN_MONITOR_TYPE = 0;
+    CPU = 1;
+    GPU = 2;
+    MEMORY = 3;
+    NETWORK = 4;
+  }
+
+  // Represents different Performance Profiler Capture types.
+  enum ProfilerCaptureType {
+    UNKNOWN_PROFILER_CAPTURE_TYPE = 0;
+    ALLOCATION = 1;
+    FILE = 2;
+    GFX_TRACE = 3;
+    HEAP = 4;
+    SYSTEM_INFO = 5;
+    VM_TRACE = 6;
+    METHOD_TRACING = 7;
+    LAYOUT_INSPECTOR_SNAPSHOT = 8;
+    HIERARCHY_VIEW = 9;
+  }
+
+  // Represents the different Run Configurations the debugger supports.
+  enum RunConfigurationType {
+    UNKNOWN_RUN_CONFIGURATION_TYPE = 0;
+    ANDROID = 1;
+    ANDROID_NATIVE = 2;
+    ANDROID_TEST = 3;
+  }
+
+  // Represents the different debugger types supported.
+  enum DebuggerType {
+    UNKNOWN_DEBUGGER_TYPE = 0;
+    JAVA = 1;
+    HYBRID = 2;
+    NATIVE = 3;
+  }
+
+  // Represents the different Google Developer Services that can be
+  // (semi-)automatically integrated into Android Applications.
+  enum DeveloperServiceKind {
+    UNKNOWN_DEVELOPER_SERVICE_KIND = 0;
+    GOOGLE_CLOUD_MESSAGING = 1;
+    AD_MOB = 2;
+    GOOGLE_SIGN_IN = 3;
+    GOOGLE_ANALYTICS = 4;
+    FIREBASE = 5;
+    REALTIME_DATABASE = 6;
+    AUTHENTICATION = 7;
+    CRASH_REPORTING = 8;
+    NOTIFICATIONS = 9;
+    REMOTE_CONFIG = 10;
+    STORAGE = 11;
+    APP_INVITES = 12;
+    DYNAMIC_LINKS = 13;
+  }
+
+  // The various templates the template engine could be asked to render.
+  enum TemplateRenderer {
+    UNKNOWN_TEMPLATE_RENDERER = 0;
+    CUSTOM_TEMPLATE_RENDERER = 1;
+    ANDROID_MODULE = 2;
+    ANDROID_PROJECT = 3;
+    EMPTY_ACTIVITY = 4;
+    BLANK_ACTIVITY = 5;
+    LAYOUT_XML_FILE = 6;
+    FRAGMENT_BLANK = 7;
+    NAVIGATION_DRAWER_ACTIVITY = 8;
+    VALUES_XML_FILE = 9;
+    GOOGLE_MAPS_ACTIVITY = 10;
+    LOGIN_ACTIVITY = 11;
+    ASSETS_FOLDER = 12;
+    TABBED_ACTIVITY = 13;
+    SCROLLING_ACTIVITY = 14;
+    FULLSCREEN_ACTIVITY = 15;
+    SERVICE = 16;
+    JAVA_LIBRARY = 17;
+    SETTINGS_ACTIVITY = 18;
+    FRAGMENT_LIST = 19;
+    MASTER_DETAIL_FLOW = 20;
+    ANDROID_WEAR_MODULE = 21;
+    BROADCAST_RECEIVER = 22;
+    AIDL_FILE = 23;
+    INTENT_SERVICE = 24;
+    JNI_FOLDER = 25;
+    JAVA_FOLDER = 26;
+    CUSTOM_VIEW = 27;
+    ANDROID_TV_MODULE = 28;
+    GOOGLE_ADMOBS_ADS_ACTIVITY = 29;
+    ALWAYS_ON_WEAR_ACTIVITY = 30;
+    RES_FOLDER = 31;
+    ANDROID_TV_ACTIVITY = 32;
+    BLANK_WEAR_ACTIVITY = 33;
+    BASIC_ACTIVITIY = 34;
+    APP_WIDGET = 35;
+  }
+
+  // Reasons Gradle sync failed.
+  enum GradleSyncFailure {
+    UNKNOWN_GRADLE_FAILURE = 0;
+    CONNECTION_DENIED = 1;
+    CLASS_NOT_FOUND = 2;
+    DSL_METHOD_NOT_FOUND = 3;
+    FAILED_TO_PARSE_SDK = 4;
+    METHOD_NOT_FOUND = 5;
+    MISSING_ANDROID_PLATFORM = 6;
+    MISSING_ANDROID_SUPPORT_REPO = 7;
+    MISSING_BUILD_TOOLS = 8;
+    OUT_OF_MEMORY = 9;
+    SDK_NOT_FOUND = 10;
+    UNKNOWN_HOST = 11;
+    UNSUPPORTED_ANDROID_MODEL_VERSION = 12;
+    UNSUPPORTED_GRADLE_VERSION = 13;
+  }
+}
+// Describes a product, e.g. Android Studio or Emulator.
+message ProductDetails {
+  // The product this event relates to.
+  optional ProductKind product = 1;
+  // The build ID of Android Studio.
+  optional string build = 2;  // e.g. AI-141.2178183
+  // The version of the product.
+  optional string version = 3;  // e.g. 2.0.0.11
+  // Historical: never used as it was not providing enough info. Use channel
+  // instead as it distinguishes between different kinds of preview releases.
+  optional bool preview = 4;
+  // The CPU archtecture the product is running on.
+  optional CpuArchitecture os_architecture = 5;
+  // The state in the software lifecycle of this product.
+  optional SoftwareLifeCycleChannel channel = 6;
+
+  // Various states in the software life cycle this software could be in.
+  enum SoftwareLifeCycleChannel {
+    UNKNOWN_LIFE_CYCLE_CHANNEL = 0;
+    CANARY = 1;
+    DEV = 2;
+    BETA = 3;
+    STABLE = 4;
+  }
+
+  // Describes the various Products related to Android Studio.
+  enum ProductKind {
+    UNKNOWN_PRODUCT = 0;
+    STUDIO = 1;
+    EMULATOR = 2;
+    GRADLE = 3;
+    DDMS = 4;
+  }
+
+  // Chip the software is running on.
+  enum CpuArchitecture {
+    UNKNOWN_CPU_ARCHITECTURE = 0;
+    X86 = 1;
+    X86_64 = 2;
+  }
+}
+
+// Describes a emulator or physical Android Device.
+message DeviceInfo {
+  // serial number of the device, salted & sha256ed on the client.
+  optional string anonymized_serial_number = 1;
+
+  // Tags used to build the android version on this device.
+  // e.g. 'release-keys' or 'test-keys' or 'A100_V001'
+  optional string build_tags = 2;
+
+  // Type of build this device is running.
+  // e.g. 'user' or 'userdebug' or 'eng' or 'alphabuild'
+  optional string build_type = 3;
+
+  // Android version e.g. '5.1.1'
+  optional string build_version_release = 4;
+
+  // Historic: doesn't support api levels for code names such as 'N'.
+  optional int32 build_api_level = 5;
+
+  // ABI of the device, e.g. 'armeabi-v7a' or 'x86'
+  optional ApplicationBinaryInterface cpu_abi = 6;
+
+  // Device manufacturer, e.g. 'Motorola' or 'Samsung'
+  optional string manufacturer = 7;
+
+  // Device model, e.g. 'Nexus 5' or 'GT-I9500'.
+  optional string model = 8;
+
+  // What kind of device is this? Physicial/Emulator/Cloud etc...
+  optional DeviceType device_type = 9;
+
+  // android api level  e.g. '23' or 'N'
+  optional string build_api_level_full = 10;
+
+  // Describes tthe ABI of the device/emulator.
+  enum ApplicationBinaryInterface {
+    UNKNOWN_ABI = 0;
+    ARME_ABI_V7A = 1;
+    X86_ABI = 2;
+    ARM64_V8A_ABI = 3;
+    X86_64_ABI = 4;
+    ARME_ABI = 5;
+    MIPS_ABI = 6;
+    MIPS_R2_ABI = 7;
+    ARME_ABI_V6L = 8;
+    ARME_ABI_V6J = 9;
+  }
+
+  // Describes the kind of device being deployed/tested on.
+  enum DeviceType {
+    UNKNOWN_DEVICE_TYPE = 0;
+    LOCAL_PHYSICAL = 1;
+    LOCAL_EMULATOR = 2;
+    CLOUD_EMULATOR = 3;
+    CLOUD_PHYSICAL = 4;
+  }
+}
+
+message LldbSessionStartDetails {
+  // A UUID used to relate start and end of a native debug session.
+  optional string debug_session_id = 1;
+  // Debugger type for this session
+  optional AndroidStudioEvent.DebuggerType debugger_type = 2;
+  // Run configuration that was used to start this sesssion.
+  optional AndroidStudioEvent.RunConfigurationType run_configuration_type = 3;
+  // True if debugger_type was chosen via the Auto debugger type.
+  optional bool auto_debugger = 4;
+  // Device on which the debuggable app is running.
+  optional DeviceInfo device_info = 5;
+  // Version of the native debugger.
+  optional string lldb_version = 6;
+}
+
+message LldbSessionEndDetails {
+  // A UUID used to relate start and end of a native debug session.
+  optional string debug_session_id = 1;
+  // If the session ended with a failure, the related message.
+  // e.g. 'failed to get reply to handshake packet'
+  optional string failure_message = 2;
+  // Number of times the program was stopped by the debugger.
+  // Proxy for use of the session to compute error rates.
+  optional uint64 stops = 3;
+}
+
+message StudioExceptionDetails {
+  // hash of the exception stack trace
+  optional string hash = 1;
+  // summary of the exception stack trace
+  optional string summary = 2;
+  // number of crashes seen with this stack trace
+  optional uint32 count = 3;
+}
+
+// Metrics on crashes in Android Studio.
+message StudioCrash {
+  // number of actions since last crash report.
+  optional int64 actions = 1;
+  // number of exceptions since last crash report.
+  optional int64 exceptions = 2;
+  // number of crashes since last crash report.
+  optional int64 crashes = 3;
+  // number of exceptions from plugins bundled with Android Studio.
+  optional int64 bundled_plugin_exceptions = 4;
+  // number of exceptions from plugins not bundled with Android Studio.
+  optional int64 non_bundled_plugin_exceptions = 5;
+  // details on each exception
+  repeated StudioExceptionDetails details = 6;
+}
+
+// Emulator guest image's GL info.
+message EmulatorGuestGlInfo {
+  // GL Driver vendor.
+  optional string vendor = 1;
+  // GL Driver name.
+  optional string renderer = 2;
+  // GL Driver version number.
+  optional string version = 3;
+}
+
+// Emulator: Host GPU info.
+message EmulatorGpuInfo {
+  // Make of the Graphics card.
+  optional string make = 1;
+  // Model of the Graphics card.
+  optional string model = 2;
+  // Device id of the Graphics card.
+  optional string device_id = 3;
+  // Revision of the graphics card.
+  optional string revision_id = 4;
+  // Version of the graphics card driver.
+  optional string version = 5;
+  // Name of the graphics card driver.
+  optional string renderer = 6;
+}
+
+// Set of emulator feature flags to report ones used during current session.
+message EmulatorFeatures {
+  optional bool gps = 1;
+  optional bool sensors = 2;
+}
+
+// A description of a single file from an AVD.
+message EmulatorAvdFile {
+  enum EmulatorAvdFileLocation {
+    UNKNOWN_EMULATOR_AVD_FILE_LOCATION = 0;
+    STANDARD = 1;
+    CUSTOM = 2;
+  }
+
+  enum EmulatorAvdFileKind {
+    UNKNOWN_EMULATOR_AVD_FILE_KIND = 0;
+    KERNEL = 1;
+    SYSTEM = 2;
+    RAMDISK = 3;
+  }
+
+  // Kind of the file this report is about.
+  optional EmulatorAvdFileKind kind = 1;
+  // Location of the file
+  optional EmulatorAvdFileLocation location = 2;
+  // Size
+  optional int64 size = 3;
+  // Creation datetime, as a UTC unix timestamp
+  optional int64 creation_timestamp = 4;
+}
+
+// A description of an AVD Emulator has loaded.
+message EmulatorAvdInfo {
+  enum EmulatorAvdImageKind {
+    UNKNOWN_EMULATOR_AVD_IMAGE_KIND = 0;
+    AOSP = 1;
+    GOOGLE = 2;
+  }
+  // Other AVD properties that can combine with EmulatorAvdImageKind.
+  enum EmulatorAvdProperty {
+    UNKNOWN_EMULATOR_AVD_FLAG = 0;
+    PLAY_STORE_AVD = 1;
+    PHONE_AVD = 2;
+    TV_AVD = 3;
+    WEAR_AVD = 4;
+    ANDROIDAUTO_AVD = 5;
+    THING_AVD = 6;
+    TABLET_AVD = 7;
+    LAPTOP_AVD = 8;
+    DESKTOP_AVD = 9;
+    CHROMEOS = 10;
+    // Next tag: 11
+  }
+  // Name of the AVD. Deprecated as it could potentially contain PII.
+  optional string name = 1;
+  // Api level (23 = M, 24 = N, ...)
+  optional int64 api_level = 2;
+  // CPU architecture.
+  optional EmulatorDetails.GuestCpuArchitecture arch = 3;
+  // When was this AVD created, UTC Unix timespamp.
+  optional int64 creation_timestamp = 4;
+  // A build-id string from build.prop, something like 'sdk_google_phone 1231231
+  // 10-11-2012'.
+  optional string build_id = 5;
+  // Unix build UTC timestamp.
+  optional int64 build_timestamp = 6;
+  // Kind of the image (e.g. pure AOSP, with Google APIs, etc.).
+  optional EmulatorAvdImageKind image_kind = 7;
+  // A collection of files in the AVD
+  // (usually 3 entries: kernel, system & ramdisk).
+  repeated EmulatorAvdFile files = 8;
+  // Collection of other AVD properties, mostly relating to flavor
+  // (TV vs phone vs Auto, etc)
+  repeated EmulatorAvdProperty properties = 9;
+}
+
+// State of emulator feature flags, including
+// which flags attempted to enable vs resulting set
+// of enabled flags.
+message EmulatorFeatureFlagState {
+  enum EmulatorFeatureFlag {
+    EMULATOR_FEATURE_FLAG_UNSPECIFIED = 0;
+    GL_PIPE_CHECKSUM = 1;
+    GRALLOC_SYNC = 2;
+    ENCRYPT_USER_DATA = 3;
+    INTEL_PERFORMANCE_MONITORING_UNIT = 4;
+    GL_ASYNC_SWAP = 5;
+    GLDMA = 6;
+    GLES_DYNAMIC_VERSION = 7;
+    FORCE_ANGLE = 8;
+    FORCE_SWIFTSHADER = 9;
+    WIFI = 10;
+    PLAY_STORE_IMAGE = 11;
+    LOGCAT_PIPE = 12;
+    // Hypervisor "allowed" flags (different from actual using)
+    HYPERV = 13;
+    HVF = 14;
+    KVM = 15;
+    HAXM = 16;
+    // Next tag: 17
+  }
+  // Which features were enabled by default or through the server-side config.
+  repeated EmulatorFeatureFlag attempted_enabled_feature_flags = 1;
+  // Which features were enabled through user override.
+  repeated EmulatorFeatureFlag user_overridden_enabled_features = 2;
+  // Which features were disabled through user override.
+  repeated EmulatorFeatureFlag user_overridden_disabled_features = 3;
+  // Which features ended up being enabled overall.
+  repeated EmulatorFeatureFlag resulting_enabled_features = 4;
+  // Next tag: 5
+}
+
+// RAM usage info for the emulator, in bytes.
+message EmulatorMemoryUsage {
+  optional uint64 resident_memory = 1;
+  optional uint64 resident_memory_max = 2;
+  optional uint64 virtual_memory = 3;
+  optional uint64 virtual_memory_max = 4;
+  optional uint64 total_phys_memory = 5;
+  optional uint64 total_page_file = 6;
+}
+
+// Metrics related to the Emulator.
+message EmulatorDetails {
+  // Cpu architecture of the guest.
+  optional GuestCpuArchitecture guest_arch = 1;
+  // cpu time spent in kernel mode in milliseconds since last metrics report.
+  optional int64 system_time = 2;
+  // cpu time spent in user mode in milliseconds since last metrics report.
+  optional int64 user_time = 3;
+  // number of crashes since last metrics report.
+  optional int64 crashes = 4;
+  // real time in milliseconds since last metrics report.
+  optional int64 wall_time = 5;
+  // True iff a crash occurred while process started its exit routines.
+  optional bool exit_started = 6;
+  // The API level of the running guest image.
+  optional int64 guest_api_level = 7;
+  // The value of guest gpu option (ro.kernel.qemu.gles)
+  optional bool guest_gpu_enabled = 8;
+  // True if we were able to correctly initialize opengl on the host.
+  optional bool is_opengl_alive = 10;
+  // Connectivity from adb of the running emulator instance.
+  optional EmulatorAdbLiveness adb_liveness = 11;
+  // Information about the gl implementation in the guest image.
+  optional EmulatorGuestGlInfo guest_gl = 12;
+  // Information about the host GPUs (one per GPU).
+  repeated EmulatorGpuInfo host_gpu = 13;
+  // The "phase" of an emulator session where crash happened.
+  optional EmulatorSessionPhase session_phase = 14;
+  // The emulator core version (e.g. QEMU engine's version).
+  optional string core_version = 15;
+  // Renderer of the current emulator session.
+  optional EmulatorRenderer renderer = 16;
+  // Flags for the used UI featurs.
+  optional EmulatorFeatures used_features = 17;
+  // Information about the currently loaded AVD.
+  optional EmulatorAvdInfo avd_info = 18;
+  // State tracking emulator feature flag enable/disable.
+  optional EmulatorFeatureFlagState feature_flag_state = 19;
+  // Hypervisor used in current session.
+  optional EmulatorHypervisor hypervisor = 20;
+
+  // Emulator instance liveness as determined via adb connectivity.
+  enum EmulatorAdbLiveness {
+    UNKNOWN_EMULATOR_ADB_LIVENESS = 0;
+    FAILURE_NO_ADB = 1;
+    ADB_ONLINE = 2;
+    FAILURE_ADB_SERVER_DEAD = 3;
+    FAILURE_EMULATOR_DEAD = 4;
+  }
+
+  // In What phase of the lifetime of the Emulator were the metrics reported.
+  enum EmulatorSessionPhase {
+    UNKNOWN_EMULATOR_SESSION_PHASE = 0;
+    // The custom emulator launcher is running.
+    LAUNCHER = 1;
+    // Final emulator target is parsing command line arguments.
+    PARSE_OPTIONS = 2;
+    // Initialization - general.
+    INIT_GENERAL = 3;
+    // Initializing GPU
+    INIT_GPU = 4;
+    // Initializing hardware acceleration.
+    INIT_ACCEL = 5;
+    // Main use case -- init done, emulator is up.
+    RUNNING_GENERAL = 6;
+    // Exiting
+    EXIT_GENERAL = 7;
+  }
+
+  // Chip the emulator is emulating for.
+  enum GuestCpuArchitecture {
+    UNKNOWN_GUEST_CPU_ARCHITECTURE = 0;
+    X86 = 1;
+    X86_64 = 2;
+    ARM = 3;
+    ARM_64 = 4;
+    MIPS = 5;
+    MIPS_64 = 6;
+  }
+
+  // Rendering method emulator uses for the reporter session.
+  enum EmulatorRenderer {
+    UNKNOWN_EMULATOR_RENDERER = 0;
+    HOST = 1;
+    OFF = 2;
+    GUEST = 3;
+    MESA = 4;
+    SWIFTSHADER = 5;
+    ANGLE = 6;
+    ERROR_IN_EMULATOR_RENDERER = 255;
+  }
+
+  // Hypervisor in use for the session.
+  enum EmulatorHypervisor {
+      UNKNOWN_HYPERVISOR = 0;
+      NO_HYPERVISOR = 1;
+      KVM = 2; // KVM
+      HAXM = 3; // Intel HAXM
+      HVF = 4; // Apple Hypervisor.Framework
+      HYPERV = 5; // Microsoft Hyper-V
+      // Next tag: 6
+  }
+}
+
+// Describes a user clicking on some part of the Emulator UI.
+message EmulatorUiEvent {
+  // Id of the UI element, baked in the emulator binary.
+  optional string element_id = 1;
+  // The type of UI event
+  optional EmulatorUiEventType type = 2;
+  // The current context of the event.
+  optional EmulatorUiEventContext context = 3;
+  // This value is an opaque numeric type. The exact schema of the UI metrics
+  // is not specific here. e.g., |value| may represent a boolean, a "count", or
+  // an index into the list of items in a drop down menu.
+  optional int64 value = 4;
+
+  // Tracks the type of the emulator UI Event.
+  enum EmulatorUiEventType {
+    UNKONWN_EMULATOR_UI_EVENT_TYPE = 0;
+    BUTTON_PRESS = 1;
+    // Generated when a user action changes the value of certain field from
+    // its default value.
+    OPTION_SET_TO_NON_DEFAULT = 2;
+    // Generated to report the index of an option selected by the user in a
+    // drop-down menu / radio button etc.
+    OPTION_SELECTED = 3;
+    // Generated on event processing end, |value| is time in microseconds.
+    // Is only sent if the processing time is considered 'long' in the emulator,
+    // which is determined in the emulator code itself.
+    LONG_PROCESSING_TIME_US = 4;
+  }
+
+  // Tracks the context of the Emulator UI.
+  enum EmulatorUiEventContext {
+    UNKNOWN_EMULATOR_UI_EVENT_CONTEXT = 0;
+    EXTENDED_WINDOW_OPEN = 1;
+  }
+}
+
+message EmulatorPercentileEstimator {
+  // Type of the performance metric.
+  optional EmulatorPerformanceMetric metric = 1;
+  // Per-metric type context, e.g. UI element name if this is an event handling
+  // time. Not set if there's no context for the specific metric type.
+  optional string context = 2;
+  // Estimator for metric.
+  optional PercentileEstimator estimator = 3;
+
+  // Metric types that can be monitored.
+  enum EmulatorPerformanceMetric { UI_EVENT_HANDLING_TIME_US = 0; }
+}
+
+// Estimations of percentiles of time spent on Emulator operations.
+message EmulatorPerformanceStats {
+  // Collection of estimations of performance metrics.
+  repeated EmulatorPercentileEstimator estimator = 1;
+  // Emulator memory usage over time.
+  repeated EmulatorMemoryUsage memory_usage = 2;
+}
+
+// Details about a single Gradle run.
+message GradleBuildDetails {
+  // Version of our Gradle plugin supporting android builds. e.g. '2.0-beta1'
+  optional string android_plugin_version = 1;
+  // Version of the open source Gradle application used.
+  optional string gradle_version = 2;
+  // indicates whether the user has instant run enabled in settings
+  optional bool user_enabled_ir = 3;
+  // indicates whether the IDE thinks whether this plugin version supports IR
+  optional bool model_supports_ir = 4;
+  // indicates whether the current variant supports IR, but this can be changed
+  // without a notification
+  optional bool variant_supports_ir = 5;
+  // per library metrics.
+  repeated GradleLibrary libraries = 6;
+  // per module metrics.
+  repeated GradleModule modules = 7;
+  // per android module metrics.
+  repeated GradleAndroidModule android_modules = 8;
+  // per native android module metrics
+  repeated GradleNativeAndroidModule native_android_modules = 9;
+  // The app_id is the id for the user's android app
+  // which we salt on the client (28 day rotation) then sha256
+  // so it is anonymized and is unique per user, but has a 1-N relation.
+  optional string app_id = 10;
+}
+
+// Per library Gradle metrics.
+message GradleLibrary {
+  // Number of jar dependencies in this library.
+  optional int64 jar_dependency_count = 1;
+  // Number of aar dependencies in this library.
+  optional int64 aar_dependency_count = 2;
+}
+
+// Per module Gradle metrics.
+message GradleModule {
+  // Total number of modules in this app.
+  optional int64 total_module_count = 1;
+  // Number of aar modules in  this app.
+  optional int64 app_module_count = 2;
+  // Number of library modules in this app..
+  optional int64 lib_module_count = 3;
+}
+
+// Per Android module Gradle metrics.
+message GradleAndroidModule {
+  // Client-side salted, sha256 of the application id
+  // the app_id is the id for the user's android app
+  // which we salt with a client unique salt and then sha256
+  // so it is anonymized and is unique per user, but has a 1-N relation.
+  optional string app_id = 1;
+  // Client-side salted, sha256 of the module name.
+  optional string module_name = 2;
+  // True if this module is a library.
+  optional bool is_library = 3;
+  // Number of different build types for this module.
+  optional int64 build_type_count = 4;
+  // Number of different flavor types for this module.
+  optional int64 flavor_count = 5;
+  // Number of different flavor dimensions for this module.
+  optional int64 flavor_dimension = 6;
+  // Number of signing configurations for this module.
+  optional int64 signing_config_count = 7;
+}
+
+// per "native" (C++) android module Gradle metrics.
+message GradleNativeAndroidModule {
+  // Client-side salted, sha256 of the application id
+  // the app_id is the id for the user's android app
+  // which we salt with a client unique salt and then sha256
+  // so it is anonymized and is unique per user, but has a 1-N relation.
+  optional string app_id = 1;
+  // Client-side salted, sha256 of the module name.
+  optional string module_name = 2;
+  // True if this module is a library.
+  optional NativeBuildSystemType build_system_type = 3;
+
+  // The various native build systems we support to be used from Gradle.
+  enum NativeBuildSystemType {
+    UNKNOWN_NATIVE_BUILD_SYSTEM_TYPE = 0;
+    // The Gradle epxerimental plugin
+    GRADLE_EXPERIMENTAL = 1;
+    // The compilation part of NDK builds (Android's native build system).
+    NDK_COMPILE = 2;
+    // full NDK builds (Android's native build system).
+    NDK_BUILD = 3;
+    // CMake is a very common C++ build system.
+    CMAKE = 4;
+  }
+}
+
+// Metrics on InstantRun usage.
+message InstantRun {
+  // What kind of Instant Run deployment was chosen.
+  optional InstantRunDeploymentKind deployment_kind = 1;
+  // Historical, we had two enums tracking this, this one was never used.
+  // what was the reason for chosing that kind of deployment from the gradle
+  // side.
+  optional InstantRunBuildCause instant_run_build_cause = 3;
+  // time the InstantRun enabled took in milliseconds.
+  optional int64 build_time = 4;
+  // The session id is a UUID within a single run of Android Studio
+  // tracking multiple HOT_SWAP & DEX builds in the same
+  // IR session (starting at FULL_APK and ending before FULL_APK).
+  optional string session_id = 5;
+  // what was the reason for chosing that kind of deployment from the IDE
+  // side.
+  optional InstantRunIdeBuildCause ide_build_cause = 6;
+  // what was the reason for chosing that kind of deployment from the Gradle
+  // side.
+  optional InstantRunStatus.VerifierStatus gradle_build_cause = 7;
+
+  // What Instant Run Deployment was used
+  enum InstantRunDeploymentKind {
+    UNKNOWN_INSTANT_RUN_DEPLOYMENT_KIND = 0;
+    LEGACY = 1;
+    FULL_APK = 2;
+    SPLIT_APK = 3;
+    DEX = 4;
+    HOT_SWAP = 5;
+    WARM_SWAP = 6;
+    NO_CHANGES = 7;
+  }
+
+  // Historical, use InstantRunStatus.VerifierStatus instead.
+  // The different reasons Instant Run had to do a full build.
+  enum InstantRunBuildCause {
+    UNKNOWN_INSTANT_RUN_BUILD_CAUSE = 0;
+    COMPATIBLE = 1;
+    MANIFEST_CHANGE = 2;
+    FIELD_TYPE_CHANGE = 3;
+    FIELD_REMOVED = 4;
+    FIELD_ADDED = 5;
+    METHOD_DELETED = 6;
+    METHOD_ADDED = 7;
+    CLASS_ADDED = 8;
+    STATIC_INITIALIZER_CHANGE = 9;
+    CLASS_ANNOTATION_CHANGE = 10;
+    RESOURCE_CHANGE = 11;
+    IMPLEMENTS_INTERFACE_CHANGE = 12;
+    R_CLASS_CHANGE = 13;
+    PARENT_CLASS_CHANGE = 14;
+    METHOD_ANNOTATION_CHANGE = 15;
+    API_LEVEL_UNSUPPORTED = 16;
+    REFLECTION_USED = 17;
+  }
+
+  // The different reasons InstantRun chose the build mode it did from the IDE's
+  // perspective.
+  enum InstantRunIdeBuildCause {
+    // reasons for clean build
+    UNKNOWN_INSTANT_RUN_IDE_BUILD_CAUSE = 0;
+    NO_DEVICE = 1;
+    APP_NOT_INSTALLED = 2;
+    MISMATCHING_TIMESTAMPS = 3;
+    USER_REQUESTED_CLEAN_BUILD = 4;
+
+    // reasons for full build
+    API_TOO_LOW_FOR_INSTANT_RUN = 5;
+    // first installation in this Android Studio session
+    FIRST_INSTALLATION_TO_DEVICE = 6;
+    MANIFEST_RESOURCE_CHANGED = 7;
+    FREEZE_SWAP_REQUIRES_API21 = 8;
+    FREEZE_SWAP_REQUIRES_WORKING_RUN_AS = 9;
+
+    // reasons for forced cold swap build
+    APP_NOT_RUNNING = 10;
+    APP_USES_MULTIPLE_PROCESSES = 11;
+    INCREMENTAL_BUILD = 12;
+    NO_INSTANT_RUN = 13;
+    ANDROID_TV_UNSUPPORTED = 14;
+    // user pressed Run, only Run was enabled
+    USER_REQUESTED_COLDSWAP = 15;
+    // both Run and Hotswap were enabled, user chose Run
+    USER_CHOSE_TO_COLDSWAP = 16;
+  }
+}
+
+// describes Metrics on Metrics.
+message MetaMetrics {
+  // number of times connecting to the clearcut server failed since
+  // the last successful upload.
+  optional int32 failed_connections = 1;
+  // number of bytes used to send metrics in the last upload.
+  optional int64 bytes_sent_in_last_upload = 2;
+  // number of times the clearcut server failed with an http error since
+  // the last successful upload.
+  optional int32 failed_server_replies = 3;
+}
+
+// Describes a set of tests run.
+message TestRun {
+  // Describes how tests where invoked.
+  optional TestInvocationType test_invocation_type = 1;
+
+  // Total number of tests that ran.
+  optional int32 number_of_tests_executed = 2;
+
+  // What kind of test is run.
+  optional TestKind test_kind = 3;
+
+  // Whether the test run finished successfully (regardless of results) or
+  // tooling error happened.
+  optional bool crashed = 4;
+
+  // Set when test_invocation_type = GRADLE or ANDROID_STUDIO_THROUGH_GRADLE
+  optional string gradle_version = 5;  // e.g. '2.10'
+
+  // Did the user/project enable code coverage on this test run?
+  optional bool code_coverage_enabled = 6;
+
+  // Provides details on commonly used test libraries.
+  optional TestLibraries test_libraries = 7;
+
+  // Describes how tests where invoked.
+  enum TestInvocationType {
+    UNKNOWN_TEST_INVOCATION_TYPE = 0;
+    // Tests were run from the command-line.
+    GRADLE_TEST = 1;
+    // Tests were run by Android Studio run configurations logic.
+    ANDROID_STUDIO_TEST = 2;
+    // Tests were run by Gradle, but invoked through AS UI.
+    ANDROID_STUDIO_THROUGH_GRADLE_TEST = 3;
+  }
+
+  // What kind of test is run.
+  enum TestKind {
+    UNKNOWN_TEST_KIND = 0;
+    UNIT_TEST = 1;
+    INSTRUMENTATION_TEST = 2;
+  }
+}
+
+// Provides details on commonly used test libraries.
+message TestLibraries {
+  // The exact version of the given library that this project uses.
+  // Not present if project doesn't use a given library.
+  optional string test_support_library_version = 1;  // e.g. '0.5'
+  optional string espresso_version = 2;  // e.g. '2.2.2'
+  optional string robolectric_version = 3;  // e.g. '3.0'
+  optional string mockito_version = 4;  // e.g. '1.10.19'
+}
+
+// Describes the status of various Hypervisors
+message Hypervisor {
+  optional HyperVState hyper_v_state = 1;
+
+  // Status of the Hyper-V hypervisor.
+  enum HyperVState {
+    UNKNOWN_HYPERV_STATE = 0;  // Have no idea
+    HYPERV_ABSENT = 1;         // No hyper-V found
+    HYPERV_INSTALLED = 2;      // Hyper-V is installed but not running
+    HYPERV_RUNNING = 3;        // Hyper-V is up and running
+    HYPERV_CHECK_ERROR = 4;    // Failed to detect status (emulator-check error)
+  }
+}
+
+// Describes the status of the machine running the emulator.
+message EmulatorHost {
+  // CPU manufacturer of the host, used as certain hypervisors are limited
+  // to a certain manufacturer.
+  optional string cpu_manufacturer = 1; // AMD, INTEL, ...
+
+  // Does the host support virtualization technology
+  optional bool virt_support = 2;
+
+  // Is the host itself running inside a virtual machine.
+  optional bool running_in_vm = 3;
+
+  // May differ from os_architecture field as it is calculated differently,
+  // trying to compensate the JVM bittness.
+  optional int64 os_bit_count = 4;
+  // CPU model, family, stepping, as stored in the EAX register
+  // after issuing CPUID instruction with EAX=1:
+  // 31   27   23   19   15   11   7    3  0
+  // 0000 yyyy yyyy xxxx 00tt ffff mmmm ssss
+  optional uint32 cpuid_stepping = 5; // s: stepping (CPU version)
+  optional uint32 cpuid_model = 6; // m: model (CPU model)
+  optional uint32 cpuid_family = 7; // f: family (CPU make)
+  optional uint32 cpuid_type = 8; // t: CPU type
+  optional uint32 cpuid_extmodel = 9; // x: extended model
+  optional uint32 cpuid_extfamily = 10; // y: extended family
+}
+
+// Detailed profiling information for the gradle build.
+message GradleBuildProfile {
+
+  // Version of the open source Gradle application used.
+  // e.g. "2.14" or "3.0-20160617000025+0000"
+  optional string gradle_version = 2;
+
+  // The value of the "os.name" system property.
+  // e.g. "Linux"
+  optional string os_name = 6;
+  // The value of the "os.version" system property.
+  // e.g. "3.13.0-86-generic"
+  optional string os_version = 7;
+  // The value of the "java.version" system property.
+  // e.g. "1.8.0_40-ea"
+  optional string java_version = 8;
+  // The value of the "java.vm.version" system property.
+  // e.g. "25.40-b25"
+  optional string java_vm_version = 9;
+
+  // The value of Runtime.getRuntime().maxMemory()
+  optional int64 max_memory = 10;
+
+  // The total time taken for this build in milliseconds.
+  // This does not include Gradle's startup (before plugin apply) or shutdown
+  // (after BuildListener#buildFinished(BuildResult) called.
+  optional int64 build_time = 11;
+
+  // The number of garbage collections during this build
+  // Historical: Used in Android Gradle Plugin 2.2.x, circa 2016-10
+  optional int64 gc_count = 12;
+
+  // The time spent garbage collecting during this build.
+  // Historical: Used in Android Gradle Plugin 2.2.x, circa 2016-10
+  optional int64 gc_time = 13;
+
+  // The projects that make up this multi-project build.
+  repeated GradleBuildProject project = 14;
+
+  // Samples of the memory state of the daemon during the build.
+  repeated GradleBuildMemorySample memory_sample = 15;
+
+  // The fine-grained execution spans which record granular timings.
+  repeated GradleBuildProfileSpan span = 16;
+
+  // For instant run builds: the resulting instant run build info.
+  optional InstantRunStatus instant_run_status = 17;
+
+  // Client-side salted, sha256 of the root project path.
+  // This exists to allow multiple instant run builds in one project by one
+  // user to be correlated.
+  //
+  // The salt is rotated every 28 days, so it is not a permenant pseudonymous
+  // identifier. It is anonymized and is unique per user, but has a 1-N
+  // relation.
+  optional string project_id = 18;
+
+}
+
+message GradleBuildProject {
+  // Identifier, local to the containing AndroidStudioEvent, for the project.
+  // Can be used to correlate spans (GradleBuildProfileSpan) with this
+  // project for this build only. Is created by sequentially
+  // numbering projects as they are encountered.
+  // Is not stable across build invocations.
+  optional int64 id = 1;
+
+  // Version of our Android Gradle plugin supporting android builds.
+  // e.g. '2.0-beta1'
+  // For the experimental plugin this is the gradle-core version.
+  optional string android_plugin_version = 2;
+
+  // Which Android Gradle plugin is used.
+  optional PluginType android_plugin = 3;
+  // Which plugin generation is used.
+  optional PluginGeneration plugin_generation = 4;
+
+  // The build tools version used, e.g. '24.0.0 rc2'
+  optional string build_tools_version = 5;
+
+  // Statistics about the project build.
+  // Will be used to characterize and bucket projects for subgroup analysis.
+  optional GradleBuildProjectMetrics metrics = 6;
+
+  // The variants in this project
+  repeated GradleBuildVariant variant = 7;
+
+  // For instantApps, the number of dependent atoms.
+  optional int64 atoms = 8;
+
+  enum PluginType {
+    UNKNOWN_PLUGIN_TYPE = 0;
+    // The 'com.android.application' or 'com.android.model.application' plugins.
+    APPLICATION = 1;
+    // The 'com.android.library' or 'com.android.model.library' plugins.
+    LIBRARY = 2;
+    // The 'com.android.test' plugin.
+    TEST = 3;
+    // The 'com.android.atom' plugin.
+    ATOM = 4;
+    // The 'com.android.instantapp' plugin.
+    INSTANTAPP = 5;
+    // The 'com.android.feature' plugin.
+    FEATURE = 6;
+  }
+
+  enum PluginGeneration {
+    UNKNOWN_PLUGIN_GENERATION = 0;
+    // The 'com.android.[application,library,test,atom,instantapp] plugins.
+    FIRST = 1;
+    // The 'com.android.model.[application,library]' plugins
+    COMPONENT_MODEL = 2;
+  }
+}
+
+message GradleBuildProjectMetrics {
+  // The time taken to collect these metrics
+  optional int64 metrics_time_ns = 1;
+
+  // The size of the APK built, if relevant.
+  optional int64 apk_size = 2;
+
+  // The size of the resources_ap included in that apk.
+  optional int64 resources_ap_size = 3;
+
+}
+
+message GradleBuildVariant {
+  // Identifier, local to this AndroidStudioEvent, for the variant.
+  // Can be used to correlate spans (GradleBuildProfileSpan) with this
+  // project for this build only. Is created by sequentially
+  // numbering variants as they are created.
+  // Is not stable across build invocations.
+  optional int64 id = 1;
+
+  // Whether the variant is debuggable.
+  optional bool is_debug = 2;
+
+  // Whether the variant is compiled using jack
+  optional bool use_jack = 3;
+
+  // Whether the variant is minified
+  optional bool minify_enabled = 4;
+
+  // Is multidex enabled for the variant
+  optional bool use_multidex = 5;
+
+  // Is legacy (pre-api 19) multidex enabled for the variant.
+  // Only can true if use_multidex is also true.
+  optional bool use_legacy_multidex = 6;
+
+
+  // The type of variant.
+  optional VariantType variant_type = 7;
+  // For test variants, the tested variant id. (See GradleBuildVariant.id)
+  optional int64 tested_id = 8;
+
+  // List of proguard flags used in this build variant.
+  // NOTE this is a string as the proguard flags can be changed
+  // based on which release of proguard is being used and is outside of our
+  // control. See https://www.guardsquare.com/en/proguard/manual/usage
+  // for current list. This property only will contain the "-<flag>" without
+  // the arguments passed to that flag.
+  repeated string proguard_flags = 9;
+
+  // Java annotation processors used in this build variant.
+  // Uses the Gradle compact format:  package:module:version
+  repeated AnnotationProcessorInfo annotation_processors = 10;
+
+  // If Java 8 language support is enabled, which tools provides it.
+  optional Java8LangSupport java8_lang_support = 11;
+
+  // The nature of this variant.
+  // The test variants have an associated tested variant.
+  // See com.android.builder.core.VariantType
+  enum VariantType {
+    // For building an APK.
+    APPLICATION = 0;
+    // For building an AAR.
+    LIBRARY = 1;
+    // For building a test APK.
+    ANDROID_TEST = 2;
+    // For building unit tests to run locally.
+    UNIT_TEST = 3;
+    // For building an atombundle.
+    ATOM = 4;
+    // For building an IAPK.
+    INSTANTAPP = 5;
+    // For building a split APK.
+    FEATURE = 6;
+  }
+
+  // Different tools that provide Java 8 language usage.
+  enum Java8LangSupport {
+    // the built-in support in the plugin
+    INTERNAL = 0;
+    // Retrolambda plugin
+    RETROLAMBDA = 1;
+    // Dexguard plugin
+    DEXGUARD = 2;
+    // Jack compiler
+    JACK = 3;
+  }
+}
+
+message AnnotationProcessorInfo {
+  // The user's original spec, e.g. 'org.immutables:value:2.4.4'
+  // Often, though not always, in the form 'package:name:version'.
+  optional string spec = 1;
+
+  // How the processor was included in the build file.
+  optional InclusionType inclusion_type = 2;
+
+  enum InclusionType {
+    // The old apt way of including them.
+    APT = 0;
+    // Implicit on the compile classpath.
+    COMPILE_CLASSPATH = 1;
+    // The new annotationProcessor way to include them.
+    ANNOTATION_PROCESSOR = 2;
+  }
+}
+
+message GradleBuildMemorySample {
+   // Garbage collection time since the current daemon started.
+   // Historical: Used in Android Gradle Plugin 2.2.x, circa 2016-10
+   // Replaced by JavaProcessStats.
+   optional int64 gc_time_ms = 1;
+
+   // Garbage collection count since the current daemon started.
+   // Historical: Used in Android Gradle Plugin 2.2.x, circa 2016-10.
+   // Replaced by JavaProcessStats.
+   optional int64 gc_count = 2;
+
+   // Time that the memory stats were collected.
+   optional int64 timestamp = 3;
+
+   // More detailed stats on the current running java process.
+   optional JavaProcessStats java_process_stats = 4;
+}
+
+// A single execution span from a build.
+// For example, a task execution or creation of some tasks for a variant.
+message GradleBuildProfileSpan {
+
+  // Identifier for this span, created by sequentially allocating IDs to spans
+  // as they start. Used only for the parent-child relationship of spans, to
+  // show execution that is part of another span.
+  // Not stable or meaningful across builds.
+  optional int64 id = 1;
+
+  // For nested spans: the id for containing span.
+  // See GradleBuildProfileSpan.id.
+  optional int64 parent_id = 2;
+
+  // The start time of this event
+  optional int64 start_time_in_ms = 3;
+
+  // The duration of this event. May be zero.
+  optional int64 duration_in_ms = 4;
+
+  // The type of event recorded
+  optional ExecutionType type = 5;
+
+  // More informations about the execution of TransformTasks.
+  // Only used when executionType is TASK_TRANSFORM_PREPARATION or
+  // TASK_TRANSFORM.
+  optional GradleTransformExecution transform = 6;
+
+  // More informations about the execution of Tasks.
+  // Only used when executionType is TASK_EXECUTION
+  optional GradleTaskExecution task = 9;
+
+  // Session id of the GradleBuildProject that this span is part of.
+  // The ID is not stable nor meaningful over multiple GradleBuildProfile.
+  // See GradleBuildProfile.id
+  optional int64 project = 7;
+
+  // Session id of the GradleBuildVariant that this span is part of.
+  // The ID is not stable nor meaningful over multiple GradleBuildProfile.
+  // See GradleBuildVariant.id
+  optional int64 variant = 8;
+
+  // Thread that this execution occurs on.
+  // Generated by sequentially numbering java threads that do work that is
+  // recorded.
+  // Will not be populated for async recorded events,
+  // such as from the task execution listener.
+  optional int64 thread_id = 10;
+
+  // The type of execution.
+  // This was originally com.android.builder.profile.ExecutionType.
+  enum ExecutionType {
+    SOME_RANDOM_PROCESSING = 1;
+    BASE_PLUGIN_PROJECT_CONFIGURE = 2;
+    BASE_PLUGIN_PROJECT_BASE_EXTENSION_CREATION = 3;
+    BASE_PLUGIN_PROJECT_TASKS_CREATION = 4;
+    BASE_PLUGIN_BUILD_FINISHED = 5;
+    TASK_MANAGER_CREATE_TASKS = 6;
+    BASE_PLUGIN_CREATE_ANDROID_TASKS = 7;
+    VARIANT_MANAGER_CREATE_ANDROID_TASKS = 8;
+    VARIANT_MANAGER_CREATE_TASKS_FOR_VARIANT = 9;
+    VARIANT_MANAGER_CREATE_LINT_TASKS = 10;
+    VARIANT_MANAGER_CREATE_TESTS_TASKS = 11;
+    VARIANT_MANAGER_CREATE_VARIANTS = 12;
+    RESOLVE_DEPENDENCIES = 13;
+    TASK_EXECUTION = 14;
+    INITIAL_METADATA = 100;
+    FINAL_METADATA = 101;
+    GENERAL_CONFIG = 102;
+    VARIANT_CONFIG = 103;
+    VARIANT_MANAGER_EXTERNAL_NATIVE_CONFIG_VALUES = 104;
+    APK_METRICS = 105;
+
+    // ApplicationTaskManager per variant tasks.
+    APP_TASK_MANAGER_CREATE_MERGE_MANIFEST_TASK = 1000;
+    APP_TASK_MANAGER_CREATE_GENERATE_RES_VALUES_TASK = 1001;
+    APP_TASK_MANAGER_CREATE_CREATE_RENDERSCRIPT_TASK = 1002;
+    APP_TASK_MANAGER_CREATE_MERGE_RESOURCES_TASK = 1003;
+    APP_TASK_MANAGER_CREATE_MERGE_ASSETS_TASK = 1004;
+    APP_TASK_MANAGER_CREATE_BUILD_CONFIG_TASK = 1005;
+    APP_TASK_MANAGER_CREATE_PROCESS_RES_TASK = 1006;
+    APP_TASK_MANAGER_CREATE_AIDL_TASK = 1007;
+    APP_TASK_MANAGER_CREATE_COMPILE_TASK = 1008;
+    APP_TASK_MANAGER_CREATE_NDK_TASK = 1009;
+    APP_TASK_MANAGER_CREATE_SPLIT_TASK = 1010;
+    APP_TASK_MANAGER_CREATE_PACKAGING_TASK = 1011;
+    APP_TASK_MANAGER_CREATE_PREPROCESS_RESOURCES_TASK = 1012;
+    APP_TASK_MANAGER_CREATE_BACKPORT_RESOURCES_TASK = 1013;
+    APP_TASK_MANAGER_CREATE_LINT_TASK = 1014;
+    APP_TASK_MANAGER_CREATE_MERGE_JNILIBS_FOLDERS_TASK = 1015;
+    APP_TASK_MANAGER_CREATE_SHADER_TASK = 1016;
+    APP_TASK_MANAGER_CREATE_EXTERNAL_NATIVE_BUILD_TASK = 1017;
+    APP_TASK_MANAGER_CREATE_STRIP_NATIVE_LIBRARY_TASK = 1018;
+
+    // LibraryTaskManager per variant tasks.
+    LIB_TASK_MANAGER_CREATE_MERGE_MANIFEST_TASK = 2000;
+    LIB_TASK_MANAGER_CREATE_GENERATE_RES_VALUES_TASK = 2001;
+    LIB_TASK_MANAGER_CREATE_CREATE_RENDERSCRIPT_TASK = 2002;
+    LIB_TASK_MANAGER_CREATE_MERGE_RESOURCES_TASK = 2003;
+    LIB_TASK_MANAGER_CREATE_MERGE_ASSETS_TASK = 2004;
+    LIB_TASK_MANAGER_CREATE_BUILD_CONFIG_TASK = 2005;
+    LIB_TASK_MANAGER_CREATE_PROCESS_RES_TASK = 2006;
+    LIB_TASK_MANAGER_CREATE_AIDL_TASK = 2007;
+    LIB_TASK_MANAGER_CREATE_COMPILE_TASK = 2008;
+    LIB_TASK_MANAGER_CREATE_NDK_TASK = 2009;
+    LIB_TASK_MANAGER_CREATE_SPLIT_TASK = 2010;
+    LIB_TASK_MANAGER_CREATE_PACKAGING_TASK = 2011;
+    LIB_TASK_MANAGER_CREATE_MERGE_PROGUARD_FILE_TASK = 2012;
+    LIB_TASK_MANAGER_CREATE_POST_COMPILATION_TASK = 2013;
+    LIB_TASK_MANAGER_CREATE_PROGUARD_TASK = 2014;
+    LIB_TASK_MANAGER_CREATE_PACKAGE_LOCAL_JAR = 2015;
+    LIB_TASK_MANAGER_CREATE_BACKPORT_RESOURCES_TASK = 2016;
+    LIB_TASK_MANAGER_CREATE_LINT_TASK = 2017;
+    LIB_TASK_MANAGER_CREATE_SHADER_TASK = 2018;
+    LIB_TASK_MANAGER_CREATE_EXTERNAL_NATIVE_BUILD_TASK = 2019;
+
+    // Task execution: Deprecated, use TASK_EXECUTION and
+    // GradleTaskExecution#Type instead.
+    // Deprecated July 2016.
+    GENERIC_TASK_EXECUTION = 3000;
+    TASK_AIDL_COMPILE = 3001;
+    TASK_DELETE = 3002;
+    TASK_CHECK_MANIFEST = 3003;
+    TASK_PREPARE_DEPENDENCIES_TASK = 3004;
+    TASK_RENDERSCRIPT_COMPILE = 3005;
+    TASK_GENERATE_BUILD_CONFIG = 3006;
+    TASK_MERGE_ASSETS = 3007;
+    TASK_GENERATE_RES_VALUES = 3008;
+    TASK_MERGE_RESOURCES = 3009;
+    TASK_MERGE_MANIFESTS = 3010;
+    TASK_PROCESS_ANDROID_RESOURCES = 3011;
+    TASK_JAVA_COMPILE = 3012;
+    TASK_NDK_COMPILE = 3013;
+    TASK_PRE_DEX = 3014;
+    TASK_DEX = 3015;
+    TASK_PACKAGE_SPLIT_RES = 3016;
+    TASK_PROCESS_RESOURCES = 3017;
+    TASK_VALIDATE_SIGNING_TASK = 3018;
+    TASK_PACKAGE_APPLICATION = 3019;
+    TASK_SPLIT_ZIP_ALIGN = 3020;
+    TASK_ZIP_ALIGN = 3021;
+    TASK_COPY = 3022;
+    TASK_LINT = 3023;
+    TASK_FILE_VERIFICATION = 3026;
+    TASK_EXTERNAL_NATIVE_BUILD_GENERATE_JSON_PROCESS_PER_ABI = 3027;
+    TASK_EXTERNAL_NATIVE_BUILD_GENERATE_JSON_PROCESS = 3028;
+
+    // Transform execution
+    TASK_TRANSFORM_PREPARATION = 3024;
+    TASK_TRANSFORM = 3025;
+
+    // AtomTaskManager per variant tasks.
+    ATOM_TASK_MANAGER_CREATE_MERGE_MANIFEST_TASK = 4000;
+    ATOM_TASK_MANAGER_CREATE_GENERATE_RES_VALUES_TASK = 4001;
+    ATOM_TASK_MANAGER_CREATE_CREATE_RENDERSCRIPT_TASK = 4002;
+    ATOM_TASK_MANAGER_CREATE_MERGE_RESOURCES_TASK = 4003;
+    ATOM_TASK_MANAGER_CREATE_MERGE_ASSETS_TASK = 4004;
+    ATOM_TASK_MANAGER_CREATE_BUILD_CONFIG_TASK = 4005;
+    ATOM_TASK_MANAGER_CREATE_PROCESS_RES_TASK = 4006;
+    ATOM_TASK_MANAGER_CREATE_AIDL_TASK = 4007;
+    ATOM_TASK_MANAGER_CREATE_SHADER_TASK = 4008;
+    ATOM_TASK_MANAGER_CREATE_NDK_TASK = 4009;
+    ATOM_TASK_MANAGER_CREATE_EXTERNAL_NATIVE_BUILD_TASK = 4010;
+    ATOM_TASK_MANAGER_CREATE_MERGE_JNILIBS_FOLDERS_TASK = 4011;
+    ATOM_TASK_MANAGER_CREATE_COMPILE_TASK = 4012;
+    ATOM_TASK_MANAGER_CREATE_BUNDLING_TASK = 4013;
+    ATOM_TASK_MANAGER_CREATE_LINT_TASK = 4014;
+
+    // InstantAppTaskManager per variant tasks.
+    INSTANTAPP_TASK_MANAGER_CREATE_MERGE_MANIFEST_TASK = 5000;
+    INSTANTAPP_TASK_MANAGER_CREATE_ATOM_PACKAGING_TASKS = 5001;
+    INSTANTAPP_TASK_MANAGER_CREATE_PROCESS_RES_TASK = 5002;
+    INSTANTAPP_TASK_MANAGER_CREATE_PACKAGING_TASK = 5003;
+  }
+}
+
+message GradleTaskExecution {
+  // The task implementing class.
+  // Custom tasks are recorded as UNKNOWN_TASK_TYPE.
+  // This is an enum in android git:
+  // tools/base/build-system/gradle-core/src/main/proto/analytics_enums.proto
+  optional int32 type = 1;
+
+  // Whether the task did work (TaskState#getDidWork())
+  // This is not necessarily the inverse of up_to_date: see
+  // https://docs.gradle.org/current/javadoc/org/gradle/api/tasks/TaskState.html#getDidWork()
+  optional bool did_work = 2;
+
+  // Whether the task was skipped (TaskState#getSkipped())
+  optional bool skipped = 3;
+
+  // Whether the task was up to date (TaskState#getUpToDate())
+  optional bool up_to_date = 4;
+
+  // Whether the task failed
+  optional bool failed = 5;
+}
+
+message GradleTransformExecution {
+  // The transform implementing class.
+  // Custom transforms are recorded as UNKNOWN_TRANSFORM_TYPE.
+  // This is an enum in android git:
+  // tools/base/build-system/gradle-core/src/main/proto/analytics_enums.proto
+  optional int32 type = 1;
+
+  // Whether the transform could be (in the case of TASK_TRANSFORM_PREPARATION)
+  // or was (in the case of TASK_TRANSFORM) incremental.
+  optional bool is_incremental = 2;
+}
+
+message InstantRunStatus {
+
+  // The type of artifacts built in this invocation.
+  // e.g. COLD for when the changes cannot be hot-swapped, either due to the
+  // app not running on the users device or the changes cannot be hot swapped.
+  optional BuildMode build_mode = 1;
+
+  // The type of deploy that the build can generate artifacts for.
+  optional PatchingPolicy patching_policy = 2;
+
+  // The result of the verifier run, whether the users change can be hot-swapped
+  // or requires a cold swap or full build is determined by the verifier.
+  optional VerifierStatus verifier_status = 3;
+
+  // The built artifacts stored in the build info.
+  // Artifacts that were built, but superseeded (e.g. a main APK contains
+  // resources, so the resources do not need to be reported separately) are
+  // not included.
+  repeated InstantRunArtifact artifact = 4;
+
+
+  enum BuildMode {
+    UNKNOWN_BUILD_MODE = 0;
+    HOT_WARM = 1;
+    COLD = 2;
+    FULL = 3;
+  }
+
+  enum PatchingPolicy {
+    UNKNOWN_PATCHING_POLICY = 0;
+    // No Cold swap is possible
+    PRE_LOLLIPOP = 1;
+    // Cold swap done by shipping dex classes to the Instant Run runtime
+    MULTI_DEX = 2;
+    // Cold swap done by reinstalling APK splits.
+    MULTI_APK = 3;
+  }
+
+
+  enum VerifierStatus {
+    UNKNOWN_VERIFIER_STATUS = 0;
+
+    COMPATIBLE = 1;
+
+    // the verifier did not run successfully.
+    NOT_RUN = 2;
+
+    // InstantRun disabled on element like a method, class or package.
+    INSTANT_RUN_DISABLED = 3;
+
+    // Any inability to run the verifier on a file will be tagged as such
+    INSTANT_RUN_FAILURE = 4;
+
+    // A new class was added.
+    CLASS_ADDED = 5;
+
+    // changes in the hierarchy
+    PARENT_CLASS_CHANGED = 6;
+    IMPLEMENTED_INTERFACES_CHANGE = 7;
+
+    // class related changes.
+    CLASS_ANNOTATION_CHANGE = 8;
+    STATIC_INITIALIZER_CHANGE = 9;
+
+    // changes in constructors,
+    CONSTRUCTOR_SIGNATURE_CHANGE = 10;
+
+    // changes in method
+    METHOD_SIGNATURE_CHANGE = 11;
+    METHOD_ANNOTATION_CHANGE = 12;
+    METHOD_DELETED = 13;
+    METHOD_ADDED = 14;
+
+    // changes in fields.
+    FIELD_ADDED = 15;
+    FIELD_REMOVED = 16;
+    // change of field type or kind (static | instance)
+    FIELD_TYPE_CHANGE = 17;
+
+    R_CLASS_CHANGE = 18;
+
+    // reflection use
+    REFLECTION_USED = 19;
+
+    JAVA_RESOURCES_CHANGED = 20;
+
+    DEPENDENCY_CHANGED = 21;
+
+    MANIFEST_FILE_CHANGE = 22;
+
+    // the binary manifest file changed, probably due to references to resources which ID changed
+    // since last build.
+    BINARY_MANIFEST_FILE_CHANGE = 23;
+
+    COLD_SWAP_REQUESTED = 24;
+
+    FULL_BUILD_REQUESTED = 25;
+
+    INITIAL_BUILD = 26;
+
+    NO_CHANGES = 27;
+
+    CHANGE_IN_SERIALIZABLE_CLASS_WITHOUT_VERSION_UID = 28;
+
+    BUILD_NOT_INCREMENTAL = 29;
+  }
+}
+
+// all types of build can now register artifacts so we can find non InstantRun
+// related artifact types like full slits and aar.
+message InstantRunArtifact {
+  optional Type type = 1;
+
+  enum Type {
+    // Main APK file for 19, and 21 platforms when using
+    // PatchingPolicy.MULTI_DEX.
+    MAIN = 1;
+    // Main APK file when application is using PatchingPolicy.MULTI_DEX.
+    SPLIT_MAIN = 2;
+    // Reload dex file that can be used to patch application live.
+    RELOAD_DEX = 3;
+    // Restart.dex file that can be used for Dalvik to restart applications
+    // with minimum set of changes delivered.
+    RESTART_DEX = 4;
+    // Shard dex file that can be used to replace originally installed
+    // multi-dex shard.
+    DEX = 5;
+    // Pure split (code only) that can be installed individually on M+ devices.
+    SPLIT = 6;
+    // Resources: res.ap_ file
+    RESOURCES = 7;
+    // Full split, main apk file with reduced set of configs
+    FULL_SPLIT = 8;
+    // AAR file.
+    AAR = 9;
+  }
+}
+
+// Details about the LLDB Frontend process
+message LLDBFrontendDetails {
+  // the value returned when the LLDB Frontend process exited.
+  optional int32 exit_code = 1;
+}
+
+// Error details from the Firebase Assistant.
+message FirebaseErrorDetails {
+  // The error message presented to the user upon Firebase errors.
+  optional string error_message = 1;
+}
+
+// Contextual details for Firebase Assistant events. This message acts as a
+// generic container for all events rather than having different messages for
+// each event type. While some fields will be knowingly blank/irrelevant for
+// some event types, frequency of logging is expected to be low enough that
+// this does not represent request/storage bloat.
+message FirebaseContextDetails {
+  // Public project id, used for attributing project growth to the plugin.
+  optional string project_id = 1;
+
+  // Secondary identifier for the project, also stored for more flexibility with
+  // joining the data with other sets.
+  optional string project_number = 2;
+
+  // Whether the action was performed while the user was logged in.
+  optional bool logged_in = 3;
+
+  // Whether the action was performed on while the related Studio project's
+  // modules were connected to a Firebase project.
+  optional ConnectStatus connect_status = 4;
+
+  // Tutorial resource event relates to. Restricted to non PII such as the id
+  // of the tutorial that was opened.
+  optional string performed_on = 5;
+
+  // Time that an action took to be performed. A primary example is how long
+  // a tutorial was open before navigating away.
+  optional int64 duration = 6;
+
+  enum ConnectStatus {
+    // Unable to determine connection status.
+    UNKNOWN_CONNECT_STATUS = 1;
+    // No modules connected.
+    NOT_CONNECTED = 2;
+    // 1 to N-1 modules were connected in a project with N modules.
+    PARTIALLY_CONNECTED = 3;
+    // All modules connected.
+    CONNECTED = 4;
+  }
+}
+
+// Details on the GPU Debugger tracing run
+message GfxTracingDetails {
+  // total time the trace took
+  optional int64 total_time = 1;
+  // class name of the UI command selected to affect the tracing.
+  optional string command = 2;
+  // Error message when tracing fails.
+  optional string error_message = 3;
+  // A path describing the kind of details from the trace. This is a mix
+  // of class names (of our code) and random ids generated for the trace.
+  // e.g. 'Capture(7c6e72eebe2e6d76751b0328971e7fb29ceed82b).Atoms[6307].' +
+  //      'Resource<e1b2a028ce62a97b235172963ddee35f386c6940>.' +
+  //      'Thumbnail<RGBA,100x100>.As<RGBA>'
+  optional string trace_path = 4;
+  // the image format of the gpu image being traced. e.g. 'image/png'
+  optional string image_format = 5;
+  // the width of the image being traced.
+  optional int64 image_width = 6;
+  // the height of the image being traced.
+  optional int64 image_height = 7;
+}
+
+// Details of an invocation of the TestRecorder to generate tests.
+message TestRecorderDetails {
+  // The number of events in the test generated by the test recorder.
+  optional int64 event_count = 1;
+  // The number of assertions in the test generated by the test recorder.
+  optional int64 assertion_count = 2;
+}
+
+// Reports aggregated information about how users invoke available UI actions.
+message UIActionStats {
+  // java class name (our code, not customer) of the UI Action reported on
+  // e.g. 'com.android.build.instant_run.HotSwapBuildAction'
+  optional string action_class_name = 1;
+  // How often since the last report this action was invoked.
+  optional int64 invocations = 2;
+  // The way this action was invocated by the user.
+  optional InvocationKind invocation_kind = 3;
+  // true if this message is sent directly, false if sent
+  // with aggregated data over time.
+  optional bool direct = 4;
+
+  // The way an UI action was invocated by the user.
+  enum InvocationKind {
+    UNKNOWN_INVOCATION_KIND = 0;
+    TOOLBAR = 1;
+    MENU = 2;
+    KEYBOARD_SHORTCUT = 3;
+    MACRO = 4;
+    MOUSE = 5;
+  }
+}
+
+// Details about the machine this process is running on.
+message MachineDetails {
+  // Amount of total memory available in megabytes.
+  optional int64 total_ram = 1;
+  // Amount of total disk available in megabytes.
+  optional int64 total_disk = 2;
+  // Information about the display screens on the machine (resolution etc..)
+  repeated DisplayDetails display = 3;
+  // Number of processors on the machine.
+  optional int32 available_processors = 4;
+}
+
+// Details of a display screen.
+message DisplayDetails {
+  // Width of the display screen in pixels.
+  optional int64 width = 1;
+  // Height of the display screen in pixels.
+  optional int64 height = 2;
+  // Densitiy of the pixels on the screen horiziontally.
+  optional int32 dots_per_inch_horizontal = 3;
+  // Densitiy of the pixels on the screen vertically.
+  optional int32 dots_per_inch_vertical = 4;
+}
+
+// Stats on the current running java process.
+message JavaProcessStats {
+  // Number of bytes of memory in use as heap memory.
+  optional int64 heap_memory_usage = 1;
+  // Number of bytes of memory in use as non heap memory.
+  optional int64 non_heap_memory_usage = 2;
+  // Current amount of java classes loaded.
+  optional int32 loaded_class_count = 3;
+  // Current amount of threads.
+  optional int32 thread_count = 4;
+  // Statistics about the garbage collectors used in this process.
+  repeated GarbageCollectionStats garbage_collection_stats = 5;
+}
+
+// Statistics about the garbage collector.
+message GarbageCollectionStats {
+  // Name of the garbage collector (e.g. 'ConcurrentMarkSweep')
+  optional string name = 1;
+  // Number of garbage collector invocations since last report.
+  optional int64 gc_collections = 2;
+  // Time spent garbage collecting since last report in milliseconds.
+  optional int64 gc_time = 3;
+}
+
+// Details about the JVM used in this process.
+message JvmDetails {
+  // Name of the JVM (e.g. "OpenJDK 64-Bit Server by JetBrains s.r.o").
+  optional string name = 1;
+  // Version of the JVM (e.g. "1.8.0_76-release-b198 amd")
+  optional string version = 2;
+  // Vendor of the JVM (e.g. "JetBrains s.r.o.")
+  optional string vendor = 3;
+  // VM Option specified to set minimum heap_size in bytes ("-Xms" flag).
+  optional int64 minimum_heap_size = 4;
+  // VM Option specified to set maximum heap_size in bytes ("-Xmx" flag).
+  optional int64 maximum_heap_size = 5;
+  // VM Option specified to set maximum permanent space size in bytes.
+  // ("-XX:MaxPermSize" flag)
+  optional int64 maximum_permanent_space_size = 6;
+  // VM Option specified to set maximum permanent space size in bytes.
+  // ("-XX:ReservedCodeCacheSize" flag)
+  optional int64 maximum_code_cache_size = 7;
+  // VM Option specified to set time soft referenced objects remain alive in ms.
+  // ("-XX:SoftRefLRUPolicyMSPerMB" flag)
+  optional int64 soft_reference_lru_policy = 8;
+  // Type of Garbage Collector to use (various VM Option flags).
+  optional GarbageCollector garbage_collector = 9;
+
+  // Various garbage collectors that could be chosen through VM Options.
+  enum GarbageCollector {
+    UNSPECIFIED_GC = 0;
+    CONCURRENT_MARK_SWEEP_GC = 1;
+    GARBAGE_FIRST_GC = 2;
+    PARALLEL_GC = 3;
+    PARALLEL_OLD_GC = 4;
+    SERIAL_GC = 5;
+  }
+}
+
+// Stats on Studio's performance
+message StudioPerformanceStats {
+  // Time for which the UI was blocked in milliseconds
+  optional int32 ui_freeze_time_ms = 1;
+}
+
+// One bucket of a PercentileEstimator.
+message PercentileBucket {
+  // The target percentile for this bucket.
+  optional double target_percentile = 1;
+  // Estimated value at this bucket.
+  optional double value = 2;
+  // Number of samples less than value.
+  optional uint64 count = 3;
+}
+
+// Estimation of target percentiles of a stream of data.
+message PercentileEstimator {
+  // Either raw_sample or bucket should be empty.
+  // Raw samples when there were not enough samples to interpolate.
+  repeated double raw_sample = 2;
+  // 2n + 3 buckets representing an estimation for n target percentiles.
+  repeated PercentileBucket bucket = 3;
+}
+
+message LldbPercentileEstimator {
+  // Type of performance metric.
+  optional Metric metric = 1;
+  // Estimator for metric.
+  optional PercentileEstimator estimator = 2;
+
+  // Metric types that can be monitored.
+  enum Metric {
+    ATTACH_TIME_MICROS = 0;
+    STEP_RESUME_RESPONSE_TIME_MICROS = 1;
+    GET_VARIABLES_TIME_MICROS = 2;
+    GET_VARIABLE_CHILDREN_RANGE_TIME_MICROS = 3;
+    GET_FRAMES_TIME_MICROS = 4;
+    ADD_SYMBOLIC_BREAKPOINT_TIME_MICROS = 5;
+    ADD_BREAKPOINT_TIME_MICROS = 6;
+  }
+}
+
+// Estimations of percentiles of time spent on LLDB operations.
+message LldbPerformanceStats {
+  // Collection of estimations of performance metrics.
+  repeated LldbPercentileEstimator estimator = 1;
+}
+
+// Details around user opening or closing projects.
+message StudioProjectChange {
+  // amount of projects open in same Android Studio instance.
+  optional int32 projects_open = 1;
+}
+
+// Layout editor state
+message LayoutEditorState {
+  // Layout editor mode
+  enum Mode {
+    UNKOWN_MODE = 0;
+
+    DESIGN_MODE = 1;
+    PREVIEW_MODE = 2;
+  }
+
+  // Layout type
+  enum Type {
+    UNKNOWN_TYPE = 0;
+
+    LAYOUT = 1;
+    DRAWABLE = 2;
+    MENU = 3;
+    PREFERENCE_SCREEN = 4;
+  }
+
+  // Layout orientation
+  enum Orientation {
+    UNKNOWN_ORIENTATION = 0;
+
+    PORTRAIT = 1;
+    LANDSCAPE = 2;
+  }
+
+  // Design surfaces currently displayed
+  enum Surfaces {
+    UNKNOWN_SURFACES = 0;
+
+    BOTH = 1;
+    SCREEN_SURFACE = 2;
+    BLUEPRINT_SURFACE = 3;
+  }
+
+  // layout editor preview or design mode
+  optional Mode mode = 1;
+  // layout type currently being displayed (layout, menu, drawable...)
+  optional Type type = 2;
+  // android api level  e.g. '23' or 'N'
+  optional string config_api_level = 3;
+  // current layout zoom level
+  optional int32 config_zoom_level = 4;
+  // current layout orientation
+  optional Orientation config_orientation = 5;
+  // surfaces being displyaed
+  optional Surfaces surfaces = 6;
+}
+
+// Layout editor render result (when type = RENDER)
+message LayoutEditorRenderResult {
+  enum Trigger {
+    UNKNOWN_TRIGGER = 0;
+    // Manual refresh triggered by the user
+    USER = 1;
+    // User layout edit
+    EDIT = 2;
+    // External resource change
+    RESOURCE_CHANGE = 3;
+    // Build
+    BUILD = 4;
+  }
+
+  // Action that triggered the render
+  optional Trigger trigger = 1;
+  // Render result code
+  optional int32 result_code = 2;
+  // Full render time in ms
+  optional int64 total_render_time_ms = 4;
+  // Number of components rendered
+  optional int32 component_count = 5;
+
+  // Total number of issues (warnings + errors) in the error panel
+  optional int32 total_issue_count = 6;
+  // Errors displayed in the error panel
+  optional int32 error_count = 7;
+  // Fidelity warnings
+  optional int32 fidelity_warning_count = 8;
+}
+
+// Reference to a View used in an Android application.
+// Although this proto contains just a single field, we may decide
+// to represent a view with an enum in the future.
+message AndroidView {
+  // Specifies the tag name used in XML for a given Android View class.
+  // This will typically be a fully qualified class name or an unqualified
+  // Android framework class name.
+  // Only Google view tags will be specified by name. The name of custom view
+  // tags will be left unspecified.
+  // Examples:
+  //   "ToggleButton"
+  //   "android.support.design.widget.CoordinatorLayout"
+  optional string tag_name = 1;
+}
+
+// Reference to an attribute of an Android view.
+message AndroidAttribute {
+  // Namespace of the attribute changed
+  enum AttributeNamespace {
+    UNKNOWN_NAMESPACE = 0;
+    // This attribute is defined in the Google framework.
+    ANDROID = 1;
+    // This attribute is defined in the application.
+    // The attribute is either a custom attribute or an attribute on a View from
+    // a Google library.
+    APPLICATION = 2;
+    // This attribute is used in the design preview only. It does not affect
+    // the the Android application at runtime.
+    TOOLS = 3;
+  }
+
+  // Specifies an attribute name of an Android View class.
+  // Only properties defined on Google View classes will be specified by name.
+  // Properties defined on custom views will be left unspecified.
+  optional string attribute_name = 1;
+  // The namespace of this attribute
+  optional AttributeNamespace attribute_namespace = 2;
+}
+
+// Identifies the effect the search field had on the possible choices presented
+// to the user.
+enum SearchOption {
+  UNKNOWN_SEARCH_OPTION = 0;
+  // The search field was empty
+  NONE = 1;
+  // The search field was not empty and it does not specify a unique match
+  MULTIPLE_MATCHES = 2;
+  // The search field identified a unique match
+  SINGLE_MATCH = 3;
+}
+
+// Details for the event of dropping a View from Palette:
+message LayoutPaletteEvent {
+  // Display option when using the palette
+  enum ViewType {
+    UNKNOWN_VIEW_TYPE = 0;
+    ICON_AND_NAME = 1;
+    LARGE_IONS = 2;
+    SMALL_ICONS = 3;
+  }
+
+  // The active view group when using the palette
+  enum ViewGroup {
+    UNKNOWN_GROUP = 0;
+    CUSTOM = 1;
+    ALL_GROUPS = 2;
+    WIDGETS = 3;
+    TEXT = 4;
+    LAYOUTS = 5;
+    CONTAINERS = 6;
+    IMAGES = 7;
+    DATES = 8;
+    TRANSITIONS = 9;
+    ADVANCED = 10;
+    GOOGLE = 11;
+    DESIGN = 12;
+    APP_COMPAT = 13;
+  }
+
+  // The view parameter options used for the dropped component
+  enum ViewOption {
+    NORMAL = 0;
+    CUSTOM_OPTION = 1;
+    HORIZONTAL_PROGRESS_BAR = 2;
+    DISCRETE_SEEK_BAR = 3;
+    PLAIN_EDIT_TEXT = 4;
+    PASSWORD = 5;
+    PASSWORD_NUMERIC = 6;
+    EMAIL = 7;
+    PHONE = 8;
+    POSTAL_ADDRESS = 9;
+    MULTILINE_TEXT = 10;
+    TIME_EDITOR = 11;
+    DATE_EDITOR = 12;
+    NUMBER = 13;
+    SIGNED_NUMBER = 14;
+    DECIMAL_NUMBER = 15;
+    HORIZONTAL_LINEAR_LAYOUT = 16;
+    VERTICAL_LINEAR_LAYOUT = 17;
+  }
+
+  // The View that was dropped onto the design surface from the palette.
+  optional AndroidView view = 1;
+  // The view option used.
+  optional ViewOption view_option = 2;
+  // The group selected to find the view
+  optional ViewGroup selected_group = 3;
+  // The result of the usage of the search field
+  optional SearchOption search_option = 4;
+  // The display option used when this view was dropped from the palette
+  optional ViewType view_type = 5;
+}
+
+// Details for an attribute change event
+message LayoutAttributeChangeEvent {
+  // Display option used in property panel
+  enum ViewType {
+    UNKNOWN_VIEW_TYPE = 0;
+    INSPECTOR = 1;
+    PROPERTY_TABLE = 2;
+  }
+
+  // The attribute changed by this event
+  optional AndroidAttribute attribute = 1;
+  // The search option used when the attribute was changed
+  optional SearchOption search_option = 2;
+  // The display option used when the attribute was changed
+  optional ViewType view_type = 3;
+  // The views where this attribute was changed for.
+  repeated AndroidView view = 4;
+}
+
+message LayoutFavoriteAttributeChangeEvent {
+  // This attribute was added as a favorite attribute
+  optional AndroidAttribute added = 1;
+  // This attribute was removed as a favorite attribute
+  optional AndroidAttribute removed = 2;
+  // These are the resulting active favorite attibutes
+  repeated AndroidAttribute active = 3;
+}
+
+// Details for layout editor events
+message LayoutEditorEvent {
+  enum LayoutEditorEventType {
+    UNKNOWN_EVENT_TYPE = 0;
+
+    RENDER = 1;
+
+    ZOOM_IN = 2;
+    ZOOM_OUT = 3;
+    ZOOM_FIT = 4;
+    ZOOM_ACTUAL = 5;
+
+    SHOW_PAN_AND_ZOOM = 6;
+    SHOW_LINT_MESSAGES = 7;
+    LINT_TOOLTIP = 8;
+
+    RESTORE_ERROR_PANEL = 9;
+    MINIMIZE_ERROR_PANEL = 10;
+
+    SHOW_DESIGN_SURFACE = 11;
+    SHOW_BLUEPRINT_SURFACE = 12;
+    SHOW_BOTH_SURFACE = 13;
+
+    SWITCH_ORIENTATION = 14;
+    DEVICE_CHANGE = 15;
+    API_LEVEL_CHANGE = 16;
+    THEME_CHANGE = 17;
+    LANGUAGE_CHANGE = 18;
+
+    SHOW_CONSTRAINTS = 19;
+    HIDE_CONSTRAINTS = 20;
+    TURN_ON_AUTOCONNECT = 21;
+    TURN_OFF_AUTOCONNECT = 22;
+    CLEAR_ALL_CONSTRAINTS = 23;
+    INFER_CONSTRAINS = 24;
+    DEFAULT_MARGINS = 25;
+
+    PACK = 26;
+    ALIGN = 27;
+
+    ADD_VERTICAL_GUIDELINE = 28;
+    ADD_HORIZONTAL_GUIDELINE = 29;
+
+    SHOW_PALETTE = 30;
+    HIDE_PALETTE = 31;
+
+    DROP_VIEW_FROM_PALETTE = 32;
+    ATTRIBUTE_CHANGE = 33;
+    FAVORITE_CHANGE = 34;
+  }
+
+  // Type of event
+  optional LayoutEditorEventType type = 1;
+  // Layout editor current state
+  optional LayoutEditorState state = 2;
+  // Result of the render when (type = RENDER)
+  optional LayoutEditorRenderResult render_result = 3;
+  // Details related to using the palette (type = DROP_VIEW_FROM_PALETTE)
+  optional LayoutPaletteEvent palette_event = 4;
+  // Details related to changing an attribute (type = ATTRIBUTE_CHANGE)
+  optional LayoutAttributeChangeEvent attribute_change_event = 5;
+  // Details related to favorite attribute changes (type = FAVORITE_CHANGE)
+  optional LayoutFavoriteAttributeChangeEvent favorite_change_event = 6;
+}
+
+// App links assistant user event detail.
+message AppLinksAssistantEvent {
+  // Client-side salted (rotating every 28 days), sha256 of the project id for
+  // counting projects using the assistant.
+  optional string project_id = 1;
+
+  // The app_id is the id for the user's android app
+  // which's salted on client-side (rotating every 28 days) then sha256
+  // so it is anonymized and is unique per user, but has a 1-N relation.
+  // It's for counting apps using the assistant.
+  optional string app_id = 2;
+
+  // The UI element source of event.
+  optional EventSource event_source = 3;
+
+  // The state of the event.
+  optional EventState event_state = 4;
+
+  // To check if there exists app links in the project
+  // before using app links assistant.
+  optional bool existing_app_links = 5;
+
+  // Duration time that app links assistant panel opens. Unit is nanoseconds.
+  optional int64 assistant_panel_open_duration = 6;
+
+  // Following three fields is for the new added app link.
+  // Set when event_source = URL_MAPPING_APP_LINK_ADD_DIALOG
+  // && event_state = COMPLETED
+  // Path type of new app link.
+  optional PathType app_link_path_type = 7;
+  // Whether a new activity is linked by app link.
+  optional bool new_activity_linked = 8;
+  // Whether a new host is linked by app link.
+  optional bool new_host_linked = 9;
+
+  // UI event source.
+  enum EventSource {
+    ASSISTANT_SIDE_PANEL = 1;
+
+    // UI elements of URL mapping panel.
+    URL_MAPPING_PANEL = 2;
+    URL_MAPPING_APP_LINK_ADD_DIALOG = 3;
+    URL_MAPPING_APP_LINK_ADD_ADVANCED_DIALOG = 4;
+    URL_MAPPING_APP_LINK_EDIT_DIALOG = 5;
+    URL_MAPPING_APP_LINK_DELETE_BUTTON = 6;
+    URL_MAPPING_CHECK_MAPPING_BUTTON = 7;
+    URL_MAPPING_OPEN_ANDROID_MANIFEST_BUTTON = 8;
+
+    // UI elements of code insert dialog.
+    CODE_INSERT_DIALOG = 9;
+    CODE_INSERT_DIALOG_INSERT_BUTTON = 10;
+    CODE_INSERT_DIALOG_LIST_SELECTION = 11;
+
+    // UI elements of DAL generation panel.
+    DAL_PANEL = 12;
+    DAL_PANEL_BROWSE_KEYSTORE_BUTTON = 13;
+    DAL_PANEL_GENERATE_BUTTON = 14;
+    DAL_PANEL_SAVE_BUTTON = 15;
+    DAL_PANEL_VERIFY_BUTTON = 16;
+
+    // UI elements of app links test panel.
+    APP_LINKS_TEST_PANEL = 17;
+    APP_LINKS_TEST_PANEL_MODULE_SELECTION = 18;
+    APP_LINKS_TEST_PANEL_RUN_TEST_BUTTON = 19;
+  }
+
+  // The state list of UI event source.
+  enum EventState {
+    // Generic state for panel opened, button clicked or list selection.
+    OPENED = 1;
+    // Generic state for button action completed.
+    COMPLETED = 2;
+    // Generic state for button action failed.
+    FAILED = 3;
+    // State to label user exiting from the panel or dialog by clicking the
+    // system close button, hide button or cancel button.
+    EXIT = 4;
+  }
+
+  // Url path type of a new added app link.
+  enum PathType {
+    // Corresponds to attribute android:path of <data> tag in Android Manifest
+    // File.
+    PATH = 1;
+    // Corresponds to attribute android:pathPrefix of <data> tag in
+    // Android Manifest File
+    PATH_PREFIX = 2;
+    // Corresponds to attribute android:pathPattern of <data> tag in
+    // Android Manifest File
+    PATH_PATTERN = 3;
+  }
+}
+
+// ADB Assistant event details
+message AdbAssistantStats {
+   // Why the assistant was started
+  optional Trigger trigger = 1;
+
+  // State list of trigger
+  enum Trigger {
+    // No running devices as target
+    NO_RUNNING_DEVICE = 1;
+    // Don't see your device link on the bottom right of dialog
+    DONT_SEE_DEVICE = 2;
+  }
+}
+
+// Android Profiler metrics
+message AndroidProfilerEvent {
+  // The current stage we're on when this event was generated
+  optional Stage stage = 1;
+
+  // The detailed type of this event.
+  optional Type type = 2;
+
+  enum Stage {
+    UNKNOWN_STAGE = 0;
+
+    // The special stage shown to users when no device or process is available
+    NULL_STAGE = 1;
+    // The top-level view that shows all monitors at the same time
+    OVERVIEW_STAGE = 2;
+    CPU_STAGE = 3;
+    MEMORY_STAGE = 4;
+    NETWORK_STAGE = 5;
+  }
+
+  enum Type {
+    UNKNOWN_TYPE = 0;
+
+    /// System
+
+    // Fired when user starts profiling any app
+    PROFILING_STARTED = 1;
+    // Fired when user's profiling session attaches to an instrumented app
+    ADVANCED_PROFILING_STARTED = 2;
+    // This event should be correlated with |stage|
+    STAGE_ENTERED = 3;
+
+    /// General
+
+    CHANGE_DEVICE = 101;
+    CHANGE_PROCESS = 102;
+    GO_BACK = 103;
+    SELECT_MONITOR = 104;
+    ZOOM_IN = 105;
+    ZOOM_OUT = 106;
+    ZOOM_RESET = 107;
+    GO_LIVE = 108;
+    NAVIGATE_TO_CODE = 109;
+    // Create a selection on the current monitor's main chart. This event should
+    // be correlated with |stage|.
+    SELECT_RANGE = 110;
+
+    /// CPU
+
+    TRACE_SAMPLED = 201;
+    TRACE_INSTRUMENTED = 202;
+    SELECT_THREAD = 204;
+    SELECT_TOP_DOWN = 205;
+    SELECT_BOTTOM_UP = 206;
+    SELECT_FLAME_CHART = 207;
+
+    /// Memory
+
+    FORCE_GC = 301;
+    SNAPSHOT_HPROF = 302;
+    CAPTURE_ALLOCATIONS = 303;
+    SELECT_MEMORY_CHART = 304;
+    EXPORT_HPROF = 305;
+    EXPORT_ALLOCATION = 306;
+    ARRANGE_CLASSES = 307;
+    SELECT_MEMORY_STACK = 308;
+    SELECT_MEMORY_REFERENCES = 309;
+
+    /// Network
+
+    SELECT_CONNECTION = 402;
+    SELECT_DETAILS_RESPONSE = 403;
+    SELECT_DETAILS_HEADERS = 404;
+    SELECT_DETAILS_STACK = 405;
+  }
+}
+
+  // APK Analyzer stats
+message ApkAnalyzerStats {
+  // size of the APK
+  optional uint64 uncompressed_size = 1;
+
+  // size of the APK after compression
+  optional uint64 compressed_size = 2;
+}
+
+// Gradle Sync details
+message GradleSyncStats {
+  // Cause of sync
+  optional Trigger trigger = 1;
+  // Total time, the rest of the non negative times should add to this value
+  optional int64 total_time_ms = 2;
+  // Time in ms spent on gradle (can be negative in case of failure)
+  optional int64 gradle_time_ms = 3;
+  // Time in ms spent on IDE (can be negative in case of failure)
+  optional int64 ide_time_ms = 4;
+
+  // List of triggers for gradle Sync
+  enum Trigger {
+    // Unknown (this is the default, but should not be used)
+    TRIGGER_UNKNOWN = 0;
+    // Project being loaded caused the sync
+    TRIGGER_PROJECT_LOADED = 1;
+    // Project modifications caused the sync
+    TRIGGER_PROJECT_MODIFIED = 2;
+    // User requests the sync directly (by pressing sync button)
+    TRIGGER_USER_REQUEST = 3;
+  }
+}

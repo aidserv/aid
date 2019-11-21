@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>RecordScreenPage</class>
+ <widget class="QWidget" name="RecordScreenPage">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>622</width>
+    <height>580</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <widget class="QWidget" name="rec_recordOverlayWidget" native="true">
+   <property name="geometry">
+    <rect>
+     <x>161</x>
+     <y>24</y>
+     <width>300</width>
+     <height>516</height>
+    </rect>
+   </property>
+   <property name="ColorGroup" stdset="0">
+    <string>Overlay</string>
+   </property>
+   <widget class="RaisedMaterialButton" name="rec_recordButton">
+    <property name="geometry">
+     <rect>
+      <x>84</x>
+      <y>240</y>
+      <width>132</width>
+      <height>36</height>
+     </rect>
+    </property>
+    <property name="sizePolicy">
+     <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+      <horstretch>0</horstretch>
+      <verstretch>0</verstretch>
+     </sizepolicy>
+    </property>
+    <property name="font">
+     <font>
+      <family>Roboto</family>
+      <pointsize>10</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="text">
+     <string>START RECORDING</string>
+    </property>
+    <property name="flat">
+     <bool>true</bool>
+    </property>
+    <property name="ColorGroup" stdset="0">
+     <string>Tool</string>
+    </property>
+    <property name="report_metrics" stdset="0">
+     <bool>false</bool>
+    </property>
+   </widget>
+   <widget class="QWidget" name="rec_timeElapsedWidget" native="true">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>218</y>
+      <width>300</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background:rgba(0,0,0,0);</string>
+    </property>
+    <layout class="QGridLayout" name="gridLayout_3">
+     <property name="leftMargin">
+      <number>0</number>
+     </property>
+     <property name="topMargin">
+      <number>0</number>
+     </property>
+     <property name="rightMargin">
+      <number>0</number>
+     </property>
+     <property name="bottomMargin">
+      <number>0</number>
+     </property>
+     <property name="horizontalSpacing">
+      <number>0</number>
+     </property>
+     <item row="0" column="0">
+      <layout class="QGridLayout" name="gridLayout_2">
+       <property name="horizontalSpacing">
+        <number>10</number>
+       </property>
+       <property name="verticalSpacing">
+        <number>0</number>
+       </property>
+       <item row="0" column="1">
+        <widget class="QLabel" name="rec_timeElapsedLabel">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="text">
+          <string>15s Recording...</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="0">
+        <widget class="QLabel" name="rec_recordDotLabel">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>8</width>
+           <height>8</height>
+          </size>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+         <property name="pixmap">
+          <pixmap resource="../resources.qrc">:/light/recordCircle</pixmap>
+         </property>
+         <property name="scaledContents">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+    </layout>
+   </widget>
+   <zorder>rec_recordButton</zorder>
+   <zorder>rec_recordDotLabel_2</zorder>
+   <zorder>rec_timeElapsedWidget</zorder>
+  </widget>
+  <widget class="RaisedMaterialButton" name="rec_playStopButton">
+   <property name="geometry">
+    <rect>
+     <x>161</x>
+     <y>550</y>
+     <width>36</width>
+     <height>36</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="icon">
+    <iconset resource="../resources.qrc">
+     <normaloff>:/light/play_arrow</normaloff>:/light/play_arrow</iconset>
+   </property>
+   <property name="iconSize">
+    <size>
+     <width>24</width>
+     <height>24</height>
+    </size>
+   </property>
+   <property name="flat">
+    <bool>true</bool>
+   </property>
+   <property name="themeIconName" stdset="0">
+    <string>play_arrow</string>
+   </property>
+   <property name="themeIconName_disabled" stdset="0">
+    <string>play_arrow_disabled</string>
+   </property>
+   <property name="ColorGroup" stdset="0">
+    <string>Tool</string>
+   </property>
+   <property name="report_metrics" stdset="0">
+    <bool>false</bool>
+   </property>
+  </widget>
+  <widget class="QComboBox" name="rec_formatSwitch">
+   <property name="geometry">
+    <rect>
+     <x>328</x>
+     <y>550</y>
+     <width>60</width>
+     <height>36</height>
+    </rect>
+   </property>
+   <property name="report_metrics" stdset="0">
+    <bool>false</bool>
+   </property>
+   <item>
+    <property name="text">
+     <string>MP4</string>
+    </property>
+   </item>
+  </widget>
+  <widget class="RaisedMaterialButton" name="rec_saveButton">
+   <property name="geometry">
+    <rect>
+     <x>401</x>
+     <y>550</y>
+     <width>60</width>
+     <height>36</height>
+    </rect>
+   </property>
+   <property name="sizePolicy">
+    <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+     <horstretch>0</horstretch>
+     <verstretch>0</verstretch>
+    </sizepolicy>
+   </property>
+   <property name="font">
+    <font>
+     <family>Roboto</family>
+     <pointsize>10</pointsize>
+     <weight>75</weight>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="text">
+    <string>SAVE</string>
+   </property>
+   <property name="flat">
+    <bool>true</bool>
+   </property>
+   <property name="ColorGroup" stdset="0">
+    <string>Tool</string>
+   </property>
+   <property name="report_metrics" stdset="0">
+    <bool>false</bool>
+   </property>
+  </widget>
+  <widget class="QLabel" name="rec_timeResLabel">
+   <property name="geometry">
+    <rect>
+     <x>207</x>
+     <y>550</y>
+     <width>111</width>
+     <height>36</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>21s / 1920 x 1080</string>
+   </property>
+  </widget>
+  <zorder>recordOverlayWidget</zorder>
+  <zorder>rec_playStopButton</zorder>
+  <zorder>rec_formatSwitch</zorder>
+  <zorder>rec_saveButton</zorder>
+  <zorder>rec_timeResLabel</zorder>
+  <zorder>rec_recordDotLabel</zorder>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>RaisedMaterialButton</class>
+   <extends>QPushButton</extends>
+   <header>android/skin/qt/raised-material-button.h</header>
+  </customwidget>
+ </customwidgets>
+ <resources>
+  <include location="../resources.qrc"/>
+ </resources>
+ <connections/>
+</ui>

@@ -1,0 +1,64 @@
+BUILDING AND RUNNING A QT EMULATOR
+
+===========
+BUILDING QT
+===========
+
+If you don't have $AOSP/prebuilts/android-emulator-build/qt in your workspace,
+run the following scripts first:
+
+  android/scripts/download-sources.sh
+  android/scripts/build-qt.sh
+
+They will rebuild the Qt libraries from source and place them at the location
+above.
+
+=================
+BUILDING EMULATOR
+=================
+
+By default the emulator still uses a SDL2-based UI backend, the Qt one
+is still experimental but can be enabled with the --ui=qt command-line
+option, as in:
+
+  ./android/rebuild.sh --ui=qt <other-options>
+
+Use 'objs/emulator <options>' as usual to start the emulator. The build
+script takes care of copying the Qt shared libraries to the correct location,
+and the top-level 'emulator' program modifies the runtime library search
+path to be sure they are located and used by the emulation engine.
+
+This option is also supported by package-release.sh, i.e.:
+
+  ./android/scripts/package-release.sh --ui=qt <other-options>
+
+
+=================
+DEVELOPMENT
+=================
+
+The Android build system supports running the 'moc' tool and compiling
+the corresponding sources automatically, using something like this in
+sources.mk:
+
+   ANDROID_SKIN_QT_MOC_SRC_FILES := \
+       android/skin/qt/tool-window.h \
+       android/skin/qt/emulator-window.h \
+
+Note that the 'sources' here are really header files that will be processed
+through 'moc'. The corresponding generated sources are compiled into the
+current module. The headers must be manually listed (i.e. there is no
+automated scanning of all sources for Q_OBJECT macros).
+
+The build system also supports running the 'rcc' tool to translate resource
+files (*.qrc) into auto-generated C++ sources that are automatically compiled
+into the current module (non-DYNAMIC version), or a separate .rcc file
+(DYNAMIC version), with something like:
+
+    ANDROID_SKIN_QT_RESOURCES := \
+        android/skin/qt/static_resources.qrc
+    ANDROID_SKIN_QT_DYNAMIC_RESOURCES := \
+        android/skin/qt/resources.qrc
+
+Note that the file's basename is used to invoke 'rcc' with the --name <name>
+option.

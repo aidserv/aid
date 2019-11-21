@@ -1,0 +1,538 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>CarSensorData</class>
+ <widget class="QWidget" name="CarSensorData">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>621</width>
+    <height>456</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <widget class="QGroupBox" name="groupBox">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>20</y>
+     <width>511</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Roboto</family>
+     <weight>50</weight>
+     <bold>false</bold>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">border: 0px;</string>
+   </property>
+   <property name="title">
+    <string>Car speed</string>
+   </property>
+   <property name="ColorGroup" stdset="0">
+    <string>Title</string>
+   </property>
+   <widget class="QSlider" name="car_speedSlider">
+    <property name="geometry">
+     <rect>
+      <x>120</x>
+      <y>0</y>
+      <width>311</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="accessibleName">
+     <string>Car speed</string>
+    </property>
+    <property name="maximum">
+     <number>250</number>
+    </property>
+    <property name="value">
+     <number>0</number>
+    </property>
+    <property name="orientation">
+     <enum>Qt::Horizontal</enum>
+    </property>
+   </widget>
+   <widget class="QLabel" name="car_speedLabel">
+    <property name="geometry">
+     <rect>
+      <x>440</x>
+      <y>0</y>
+      <width>61</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>0 MPH</string>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QGroupBox" name="groupBox_3">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>130</y>
+     <width>231</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Roboto</family>
+     <weight>50</weight>
+     <bold>false</bold>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">border: 0px;</string>
+   </property>
+   <property name="title">
+    <string>Night mode</string>
+   </property>
+   <property name="ColorGroup" stdset="0">
+    <string>Title</string>
+   </property>
+   <widget class="QCheckBox" name="checkBox_night">
+    <property name="geometry">
+     <rect>
+      <x>120</x>
+      <y>0</y>
+      <width>96</width>
+      <height>22</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>24</width>
+      <height>24</height>
+     </size>
+    </property>
+    <property name="ColorGroup" stdset="0">
+     <string>Toggle</string>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QGroupBox" name="groupBox_4">
+   <property name="geometry">
+    <rect>
+     <x>310</x>
+     <y>130</y>
+     <width>271</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Roboto</family>
+     <weight>50</weight>
+     <bold>false</bold>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">border: 0px;</string>
+   </property>
+   <property name="title">
+    <string>Parking brake</string>
+   </property>
+   <property name="ColorGroup" stdset="0">
+    <string>Title</string>
+   </property>
+   <widget class="QCheckBox" name="checkBox_park">
+    <property name="geometry">
+     <rect>
+      <x>120</x>
+      <y>0</y>
+      <width>131</width>
+      <height>22</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>24</width>
+      <height>24</height>
+     </size>
+    </property>
+    <property name="ColorGroup" stdset="0">
+     <string>Toggle</string>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QGroupBox" name="groupBox_5">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>250</y>
+     <width>131</width>
+     <height>51</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Roboto</family>
+     <weight>50</weight>
+     <bold>false</bold>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">border: 0px;</string>
+   </property>
+   <property name="title">
+    <string>Driving status</string>
+   </property>
+   <property name="ColorGroup" stdset="0">
+    <string>Title</string>
+   </property>
+  </widget>
+  <widget class="QGroupBox" name="groupBox_6">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>190</y>
+     <width>481</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Roboto</family>
+     <weight>50</weight>
+     <bold>false</bold>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">border: 0px;</string>
+   </property>
+   <property name="title">
+    <string>Fuel level low</string>
+   </property>
+   <property name="ColorGroup" stdset="0">
+    <string>Title</string>
+   </property>
+   <widget class="QCheckBox" name="checkBox_fuel_low">
+    <property name="geometry">
+     <rect>
+      <x>120</x>
+      <y>0</y>
+      <width>96</width>
+      <height>22</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>24</width>
+      <height>24</height>
+     </size>
+    </property>
+    <property name="ColorGroup" stdset="0">
+     <string>Toggle</string>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QComboBox" name="comboBox_ignition">
+   <property name="geometry">
+    <rect>
+     <x>430</x>
+     <y>70</y>
+     <width>83</width>
+     <height>25</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Roboto</family>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">padding: 3px 3px 3px 3px;</string>
+   </property>
+   <property name="currentIndex">
+    <number>1</number>
+   </property>
+   <item>
+    <property name="text">
+     <string>Undefined</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Lock</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Off</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>ACC</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>On</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Start</string>
+    </property>
+   </item>
+  </widget>
+  <widget class="QComboBox" name="comboBox_gear">
+   <property name="geometry">
+    <rect>
+     <x>150</x>
+     <y>70</y>
+     <width>83</width>
+     <height>25</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Roboto</family>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">padding: 3px 3px 3px 3px;</string>
+   </property>
+   <property name="currentIndex">
+    <number>2</number>
+   </property>
+   <item>
+    <property name="text">
+     <string>N</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>R</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>P</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>D</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Low</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>D1</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>D2</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>D3</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>D4</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>D5</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>D6</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>D7</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>D8</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>D9</string>
+    </property>
+   </item>
+  </widget>
+  <widget class="QGroupBox" name="groupBox_7">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>70</y>
+     <width>101</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Roboto</family>
+     <weight>50</weight>
+     <bold>false</bold>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">border: 0px;</string>
+   </property>
+   <property name="title">
+    <string>Gear</string>
+   </property>
+   <property name="ColorGroup" stdset="0">
+    <string>Title</string>
+   </property>
+  </widget>
+  <widget class="QGroupBox" name="groupBox_8">
+   <property name="geometry">
+    <rect>
+     <x>310</x>
+     <y>70</y>
+     <width>111</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Roboto</family>
+     <weight>50</weight>
+     <bold>false</bold>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">border: 0px;</string>
+   </property>
+   <property name="title">
+    <string>Ignition state</string>
+   </property>
+   <property name="ColorGroup" stdset="0">
+    <string>Title</string>
+   </property>
+  </widget>
+  <widget class="QCheckBox" name="checkBox_no_voice">
+   <property name="geometry">
+    <rect>
+     <x>310</x>
+     <y>280</y>
+     <width>131</width>
+     <height>22</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>No voice input</string>
+   </property>
+  </widget>
+  <widget class="QCheckBox" name="checkBox_no_video">
+   <property name="geometry">
+    <rect>
+     <x>150</x>
+     <y>310</y>
+     <width>96</width>
+     <height>22</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>No video</string>
+   </property>
+  </widget>
+  <widget class="QCheckBox" name="checkBox_no_keyboard">
+   <property name="geometry">
+    <rect>
+     <x>310</x>
+     <y>310</y>
+     <width>111</width>
+     <height>22</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>No keyboard</string>
+   </property>
+  </widget>
+  <widget class="QCheckBox" name="checkBox_unrestricted">
+   <property name="geometry">
+    <rect>
+     <x>150</x>
+     <y>250</y>
+     <width>121</width>
+     <height>22</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>10</pointsize>
+    </font>
+   </property>
+   <property name="text">
+    <string>Unrestricted</string>
+   </property>
+  </widget>
+  <widget class="QCheckBox" name="checkBox_limit_msg_len">
+   <property name="geometry">
+    <rect>
+     <x>150</x>
+     <y>280</y>
+     <width>131</width>
+     <height>22</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>10</pointsize>
+    </font>
+   </property>
+   <property name="text">
+    <string>Limit message len</string>
+   </property>
+  </widget>
+  <widget class="QCheckBox" name="checkBox_no_config">
+   <property name="geometry">
+    <rect>
+     <x>310</x>
+     <y>250</y>
+     <width>96</width>
+     <height>22</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>No config</string>
+   </property>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

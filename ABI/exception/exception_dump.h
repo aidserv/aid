@@ -1,0 +1,11 @@
+#ifndef ABI_EXCEPTION_EXCEPTION_DUMP_H_
+#define ABI_EXCEPTION_EXCEPTION_DUMP_H_
+//////////////////////////////////////////////////////////////////////////
+namespace ABI{
+	namespace carsh_exception{
+		void EnableExceptionHandler();
+		void DisableExceptionHandler();
+	}
+}
+//////////////////////////////////////////////////////////////////////////
+#endif

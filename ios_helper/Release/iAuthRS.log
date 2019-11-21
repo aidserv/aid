@@ -1,0 +1,103 @@
+﻿Build started 2014/11/25 13:32:56.
+     1>Project "D:\developer\windows\iTunesABI\iAuthRS\iAuthRS.vcxproj" on node 5 (rebuild target(s)).
+     1>_PrepareForClean:
+         Deleting file "Release\iAuthRS.lastbuildstate".
+       InitializeBuildStatus:
+         Creating "Release\iAuthRS.unsuccessfulbuild" because "AlwaysCreate" was specified.
+       ClCompile:
+         D:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /ID:\developer\windows\iTunesABI\ /ID:\developer\windows\iTunesABI\\ABI\thirdparty\ /Zi /nologo /W3 /WX- /O2 /Oi /Oy- /GL /D WIN32 /D NDEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm- /EHsc /MT /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Release\\" /Fd"Release\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt ..\ABI\base\file\directory.cc ..\ABI\base\file\path.cc ..\ABI\base\string\string_case.cc ..\ABI\base\string\string_conv.cc ..\ABI\base\string\string_split.cc ..\ABI\base\string\urls_conv.cc ..\ABI\base\windows_hardware.cc ..\ABI\base\windows_process.cc ..\ABI\base\windows_version.cc ..\ABI\ios_authorize\apple_device_auth.cc ..\ABI\ios_authorize\apple_import.cpp ..\ABI\ios_authorize\apple_remote_auth.cc ..\ABI\ios_authorize\iTunesInterface.cpp ..\ABI\ios_authorize\itunes_internal_abi.cc ..\ABI\ios_authorize\itunes_module.cc ..\ABI\ios_authorize\Sync.cpp ..\ABI\ios_authorize\Universal.cpp ..\ABI\itunes_reverse\itunes_abi.cc ..\ABI\thirdparty\glog\logging.cc ..\iAuthed\apple_ssl.cc iAuthRS.cc stdafx.cpp
+         directory.cc
+     1>..\ABI\base\file\directory.cc(16): warning C4996: '_wsplitpath': This function or variable may be unsafe. Consider using _wsplitpath_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 D:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\stdlib.h(829) : see declaration of '_wsplitpath'
+     1>..\ABI\base\file\directory.cc(33): warning C4996: '_wsplitpath': This function or variable may be unsafe. Consider using _wsplitpath_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 D:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\stdlib.h(829) : see declaration of '_wsplitpath'
+         path.cc
+     1>..\ABI\base\file\path.cc(67): warning C4996: 'wcsnicmp': The POSIX name for this item is deprecated. Instead, use the ISO C++ conformant name: _wcsnicmp. See online help for details.
+                 D:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\string.h(391) : see declaration of 'wcsnicmp'
+     1>..\ABI\base\file\path.cc(82): warning C4996: 'swprintf': swprintf has been changed to conform with the ISO C standard, adding an extra character count parameter. To use traditional Microsoft swprintf, set _CRT_NON_CONFORMING_SWPRINTFS.
+                 D:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\swprintf.inl(85) : see declaration of 'swprintf'
+         string_case.cc
+         string_conv.cc
+         string_split.cc
+         urls_conv.cc
+         windows_hardware.cc
+         windows_process.cc
+         windows_version.cc
+         apple_device_auth.cc
+         apple_import.cpp
+         apple_remote_auth.cc
+         iTunesInterface.cpp
+         itunes_internal_abi.cc
+         itunes_module.cc
+     1>..\ABI\ios_authorize\itunes_module.cc(91): warning C4996: 'wcscat': This function or variable may be unsafe. Consider using wcscat_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 D:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\string.h(276) : see declaration of 'wcscat'
+     1>..\ABI\ios_authorize\itunes_module.cc(93): warning C4996: 'wcscat': This function or variable may be unsafe. Consider using wcscat_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 D:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\string.h(276) : see declaration of 'wcscat'
+         Sync.cpp
+         Universal.cpp
+         itunes_abi.cc
+     1>..\ABI\itunes_reverse\itunes_abi.cc(39): warning C4996: 'sscanf': This function or variable may be unsafe. Consider using sscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 D:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\stdio.h(325) : see declaration of 'sscanf'
+         logging.cc
+         apple_ssl.cc
+         Compiling...
+         iAuthRS.cc
+         stdafx.cpp
+       Link:
+         D:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"D:\developer\windows\iTunesABI\\bin\iAuthRS.exe" /INCREMENTAL:NO /NOLOGO /MANIFEST /ManifestFile:"Release\iAuthRS.exe.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"D:\developer\windows\iTunesABI\bin\iAuthRS.pdb" /SUBSYSTEM:CONSOLE /OPT:REF /OPT:ICF /LTCG /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"D:\developer\windows\iTunesABI\\bin\iAuthRS.lib" /MACHINE:X86 Release\directory.obj
+         Release\path.obj
+         Release\string_case.obj
+         Release\string_conv.obj
+         Release\string_split.obj
+         Release\urls_conv.obj
+         Release\windows_hardware.obj
+         Release\windows_process.obj
+         Release\windows_version.obj
+         Release\apple_device_auth.obj
+         Release\apple_import.obj
+         Release\apple_remote_auth.obj
+         Release\iTunesInterface.obj
+         Release\itunes_internal_abi.obj
+         Release\itunes_module.obj
+         Release\Sync.obj
+         Release\Universal.obj
+         Release\itunes_abi.obj
+         Release\logging.obj
+         Release\apple_ssl.obj
+         Release\iAuthRS.obj
+         Release\stdafx.obj
+         Generating code
+         Finished generating code
+     1>libeay32.lib(cryptlib.obj) : warning LNK4099: PDB 'lib.pdb' was not found with 'libeay32.lib(cryptlib.obj)' or at 'D:\developer\windows\iTunesABI\bin\lib.pdb'; linking object as if no debug info
+     1>libeay32.lib(mem.obj) : warning LNK4099: PDB 'lib.pdb' was not found with 'libeay32.lib(mem.obj)' or at 'D:\developer\windows\iTunesABI\bin\lib.pdb'; linking object as if no debug info
+     1>libeay32.lib(mem_dbg.obj) : warning LNK4099: PDB 'lib.pdb' was not found with 'libeay32.lib(mem_dbg.obj)' or at 'D:\developer\windows\iTunesABI\bin\lib.pdb'; linking object as if no debug info
+     1>libeay32.lib(ex_data.obj) : warning LNK4099: PDB 'lib.pdb' was not found with 'libeay32.lib(ex_data.obj)' or at 'D:\developer\windows\iTunesABI\bin\lib.pdb'; linking object as if no debug info
+     1>libeay32.lib(o_init.obj) : warning LNK4099: PDB 'lib.pdb' was not found with 'libeay32.lib(o_init.obj)' or at 'D:\developer\windows\iTunesABI\bin\lib.pdb'; linking object as if no debug info
+     1>libeay32.lib(md5_dgst.obj) : warning LNK4099: PDB 'lib.pdb' was not found with 'libeay32.lib(md5_dgst.obj)' or at 'D:\developer\windows\iTunesABI\bin\lib.pdb'; linking object as if no debug info
+     1>libeay32.lib(bn_lib.obj) : warning LNK4099: PDB 'lib.pdb' was not found with 'libeay32.lib(bn_lib.obj)' or at 'D:\developer\windows\iTunesABI\bin\lib.pdb'; linking object as if no debug info
+     1>libeay32.lib(bn_print.obj) : warning LNK4099: PDB 'lib.pdb' was not found with 'libeay32.lib(bn_print.obj)' or at 'D:\developer\windows\iTunesABI\bin\lib.pdb'; linking object as if no debug info
+     1>libeay32.lib(bn_shift.obj) : warning LNK4099: PDB 'lib.pdb' was not found with 'libeay32.lib(bn_shift.obj)' or at 'D:\developer\windows\iTunesABI\bin\lib.pdb'; linking object as if no debug info
+     1>libeay32.lib(bn_word.obj) : warning LNK4099: PDB 'lib.pdb' was not found with 'libeay32.lib(bn_word.obj)' or at 'D:\developer\windows\iTunesABI\bin\lib.pdb'; linking object as if no debug info
+     1>libeay32.lib(buf_str.obj) : warning LNK4099: PDB 'lib.pdb' was not found with 'libeay32.lib(buf_str.obj)' or at 'D:\developer\windows\iTunesABI\bin\lib.pdb'; linking object as if no debug info
+     1>libeay32.lib(bio_lib.obj) : warning LNK4099: PDB 'lib.pdb' was not found with 'libeay32.lib(bio_lib.obj)' or at 'D:\developer\windows\iTunesABI\bin\lib.pdb'; linking object as if no debug info
+     1>libeay32.lib(bss_file.obj) : warning LNK4099: PDB 'lib.pdb' was not found with 'libeay32.lib(bss_file.obj)' or at 'D:\developer\windows\iTunesABI\bin\lib.pdb'; linking object as if no debug info
+     1>libeay32.lib(b_print.obj) : warning LNK4099: PDB 'lib.pdb' was not found with 'libeay32.lib(b_print.obj)' or at 'D:\developer\windows\iTunesABI\bin\lib.pdb'; linking object as if no debug info
+     1>libeay32.lib(stack.obj) : warning LNK4099: PDB 'lib.pdb' was not found with 'libeay32.lib(stack.obj)' or at 'D:\developer\windows\iTunesABI\bin\lib.pdb'; linking object as if no debug info
+     1>libeay32.lib(lhash.obj) : warning LNK4099: PDB 'lib.pdb' was not found with 'libeay32.lib(lhash.obj)' or at 'D:\developer\windows\iTunesABI\bin\lib.pdb'; linking object as if no debug info
+     1>libeay32.lib(err.obj) : warning LNK4099: PDB 'lib.pdb' was not found with 'libeay32.lib(err.obj)' or at 'D:\developer\windows\iTunesABI\bin\lib.pdb'; linking object as if no debug info
+     1>libeay32.lib(obj_dat.obj) : warning LNK4099: PDB 'lib.pdb' was not found with 'libeay32.lib(obj_dat.obj)' or at 'D:\developer\windows\iTunesABI\bin\lib.pdb'; linking object as if no debug info
+     1>libeay32.lib(obj_lib.obj) : warning LNK4099: PDB 'lib.pdb' was not found with 'libeay32.lib(obj_lib.obj)' or at 'D:\developer\windows\iTunesABI\bin\lib.pdb'; linking object as if no debug info
+     1>libeay32.lib(encode.obj) : warning LNK4099: PDB 'lib.pdb' was not found with 'libeay32.lib(encode.obj)' or at 'D:\developer\windows\iTunesABI\bin\lib.pdb'; linking object as if no debug info
+     1>libeay32.lib(a_object.obj) : warning LNK4099: PDB 'lib.pdb' was not found with 'libeay32.lib(a_object.obj)' or at 'D:\developer\windows\iTunesABI\bin\lib.pdb'; linking object as if no debug info
+     1>libeay32.lib(asn1_lib.obj) : warning LNK4099: PDB 'lib.pdb' was not found with 'libeay32.lib(asn1_lib.obj)' or at 'D:\developer\windows\iTunesABI\bin\lib.pdb'; linking object as if no debug info
+         iAuthRS.vcxproj -> D:\developer\windows\iTunesABI\\bin\iAuthRS.exe
+       Manifest:
+         C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\mt.exe /nologo /verbose /outputresource:"D:\developer\windows\iTunesABI\\bin\iAuthRS.exe;#1" /manifest Release\iAuthRS.exe.intermediate.manifest "D:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\Include\Manifest\dpiaware.manifest"
+       FinalizeBuildStatus:
+         Deleting file "Release\iAuthRS.unsuccessfulbuild".
+         Touching "Release\iAuthRS.lastbuildstate".
+     1>Done Building Project "D:\developer\windows\iTunesABI\iAuthRS\iAuthRS.vcxproj" (rebuild target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:11.18

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="48px" height="48px" viewBox="0 0 48 48" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: Sketch 3.3.2 (12043) - http://www.bohemiancoding.com/sketch -->
+    <title>Remote</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="Remote" sketch:type="MSArtboardGroup">
+            <g id="ic_radio_button_unchecked_black_24dp-copy-18" sketch:type="MSLayerGroup">
+                <path d="M0,0 L48,0 L48,48 L0,48 L0,0 Z" id="Shape" sketch:type="MSShapeGroup"></path>
+                <path d="M24,43.2 C34.6038672,43.2 43.2,34.6038672 43.2,24 C43.2,13.3961328 34.6038672,4.8 24,4.8 C13.3961328,4.8 4.8,13.3961328 4.8,24 C4.8,34.6038672 13.3961328,43.2 24,43.2 Z M24,31.2 C27.9764502,31.2 31.2,27.9764502 31.2,24 C31.2,20.0235498 27.9764502,16.8 24,16.8 C20.0235498,16.8 16.8,20.0235498 16.8,24 C16.8,27.9764502 20.0235498,31.2 24,31.2 Z M19.8234375,13.3201172 L24.0234375,9.12011719 L28.2234375,13.3201172 L19.8234375,13.3201172 Z M19.8234375,34.8 L24.0234375,39 L28.2234375,34.8 L19.8234375,34.8 Z M13.3195313,19.8 L9.11953125,24 L13.3195313,28.2 L13.3195313,19.8 Z M34.8,19.8 L39,24 L34.8,28.2 L34.8,19.8 Z" id="Oval-160" fill="#687074" sketch:type="MSShapeGroup"></path>
+            </g>
+        </g>
+    </g>
+</svg>

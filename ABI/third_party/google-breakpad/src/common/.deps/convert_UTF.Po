@@ -1,0 +1,6 @@
+src/common/convert_UTF.o: src/common/convert_UTF.c \
+ /usr/include/stdc-predef.h src/common/convert_UTF.h
+
+/usr/include/stdc-predef.h:
+
+src/common/convert_UTF.h:

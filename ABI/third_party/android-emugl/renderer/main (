@@ -1,0 +1,129 @@
+// Copyright 2015 The Android Open Source Project
+//
+// This software is licensed under the terms of the GNU General Public
+// License version 2, as published by the Free Software Foundation, and
+// may be copied, distributed, and modified under those terms.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+
+
+#include <algorithm>
+#include <assert.h>
+#include <limits.h>
+#include <stdio.h>
+#include <unistd.h>
+#ifdef _WIN32
+#include <conio.h>
+#include <winsock2.h>
+#include <string.h>
+#else
+#include <netinet/in.h>
+#include <unistd.h>
+#endif
+
+#include "android/utils/dll.h"
+#include "OpenglRender/render_api.h"
+#include "OpenglRender/render_api_functions.h"
+
+FBNativeWindowType MyOpendl()
+{
+    // int wx=28, wy=27, ww=1024, wh=768, fbw=1024, fbh=768, dpr=1.000000f, rotation=0.000000f;
+    int ww=1024, wh=768;
+    // 加载库
+    // void* ld_lib = dlopen("sdl64_so.so", RTLD_NOW);
+    char* error = NULL;
+    ADynamicLibrary* ld_lib = adynamicLibrary_open("sdl64_so", &error);
+    if (ld_lib == NULL) {
+        printf("Could not load library [sdl64_so]: %s\n", error);
+        return NULL;    
+    }
+	typedef FBNativeWindowType (*PFNGetWindowId)(int winWidth, int winHeight);
+	PFNGetWindowId GetWindowId = (PFNGetWindowId)adynamicLibrary_findSymbol(ld_lib, "GetWindowId", &error);
+    if (GetWindowId != NULL)
+	{
+        printf("Could not find required symbol [GetWindowId]: %s\n", error);
+		return NULL;
+	}
+	return GetWindowId(ww, wh);
+	//android_initOpenglesEmulation();
+	//int glesMajorVersion_out;
+	//int glesMinorVersion_out;
+                              
+	//android_startOpenglesRenderer(ww, wh, 0, 19, &glesMajorVersion_out, &glesMinorVersion_out);
+    
+    //char addr[256];
+	//android_StartOpenglServer(addr, 256);
+	//android_showOpenglesWindow((void*)(uintptr_t)wid, wx, wy, ww, wh, fbw, fbh, dpr, rotation);
+	
+}
+
+#ifdef _WIN32
+int WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nShowCmd)
+#else
+int main(int argc, char **argv)
+#endif
+{
+    int wx=28, wy=27, ww=1024, wh=768, fbw=1024, fbh=768, dpr=1.000000f, rotation=0.000000f;
+    char* error = NULL;
+    ADynamicLibrary* ld_lib = adynamicLibrary_open("lib64OpenglRender", &error);
+    if (ld_lib == NULL) {
+        printf("Could not load library [sdl64_so]: %s\n", error);
+        return -1;    
+    }
+    // initLibrary
+	typedef emugl::RenderLibPtr (*PFNinitLibrary)();
+	PFNinitLibrary initLibrary = (PFNinitLibrary)adynamicLibrary_findSymbol(ld_lib, "initLibrary", &error);
+    if (initLibrary != NULL)
+	{
+        printf("Could not find required symbol [initLibrary]: %s\n", error);
+		return -1;
+	}
+	// RENDER_APICALL int RENDER_APIENTRY StartOpenglServer(char* addr, size_t addrLen)
+	typedef int (*PFNStartOpenglServer)(char* addr, size_t addrLen);
+	PFNStartOpenglServer StartOpenglServer = (PFNStartOpenglServer)adynamicLibrary_findSymbol(ld_lib, "StartOpenglServer", &error);
+    if (StartOpenglServer != NULL)
+	{
+        printf("Could not find required symbol [StartOpenglServer]: %s\n", error);
+		return -1;
+	}
+	// call 
+	emugl::RenderLibPtr sRenderLib = initLibrary();
+	
+    sRenderLib->setRenderer((SelectedRenderer)1);
+    
+    bool sRendererUsesSubWindow = true;
+	printf("sRendererUsesSubWindow=%d width=%d, height = %d\n", sRendererUsesSubWindow, ww, wh);
+    emugl::RendererPtr sRenderer = sRenderLib->initRenderer(ww, wh, sRendererUsesSubWindow);
+    if (!sRenderer) { 
+        printf("Can't start OpenGLES renderer?");
+        return -1;
+    }
+
+    // after initRenderer is a success, the maximum GLES API is calculated depending
+    // on feature control and host GPU support. Set the obtained GLES version here.
+    int glesMajorVersion_out = 2;
+    int glesMinorVersion_out = 0;
+    
+    if (glesMajorVersion_out && glesMinorVersion_out)
+    {
+        sRenderLib->getGlesVersion(&glesMajorVersion_out, &glesMinorVersion_out);
+   	}
+   	// 启动收包线程
+    char addr[256];
+	StartOpenglServer(addr, 256);
+    
+    // init sdl  show window
+    FBNativeWindowType win = MyOpendl();
+    printf("wx=%d, wy=%d, ww=%d, wh=%d, fbw=%d, fbh=%d, dpr=%f, rotation=%f\n", wx, wy, ww, wh, fbw, fbh, dpr, rotation);
+    bool success = sRenderer->showOpenGLSubwindow(
+            win, wx, wy, ww, wh, fbw, fbh, dpr, rotation);
+            
+	//
+	MyOpendl();
+	//while(1);
+	
+    return 0;
+}

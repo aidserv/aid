@@ -1,0 +1,11 @@
+#ifndef IOS_BROKER_PAIR_DEVICE_MOUNTER_H_
+#define IOS_BROKER_PAIR_DEVICE_MOUNTER_H_
+//////////////////////////////////////////////////////////////////////////
+#include <cstdio>
+#include "ios_broker/pair_connectioned.h"
+//////////////////////////////////////////////////////////////////////////
+namespace ios_broker{
+	int Mounter(bool list_mode,internal::PairConnectioned* connected,const char* image_path,const char* image_sig_path,const char* imagetype=NULL);
+}
+//////////////////////////////////////////////////////////////////////////
+#endif

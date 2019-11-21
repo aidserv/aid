@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>CarDataPage</class>
+ <widget class="QWidget" name="CarDataPage">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>622</width>
+    <height>891</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <widget class="QTabWidget" name="tabWidget">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>10</y>
+     <width>630</width>
+     <height>381</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true"/>
+   </property>
+   <property name="currentIndex">
+    <number>0</number>
+   </property>
+   <!-- Car Sensor Tab -->
+   <widget class="CarSensorData" name="tab_sensor">
+    <attribute name="title">
+     <string>Car sensor data</string>
+    </attribute>
+   </widget>
+  </widget>
+  <!-- Add more tabs here -->
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>CarSensorData</class>
+   <extends>QWidget</extends>
+   <header>android/skin/qt/extended-pages/car-data-emulation/car-sensor-data.h</header>
+  </customwidget>
+ </customwidgets>
+ <resources/>
+ <connections/>
+</ui>

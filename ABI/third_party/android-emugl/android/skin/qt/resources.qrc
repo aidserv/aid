@@ -1,0 +1,243 @@
+<!--Copyright (C) 2015 The Android Open Source Project
+
+    This software is licensed under the terms of the GNU General Public
+    License version 2, as published by the Free Software Foundation, and
+    may be copied, distributed, and modified under those terms.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+-->
+<RCC>
+    <qresource prefix="/">
+        <file alias="styles/stylesheet_template.css">styles/stylesheet_template.css</file>
+        <file alias="styles/fonts_stylesheet_template.css">styles/fonts_stylesheet_template.css</file>
+    </qresource>
+    <qresource prefix="/lib/fonts">
+         <!-- The names 'Roboto*' are used to load the fonts in
+              android/skin/qt/winsys-qt.cpp -->
+        <file alias="Roboto">fonts/Roboto-Regular.ttf</file>
+        <file alias="Roboto-Bold">fonts/Roboto-Bold.ttf</file>
+        <file alias="Roboto-Medium">fonts/Roboto-Medium.ttf</file>
+    </qresource>
+    <qresource prefix="/light">
+        <!-- Main list of tool buttons -->
+        <file alias="back">images/light/System_Back_678.svg</file>
+        <file alias="close">images/light/ic_close_678_48px.svg</file>
+        <file alias="help">images/light/ic_help_678_48dp.svg</file>
+        <file alias="home">images/light/System_Home_678.svg</file>
+        <file alias="minimize">images/light/ic_remove_678_48dp.svg</file>
+        <file alias="more">images/light/ic_more_horiz_678_48dp.svg</file>
+        <file alias="overview">images/light/System_Overview_678.svg</file>
+        <file alias="power_settings">images/light/ic_power_settings_new_678_48px.svg</file>
+        <file alias="screen_rotation">images/light/ic_screen_rotation_678_48dp.svg</file>
+        <file alias="screen_rotation_left">images/light/Rotate_Left_678.svg</file>
+        <file alias="screen_rotation_right">images/light/Rotate_Right_678.svg</file>
+        <file alias="screen_shot">images/light/ic_photo_camera_678_48dp.svg</file>
+        <file alias="volume_down">images/light/ic_volume_down_678_48px.svg</file>
+        <file alias="volume_up">images/light/ic_volume_up_678_48px.svg</file>
+        <file alias="zoom">images/light/ic_zoom_in_678_48dp.svg</file>
+
+        <!-- Used in the "extended" window -->
+        <file alias="add">images/light/ic_add_0BA_48dp.svg</file>
+        <file alias="arrow_drop_down">images/light/ic_arrow_drop_down_black_18px.svg</file>
+        <file alias="arrow_drop_up">images/light/ic_arrow_drop_up_black_18px.svg</file>
+        <file alias="add_disabled">images/light/ic_add_BEE_48dp.svg</file>
+        <file alias="battery">images/light/ic_battery_80_678_48dp.svg</file>
+        <file alias="call_end">images/light/ic_call_end_777_48dp.svg</file>
+        <file alias="call_end_disabled">images/light/ic_call_end_BBB_48dp.svg</file>
+        <file alias="camera_iris">images/light/ic_camera_678_48dp.svg</file>
+        <file alias="check_yes">images/light/ic_check_box_0BA_24dp.svg</file>
+        <file alias="check_yes_disabled">images/light/ic_check_box_BEE_24dp.svg</file>
+        <file alias="check_no">images/light/ic_check_box_outline_blank_777_24dp.svg</file>
+        <file alias="check_no_disabled">images/light/ic_check_box_outline_blank_BBB_24dp.svg</file>
+        <file alias="circular_spinner">images/light/spinner.gif</file>
+        <file alias="dpad">images/light/Remote_678.svg</file>
+        <file alias="dpad_back">images/light/dpad_back.svg</file>
+        <file alias="dpad_back_pressed">images/light/dpad_back_pressed.svg</file>
+        <file alias="dpad_down">images/light/dpad_down.svg</file>
+        <file alias="dpad_down_pressed">images/light/dpad_down_pressed.svg</file>
+        <file alias="dpad_forward">images/light/dpad_forward.svg</file>
+        <file alias="dpad_forward_pressed">images/light/dpad_forward_pressed.svg</file>
+        <file alias="dpad_left">images/light/dpad_left.svg</file>
+        <file alias="dpad_left_pressed">images/light/dpad_left_pressed.svg</file>
+        <file alias="dpad_play">images/light/dpad_play_pause.svg</file>
+        <file alias="dpad_play_pressed">images/light/dpad_play_pause_pressed.svg</file>
+        <file alias="dpad_right">images/light/dpad_right.svg</file>
+        <file alias="dpad_right_pressed">images/light/dpad_right_pressed.svg</file>
+        <file alias="dpad_select">images/light/dpad_select_FFF.svg</file>
+        <file alias="dpad_select_pressed">images/light/dpad_select_FFF_pressed.svg</file>
+        <file alias="dpad_up">images/light/dpad_up.svg</file>
+        <file alias="dpad_up_pressed">images/light/dpad_up_pressed.svg</file>
+        <file alias="drop_down">images/light/ic_arrow_drop_down_ccc_48dp.svg</file>
+        <file alias="file_download">images/light/ic_file_download_678_48dp.svg</file>
+        <file alias="file_upload">images/light/ic_file_upload_678_48dp.svg</file>
+        <file alias="fingerprint">images/light/ic_fingerprint_678_48dp.svg</file>
+        <file alias="folder">images/light/ic_folder_777_48dp.svg</file>
+        <file alias="google_play">images/light/ic_play_prism_678_48dp.svg</file>
+        <file alias="help_outline">images/light/ic_help_outline_grey600_48dp.svg</file>
+        <file alias="hwSensors">images/light/ic_filter_tilt_shift_678_48dp.svg</file>
+        <file alias="keyboard">images/light/ic_keyboard_678_48dp.svg</file>
+        <file alias="location">images/light/ic_location_on_678_48dp.svg</file>
+        <file alias="message">images/light/ic_message_678_48dp.svg</file>
+        <file alias="mic">images/light/ic_mic_678_48dp.svg</file>
+        <file alias="pause">images/light/ic_pause_0BA_48dp.svg</file>
+        <file alias="pause_disabled">images/light/ic_pause_BEE_48dp.svg</file>
+        <file alias="phone">images/light/ic_phone_678_48dp.svg</file>
+        <file alias="phone_button">images/light/ic_phone_777_48dp.svg</file>
+        <file alias="phone_disabled">images/light/ic_phone_BBB_48dp.svg</file>
+        <file alias="phone_in_talk">images/light/ic_phone_in_talk_777_48dp.svg</file>
+        <file alias="phone_in_talk_disabled">images/light/ic_phone_in_talk_BBB_48dp.svg</file>
+        <file alias="phone_landscape">images/light/ic_phone_android_landscape.svg</file>
+        <file alias="phone_paused">images/light/ic_phone_paused_777_48dp.svg</file>
+        <file alias="phone_paused_disabled">images/light/ic_phone_paused_BBB_48dp.svg</file>
+        <file alias="phone_portrait">images/light/ic_phone_android_portrait.svg</file>
+        <file alias="phone_reverse_landscape">images/light/ic_phone_android_reverse_landscape.svg</file>
+        <file alias="phone_reverse_portrait">images/light/ic_phone_android_reverse_portrait.svg</file>
+        <file alias="play_arrow">images/light/ic_play_arrow_0BA_48dp.svg</file>
+        <file alias="play_arrow_disabled">images/light/ic_play_arrow_BEE_48dp.svg</file>
+        <file alias="radio_off">images/light/ic_radio_button_unchecked_777_24dp.svg</file>
+        <file alias="radio_off_disabled">images/light/ic_radio_button_unchecked_BBB_24dp.svg</file>
+        <file alias="radio_on">images/light/ic_radio_button_checked_0BA_24dp.svg</file>
+        <file alias="radio_on_disabled">images/light/ic_radio_button_checked_BEE_24dp.svg</file>
+        <file alias="recordCircle">images/light/ic_record_circle_F43_24dp.svg</file>
+        <file alias="record_screen">images/light/ic_videocam_678_48dp.svg</file>
+        <file alias="remove">images/light/ic_remove_0BA_48dp.svg</file>
+        <file alias="remove_disabled">images/light/ic_remove_BEE_48dp.svg</file>
+        <file alias="rotary_input">images/light/ic_rotary_input.svg</file>
+        <file alias="rotary_input_control">images/light/rotary_input_control.svg</file>
+        <file alias="send">images/light/ic_send_777_48dp.svg</file>
+        <file alias="settings">images/light/ic_settings_678_48dp.svg</file>
+        <file alias="side_on_watch">images/light/side_on_watch.svg</file>
+        <file alias="signal_cellular_3_bar">images/light/ic_signal_cellular_3_bar_678_48dp.svg</file>
+        <file alias="stop">images/light/ic_stop_0BA_48dp.svg</file>
+        <file alias="stop_disabled">images/light/ic_stop_BEE_48dp.svg</file>
+        <file alias="toggle_off">images/light/toggle_off_light.png</file>
+        <file alias="toggle_off_disabled">images/light/toggle_off_disabled_light.png</file>
+        <file alias="toggle_on">images/light/toggle_on_light.png</file>
+        <file alias="toggle_on_disabled">images/light/toggle_on_disabled_light.png</file>
+        <file alias="virtSensors">images/light/Virtual_Sensors_678.svg</file>
+        <file alias="android_auto">images/light/ic_car_678_56px.svg</file>
+    </qresource>
+    <qresource prefix="/dark">
+        <!-- Main list of tool buttons -->
+        <file alias="arrow_drop_down">images/dark/ic_arrow_drop_down_white_18px.svg</file>
+        <file alias="arrow_drop_up">images/dark/ic_arrow_drop_up_white_18px.svg</file>
+        <file alias="back">images/dark/System_Back_white.svg</file>
+        <file alias="close">images/dark/ic_close_48px.svg</file>
+        <file alias="help">images/dark/ic_help_677_48dp.svg</file>
+        <file alias="home">images/dark/System_Home_white.svg</file>
+        <file alias="minimize">images/dark/ic_remove_white_48dp.svg</file>
+        <file alias="more">images/dark/ic_more_horiz_white_48dp.svg</file>
+        <file alias="overview">images/dark/System_Overview_white.svg</file>
+        <file alias="power_settings">images/dark/ic_power_settings_new_48px.svg</file>
+        <file alias="screen_rotation">images/dark/ic_screen_rotation_white_48dp.svg</file>
+        <file alias="screen_rotation_left">images/dark/Rotate_Left_white.svg</file>
+        <file alias="screen_rotation_right">images/dark/Rotate_Right_white.svg</file>
+        <file alias="screen_shot">images/dark/ic_photo_camera_white_48dp.svg</file>
+        <file alias="volume_down">images/dark/ic_volume_down_48px.svg</file>
+        <file alias="volume_up">images/dark/ic_volume_up_48px.svg</file>
+        <file alias="zoom">images/dark/ic_zoom_in_white_48dp.svg</file>
+
+        <!-- Used in the "extended" window -->
+        <file alias="add">images/dark/ic_add_0BA_48dp.svg</file>
+        <file alias="add_disabled">images/dark/ic_add_155_48dp.svg</file>
+        <file alias="battery">images/dark/ic_battery_80_677_48dp.svg</file>
+        <file alias="call_end">images/dark/ic_call_end_BCC_48dp.svg</file>
+        <file alias="call_end_disabled">images/dark/ic_call_end_566_48dp.svg</file>
+        <file alias="camera_iris">images/dark/ic_camera_677_48dp.svg</file>
+        <file alias="check_yes">images/dark/ic_check_box_0BA_24dp.svg</file>
+        <file alias="check_yes_disabled">images/dark/ic_check_box_155_24dp.svg</file>
+        <file alias="check_no">images/dark/ic_check_box_outline_blank_BCC_24dp.svg</file>
+        <file alias="check_no_disabled">images/dark/ic_check_box_outline_blank_566_24dp.svg</file>
+        <file alias="circular_spinner">images/dark/spinner.gif</file>
+        <file alias="dpad">images/dark/Remote_677.svg</file>
+        <file alias="dpad_back">images/dark/dpad_back.svg</file>
+        <file alias="dpad_back_pressed">images/dark/dpad_back_pressed.svg</file>
+        <file alias="dpad_down">images/dark/dpad_down.svg</file>
+        <file alias="dpad_down_pressed">images/dark/dpad_down_pressed.svg</file>
+        <file alias="dpad_forward">images/dark/dpad_forward.svg</file>
+        <file alias="dpad_forward_pressed">images/dark/dpad_forward_pressed.svg</file>
+        <file alias="dpad_left">images/dark/dpad_left.svg</file>
+        <file alias="dpad_left_pressed">images/dark/dpad_left_pressed.svg</file>
+        <file alias="dpad_play">images/dark/dpad_play_pause.svg</file>
+        <file alias="dpad_play_pressed">images/dark/dpad_play_pause_pressed.svg</file>
+        <file alias="dpad_right">images/dark/dpad_right.svg</file>
+        <file alias="dpad_right_pressed">images/dark/dpad_right_pressed.svg</file>
+        <file alias="dpad_select">images/dark/dpad_select_233.svg</file>
+        <file alias="dpad_select_pressed">images/dark/dpad_select_233_pressed.svg</file>
+        <file alias="dpad_up">images/dark/dpad_up.svg</file>
+        <file alias="dpad_up_pressed">images/dark/dpad_up_pressed.svg</file>
+        <file alias="drop_down">images/dark/ic_arrow_drop_down_667_48dp.svg</file>
+        <file alias="file_download">images/dark/ic_file_download_677_48dp.svg</file>
+        <file alias="file_upload">images/dark/ic_file_upload_677_48dp.svg</file>
+        <file alias="fingerprint">images/dark/ic_fingerprint_677_48dp.svg</file>
+        <file alias="folder">images/dark/ic_folder_bcc_48dp.svg</file>
+        <file alias="google_play">images/dark/ic_play_prism_677_48dp.svg</file>
+        <file alias="help_outline">images/dark/ic_help_outline_white_48dp.svg</file>
+        <file alias="hwSensors">images/dark/ic_filter_tilt_shift_677_48dp.svg</file>
+        <file alias="keyboard">images/dark/ic_keyboard_677_48dp.svg</file>
+        <file alias="location">images/dark/ic_location_on_677_48dp.svg</file>
+        <file alias="message">images/dark/ic_message_677_48dp.svg</file>
+        <file alias="mic">images/dark/ic_mic_677_48dp.svg</file>
+        <file alias="pause">images/dark/ic_pause_0BA_48dp.svg</file>
+        <file alias="pause_disabled">images/dark/ic_pause_155_48dp.svg</file>
+        <file alias="phone">images/dark/ic_phone_677_48dp.svg</file>
+        <file alias="phone_button">images/dark/ic_phone_BCC_48dp.svg</file>
+        <file alias="phone_disabled">images/dark/ic_phone_566_48dp.svg</file>
+        <file alias="phone_in_talk">images/dark/ic_phone_in_talk_BCC_48dp.svg</file>
+        <file alias="phone_in_talk_disabled">images/dark/ic_phone_in_talk_566_48dp.svg</file>
+        <file alias="phone_landscape">images/dark/ic_phone_android_landscape.svg</file>
+        <file alias="phone_paused">images/dark/ic_phone_paused_BCC_48dp.svg</file>
+        <file alias="phone_paused_disabled">images/dark/ic_phone_paused_566_48dp.svg</file>
+        <file alias="phone_portrait">images/dark/ic_phone_android_portrait.svg</file>
+        <file alias="phone_reverse_landscape">images/dark/ic_phone_android_reverse_landscape.svg</file>
+        <file alias="phone_reverse_portrait">images/dark/ic_phone_android_reverse_portrait.svg</file>
+        <file alias="play_arrow">images/dark/ic_play_arrow_0BA_48dp.svg</file>
+        <file alias="play_arrow_disabled">images/dark/ic_play_arrow_155_48dp.svg</file>
+        <file alias="radio_off">images/dark/ic_radio_button_unchecked_BCC_24dp.svg</file>
+        <file alias="radio_off_disabled">images/dark/ic_radio_button_unchecked_566_24dp.svg</file>
+        <file alias="radio_on">images/dark/ic_radio_button_checked_0BA_24dp.svg</file>
+        <file alias="radio_on_disabled">images/dark/ic_radio_button_checked_155_24dp.svg</file>
+        <file alias="record_screen">images/dark/ic_videocam_677_48dp.svg</file>
+        <file alias="remove">images/dark/ic_remove_0BA_48dp.svg</file>
+        <file alias="remove_disabled">images/dark/ic_remove_155_48dp.svg</file>
+        <file alias="rotary_input">images/dark/ic_rotary_input.svg</file>
+        <file alias="rotary_input_control">images/dark/rotary_input_control.svg</file>
+        <file alias="send">images/dark/ic_send_BCC_48dp.svg</file>
+        <file alias="settings">images/dark/ic_settings_677_48dp.svg</file>
+        <file alias="signal_cellular_3_bar">images/dark/ic_signal_cellular_3_bar_677_48dp.svg</file>
+        <file alias="stop">images/dark/ic_stop_0BA_48dp.svg</file>
+        <file alias="stop_disabled">images/dark/ic_stop_155_48dp.svg</file>
+        <file alias="toggle_off">images/dark/toggle_off_dark.png</file>
+        <file alias="toggle_off_disabled">images/dark/toggle_off_disabled_dark.png</file>
+        <file alias="toggle_on">images/dark/toggle_on_dark.png</file>
+        <file alias="toggle_on_disabled">images/dark/toggle_on_disabled_dark.png</file>
+        <file alias="virtSensors">images/dark/Virtual_Sensors_677.svg</file>
+        <file alias="android_auto">images/dark/ic_car_677_56px.svg</file>
+    </qresource>
+    <qresource prefix="/cursor">
+        <file alias="zoom_cursor">images/cursor/zoom_cursor.svg</file>
+    </qresource>
+    <qresource prefix="/multitouch">
+        <file alias="touch_point">images/multitouch/touch_point.png</file>
+        <file alias="touch_point_2x">images/multitouch/touch_point_2x.png</file>
+        <file alias="center_point">images/multitouch/center_point.png</file>
+        <file alias="center_point_2x">images/multitouch/center_point_2x.png</file>
+    </qresource>
+    <qresource prefix="/phone-model">
+        <file alias="model.obj">phone-model/model.obj</file>
+        <file alias="specular-map.png">phone-model/model-specular-map.png</file>
+        <file alias="gloss-map.png">phone-model/model-gloss-map.png</file>
+        <file alias="env-map-back.png">phone-model/env-map-back.png</file>
+        <file alias="env-map-bottom.png">phone-model/env-map-bottom.png</file>
+        <file alias="env-map-front.png">phone-model/env-map-front.png</file>
+        <file alias="env-map-left.png">phone-model/env-map-left.png</file>
+        <file alias="env-map-right.png">phone-model/env-map-right.png</file>
+        <file alias="env-map-top.png">phone-model/env-map-top.png</file>
+        <file alias="diffuse-map.png">phone-model/model-diffuse-map.png</file>
+        <file alias="frag.glsl">phone-model/frag.glsl</file>
+        <file alias="vert.glsl">phone-model/vert.glsl</file>
+    </qresource>
+</RCC>

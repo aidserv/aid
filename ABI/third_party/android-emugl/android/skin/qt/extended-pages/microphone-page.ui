@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MicrophonePage</class>
+ <widget class="QWidget" name="MicrophonePage">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>622</width>
+    <height>580</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <widget class="QGroupBox" name="mic_insertedLabel">
+   <property name="geometry">
+    <rect>
+     <x>324</x>
+     <y>20</y>
+     <width>251</width>
+     <height>24</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">border: 0px;</string>
+   </property>
+   <property name="title">
+    <string>Virtual headset plug inserted</string>
+   </property>
+   <property name="ColorGroup" stdset="0">
+    <string notr="true">Title</string>
+   </property>
+  </widget>
+  <widget class="QCheckBox" name="mic_inserted">
+   <property name="geometry">
+    <rect>
+     <x>324</x>
+     <y>38</y>
+     <width>211</width>
+     <height>24</height>
+    </rect>
+   </property>
+   <property name="iconSize">
+    <size>
+     <width>24</width>
+     <height>24</height>
+    </size>
+   </property>
+   <property name="checked">
+    <bool>false</bool>
+   </property>
+   <property name="ColorGroup" stdset="0">
+    <string>Toggle</string>
+   </property>
+   <property name="report_metrics" stdset="0">
+    <bool>false</bool>
+   </property>
+  </widget>
+  <widget class="QCheckBox" name="mic_hasMic">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="geometry">
+    <rect>
+     <x>324</x>
+     <y>112</y>
+     <width>211</width>
+     <height>24</height>
+    </rect>
+   </property>
+   <property name="iconSize">
+    <size>
+     <width>24</width>
+     <height>24</height>
+    </size>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
+   <property name="ColorGroup" stdset="0">
+    <string>Toggle</string>
+   </property>
+   <property name="report_metrics" stdset="0">
+    <bool>false</bool>
+   </property>
+  </widget>
+  <widget class="QGroupBox" name="mic_hasMicLabel">
+   <property name="geometry">
+    <rect>
+     <x>324</x>
+     <y>94</y>
+     <width>251</width>
+     <height>24</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">border: 0px;</string>
+   </property>
+   <property name="title">
+    <string>Virtual headset has microphone</string>
+   </property>
+   <property name="ColorGroup" stdset="0">
+    <string notr="true">Title</string>
+   </property>
+  </widget>
+  <widget class="RaisedMaterialButton" name="mic_voiceAssistButton">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="geometry">
+    <rect>
+     <x>324</x>
+     <y>168</y>
+     <width>132</width>
+     <height>36</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Roboto</family>
+     <weight>75</weight>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="text">
+    <string>VOICE ASSIST</string>
+   </property>
+   <property name="flat">
+    <bool>true</bool>
+   </property>
+   <property name="ColorGroup" stdset="0">
+    <string>Button</string>
+   </property>
+   <property name="report_metrics" stdset="0">
+    <bool>false</bool>
+   </property>
+  </widget>
+  <widget class="RaisedMaterialButton" name="mic_hookButton">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="geometry">
+    <rect>
+     <x>472</x>
+     <y>168</y>
+     <width>132</width>
+     <height>36</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Roboto</family>
+     <weight>75</weight>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="text">
+    <string>HEADSET HOOK</string>
+   </property>
+   <property name="flat">
+    <bool>true</bool>
+   </property>
+   <property name="ColorGroup" stdset="0">
+    <string>Button</string>
+   </property>
+   <property name="report_metrics" stdset="0">
+    <bool>false</bool>
+   </property>
+  </widget>
+  <widget class="QGroupBox" name="mic_enableMicLabel">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>20</y>
+     <width>251</width>
+     <height>24</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">border: 0px;</string>
+   </property>
+   <property name="title">
+    <string>Enable microphone</string>
+   </property>
+   <property name="ColorGroup" stdset="0">
+    <string notr="true">Title</string>
+   </property>
+  </widget>
+  <widget class="QCheckBox" name="mic_enableMic">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>38</y>
+     <width>212</width>
+     <height>24</height>
+    </rect>
+   </property>
+   <property name="iconSize">
+    <size>
+     <width>24</width>
+     <height>24</height>
+    </size>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
+   <property name="ColorGroup" stdset="0">
+    <string>Toggle</string>
+   </property>
+   <property name="report_metrics" stdset="0">
+    <bool>false</bool>
+   </property>
+  </widget>
+  <zorder>mic_insertedLabel</zorder>
+  <zorder>mic_hasMicLabel</zorder>
+  <zorder>mic_voiceAssistButton</zorder>
+  <zorder>mic_hookButton</zorder>
+  <zorder>mic_enableMicLabel</zorder>
+  <zorder>mic_enableMic</zorder>
+  <zorder>mic_inserted</zorder>
+  <zorder>mic_hasMic</zorder>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>RaisedMaterialButton</class>
+   <extends>QPushButton</extends>
+   <header>android/skin/qt/raised-material-button.h</header>
+  </customwidget>
+ </customwidgets>
+ <tabstops>
+  <tabstop>mic_enableMic</tabstop>
+  <tabstop>mic_inserted</tabstop>
+  <tabstop>mic_hasMic</tabstop>
+  <tabstop>mic_voiceAssistButton</tabstop>
+  <tabstop>mic_hookButton</tabstop>
+ </tabstops>
+ <resources>
+  <include location="../resources.qrc"/>
+ </resources>
+ <connections/>
+</ui>

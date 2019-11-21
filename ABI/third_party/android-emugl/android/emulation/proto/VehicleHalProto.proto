@@ -1,0 +1,101 @@
+/*
+ * Copyright (C) 2015 The Android Open Source Project
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+syntax = "proto2";
+option optimize_for = LITE_RUNTIME;
+
+package emulator;
+
+// CMD messages are from workstation --> VHAL
+// RESP messages are from VHAL --> workstation
+enum MsgType {
+    GET_CONFIG_CMD                      = 0;
+    GET_CONFIG_RESP                     = 1;
+    GET_CONFIG_ALL_CMD                  = 2;
+    GET_CONFIG_ALL_RESP                 = 3;
+    GET_PROPERTY_CMD                    = 4;
+    GET_PROPERTY_RESP                   = 5;
+    GET_PROPERTY_ALL_CMD                = 6;
+    GET_PROPERTY_ALL_RESP               = 7;
+    SET_PROPERTY_CMD                    = 8;
+    SET_PROPERTY_RESP                   = 9;
+    SET_PROPERTY_ASYNC                  = 10;
+}
+enum Status {
+    RESULT_OK                           = 0;
+    ERROR_UNKNOWN                       = 1;
+    ERROR_UNIMPLEMENTED_CMD             = 2;
+    ERROR_INVALID_PROPERTY              = 3;
+    ERROR_INVALID_AREA_ID               = 4;
+    ERROR_PROPERTY_UNINITIALIZED        = 5;
+    ERROR_WRITE_ONLY_PROPERTY           = 6;
+    ERROR_MEMORY_ALLOC_FAILED           = 7;
+    ERROR_INVALID_OPERATION             = 8;
+}
+
+message VehicleAreaConfig {
+    required int32  area_id             = 1;
+    optional sint32 min_int32_value     = 2;
+    optional sint32 max_int32_value     = 3;
+    optional sint64 min_int64_value     = 4;
+    optional sint64 max_int64_value     = 5;
+    optional float  min_float_value     = 6;
+    optional float  max_float_value     = 7;
+}
+
+message VehiclePropConfig {
+    required int32             prop                = 1;
+    optional int32             access              = 2;
+    optional int32             change_mode         = 3;
+    optional int32             value_type          = 4;
+    optional int32             supported_areas     = 5;
+    repeated VehicleAreaConfig area_configs        = 6;
+    optional int32             config_flags        = 7;
+    repeated int32             config_array        = 8;
+    optional string            config_string       = 9;
+    optional float             min_sample_rate     = 10;
+    optional float             max_sample_rate     = 11;
+};
+
+message VehiclePropValue {
+    // common data
+    required int32  prop                = 1;
+    optional int32  value_type          = 2;
+    optional int64  timestamp           = 3;    // required for valid data from HAL, skipped for set
+
+    // values
+    optional int32  area_id             = 4;
+    repeated sint32 int32_values        = 5;    // this also covers boolean value.
+    repeated sint64 int64_values        = 6;
+    repeated float  float_values        = 7;
+    optional string string_value        = 8;
+    optional bytes  bytes_value         = 9;
+};
+
+// This structure is used to notify what values to get from the Vehicle HAL
+message VehiclePropGet {
+    required int32 prop                 = 1;
+    optional int32 area_id              = 2;
+};
+
+message EmulatorMessage {
+    required MsgType           msg_type = 1;
+    optional Status            status   = 2;    // Only for RESP messages
+    repeated VehiclePropGet    prop     = 3;    // Provided for getConfig, getProperty commands
+    repeated VehiclePropConfig config   = 4;
+    repeated VehiclePropValue  value    = 5;
+};
+

@@ -1,0 +1,15 @@
+#ifndef BASE_STRING_CASE_H_
+#define BASE_STRING_CASE_H_
+//////////////////////////////////////////////////////////////////////////
+#include "base/basetypes.h"
+//////////////////////////////////////////////////////////////////////////
+namespace ABI{
+	namespace base{
+		std::wstring ToUpper(const std::wstring& seque);
+		std::wstring ToLower(const std::wstring& seque);
+		std::string ToUpper(const std::string& seque);
+		std::string ToLower(const std::string& seque);
+	}
+}
+//////////////////////////////////////////////////////////////////////////
+#endif

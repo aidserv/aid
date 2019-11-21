@@ -1,0 +1,167 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{4AD21EFC-E075-42C8-94A6-CA4708D466CC}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>iBypassAuthRS</RootNamespace>
+    <ProjectName>ios_helper</ProjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>Unicode</CharacterSet>
+    <UseOfMfc>Static</UseOfMfc>
+    <UseOfAtl>Static</UseOfAtl>
+    <PlatformToolset>v100</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+    <UseOfMfc>Static</UseOfMfc>
+    <UseOfAtl>Static</UseOfAtl>
+    <PlatformToolset>v100</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+    <IntDir>$(SolutionDir)$(Configuration)\obj\$(ProjectName)\</IntDir>
+    <OutDir>$(OutDir)bin\</OutDir>
+    <LibraryPath>$(SolutionDir)$(Configuration)\lib;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+    <IntDir>$(SolutionDir)$(Configuration)\obj\$(ProjectName)\</IntDir>
+    <OutDir>$(OutDir)bin\</OutDir>
+    <LibraryPath>$(SolutionDir)$(Configuration)\lib;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>$(SolutionDir);$(SolutionDir)\thunk\project;$(SolutionDir)\ABI\thirdparty\;$(SolutionDir)\ABI\thirdparty\google-breakpad-master\src\</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <ImportLibrary>$(SolutionDir)$(Configuration)\lib\$(ProjectName).lib</ImportLibrary>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <AdditionalIncludeDirectories>$(SolutionDir);$(SolutionDir)\thunk\project;$(SolutionDir)\ABI\thirdparty\;$(SolutionDir)\ABI\thirdparty\google-breakpad-master\src\</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <ImportLibrary>$(SolutionDir)$(Configuration)\lib\$(ProjectName).lib</ImportLibrary>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="..\ABI\base\basetypes.h" />
+    <ClInclude Include="..\ABI\base\file\directory.h" />
+    <ClInclude Include="..\ABI\base\file\path.h" />
+    <ClInclude Include="..\ABI\base\lock_impl.h" />
+    <ClInclude Include="..\ABI\base\lock_mutex.h" />
+    <ClInclude Include="..\ABI\base\message_hook.h" />
+    <ClInclude Include="..\ABI\base\message_loop.h" />
+    <ClInclude Include="..\ABI\base\process_token.h" />
+    <ClInclude Include="..\ABI\base\string\string_case.h" />
+    <ClInclude Include="..\ABI\base\string\string_conv.h" />
+    <ClInclude Include="..\ABI\base\string\string_split.h" />
+    <ClInclude Include="..\ABI\base\string\urls_conv.h" />
+    <ClInclude Include="..\ABI\base\windows_hardware.h" />
+    <ClInclude Include="..\ABI\base\windows_process.h" />
+    <ClInclude Include="..\ABI\base\windows_version.h" />
+    <ClInclude Include="..\ABI\exception\exception_dump.h" />
+    <ClInclude Include="..\ABI\ios_authorize\apple_device_auth.h" />
+    <ClInclude Include="..\ABI\ios_authorize\apple_import.h" />
+    <ClInclude Include="..\ABI\ios_authorize\apple_mobile_device_ex.h" />
+    <ClInclude Include="..\ABI\ios_authorize\apple_remote_auth.h" />
+    <ClInclude Include="..\ABI\ios_authorize\iTunesInterface.h" />
+    <ClInclude Include="..\ABI\ios_authorize\itunes_internal_abi.h" />
+    <ClInclude Include="..\ABI\ios_authorize\itunes_module.h" />
+    <ClInclude Include="..\ABI\ios_authorize\itunes_module_state.h" />
+    <ClInclude Include="..\ABI\ios_authorize\MobileDevice.h" />
+    <ClInclude Include="..\ABI\ios_authorize\rq_gen.h" />
+    <ClInclude Include="..\ABI\ios_authorize\rq_sig_gen.h" />
+    <ClInclude Include="..\ABI\ios_authorize\rs_gen.h" />
+    <ClInclude Include="..\ABI\ios_authorize\rs_sig_gen.h" />
+    <ClInclude Include="..\ABI\ios_authorize\Sync.h" />
+    <ClInclude Include="..\ABI\ios_authorize\Universal.h" />
+    <ClInclude Include="..\ABI\itunes_reverse\itunes_abi.h" />
+    <ClInclude Include="..\ABI\thirdparty\glog\basictypes.h" />
+    <ClInclude Include="..\ABI\thirdparty\glog\logging.h" />
+    <ClInclude Include="..\ABI\thirdparty\glog\scoped_ptr.h" />
+    <ClInclude Include="..\ios_cracker\apple_ssl.h" />
+    <ClInclude Include="atl_dll_main.h" />
+    <ClInclude Include="go_auth_device.h" />
+    <ClInclude Include="auth_request_handled.h" />
+    <ClInclude Include="hook_os_info.h" />
+    <ClInclude Include="registed_filter.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\ABI\base\file\directory.cc" />
+    <ClCompile Include="..\ABI\base\file\path.cc" />
+    <ClCompile Include="..\ABI\base\message_hook.cc" />
+    <ClCompile Include="..\ABI\base\process_token.cc" />
+    <ClCompile Include="..\ABI\base\string\string_case.cc" />
+    <ClCompile Include="..\ABI\base\string\string_conv.cc" />
+    <ClCompile Include="..\ABI\base\string\string_split.cc" />
+    <ClCompile Include="..\ABI\base\string\urls_conv.cc" />
+    <ClCompile Include="..\ABI\base\windows_hardware.cc" />
+    <ClCompile Include="..\ABI\base\windows_process.cc" />
+    <ClCompile Include="..\ABI\base\windows_version.cc" />
+    <ClCompile Include="..\ABI\exception\exception_dump.cc" />
+    <ClCompile Include="..\ABI\ios_authorize\apple_device_auth.cc" />
+    <ClCompile Include="..\ABI\ios_authorize\apple_import.cpp" />
+    <ClCompile Include="..\ABI\ios_authorize\apple_remote_auth.cc" />
+    <ClCompile Include="..\ABI\ios_authorize\iTunesInterface.cpp" />
+    <ClCompile Include="..\ABI\ios_authorize\itunes_internal_abi.cc" />
+    <ClCompile Include="..\ABI\ios_authorize\itunes_module.cc" />
+    <ClCompile Include="..\ABI\ios_authorize\itunes_module_state.cc" />
+    <ClCompile Include="..\ABI\ios_authorize\Sync.cpp" />
+    <ClCompile Include="..\ABI\ios_authorize\Universal.cpp" />
+    <ClCompile Include="..\ABI\itunes_reverse\itunes_abi.cc" />
+    <ClCompile Include="..\ABI\thirdparty\glog\logging.cc" />
+    <ClCompile Include="..\ios_cracker\apple_ssl.cc" />
+    <ClCompile Include="atl_dll_main.cc" />
+    <ClCompile Include="go_auth_device.cc" />
+    <ClCompile Include="auth_request_handled.cc" />
+    <ClCompile Include="hook_os_info.cc" />
+    <ClCompile Include="registed_filter.cc" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

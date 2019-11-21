@@ -1,0 +1,106 @@
+﻿Build started 2014/11/18 10:27:26.
+     1>Project "D:\developer\windows\iTunesABI\iBypassAuthRS\iBypassAuthRS.vcxproj" on node 2 (build target(s)).
+     1>InitializeBuildStatus:
+         Creating "Debug\iAuthRS.unsuccessfulbuild" because "AlwaysCreate" was specified.
+       ClCompile:
+         All outputs are up-to-date.
+       ManifestResourceCompile:
+         C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\rc.exe /nologo /fo"Debug\iAuthRS.exe.embed.manifest.res" Debug\iAuthRS_manifest.rc 
+       Link:
+         D:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"D:\developer\windows\iTunesABI\\bin\iAuthRS.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /ManifestFile:"Debug\iAuthRS.exe.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"D:\developer\windows\iTunesABI\bin\iAuthRS.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"D:\developer\windows\iTunesABI\\bin\iAuthRS.lib" /MACHINE:X86 Debug\iAuthRS.exe.embed.manifest.res
+         Debug\directory.obj
+         Debug\path.obj
+         Debug\string_case.obj
+         Debug\string_conv.obj
+         Debug\string_split.obj
+         Debug\windows_hardware.obj
+         Debug\windows_version.obj
+         Debug\apple_device_auth.obj
+         Debug\apple_externsion_auth.obj
+         Debug\apple_import.obj
+         Debug\iTunesInterface.obj
+         Debug\itunes_internal_abi.obj
+         Debug\itunes_module.obj
+         Debug\Sync.obj
+         Debug\Universal.obj
+         Debug\itunes_abi.obj
+         Debug\logging.obj
+         Debug\iBypassAuthRS.obj
+         Debug\stdafx.obj
+     1>libeay32.lib(cryptlib.obj) : warning LNK4099: PDB 'lib.pdb' was not found with 'libeay32.lib(cryptlib.obj)' or at 'D:\developer\windows\iTunesABI\bin\lib.pdb'; linking object as if no debug info
+     1>libeay32.lib(mem.obj) : warning LNK4099: PDB 'lib.pdb' was not found with 'libeay32.lib(mem.obj)' or at 'D:\developer\windows\iTunesABI\bin\lib.pdb'; linking object as if no debug info
+     1>libeay32.lib(mem_dbg.obj) : warning LNK4099: PDB 'lib.pdb' was not found with 'libeay32.lib(mem_dbg.obj)' or at 'D:\developer\windows\iTunesABI\bin\lib.pdb'; linking object as if no debug info
+     1>libeay32.lib(ex_data.obj) : warning LNK4099: PDB 'lib.pdb' was not found with 'libeay32.lib(ex_data.obj)' or at 'D:\developer\windows\iTunesABI\bin\lib.pdb'; linking object as if no debug info
+     1>libeay32.lib(o_init.obj) : warning LNK4099: PDB 'lib.pdb' was not found with 'libeay32.lib(o_init.obj)' or at 'D:\developer\windows\iTunesABI\bin\lib.pdb'; linking object as if no debug info
+     1>libeay32.lib(md5_dgst.obj) : warning LNK4099: PDB 'lib.pdb' was not found with 'libeay32.lib(md5_dgst.obj)' or at 'D:\developer\windows\iTunesABI\bin\lib.pdb'; linking object as if no debug info
+     1>libeay32.lib(bn_lib.obj) : warning LNK4099: PDB 'lib.pdb' was not found with 'libeay32.lib(bn_lib.obj)' or at 'D:\developer\windows\iTunesABI\bin\lib.pdb'; linking object as if no debug info
+     1>libeay32.lib(bn_print.obj) : warning LNK4099: PDB 'lib.pdb' was not found with 'libeay32.lib(bn_print.obj)' or at 'D:\developer\windows\iTunesABI\bin\lib.pdb'; linking object as if no debug info
+     1>libeay32.lib(bn_shift.obj) : warning LNK4099: PDB 'lib.pdb' was not found with 'libeay32.lib(bn_shift.obj)' or at 'D:\developer\windows\iTunesABI\bin\lib.pdb'; linking object as if no debug info
+     1>libeay32.lib(bn_word.obj) : warning LNK4099: PDB 'lib.pdb' was not found with 'libeay32.lib(bn_word.obj)' or at 'D:\developer\windows\iTunesABI\bin\lib.pdb'; linking object as if no debug info
+     1>libeay32.lib(buf_str.obj) : warning LNK4099: PDB 'lib.pdb' was not found with 'libeay32.lib(buf_str.obj)' or at 'D:\developer\windows\iTunesABI\bin\lib.pdb'; linking object as if no debug info
+     1>libeay32.lib(bio_lib.obj) : warning LNK4099: PDB 'lib.pdb' was not found with 'libeay32.lib(bio_lib.obj)' or at 'D:\developer\windows\iTunesABI\bin\lib.pdb'; linking object as if no debug info
+     1>libeay32.lib(bss_file.obj) : warning LNK4099: PDB 'lib.pdb' was not found with 'libeay32.lib(bss_file.obj)' or at 'D:\developer\windows\iTunesABI\bin\lib.pdb'; linking object as if no debug info
+     1>libeay32.lib(b_print.obj) : warning LNK4099: PDB 'lib.pdb' was not found with 'libeay32.lib(b_print.obj)' or at 'D:\developer\windows\iTunesABI\bin\lib.pdb'; linking object as if no debug info
+     1>libeay32.lib(stack.obj) : warning LNK4099: PDB 'lib.pdb' was not found with 'libeay32.lib(stack.obj)' or at 'D:\developer\windows\iTunesABI\bin\lib.pdb'; linking object as if no debug info
+     1>libeay32.lib(lhash.obj) : warning LNK4099: PDB 'lib.pdb' was not found with 'libeay32.lib(lhash.obj)' or at 'D:\developer\windows\iTunesABI\bin\lib.pdb'; linking object as if no debug info
+     1>libeay32.lib(err.obj) : warning LNK4099: PDB 'lib.pdb' was not found with 'libeay32.lib(err.obj)' or at 'D:\developer\windows\iTunesABI\bin\lib.pdb'; linking object as if no debug info
+     1>libeay32.lib(obj_dat.obj) : warning LNK4099: PDB 'lib.pdb' was not found with 'libeay32.lib(obj_dat.obj)' or at 'D:\developer\windows\iTunesABI\bin\lib.pdb'; linking object as if no debug info
+     1>libeay32.lib(obj_lib.obj) : warning LNK4099: PDB 'lib.pdb' was not found with 'libeay32.lib(obj_lib.obj)' or at 'D:\developer\windows\iTunesABI\bin\lib.pdb'; linking object as if no debug info
+     1>libeay32.lib(encode.obj) : warning LNK4099: PDB 'lib.pdb' was not found with 'libeay32.lib(encode.obj)' or at 'D:\developer\windows\iTunesABI\bin\lib.pdb'; linking object as if no debug info
+     1>libeay32.lib(a_object.obj) : warning LNK4099: PDB 'lib.pdb' was not found with 'libeay32.lib(a_object.obj)' or at 'D:\developer\windows\iTunesABI\bin\lib.pdb'; linking object as if no debug info
+     1>libeay32.lib(asn1_lib.obj) : warning LNK4099: PDB 'lib.pdb' was not found with 'libeay32.lib(asn1_lib.obj)' or at 'D:\developer\windows\iTunesABI\bin\lib.pdb'; linking object as if no debug info
+       Manifest:
+         C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\mt.exe /nologo /verbose /out:"Debug\iAuthRS.exe.embed.manifest" /manifest Debug\iAuthRS.exe.intermediate.manifest
+         C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\rc.exe /nologo /fo"Debug\iAuthRS.exe.embed.manifest.res" Debug\iAuthRS_manifest.rc 
+       LinkEmbedManifest:
+         D:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"D:\developer\windows\iTunesABI\\bin\iAuthRS.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /ManifestFile:"Debug\iAuthRS.exe.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"D:\developer\windows\iTunesABI\bin\iAuthRS.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"D:\developer\windows\iTunesABI\\bin\iAuthRS.lib" /MACHINE:X86 Debug\iAuthRS.exe.embed.manifest.res
+         Debug\directory.obj
+         Debug\path.obj
+         Debug\string_case.obj
+         Debug\string_conv.obj
+         Debug\string_split.obj
+         Debug\windows_hardware.obj
+         Debug\windows_version.obj
+         Debug\apple_device_auth.obj
+         Debug\apple_externsion_auth.obj
+         Debug\apple_import.obj
+         Debug\iTunesInterface.obj
+         Debug\itunes_internal_abi.obj
+         Debug\itunes_module.obj
+         Debug\Sync.obj
+         Debug\Universal.obj
+         Debug\itunes_abi.obj
+         Debug\logging.obj
+         Debug\iBypassAuthRS.obj
+         Debug\stdafx.obj
+     1>libeay32.lib(cryptlib.obj) : warning LNK4099: PDB 'lib.pdb' was not found with 'libeay32.lib(cryptlib.obj)' or at 'D:\developer\windows\iTunesABI\bin\lib.pdb'; linking object as if no debug info
+     1>libeay32.lib(mem.obj) : warning LNK4099: PDB 'lib.pdb' was not found with 'libeay32.lib(mem.obj)' or at 'D:\developer\windows\iTunesABI\bin\lib.pdb'; linking object as if no debug info
+     1>libeay32.lib(mem_dbg.obj) : warning LNK4099: PDB 'lib.pdb' was not found with 'libeay32.lib(mem_dbg.obj)' or at 'D:\developer\windows\iTunesABI\bin\lib.pdb'; linking object as if no debug info
+     1>libeay32.lib(ex_data.obj) : warning LNK4099: PDB 'lib.pdb' was not found with 'libeay32.lib(ex_data.obj)' or at 'D:\developer\windows\iTunesABI\bin\lib.pdb'; linking object as if no debug info
+     1>libeay32.lib(o_init.obj) : warning LNK4099: PDB 'lib.pdb' was not found with 'libeay32.lib(o_init.obj)' or at 'D:\developer\windows\iTunesABI\bin\lib.pdb'; linking object as if no debug info
+     1>libeay32.lib(md5_dgst.obj) : warning LNK4099: PDB 'lib.pdb' was not found with 'libeay32.lib(md5_dgst.obj)' or at 'D:\developer\windows\iTunesABI\bin\lib.pdb'; linking object as if no debug info
+     1>libeay32.lib(bn_lib.obj) : warning LNK4099: PDB 'lib.pdb' was not found with 'libeay32.lib(bn_lib.obj)' or at 'D:\developer\windows\iTunesABI\bin\lib.pdb'; linking object as if no debug info
+     1>libeay32.lib(bn_print.obj) : warning LNK4099: PDB 'lib.pdb' was not found with 'libeay32.lib(bn_print.obj)' or at 'D:\developer\windows\iTunesABI\bin\lib.pdb'; linking object as if no debug info
+     1>libeay32.lib(bn_shift.obj) : warning LNK4099: PDB 'lib.pdb' was not found with 'libeay32.lib(bn_shift.obj)' or at 'D:\developer\windows\iTunesABI\bin\lib.pdb'; linking object as if no debug info
+     1>libeay32.lib(bn_word.obj) : warning LNK4099: PDB 'lib.pdb' was not found with 'libeay32.lib(bn_word.obj)' or at 'D:\developer\windows\iTunesABI\bin\lib.pdb'; linking object as if no debug info
+     1>libeay32.lib(buf_str.obj) : warning LNK4099: PDB 'lib.pdb' was not found with 'libeay32.lib(buf_str.obj)' or at 'D:\developer\windows\iTunesABI\bin\lib.pdb'; linking object as if no debug info
+     1>libeay32.lib(bio_lib.obj) : warning LNK4099: PDB 'lib.pdb' was not found with 'libeay32.lib(bio_lib.obj)' or at 'D:\developer\windows\iTunesABI\bin\lib.pdb'; linking object as if no debug info
+     1>libeay32.lib(bss_file.obj) : warning LNK4099: PDB 'lib.pdb' was not found with 'libeay32.lib(bss_file.obj)' or at 'D:\developer\windows\iTunesABI\bin\lib.pdb'; linking object as if no debug info
+     1>libeay32.lib(b_print.obj) : warning LNK4099: PDB 'lib.pdb' was not found with 'libeay32.lib(b_print.obj)' or at 'D:\developer\windows\iTunesABI\bin\lib.pdb'; linking object as if no debug info
+     1>libeay32.lib(stack.obj) : warning LNK4099: PDB 'lib.pdb' was not found with 'libeay32.lib(stack.obj)' or at 'D:\developer\windows\iTunesABI\bin\lib.pdb'; linking object as if no debug info
+     1>libeay32.lib(lhash.obj) : warning LNK4099: PDB 'lib.pdb' was not found with 'libeay32.lib(lhash.obj)' or at 'D:\developer\windows\iTunesABI\bin\lib.pdb'; linking object as if no debug info
+     1>libeay32.lib(err.obj) : warning LNK4099: PDB 'lib.pdb' was not found with 'libeay32.lib(err.obj)' or at 'D:\developer\windows\iTunesABI\bin\lib.pdb'; linking object as if no debug info
+     1>libeay32.lib(obj_dat.obj) : warning LNK4099: PDB 'lib.pdb' was not found with 'libeay32.lib(obj_dat.obj)' or at 'D:\developer\windows\iTunesABI\bin\lib.pdb'; linking object as if no debug info
+     1>libeay32.lib(obj_lib.obj) : warning LNK4099: PDB 'lib.pdb' was not found with 'libeay32.lib(obj_lib.obj)' or at 'D:\developer\windows\iTunesABI\bin\lib.pdb'; linking object as if no debug info
+     1>libeay32.lib(encode.obj) : warning LNK4099: PDB 'lib.pdb' was not found with 'libeay32.lib(encode.obj)' or at 'D:\developer\windows\iTunesABI\bin\lib.pdb'; linking object as if no debug info
+     1>libeay32.lib(a_object.obj) : warning LNK4099: PDB 'lib.pdb' was not found with 'libeay32.lib(a_object.obj)' or at 'D:\developer\windows\iTunesABI\bin\lib.pdb'; linking object as if no debug info
+     1>libeay32.lib(asn1_lib.obj) : warning LNK4099: PDB 'lib.pdb' was not found with 'libeay32.lib(asn1_lib.obj)' or at 'D:\developer\windows\iTunesABI\bin\lib.pdb'; linking object as if no debug info
+         iBypassAuthRS.vcxproj -> D:\developer\windows\iTunesABI\\bin\iAuthRS.exe
+       FinalizeBuildStatus:
+         Deleting file "Debug\iAuthRS.unsuccessfulbuild".
+         Touching "Debug\iAuthRS.lastbuildstate".
+     1>Done Building Project "D:\developer\windows\iTunesABI\iBypassAuthRS\iBypassAuthRS.vcxproj" (build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:00.72

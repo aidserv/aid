@@ -1,0 +1,25 @@
+﻿Build started 2014/12/30 18:19:58.
+     1>Project "D:\developer\windows\itunes_ssl\ios_native\ios_native.vcxproj" on node 3 (build target(s)).
+     1>InitializeBuildStatus:
+         Creating "Debug\ios_native.unsuccessfulbuild" because "AlwaysCreate" was specified.
+       ClCompile:
+         D:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /ID:\developer\windows\itunes_ssl\ /I"C:\Program Files (x86)\Visual Leak Detector\include" /ZI /nologo /W3 /WX- /Od /Oy- /D _WINDLL /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt itunes_alike_interface.cc
+         itunes_alike_interface.cc
+       Link:
+         D:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"D:\developer\windows\itunes_ssl\Debug\ios_native.dll" /NOLOGO /LIBPATH:"C:\Program Files (x86)\Visual Leak Detector\lib\Win32" kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /ManifestFile:"Debug\ios_native.dll.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"D:\developer\windows\itunes_ssl\Debug\ios_native.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"D:\developer\windows\itunes_ssl\Debug\ios_native.lib" /MACHINE:X86 /DLL Debug\dllmain.obj
+         Debug\itunes_alike_interface.obj
+         Debug\itunes_https.obj
+         Debug\itunes_native_interface.obj
+         LINK : D:\developer\windows\itunes_ssl\Debug\ios_native.dll not found or not built by the last incremental link; performing full link
+            Creating library D:\developer\windows\itunes_ssl\Debug\ios_native.lib and object D:\developer\windows\itunes_ssl\Debug\ios_native.exp
+         ios_native.vcxproj -> D:\developer\windows\itunes_ssl\Debug\ios_native.dll
+       Manifest:
+         C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\mt.exe /nologo /verbose /outputresource:"D:\developer\windows\itunes_ssl\Debug\ios_native.dll;#2" /manifest Debug\ios_native.dll.intermediate.manifest
+       FinalizeBuildStatus:
+         Deleting file "Debug\ios_native.unsuccessfulbuild".
+         Touching "Debug\ios_native.lastbuildstate".
+     1>Done Building Project "D:\developer\windows\itunes_ssl\ios_native\ios_native.vcxproj" (build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:01.58

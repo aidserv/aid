@@ -1,0 +1,331 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{5BC7A87C-DE5B-4C07-9973-CE5C676E6985}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>iCrackWeb</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>Unicode</CharacterSet>
+    <UseOfMfc>Static</UseOfMfc>
+    <UseOfAtl>Static</UseOfAtl>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+    <UseOfMfc>Static</UseOfMfc>
+    <UseOfAtl>Static</UseOfAtl>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LibraryPath>C:\LocalCode\libimobiledevice\src\Debug;$(SolutionDir)lib;$(SolutionDir)$(Configuration)\lib;$(LibraryPath)</LibraryPath>
+    <IntDir>$(SolutionDir)$(Configuration)\obj\$(ProjectName)\</IntDir>
+    <OutDir>$(OutDir)bin\</OutDir>
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+    <LibraryPath>$(SolutionDir)$(Configuration)\lib;$(LibraryPath)</LibraryPath>
+    <IntDir>$(SolutionDir)$(Configuration)\obj\$(ProjectName)\</IntDir>
+    <OutDir>$(OutDir)bin\</OutDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;plist_STATIC;ZIP_STATIC;_USRDLL;IAUTHED_CRACKER_EXPORTS;DETOURS_X86;DETOURS_64BIT;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(SolutionDir);$(SolutionDir)\thunk\project;$(SolutionDir)\smartbot;$(SolutionDir)\ABI\googletest;$(SolutionDir)\ABI\googlemock;$(SolutionDir)\ABI\DIA\include;$(SolutionDir)\ABI\thirdparty\;$(SolutionDir)\ABI\thirdparty\google-breakpad-master\src\;$(SolutionDir)\thirdparty\libplist\include;$(SolutionDir)\ABI\thirdparty\libimobiledevice\libimobiledevice\include;$(SolutionDir)\ABI\third_party\google-breakpad\src;$(SolutionDir)\Include;$(SolutionDir)\ABI\libiconv\include;$(SolutionDir)\ABI;$(SolutionDir)\ABI\thirdparty\libimobiledevice\libimobiledevice_win\vendors\include;$(SolutionDir)\ABI\thirdparty\libimobiledevice\libimobiledevice_win\libplist\include;$(SolutionDir)\ABI\thirdparty\libimobiledevice\libimobiledevice_win\getopt;$(SolutionDir)\ABI\thirdparty\libimobiledevice\libimobiledevice_win\libgen;$(SolutionDir)\ABI\thirdparty\libimobiledevice\libimobiledevice_win;$(SolutionDir)\ABI\thirdparty\libimobiledevice\libimobiledevice_win\libxml2;$(SolutionDir)\ABI\thirdparty\libimobiledevice\libimobiledevice_win\libxml2\src;$(SolutionDir)\ABI\thirdparty\libimobiledevice\libimobiledevice_win\libiconv\include;$(SolutionDir)\ABI\thirdparty\getopt;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <CompileAs>CompileAsCpp</CompileAs>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <ImportLibrary>$(SolutionDir)$(Configuration)\lib\$(ProjectName).lib</ImportLibrary>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>libimobiledevice.lib;libzip.lib;libplist.lib;libusbmuxd.lib;ws2_32.lib;zlib.lib;libcompat.lib;getopt.lib;libgen.lib;libcnary.lib;libiconv.lib;libxml2.lib;libeay32.lib;ssleay32.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)ABI\thirdparty\ios_v1;$(SolutionDir)ABI\thirdparty\ios_v1\vendors\libgcc\lib;$(SolutionDir)ABI\thirdparty\ios_v1\vendors\zlib\lib;$(SolutionDir)ABI\thirdparty\ios_v1\vendors\openssl\lib;$(SolutionDir)ABI\thirdparty\ios_v1\vendors\libxml2\lib;$(SolutionDir)ABI\thirdparty\ios_v1\vendors\iconv\lib</AdditionalLibraryDirectories>
+      <UACExecutionLevel>RequireAdministrator</UACExecutionLevel>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CRT_SECURE_NO_WARNINGS;_WINDOWS;plist_STATIC;ZIP_STATIC;_USRDLL;IAUTHED_CRACKER_EXPORTS;DETOURS_X86;DETOURS_64BIT;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(SolutionDir);$(SolutionDir)\thunk\project;$(SolutionDir)\smartbot;$(SolutionDir)\ABI\thirdparty\;$(SolutionDir)\ABI\thirdparty\google-breakpad-master\src\;$(SolutionDir)\thirdparty\libplist\include;$(SolutionDir)\ABI\thirdparty\google-breakpad-master\src\;$(SolutionDir)\ABI\thirdparty\libimobiledevice\libimobiledevice\include;$(SolutionDir)\ABI\thirdparty\libimobiledevice\libimobiledevice_win\vendors\include;$(SolutionDir)\ABI\thirdparty\libimobiledevice\libimobiledevice_win\libplist\include;$(SolutionDir)\ABI\thirdparty\libimobiledevice\libimobiledevice_win\getopt;$(SolutionDir)\ABI\thirdparty\libimobiledevice\libimobiledevice_win\libgen;$(SolutionDir)\ABI\thirdparty\libimobiledevice\libimobiledevice_win;$(SolutionDir)\ABI\thirdparty\libimobiledevice\libimobiledevice_win\libxml2;$(SolutionDir)\ABI\thirdparty\libimobiledevice\libimobiledevice_win\libxml2\src;$(SolutionDir)\ABI\thirdparty\libimobiledevice\libimobiledevice_win\libiconv\include;$(SolutionDir)\ABI\thirdparty\;$(SolutionDir)\ABI\thirdparty\getopt;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <CompileAs>CompileAsCpp</CompileAs>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <ImportLibrary>$(SolutionDir)$(Configuration)\lib\$(ProjectName).lib</ImportLibrary>
+      <AdditionalDependencies>libimobiledevice.lib;libzip.lib;libplist.lib;libusbmuxd.lib;ws2_32.lib;zlib.lib;libcompat.lib;getopt.lib;libgen.lib;libcnary.lib;libiconv.lib;libxml2.lib;libeay32.lib;ssleay32.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)ABI\thirdparty\ios_v1;$(SolutionDir)ABI\thirdparty\ios_v1\vendors\libgcc\lib;$(SolutionDir)ABI\thirdparty\ios_v1\vendors\zlib\lib;$(SolutionDir)ABI\thirdparty\ios_v1\vendors\openssl\lib;$(SolutionDir)ABI\thirdparty\ios_v1\vendors\libxml2\lib;$(SolutionDir)ABI\thirdparty\ios_v1\vendors\iconv\lib</AdditionalLibraryDirectories>
+      <UACExecutionLevel>RequireAdministrator</UACExecutionLevel>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="..\ABI\base\basetypes.h" />
+    <ClInclude Include="..\ABI\base\file\directory.h" />
+    <ClInclude Include="..\ABI\base\file\path.h" />
+    <ClInclude Include="..\ABI\base\lock_impl.h" />
+    <ClInclude Include="..\ABI\base\message_hook.h" />
+    <ClInclude Include="..\ABI\base\message_loop.h" />
+    <ClInclude Include="..\ABI\base\lock_mutex.h" />
+    <ClInclude Include="..\ABI\base\process_token.h" />
+    <ClInclude Include="..\ABI\base\string\string_case.h" />
+    <ClInclude Include="..\ABI\base\string\string_conv.h" />
+    <ClInclude Include="..\ABI\base\string\string_split.h" />
+    <ClInclude Include="..\ABI\base\string\urls_conv.h" />
+    <ClInclude Include="..\ABI\base\windows_hardware.h" />
+    <ClInclude Include="..\ABI\base\windows_process.h" />
+    <ClInclude Include="..\ABI\base\windows_version.h" />
+    <ClInclude Include="..\ABI\detours\detours.h" />
+    <ClInclude Include="..\ABI\detours\detver.h" />
+    <ClInclude Include="..\ABI\exception\exception_dump.h" />
+    <ClInclude Include="..\ABI\google-breakpad\common\auto_critical_section.h" />
+    <ClInclude Include="..\ABI\google-breakpad\common\breakpad_types.h" />
+    <ClInclude Include="..\ABI\google-breakpad\common\ipc_protocol.h" />
+    <ClInclude Include="..\ABI\google-breakpad\common\minidump_cpu_amd64.h" />
+    <ClInclude Include="..\ABI\google-breakpad\common\minidump_cpu_arm.h" />
+    <ClInclude Include="..\ABI\google-breakpad\common\minidump_cpu_arm64.h" />
+    <ClInclude Include="..\ABI\google-breakpad\common\minidump_cpu_mips.h" />
+    <ClInclude Include="..\ABI\google-breakpad\common\minidump_cpu_ppc.h" />
+    <ClInclude Include="..\ABI\google-breakpad\common\minidump_cpu_ppc64.h" />
+    <ClInclude Include="..\ABI\google-breakpad\common\minidump_cpu_sparc.h" />
+    <ClInclude Include="..\ABI\google-breakpad\common\minidump_cpu_x86.h" />
+    <ClInclude Include="..\ABI\google-breakpad\common\minidump_exception_linux.h" />
+    <ClInclude Include="..\ABI\google-breakpad\common\minidump_exception_mac.h" />
+    <ClInclude Include="..\ABI\google-breakpad\common\minidump_exception_ps3.h" />
+    <ClInclude Include="..\ABI\google-breakpad\common\minidump_exception_solaris.h" />
+    <ClInclude Include="..\ABI\google-breakpad\common\minidump_exception_win32.h" />
+    <ClInclude Include="..\ABI\google-breakpad\common\minidump_format.h" />
+    <ClInclude Include="..\ABI\google-breakpad\common\minidump_size.h" />
+    <ClInclude Include="..\ABI\google-breakpad\common\scoped_ptr.h" />
+    <ClInclude Include="..\ABI\google-breakpad\crash_generation\client_info.h" />
+    <ClInclude Include="..\ABI\google-breakpad\crash_generation\crash_generation_client.h" />
+    <ClInclude Include="..\ABI\google-breakpad\crash_generation\crash_generation_server.h" />
+    <ClInclude Include="..\ABI\google-breakpad\crash_generation\minidump_generator.h" />
+    <ClInclude Include="..\ABI\google-breakpad\handler\exception_handler.h" />
+    <ClInclude Include="..\ABI\google-breakpad\windows\dia_util.h" />
+    <ClInclude Include="..\ABI\google-breakpad\windows\guid_string.h" />
+    <ClInclude Include="..\ABI\google-breakpad\windows\http_upload.h" />
+    <ClInclude Include="..\ABI\google-breakpad\windows\omap.h" />
+    <ClInclude Include="..\ABI\google-breakpad\windows\omap_internal.h" />
+    <ClInclude Include="..\ABI\google-breakpad\windows\pdb_source_line_writer.h" />
+    <ClInclude Include="..\ABI\google-breakpad\windows\string_utils-inl.h" />
+    <ClInclude Include="..\ABI\googlemock\gmock\gmock-actions.h" />
+    <ClInclude Include="..\ABI\googlemock\gmock\gmock-cardinalities.h" />
+    <ClInclude Include="..\ABI\googlemock\gmock\gmock-generated-actions.h" />
+    <ClInclude Include="..\ABI\googlemock\gmock\gmock-generated-function-mockers.h" />
+    <ClInclude Include="..\ABI\googlemock\gmock\gmock-generated-matchers.h" />
+    <ClInclude Include="..\ABI\googlemock\gmock\gmock-generated-nice-strict.h" />
+    <ClInclude Include="..\ABI\googlemock\gmock\gmock-matchers.h" />
+    <ClInclude Include="..\ABI\googlemock\gmock\gmock-more-actions.h" />
+    <ClInclude Include="..\ABI\googlemock\gmock\gmock-more-matchers.h" />
+    <ClInclude Include="..\ABI\googlemock\gmock\gmock-spec-builders.h" />
+    <ClInclude Include="..\ABI\googlemock\gmock\gmock.h" />
+    <ClInclude Include="..\ABI\googlemock\gmock\internal\custom\gmock-generated-actions.h" />
+    <ClInclude Include="..\ABI\googlemock\gmock\internal\custom\gmock-matchers.h" />
+    <ClInclude Include="..\ABI\googlemock\gmock\internal\custom\gmock-port.h" />
+    <ClInclude Include="..\ABI\googlemock\gmock\internal\gmock-generated-internal-utils.h" />
+    <ClInclude Include="..\ABI\googlemock\gmock\internal\gmock-internal-utils.h" />
+    <ClInclude Include="..\ABI\googlemock\gmock\internal\gmock-port.h" />
+    <ClInclude Include="..\ABI\googletest\gtest-internal-inl.h" />
+    <ClInclude Include="..\ABI\googletest\gtest\gtest-death-test.h" />
+    <ClInclude Include="..\ABI\googletest\gtest\gtest-message.h" />
+    <ClInclude Include="..\ABI\googletest\gtest\gtest-param-test.h" />
+    <ClInclude Include="..\ABI\googletest\gtest\gtest-printers.h" />
+    <ClInclude Include="..\ABI\googletest\gtest\gtest-spi.h" />
+    <ClInclude Include="..\ABI\googletest\gtest\gtest-test-part.h" />
+    <ClInclude Include="..\ABI\googletest\gtest\gtest-typed-test.h" />
+    <ClInclude Include="..\ABI\googletest\gtest\gtest.h" />
+    <ClInclude Include="..\ABI\googletest\gtest\gtest_pred_impl.h" />
+    <ClInclude Include="..\ABI\googletest\gtest\gtest_prod.h" />
+    <ClInclude Include="..\ABI\googletest\gtest\internal\custom\gtest-port.h" />
+    <ClInclude Include="..\ABI\googletest\gtest\internal\custom\gtest-printers.h" />
+    <ClInclude Include="..\ABI\googletest\gtest\internal\custom\gtest.h" />
+    <ClInclude Include="..\ABI\googletest\gtest\internal\gtest-death-test-internal.h" />
+    <ClInclude Include="..\ABI\googletest\gtest\internal\gtest-filepath.h" />
+    <ClInclude Include="..\ABI\googletest\gtest\internal\gtest-internal.h" />
+    <ClInclude Include="..\ABI\googletest\gtest\internal\gtest-linked_ptr.h" />
+    <ClInclude Include="..\ABI\googletest\gtest\internal\gtest-param-util-generated.h" />
+    <ClInclude Include="..\ABI\googletest\gtest\internal\gtest-param-util.h" />
+    <ClInclude Include="..\ABI\googletest\gtest\internal\gtest-port-arch.h" />
+    <ClInclude Include="..\ABI\googletest\gtest\internal\gtest-port.h" />
+    <ClInclude Include="..\ABI\googletest\gtest\internal\gtest-string.h" />
+    <ClInclude Include="..\ABI\googletest\gtest\internal\gtest-tuple.h" />
+    <ClInclude Include="..\ABI\googletest\gtest\internal\gtest-type-util.h" />
+    <ClInclude Include="..\ABI\ios_authorize\apple_remote_auth.h" />
+    <ClInclude Include="..\ABI\ios_authorize\apple_import.h" />
+    <ClInclude Include="..\ABI\ios_authorize\apple_mobile_device_ex.h" />
+    <ClInclude Include="..\ABI\ios_authorize\itunes_module_state.h" />
+    <ClInclude Include="..\ABI\ios_authorize\rq_gen.h" />
+    <ClInclude Include="..\ABI\ios_authorize\rq_sig_gen.h" />
+    <ClInclude Include="..\ABI\ios_authorize\rs_gen.h" />
+    <ClInclude Include="..\ABI\ios_authorize\rs_sig_gen.h" />
+    <ClInclude Include="..\ABI\ios_authorize\apple_device_auth.h" />
+    <ClInclude Include="..\ABI\ios_authorize\iTunesInterface.h" />
+    <ClInclude Include="..\ABI\ios_authorize\itunes_internal_abi.h" />
+    <ClInclude Include="..\ABI\ios_authorize\itunes_module.h" />
+    <ClInclude Include="..\ABI\ios_authorize\MobileDevice.h" />
+    <ClInclude Include="..\ABI\ios_authorize\Sync.h" />
+    <ClInclude Include="..\ABI\ios_authorize\Universal.h" />
+    <ClInclude Include="..\ABI\itunes_reverse\itunes_abi.h" />
+    <ClInclude Include="..\ABI\thirdparty\glog\basictypes.h" />
+    <ClInclude Include="..\ABI\thirdparty\glog\logging.h" />
+    <ClInclude Include="..\ABI\thirdparty\glog\scoped_ptr.h" />
+    <ClInclude Include="..\ios_helper\remote_auth_request_impl.h" />
+    <ClInclude Include="..\ios_helper\go_auth_device.h" />
+    <ClInclude Include="..\ios_helper\hook_os_info.h" />
+    <ClInclude Include="..\ios_helper\registed_filter.h" />
+    <ClInclude Include="..\smartbot\account\register_new.h" />
+    <ClInclude Include="..\smartbot\account\third_appleid.h" />
+    <ClInclude Include="..\smartbot\account\third_mailid.h" />
+    <ClInclude Include="..\smartbot\passport\basictypes.h" />
+    <ClInclude Include="..\smartbot\passport\itunes_client_interface.h" />
+    <ClInclude Include="..\smartbot\passport\itunes_cookie_interface.h" />
+    <ClInclude Include="..\smartbot\passport\itunes_download_info.h" />
+    <ClInclude Include="..\smartbot\passport\itunes_https.h" />
+    <ClInclude Include="..\smartbot\passport\itunes_https_configure.h" />
+    <ClInclude Include="..\smartbot\passport\itunes_internal_interface.h" />
+    <ClInclude Include="..\smartbot\passport\itunes_native_interface.h" />
+    <ClInclude Include="..\smartbot\thirdparty\glog\basictypes.h" />
+    <ClInclude Include="..\smartbot\thirdparty\glog\logging.h" />
+    <ClInclude Include="..\smartbot\thirdparty\glog\scoped_ptr.h" />
+    <ClInclude Include="..\smartbot\base\string\string_case.h" />
+    <ClInclude Include="..\smartbot\base\string\string_conv.h" />
+    <ClInclude Include="..\smartbot\base\string\string_split.h" />
+    <ClInclude Include="..\smartbot\cookies\cookie_constants.h" />
+    <ClInclude Include="..\smartbot\cookies\parsed_cookie.h" />
+    <ClInclude Include="..\smartbot\memory\alloc_vtable.h" />
+    <ClInclude Include="apple_connection_device.h" />
+    <ClInclude Include="apple_support.h" />
+    <ClInclude Include="apple_auth_device.h" />
+    <ClInclude Include="apple_ssl.h" />
+    <ClInclude Include="atl_dll_main.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\ABI\base\file\directory.cc" />
+    <ClCompile Include="..\ABI\base\file\path.cc" />
+    <ClCompile Include="..\ABI\base\message_hook.cc" />
+    <ClCompile Include="..\ABI\base\process_token.cc" />
+    <ClCompile Include="..\ABI\base\string\string_case.cc" />
+    <ClCompile Include="..\ABI\base\string\string_conv.cc" />
+    <ClCompile Include="..\ABI\base\string\string_split.cc" />
+    <ClCompile Include="..\ABI\base\string\urls_conv.cc" />
+    <ClCompile Include="..\ABI\base\windows_hardware.cc" />
+    <ClCompile Include="..\ABI\base\windows_process.cc" />
+    <ClCompile Include="..\ABI\base\windows_version.cc" />
+    <ClCompile Include="..\ABI\detours\creatwth.cpp" />
+    <ClCompile Include="..\ABI\detours\detours.cpp" />
+    <ClCompile Include="..\ABI\detours\disasm.cpp" />
+    <ClCompile Include="..\ABI\detours\disolarm.cpp" />
+    <ClCompile Include="..\ABI\detours\disolarm64.cpp" />
+    <ClCompile Include="..\ABI\detours\disolia64.cpp" />
+    <ClCompile Include="..\ABI\detours\disolx64.cpp" />
+    <ClCompile Include="..\ABI\detours\disolx86.cpp" />
+    <ClCompile Include="..\ABI\detours\image.cpp" />
+    <ClCompile Include="..\ABI\detours\modules.cpp" />
+    <ClCompile Include="..\ABI\detours\uimports.cpp" />
+    <ClCompile Include="..\ABI\exception\exception_dump.cc" />
+    <ClCompile Include="..\ABI\google-breakpad\crash_generation\client_info.cc" />
+    <ClCompile Include="..\ABI\google-breakpad\crash_generation\crash_generation_client.cc" />
+    <ClCompile Include="..\ABI\google-breakpad\crash_generation\crash_generation_server.cc" />
+    <ClCompile Include="..\ABI\google-breakpad\crash_generation\minidump_generator.cc" />
+    <ClCompile Include="..\ABI\google-breakpad\handler\exception_handler.cc" />
+    <ClCompile Include="..\ABI\google-breakpad\windows\dia_util.cc" />
+    <ClCompile Include="..\ABI\google-breakpad\windows\guid_string.cc" />
+    <ClCompile Include="..\ABI\google-breakpad\windows\http_upload.cc" />
+    <ClCompile Include="..\ABI\google-breakpad\windows\omap.cc" />
+    <ClCompile Include="..\ABI\google-breakpad\windows\omap_unittest.cc" />
+    <ClCompile Include="..\ABI\google-breakpad\windows\pdb_source_line_writer.cc" />
+    <ClCompile Include="..\ABI\google-breakpad\windows\string_utils.cc" />
+    <ClCompile Include="..\ABI\googlemock\gmock-all.cc" />
+    <ClCompile Include="..\ABI\googlemock\gmock-cardinalities.cc" />
+    <ClCompile Include="..\ABI\googlemock\gmock-internal-utils.cc" />
+    <ClCompile Include="..\ABI\googlemock\gmock-matchers.cc" />
+    <ClCompile Include="..\ABI\googlemock\gmock-spec-builders.cc" />
+    <ClCompile Include="..\ABI\googlemock\gmock.cc" />
+    <ClCompile Include="..\ABI\googlemock\gmock_main.cc" />
+    <ClCompile Include="..\ABI\googletest\gtest-all.cc" />
+    <ClCompile Include="..\ABI\googletest\gtest-death-test.cc" />
+    <ClCompile Include="..\ABI\googletest\gtest-filepath.cc" />
+    <ClCompile Include="..\ABI\googletest\gtest-port.cc" />
+    <ClCompile Include="..\ABI\googletest\gtest-printers.cc" />
+    <ClCompile Include="..\ABI\googletest\gtest-test-part.cc" />
+    <ClCompile Include="..\ABI\googletest\gtest-typed-test.cc" />
+    <ClCompile Include="..\ABI\googletest\gtest.cc" />
+    <ClCompile Include="..\ABI\googletest\gtest_main.cc" />
+    <ClCompile Include="..\ABI\ios_authorize\apple_remote_auth.cc" />
+    <ClCompile Include="..\ABI\ios_authorize\apple_import.cpp" />
+    <ClCompile Include="..\ABI\ios_authorize\apple_device_auth.cc" />
+    <ClCompile Include="..\ABI\ios_authorize\iTunesInterface.cpp" />
+    <ClCompile Include="..\ABI\ios_authorize\itunes_internal_abi.cc" />
+    <ClCompile Include="..\ABI\ios_authorize\itunes_module.cc" />
+    <ClCompile Include="..\ABI\ios_authorize\itunes_module_state.cc" />
+    <ClCompile Include="..\ABI\ios_authorize\Sync.cpp" />
+    <ClCompile Include="..\ABI\ios_authorize\Universal.cpp" />
+    <ClCompile Include="..\ABI\itunes_reverse\itunes_abi.cc" />
+    <ClCompile Include="..\ABI\thirdparty\glog\logging.cc" />
+    <ClCompile Include="..\ios_helper\remote_auth_request_impl.cc" />
+    <ClCompile Include="..\ios_helper\go_auth_device.cc" />
+    <ClCompile Include="..\ios_helper\hook_os_info.cc" />
+    <ClCompile Include="..\ios_helper\registed_filter.cc" />
+    <ClCompile Include="..\smartbot\account\register_new.cc" />
+    <ClCompile Include="..\smartbot\account\third_appleid.cc" />
+    <ClCompile Include="..\smartbot\account\third_mailid.cc" />
+    <ClCompile Include="..\smartbot\base\string\string_conv.cc" />
+    <ClCompile Include="..\smartbot\passport\itunes_client_interface.cc" />
+    <ClCompile Include="..\smartbot\passport\itunes_cookie_interface.cc" />
+    <ClCompile Include="..\smartbot\passport\itunes_download_info.cc" />
+    <ClCompile Include="..\smartbot\passport\itunes_https.cc" />
+    <ClCompile Include="..\smartbot\passport\itunes_https_configure.cc" />
+    <ClCompile Include="..\smartbot\passport\itunes_native_interface.cc" />
+    <ClCompile Include="..\smartbot\thirdparty\glog\logging.cc" />
+    <ClCompile Include="..\smartbot\cookies\cookie_constants.cc" />
+    <ClCompile Include="..\smartbot\cookies\parsed_cookie.cc" />
+    <ClCompile Include="..\ABI\jsoncpp\json_reader.cpp" />
+    <ClCompile Include="..\ABI\jsoncpp\json_value.cpp" />
+    <ClCompile Include="..\ABI\jsoncpp\json_writer.cpp" />
+    <ClCompile Include="apple_connection_device.cc" />
+    <ClCompile Include="apple_support.cc" />
+    <ClCompile Include="apple_auth_device.cc" />
+    <ClCompile Include="apple_ssl.cc" />
+    <ClCompile Include="atl_dll_main.cc" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

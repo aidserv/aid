@@ -1,0 +1,82 @@
+syntax = "proto2";
+
+import "emulator_features.proto";
+
+package emulator_features;
+
+// (based on studio_stats.proto)
+// Describes the status of the machine running the emulator.
+message EmulatorHost {
+    // CPU manufacturer of the host, used as certain hypervisors are limited
+    // to a certain manufacturer.
+    optional string cpu_manufacturer = 1; // AMD, INTEL, ...
+
+    // Does the host support virtualization technology
+    optional bool virt_support = 2;
+
+    // Is the host itself running inside a virtual machine.
+    optional bool running_in_vm = 3;
+
+    // May differ from os_architecture field as it is calculated differently,
+    // trying to compensate the JVM bittness.
+    optional int64 os_bit_count = 4;
+
+    // CPU model, family, stepping
+    optional uint32 cpu_model_name = 5;
+
+    // Windows / Linux / Mac
+    optional string os_platform = 6;
+
+    // TODO: Incoming fields
+    optional uint32 min_cpu_core_count = 7;
+    optional uint32 min_ram_size_mb = 8;
+}
+
+// Emulator: Host GPU info.
+message EmulatorGpuInfo {
+    // Make of the Graphics card.
+    optional string make = 1;
+    // Model of the Graphics card.
+    optional string model = 2;
+    // Device id of the Graphics card.
+    optional string device_id = 3;
+    // Revision of the graphics card.
+    optional string revision_id = 4;
+    // Version of the graphics card driver.
+    optional string version = 5;
+    // Name of the graphics card driver.
+    optional string renderer = 6;
+}
+
+message EmulatorHostHWConfig {
+    optional EmulatorHost hostinfo = 1;
+    repeated EmulatorGpuInfo hostgpuinfo = 2;
+}
+
+message EmulatorVersion {
+    optional uint32 major = 1;
+    optional uint32 minor = 2;
+    optional uint32 patch = 3;
+}
+
+message FeatureFlagAction {
+    optional Feature feature = 1;
+    optional bool enable = 2;
+
+    // do above action only if the emulator version
+    // number is in the right range.
+    optional EmulatorVersion min_version = 3;
+    optional EmulatorVersion max_version = 4;
+}
+
+message EmulatorFeaturePattern {
+    // If host config matches ANY of these...
+    repeated EmulatorHostHWConfig hwconfig = 1;
+    // do ALL of the feature actions
+    repeated FeatureFlagAction featureaction = 2;
+}
+
+message EmulatorFeaturePatterns {
+    optional uint32 last_download_time = 1;
+    repeated EmulatorFeaturePattern pattern = 2;
+}

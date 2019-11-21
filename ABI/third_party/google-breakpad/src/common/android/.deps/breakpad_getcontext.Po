@@ -1,0 +1,7 @@
+src/common/android/breakpad_getcontext.o: \
+ src/common/android/breakpad_getcontext.S /usr/include/stdc-predef.h \
+ src/common/android/ucontext_constants.h
+
+/usr/include/stdc-predef.h:
+
+src/common/android/ucontext_constants.h:

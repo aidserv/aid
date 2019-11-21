@@ -1,0 +1,16 @@
+!gles12_tr
+
+# Functions which are needed ONLY for implementing GLES 1->2 translation
+
+%typedef void* voidptr;
+
+voidptr create_gles1_context(void* share, const void* underlying_apis);
+voidptr get_current_gles_context(void);
+void set_current_gles_context(void* ctx);
+voidptr create_underlying_api(void);
+
+# Extra setup on making a emulated GLES1 context current
+void make_current_setup(uint32_t surf_width, uint32_t surf_height);
+
+# destroying GLES1 contexts
+void destroy_gles1_context(void* ctx);

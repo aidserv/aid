@@ -1,0 +1,180 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{F37FD7C2-A5EF-4772-B67D-67109F917FDB}</ProjectGuid>
+    <RootNamespace>iAuthedBroker</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>Unicode</CharacterSet>
+    <UseOfAtl>Static</UseOfAtl>
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CLRSupport>false</CLRSupport>
+    <UseOfMfc>Static</UseOfMfc>
+    <PlatformToolset>v100</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+    <UseOfMfc>Static</UseOfMfc>
+    <UseOfAtl>Static</UseOfAtl>
+    <PlatformToolset>v100</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <OutDir>$(OutDir)bin\</OutDir>
+    <IntDir>$(SolutionDir)$(Configuration)\obj\$(ProjectName)\</IntDir>
+    <LibraryPath>$(SolutionDir)$(Configuration)\lib;$(SolutionDir)$(Configuration)\lib\ios_v1;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <IntDir>$(SolutionDir)$(Configuration)\obj\$(ProjectName)\</IntDir>
+    <OutDir>$(OutDir)bin\</OutDir>
+    <LibraryPath>$(SolutionDir)$(Configuration)\lib;$(SolutionDir)$(Configuration)\lib\ios_v1;$(LibraryPath)</LibraryPath>
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>$(SolutionDir);$(SolutionDir)\thirdparty;$(SolutionDir)\ABI\thirdparty\google-breakpad-master\src\;$(SolutionDir)\ABI\thirdparty\libimobiledevice\libimobiledevice\include\;$(SolutionDir)\ABI\thirdparty\libimobiledevice\libimobiledevice_win\vendors\include;$(SolutionDir)\ABI\thirdparty\libimobiledevice\libimobiledevice_win\libplist\include;$(SolutionDir)\ABI\thirdparty\libimobiledevice\libimobiledevice_win\getopt;$(SolutionDir)\ABI\thirdparty\libimobiledevice\libimobiledevice_win\libgen;$(SolutionDir)\ABI\thirdparty\libimobiledevice\libimobiledevice_win;$(SolutionDir)\ABI\thirdparty\libimobiledevice\libimobiledevice_win\libxml2;$(SolutionDir)\ABI\thirdparty\libimobiledevice\libimobiledevice_win\libxml2\src;$(SolutionDir)\ABI\thirdparty\libimobiledevice\libimobiledevice_win\libiconv\include;$(SolutionDir)\ABI\thirdparty\;$(SolutionDir)\thirdparty\libplist\include;$(SolutionDir)\ABI\thirdparty\getopt;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_WINDLL;_DEBUG;HAVE_LIBIMOBILEDEVICE_1_1;ZIP_STATIC;HAVE_WIN32_THREADS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <CompileAs>CompileAsCpp</CompileAs>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>
+      </AdditionalLibraryDirectories>
+      <AdditionalDependencies>libimobiledevice.lib;libzip.lib;libplist.lib;libusbmuxd.lib;ws2_32.lib;zlib.lib;libcompat.lib;getopt.lib;libgen.lib;libcnary.lib;libiconv.lib;libxml2.lib;libeay32.lib;ssleay32.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <ImportLibrary>$(SolutionDir)$(Configuration)\lib\$(ProjectName).lib</ImportLibrary>
+      <SubSystem>Windows</SubSystem>
+      <IgnoreSpecificDefaultLibraries>
+      </IgnoreSpecificDefaultLibraries>
+      <UACExecutionLevel>RequireAdministrator</UACExecutionLevel>
+    </Link>
+    <Lib>
+      <OutputFile>$(SolutionDir)$(Configuration)\lib\$(ProjectName).lib</OutputFile>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Full</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <AdditionalIncludeDirectories>$(SolutionDir);$(SolutionDir)\thirdparty;$(SolutionDir)\thirdparty\libgpod\src;$(SolutionDir)\thirdparty\libplist\include;$(SolutionDir)\ABI\thirdparty\google-breakpad-master\src\;$(SolutionDir)\ABI\thirdparty\libimobiledevice\libimobiledevice\include;$(SolutionDir)\ABI\thirdparty\libimobiledevice\libimobiledevice_win\vendors\include;$(SolutionDir)\ABI\thirdparty\libimobiledevice\libimobiledevice_win\libplist\include;$(SolutionDir)\ABI\thirdparty\libimobiledevice\libimobiledevice_win\getopt;$(SolutionDir)\ABI\thirdparty\libimobiledevice\libimobiledevice_win\libgen;$(SolutionDir)\ABI\thirdparty\libimobiledevice\libimobiledevice_win;$(SolutionDir)\ABI\thirdparty\libimobiledevice\libimobiledevice_win\libxml2;$(SolutionDir)\ABI\thirdparty\libimobiledevice\libimobiledevice_win\libxml2\src;$(SolutionDir)\ABI\thirdparty\libimobiledevice\libimobiledevice_win\libiconv\include;$(SolutionDir)\ABI\thirdparty\;$(SolutionDir)\ABI\thirdparty\getopt;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_WINDLL;HAVE_LIBIMOBILEDEVICE_1_1;ZIP_STATIC;LIBXML_STATIC;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <CompileAs>CompileAsCpp</CompileAs>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
+      <OmitFramePointers>true</OmitFramePointers>
+    </ClCompile>
+    <Link>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalLibraryDirectories>
+      </AdditionalLibraryDirectories>
+      <AdditionalDependencies>libimobiledevice.lib;libzip.lib;libplist.lib;libusbmuxd.lib;ws2_32.lib;zlib.lib;libcompat.lib;getopt.lib;libgen.lib;libcnary.lib;libiconv.lib;libxml2.lib;libeay32.lib;ssleay32.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <ImportLibrary>$(SolutionDir)$(Configuration)\lib\$(ProjectName).lib</ImportLibrary>
+      <UACExecutionLevel>RequireAdministrator</UACExecutionLevel>
+    </Link>
+    <Lib>
+      <OutputFile>$(SolutionDir)$(Configuration)\lib\$(ProjectName).lib</OutputFile>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="..\ABI\afc_internal\afc_filesystem.cc" />
+    <ClCompile Include="..\ABI\afc_internal\afc_upload.cc" />
+    <ClCompile Include="..\ABI\base\file\path.cc" />
+    <ClCompile Include="..\ABI\base\string\string_conv.cc" />
+    <ClCompile Include="..\ABI\exception\exception_dump.cc" />
+    <ClCompile Include="..\ABI\ipa_internal\ipa_bundle_info.cc" />
+    <ClCompile Include="..\ABI\ipa_internal\ipa_content.cc" />
+    <ClCompile Include="..\ABI\thirdparty\glog\logging.cc" />
+    <ClCompile Include="..\ABI\thirdparty\libimobiledevice\libimobiledevice\common\utils.c" />
+    <ClCompile Include="..\ABI\zip_internal\zip_object_reader.cc" />
+    <ClCompile Include="..\ABI\zip_internal\zip_internal_impl.cc" />
+    <ClCompile Include="..\PhoneCore\interface\authorize_id.cc" />
+    <ClCompile Include="..\PhoneCore\interface\iconv_impl.cc" />
+    <ClCompile Include="..\PhoneCore\interface\ipa_analyizer.cc" />
+    <ClCompile Include="..\PhoneCore\interface\phone_udid.cc" />
+    <ClCompile Include="..\PhoneCore\interface\unque_pointer.cc" />
+    <ClCompile Include="..\PhoneCore\interface\construction.cc" />
+    <ClCompile Include="..\PhoneCore\notifyer\basic_device_info.cc" />
+    <ClCompile Include="..\PhoneCore\notifyer\basic_notify_window.cc" />
+    <ClCompile Include="..\PhoneCore\notifyer\mobile_device_mgr.cc" />
+    <ClCompile Include="..\PhoneCore\notifyer\mobile_device_property.cc" />
+    <ClCompile Include="atl_dll_main.cc" />
+    <ClCompile Include="pair_connectioned.cc" />
+    <ClCompile Include="pair_device_app.cc" />
+    <ClCompile Include="pair_device_disk_usage.cc" />
+    <ClCompile Include="pair_device_mounter.cc" />
+    <ClCompile Include="pair_device_shutdown.cc" />
+    <ClCompile Include="pair_device_snapshot.cc" />
+    <ClCompile Include="pair_device_status.cc" />
+    <ClCompile Include="pair_device_trust.cc" />
+    <ClCompile Include="pair_downloae_done_plist.cc" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\ABI\afc_internal\afc_filesystem.h" />
+    <ClInclude Include="..\ABI\afc_internal\afc_upload.h" />
+    <ClInclude Include="..\ABI\base\file\path.h" />
+    <ClInclude Include="..\ABI\base\string\string_conv.h" />
+    <ClInclude Include="..\ABI\exception\exception_dump.h" />
+    <ClInclude Include="..\ABI\ipa_internal\ipa_bundle_info.h" />
+    <ClInclude Include="..\ABI\ipa_internal\ipa_content.h" />
+    <ClInclude Include="..\ABI\thirdparty\glog\basictypes.h" />
+    <ClInclude Include="..\ABI\thirdparty\glog\logging.h" />
+    <ClInclude Include="..\ABI\thirdparty\glog\scoped_ptr.h" />
+    <ClInclude Include="..\ABI\thirdparty\libimobiledevice\libimobiledevice\common\utils.h" />
+    <ClInclude Include="..\ABI\zip_internal\zip_object_reader.h" />
+    <ClInclude Include="..\ABI\zip_internal\zip_internal_impl.h" />
+    <ClInclude Include="..\PhoneCore\interface\authorize_id.h" />
+    <ClInclude Include="..\PhoneCore\interface\iconv_impl.h" />
+    <ClInclude Include="..\PhoneCore\interface\ipa_analyizer.h" />
+    <ClInclude Include="..\PhoneCore\interface\atl_dll_main.h" />
+    <ClInclude Include="..\PhoneCore\interface\data_interface.h" />
+    <ClInclude Include="..\PhoneCore\interface\phone_udid.h" />
+    <ClInclude Include="..\PhoneCore\interface\unque_pointer.h" />
+    <ClInclude Include="..\PhoneCore\interface\construction.h" />
+    <ClInclude Include="..\PhoneCore\notifyer\basic_device_info.h" />
+    <ClInclude Include="..\PhoneCore\notifyer\basic_notify_window.h" />
+    <ClInclude Include="..\PhoneCore\notifyer\mobile_device_mgr.h" />
+    <ClInclude Include="..\PhoneCore\notifyer\mobile_device_property.h" />
+    <ClInclude Include="atl_dll_main.h" />
+    <ClInclude Include="pair_connectioned.h" />
+    <ClInclude Include="pair_device_app.h" />
+    <ClInclude Include="pair_device_disk_usage.h" />
+    <ClInclude Include="pair_device_mounter.h" />
+    <ClInclude Include="pair_device_shutdown.h" />
+    <ClInclude Include="pair_device_snapshot.h" />
+    <ClInclude Include="pair_device_status.h" />
+    <ClInclude Include="pair_device_trust.h" />
+    <ClInclude Include="pair_downloae_done_plist.h" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

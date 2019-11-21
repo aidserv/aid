@@ -1,0 +1,253 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="ABI">
+      <UniqueIdentifier>{dfec9ea9-ec13-4e27-a26f-16f9de8e8054}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ABI\ios_authorize">
+      <UniqueIdentifier>{bb68bc61-f13b-4ce6-86dd-a4a99e3cf349}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ABI\itunes_reverse">
+      <UniqueIdentifier>{93aec8e2-b56c-4231-86ff-cb941db95f33}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ABI\thirdparty">
+      <UniqueIdentifier>{8fd6df4a-355d-43f5-af96-6a8ac9519af6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ABI\thirdparty\glog">
+      <UniqueIdentifier>{9c2d7492-6086-44f9-a3a5-c6cf7b29f089}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ABI\exception">
+      <UniqueIdentifier>{8053f399-fc59-4306-8299-52cdcfef0f15}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ios_cracker">
+      <UniqueIdentifier>{1d79c469-4e73-4a9b-a523-97642a005649}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ios_helper">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="ABI\base">
+      <UniqueIdentifier>{c65c90f7-9f2e-4fdf-bfa1-eb8fc5152553}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ABI\base\string">
+      <UniqueIdentifier>{1a8cb33c-2078-4951-a3b9-a30570eeec7b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ABI\base\file">
+      <UniqueIdentifier>{f9dce5ac-3c75-4ee6-9c8a-ae8d27f02f0a}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\ABI\ios_authorize\apple_import.h">
+      <Filter>ABI\ios_authorize</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ABI\ios_authorize\apple_mobile_device_ex.h">
+      <Filter>ABI\ios_authorize</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ABI\ios_authorize\rq_gen.h">
+      <Filter>ABI\ios_authorize</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ABI\ios_authorize\rq_sig_gen.h">
+      <Filter>ABI\ios_authorize</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ABI\ios_authorize\rs_gen.h">
+      <Filter>ABI\ios_authorize</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ABI\ios_authorize\rs_sig_gen.h">
+      <Filter>ABI\ios_authorize</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ABI\ios_authorize\apple_device_auth.h">
+      <Filter>ABI\ios_authorize</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ABI\ios_authorize\iTunesInterface.h">
+      <Filter>ABI\ios_authorize</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ABI\ios_authorize\itunes_internal_abi.h">
+      <Filter>ABI\ios_authorize</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ABI\ios_authorize\itunes_module.h">
+      <Filter>ABI\ios_authorize</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ABI\ios_authorize\MobileDevice.h">
+      <Filter>ABI\ios_authorize</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ABI\ios_authorize\Sync.h">
+      <Filter>ABI\ios_authorize</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ABI\ios_authorize\Universal.h">
+      <Filter>ABI\ios_authorize</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ABI\itunes_reverse\itunes_abi.h">
+      <Filter>ABI\itunes_reverse</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ABI\thirdparty\glog\basictypes.h">
+      <Filter>ABI\thirdparty\glog</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ABI\thirdparty\glog\logging.h">
+      <Filter>ABI\thirdparty\glog</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ABI\thirdparty\glog\scoped_ptr.h">
+      <Filter>ABI\thirdparty\glog</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ABI\ios_authorize\apple_remote_auth.h">
+      <Filter>ABI\ios_authorize</Filter>
+    </ClInclude>
+    <ClInclude Include="auth_request_handled.h">
+      <Filter>ios_helper</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ABI\exception\exception_dump.h">
+      <Filter>ABI\exception</Filter>
+    </ClInclude>
+    <ClInclude Include="atl_dll_main.h">
+      <Filter>ios_helper</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ABI\ios_authorize\itunes_module_state.h">
+      <Filter>ABI\ios_authorize</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ios_cracker\apple_ssl.h">
+      <Filter>ios_cracker</Filter>
+    </ClInclude>
+    <ClInclude Include="hook_os_info.h">
+      <Filter>ios_helper</Filter>
+    </ClInclude>
+    <ClInclude Include="registed_filter.h">
+      <Filter>ios_helper</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ABI\base\basetypes.h">
+      <Filter>ABI\base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ABI\base\lock_impl.h">
+      <Filter>ABI\base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ABI\base\lock_mutex.h">
+      <Filter>ABI\base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ABI\base\message_hook.h">
+      <Filter>ABI\base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ABI\base\message_loop.h">
+      <Filter>ABI\base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ABI\base\process_token.h">
+      <Filter>ABI\base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ABI\base\windows_hardware.h">
+      <Filter>ABI\base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ABI\base\windows_process.h">
+      <Filter>ABI\base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ABI\base\windows_version.h">
+      <Filter>ABI\base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ABI\base\string\string_case.h">
+      <Filter>ABI\base\string</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ABI\base\string\string_conv.h">
+      <Filter>ABI\base\string</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ABI\base\string\string_split.h">
+      <Filter>ABI\base\string</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ABI\base\string\urls_conv.h">
+      <Filter>ABI\base\string</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ABI\base\file\directory.h">
+      <Filter>ABI\base\file</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ABI\base\file\path.h">
+      <Filter>ABI\base\file</Filter>
+    </ClInclude>
+    <ClInclude Include="go_auth_device.h">
+      <Filter>ios_helper</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\ABI\ios_authorize\apple_import.cpp">
+      <Filter>ABI\ios_authorize</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ABI\ios_authorize\apple_device_auth.cc">
+      <Filter>ABI\ios_authorize</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ABI\ios_authorize\iTunesInterface.cpp">
+      <Filter>ABI\ios_authorize</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ABI\ios_authorize\itunes_internal_abi.cc">
+      <Filter>ABI\ios_authorize</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ABI\ios_authorize\itunes_module.cc">
+      <Filter>ABI\ios_authorize</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ABI\ios_authorize\Sync.cpp">
+      <Filter>ABI\ios_authorize</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ABI\ios_authorize\Universal.cpp">
+      <Filter>ABI\ios_authorize</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ABI\itunes_reverse\itunes_abi.cc">
+      <Filter>ABI\itunes_reverse</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ABI\thirdparty\glog\logging.cc">
+      <Filter>ABI\thirdparty\glog</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ABI\ios_authorize\apple_remote_auth.cc">
+      <Filter>ABI\ios_authorize</Filter>
+    </ClCompile>
+    <ClCompile Include="auth_request_handled.cc">
+      <Filter>ios_helper</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ABI\exception\exception_dump.cc">
+      <Filter>ABI\exception</Filter>
+    </ClCompile>
+    <ClCompile Include="atl_dll_main.cc">
+      <Filter>ios_helper</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ABI\ios_authorize\itunes_module_state.cc">
+      <Filter>ABI\ios_authorize</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ios_cracker\apple_ssl.cc">
+      <Filter>ios_cracker</Filter>
+    </ClCompile>
+    <ClCompile Include="hook_os_info.cc">
+      <Filter>ios_helper</Filter>
+    </ClCompile>
+    <ClCompile Include="registed_filter.cc">
+      <Filter>ios_helper</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ABI\base\message_hook.cc">
+      <Filter>ABI\base</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ABI\base\process_token.cc">
+      <Filter>ABI\base</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ABI\base\windows_hardware.cc">
+      <Filter>ABI\base</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ABI\base\windows_process.cc">
+      <Filter>ABI\base</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ABI\base\windows_version.cc">
+      <Filter>ABI\base</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ABI\base\string\string_case.cc">
+      <Filter>ABI\base\string</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ABI\base\string\string_conv.cc">
+      <Filter>ABI\base\string</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ABI\base\string\string_split.cc">
+      <Filter>ABI\base\string</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ABI\base\string\urls_conv.cc">
+      <Filter>ABI\base\string</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ABI\base\file\directory.cc">
+      <Filter>ABI\base\file</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ABI\base\file\path.cc">
+      <Filter>ABI\base\file</Filter>
+    </ClCompile>
+    <ClCompile Include="go_auth_device.cc">
+      <Filter>ios_helper</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

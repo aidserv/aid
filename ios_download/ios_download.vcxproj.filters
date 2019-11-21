@@ -1,0 +1,96 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="ios_download">
+      <UniqueIdentifier>{64df841b-fdb4-476d-9439-0ffed7644586}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="img">
+      <UniqueIdentifier>{81e489ac-27f0-443f-86bb-6ae788b9ca0e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="thirdparty">
+      <UniqueIdentifier>{46721c38-d3bd-43f0-a590-c805efaae3c6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="thirdparty\gflags">
+      <UniqueIdentifier>{7c1ed62d-f147-4f26-8473-8b9e676009c2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="smartbot">
+      <UniqueIdentifier>{d6bb7be5-e87f-45ea-b8a1-3dbc94321676}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="smartbot\passport">
+      <UniqueIdentifier>{079c8d2d-f099-4747-b897-91796ef26ee3}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="downloader.cc">
+      <Filter>ios_download</Filter>
+    </ClCompile>
+    <ClCompile Include="download_content.cc">
+      <Filter>ios_download</Filter>
+    </ClCompile>
+    <ClCompile Include="..\thirdparty\gflags\src\gflags.cc">
+      <Filter>thirdparty\gflags</Filter>
+    </ClCompile>
+    <ClCompile Include="..\thirdparty\gflags\src\gflags_completions.cc">
+      <Filter>thirdparty\gflags</Filter>
+    </ClCompile>
+    <ClCompile Include="..\thirdparty\gflags\src\gflags_reporting.cc">
+      <Filter>thirdparty\gflags</Filter>
+    </ClCompile>
+    <ClCompile Include="..\thirdparty\gflags\src\windows_port.cc">
+      <Filter>thirdparty\gflags</Filter>
+    </ClCompile>
+    <ClCompile Include="..\smartbot\passport\itunes_download_info.cc">
+      <Filter>smartbot\passport</Filter>
+    </ClCompile>
+    <ClCompile Include="..\smartbot\passport\itunes_https_configure.cc">
+      <Filter>smartbot\passport</Filter>
+    </ClCompile>
+    <ClCompile Include="utf8_form_js.cc" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\img\AppChina.ico">
+      <Filter>img</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="resource.h">
+      <Filter>ios_download</Filter>
+    </ClInclude>
+    <ClInclude Include="download_content.h">
+      <Filter>ios_download</Filter>
+    </ClInclude>
+    <ClInclude Include="..\thirdparty\gflags\src\config.h">
+      <Filter>thirdparty\gflags</Filter>
+    </ClInclude>
+    <ClInclude Include="..\thirdparty\gflags\src\gflags.h">
+      <Filter>thirdparty\gflags</Filter>
+    </ClInclude>
+    <ClInclude Include="..\thirdparty\gflags\src\gflags_completions.h">
+      <Filter>thirdparty\gflags</Filter>
+    </ClInclude>
+    <ClInclude Include="..\thirdparty\gflags\src\gflags_declare.h">
+      <Filter>thirdparty\gflags</Filter>
+    </ClInclude>
+    <ClInclude Include="..\thirdparty\gflags\src\mutex.h">
+      <Filter>thirdparty\gflags</Filter>
+    </ClInclude>
+    <ClInclude Include="..\thirdparty\gflags\src\util.h">
+      <Filter>thirdparty\gflags</Filter>
+    </ClInclude>
+    <ClInclude Include="..\thirdparty\gflags\src\windows_port.h">
+      <Filter>thirdparty\gflags</Filter>
+    </ClInclude>
+    <ClInclude Include="..\smartbot\passport\itunes_download_info.h">
+      <Filter>smartbot\passport</Filter>
+    </ClInclude>
+    <ClInclude Include="..\smartbot\passport\itunes_https_configure.h">
+      <Filter>smartbot\passport</Filter>
+    </ClInclude>
+    <ClInclude Include="utf8_form_js.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="ios_download.rc">
+      <Filter>ios_download</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+</Project>
