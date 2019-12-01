@@ -15,9 +15,9 @@ namespace ios_download{
 	private:
 		void DownloadDone();
 	private:
-		HINTERNET net_open_;
-		HINTERNET net_connect_;
-		HINTERNET net_request_;
+		LPVOID net_open_;
+		LPVOID net_connect_;
+		LPVOID net_request_;
 	};
 }
 //////////////////////////////////////////////////////////////////////////

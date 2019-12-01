@@ -7,17 +7,14 @@
     <Filter Include="img">
       <UniqueIdentifier>{81e489ac-27f0-443f-86bb-6ae788b9ca0e}</UniqueIdentifier>
     </Filter>
-    <Filter Include="thirdparty">
-      <UniqueIdentifier>{46721c38-d3bd-43f0-a590-c805efaae3c6}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="thirdparty\gflags">
-      <UniqueIdentifier>{7c1ed62d-f147-4f26-8473-8b9e676009c2}</UniqueIdentifier>
-    </Filter>
     <Filter Include="smartbot">
       <UniqueIdentifier>{d6bb7be5-e87f-45ea-b8a1-3dbc94321676}</UniqueIdentifier>
     </Filter>
     <Filter Include="smartbot\passport">
       <UniqueIdentifier>{079c8d2d-f099-4747-b897-91796ef26ee3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="gflags">
+      <UniqueIdentifier>{3f98dab4-f8dc-40a9-b76e-a17b7b6d4f3b}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -27,18 +24,6 @@
     <ClCompile Include="download_content.cc">
       <Filter>ios_download</Filter>
     </ClCompile>
-    <ClCompile Include="..\thirdparty\gflags\src\gflags.cc">
-      <Filter>thirdparty\gflags</Filter>
-    </ClCompile>
-    <ClCompile Include="..\thirdparty\gflags\src\gflags_completions.cc">
-      <Filter>thirdparty\gflags</Filter>
-    </ClCompile>
-    <ClCompile Include="..\thirdparty\gflags\src\gflags_reporting.cc">
-      <Filter>thirdparty\gflags</Filter>
-    </ClCompile>
-    <ClCompile Include="..\thirdparty\gflags\src\windows_port.cc">
-      <Filter>thirdparty\gflags</Filter>
-    </ClCompile>
     <ClCompile Include="..\smartbot\passport\itunes_download_info.cc">
       <Filter>smartbot\passport</Filter>
     </ClCompile>
@@ -46,6 +31,18 @@
       <Filter>smartbot\passport</Filter>
     </ClCompile>
     <ClCompile Include="utf8_form_js.cc" />
+    <ClCompile Include="..\ABI\gflags\gflags_reporting.cc">
+      <Filter>gflags</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ABI\gflags\windows_port.cc">
+      <Filter>gflags</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ABI\gflags\gflags.cc">
+      <Filter>gflags</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ABI\gflags\gflags_completions.cc">
+      <Filter>gflags</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\img\AppChina.ico">
@@ -59,27 +56,6 @@
     <ClInclude Include="download_content.h">
       <Filter>ios_download</Filter>
     </ClInclude>
-    <ClInclude Include="..\thirdparty\gflags\src\config.h">
-      <Filter>thirdparty\gflags</Filter>
-    </ClInclude>
-    <ClInclude Include="..\thirdparty\gflags\src\gflags.h">
-      <Filter>thirdparty\gflags</Filter>
-    </ClInclude>
-    <ClInclude Include="..\thirdparty\gflags\src\gflags_completions.h">
-      <Filter>thirdparty\gflags</Filter>
-    </ClInclude>
-    <ClInclude Include="..\thirdparty\gflags\src\gflags_declare.h">
-      <Filter>thirdparty\gflags</Filter>
-    </ClInclude>
-    <ClInclude Include="..\thirdparty\gflags\src\mutex.h">
-      <Filter>thirdparty\gflags</Filter>
-    </ClInclude>
-    <ClInclude Include="..\thirdparty\gflags\src\util.h">
-      <Filter>thirdparty\gflags</Filter>
-    </ClInclude>
-    <ClInclude Include="..\thirdparty\gflags\src\windows_port.h">
-      <Filter>thirdparty\gflags</Filter>
-    </ClInclude>
     <ClInclude Include="..\smartbot\passport\itunes_download_info.h">
       <Filter>smartbot\passport</Filter>
     </ClInclude>
@@ -87,6 +63,33 @@
       <Filter>smartbot\passport</Filter>
     </ClInclude>
     <ClInclude Include="utf8_form_js.h" />
+    <ClInclude Include="..\ABI\gflags\gflags_declare.h">
+      <Filter>gflags</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ABI\gflags\gflags_ns.h">
+      <Filter>gflags</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ABI\gflags\mutex.h">
+      <Filter>gflags</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ABI\gflags\util.h">
+      <Filter>gflags</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ABI\gflags\windows_port.h">
+      <Filter>gflags</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ABI\gflags\config.h">
+      <Filter>gflags</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ABI\gflags\defines.h">
+      <Filter>gflags</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ABI\gflags\gflags.h">
+      <Filter>gflags</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ABI\gflags\gflags_completions.h">
+      <Filter>gflags</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="ios_download.rc">

@@ -72,6 +72,7 @@
 #ifndef GOOGLE_GFLAGS_H_
 #define GOOGLE_GFLAGS_H_
 
+
 #include <string>
 #include <vector>
 
@@ -90,8 +91,7 @@
 #if 1
 #include <inttypes.h>           // a third place for uint16_t or u_int16_t
 #endif
-
-namespace google {
+namespace GFLAGS_NAMESPACE {
 
 #if 1      // the C99 format
 typedef int32_t int32;
@@ -273,16 +273,16 @@ extern std::string SetCommandLineOptionWithMode(const char* name, const char* va
 // This class is thread-safe.
 
 class FlagSaver {
- public:
-  FlagSaver();
-  ~FlagSaver();
+public:
+	FlagSaver();
+	~FlagSaver();
 
- private:
-  class FlagSaverImpl* impl_;   // we use pimpl here to keep API steady
+private:
+	class FlagSaverImpl* impl_;   // we use pimpl here to keep API steady
 
-  FlagSaver(const FlagSaver&);  // no copying!
-  void operator=(const FlagSaver&);
-} __attribute__ ((unused));
+	FlagSaver(const FlagSaver&);  // no copying!
+	void operator=(const FlagSaver&);
+};
 
 // --------------------------------------------------------------------
 // Some deprecated or hopefully-soon-to-be-deprecated functions.
@@ -292,7 +292,7 @@ extern std::string CommandlineFlagsIntoString();
 // Usually where this is used, a FlagSaver should be used instead.
 extern bool ReadFlagsFromString(const std::string& flagfilecontents,
                                 const char* prog_name,
-                                bool errors_are_fatal); // uses SET_FLAGS_VALUE
+                               bool errors_are_fatal); // uses SET_FLAGS_VALUE
 
 // These let you manually implement --flagfile functionality.
 // DEPRECATED.
@@ -425,7 +425,7 @@ extern bool FlagsTypeWarn(const char *name);
 extern const char kStrippedFlagHelp[];
 
 }
-
+#include "gflags\gflags_ns.h"
 #ifndef SWIG  // In swig, ignore the main flag declarations
 
 #if defined(STRIP_FLAG_HELP) && STRIP_FLAG_HELP > 0
@@ -451,7 +451,7 @@ extern const char kStrippedFlagHelp[];
     static const type FLAGS_nono##name = value;                 \
     type FLAGS_##name = FLAGS_nono##name;                       \
     type FLAGS_no##name = FLAGS_nono##name;                     \
-    static ::google::FlagRegisterer o_##name(      \
+    static ::GFLAGS_NAMESPACE::FlagRegisterer o_##name(      \
       #name, #type, MAYBE_STRIPPED_HELP(help), __FILE__,        \
       &FLAGS_##name, &FLAGS_no##name);                          \
   }                                                             \
@@ -487,14 +487,14 @@ bool IsBoolFlag(bool from);
   }                                                                       \
   DEFINE_VARIABLE(bool,B, name, val, txt)
 
-#define DECLARE_int32(name)         DECLARE_VARIABLE(::google::int32,I, name)
-#define DEFINE_int32(name,val,txt)  DEFINE_VARIABLE(::google::int32,I, name, val, txt)
+#define DECLARE_int32(name)         DECLARE_VARIABLE(::GFLAGS_NAMESPACE::int32,I, name)
+#define DEFINE_int32(name,val,txt)  DEFINE_VARIABLE(::GFLAGS_NAMESPACE::int32,I, name, val, txt)
 
-#define DECLARE_int64(name)         DECLARE_VARIABLE(::google::int64,I64, name)
-#define DEFINE_int64(name,val,txt)  DEFINE_VARIABLE(::google::int64,I64, name, val, txt)
+#define DECLARE_int64(name)         DECLARE_VARIABLE(::GFLAGS_NAMESPACE::int64,I64, name)
+#define DEFINE_int64(name,val,txt)  DEFINE_VARIABLE(::GFLAGS_NAMESPACE::int64,I64, name, val, txt)
 
-#define DECLARE_uint64(name)        DECLARE_VARIABLE(::google::uint64,U64, name)
-#define DEFINE_uint64(name,val,txt) DEFINE_VARIABLE(::google::uint64,U64, name, val, txt)
+#define DECLARE_uint64(name)        DECLARE_VARIABLE(::GFLAGS_NAMESPACE::uint64,U64, name)
+#define DEFINE_uint64(name,val,txt) DEFINE_VARIABLE(::GFLAGS_NAMESPACE::uint64,U64, name, val, txt)
 
 #define DECLARE_double(name)        DECLARE_VARIABLE(double,D, name)
 #define DEFINE_double(name,val,txt) DEFINE_VARIABLE(double,D, name, val, txt)
@@ -508,18 +508,11 @@ bool IsBoolFlag(bool from);
 #define DECLARE_string(name)  namespace fLS { extern std::string& FLAGS_##name; } \
                               using fLS::FLAGS_##name
 
-// We need to define a var named FLAGS_no##name so people don't define
-// --string and --nostring.  And we need a temporary place to put val
-// so we don't have to evaluate it twice.  Two great needs that go
-// great together!
-// The weird 'using' + 'extern' inside the fLS namespace is to work around
-// an unknown compiler bug/issue with the gcc 4.2.1 on SUSE 10.  See
-//    http://code.google.com/p/google-gflags/issues/detail?id=20
 #define DEFINE_string(name, val, txt)                                     \
   namespace fLS {                                                         \
     static union { void* align; char s[sizeof(std::string)]; } s_##name[2]; \
     const std::string* const FLAGS_no##name = new (s_##name[0].s) std::string(val); \
-    static ::google::FlagRegisterer o_##name(                \
+    static ::GFLAGS_NAMESPACE::FlagRegisterer o_##name(                \
       #name, "string", MAYBE_STRIPPED_HELP(txt), __FILE__,                \
       s_##name[0].s, new (s_##name[1].s) std::string(*FLAGS_no##name));   \
     extern std::string& FLAGS_##name;                                     \
@@ -530,4 +523,4 @@ bool IsBoolFlag(bool from);
 
 #endif  // SWIG
 
-#endif  // GOOGLE_GFLAGS_H_
+#endif  

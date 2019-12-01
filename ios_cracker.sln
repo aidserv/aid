@@ -5,6 +5,8 @@ VisualStudioVersion = 16.0.29509.3
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ios_cracker", "ios_cracker\ios_cracker.vcxproj", "{5BC7A87C-DE5B-4C07-9973-CE5C676E6985}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ios_download", "ios_download\ios_download.vcxproj", "{9EAA32EE-AD53-4C65-8BA1-BF6C4330002C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x86 = Debug|x86
@@ -15,6 +17,10 @@ Global
 		{5BC7A87C-DE5B-4C07-9973-CE5C676E6985}.Debug|x86.Build.0 = Debug|Win32
 		{5BC7A87C-DE5B-4C07-9973-CE5C676E6985}.Release|x86.ActiveCfg = Release|Win32
 		{5BC7A87C-DE5B-4C07-9973-CE5C676E6985}.Release|x86.Build.0 = Release|Win32
+		{9EAA32EE-AD53-4C65-8BA1-BF6C4330002C}.Debug|x86.ActiveCfg = Debug|Win32
+		{9EAA32EE-AD53-4C65-8BA1-BF6C4330002C}.Debug|x86.Build.0 = Debug|Win32
+		{9EAA32EE-AD53-4C65-8BA1-BF6C4330002C}.Release|x86.ActiveCfg = Release|Win32
+		{9EAA32EE-AD53-4C65-8BA1-BF6C4330002C}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

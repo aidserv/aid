@@ -21,6 +21,7 @@
     <CharacterSet>Unicode</CharacterSet>
     <UseOfMfc>Static</UseOfMfc>
     <UseOfAtl>Static</UseOfAtl>
+    <PlatformToolset>v142</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
@@ -29,6 +30,7 @@
     <CharacterSet>Unicode</CharacterSet>
     <UseOfMfc>Static</UseOfMfc>
     <UseOfAtl>Static</UseOfAtl>
+    <PlatformToolset>v142</PlatformToolset>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
@@ -54,7 +56,7 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>$(SolutionDir);$(SolutionDir)\smartbot;$(SolutionDir)\thirdparty;$(SolutionDir)\thirdparty\googleurl;$(SolutionDir)\thirdparty\icu\common;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir);$(SolutionDir)ABI;$(SolutionDir)\smartbot;$(SolutionDir)Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_UNICODE;UNICODE;GFLAGS_INTTYPES_FORMAT_VC7;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
@@ -82,26 +84,28 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\ABI\gflags\gflags.cc" />
+    <ClCompile Include="..\ABI\gflags\gflags_completions.cc" />
+    <ClCompile Include="..\ABI\gflags\gflags_reporting.cc" />
+    <ClCompile Include="..\ABI\gflags\windows_port.cc" />
     <ClCompile Include="..\smartbot\passport\itunes_download_info.cc" />
     <ClCompile Include="..\smartbot\passport\itunes_https_configure.cc" />
-    <ClCompile Include="..\thirdparty\gflags\src\gflags.cc" />
-    <ClCompile Include="..\thirdparty\gflags\src\gflags_completions.cc" />
-    <ClCompile Include="..\thirdparty\gflags\src\gflags_reporting.cc" />
-    <ClCompile Include="..\thirdparty\gflags\src\windows_port.cc" />
     <ClCompile Include="downloader.cc" />
     <ClCompile Include="download_content.cc" />
     <ClCompile Include="utf8_form_js.cc" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\ABI\gflags\config.h" />
+    <ClInclude Include="..\ABI\gflags\defines.h" />
+    <ClInclude Include="..\ABI\gflags\gflags.h" />
+    <ClInclude Include="..\ABI\gflags\gflags_completions.h" />
+    <ClInclude Include="..\ABI\gflags\gflags_declare.h" />
+    <ClInclude Include="..\ABI\gflags\gflags_ns.h" />
+    <ClInclude Include="..\ABI\gflags\mutex.h" />
+    <ClInclude Include="..\ABI\gflags\util.h" />
+    <ClInclude Include="..\ABI\gflags\windows_port.h" />
     <ClInclude Include="..\smartbot\passport\itunes_download_info.h" />
     <ClInclude Include="..\smartbot\passport\itunes_https_configure.h" />
-    <ClInclude Include="..\thirdparty\gflags\src\config.h" />
-    <ClInclude Include="..\thirdparty\gflags\src\gflags.h" />
-    <ClInclude Include="..\thirdparty\gflags\src\gflags_completions.h" />
-    <ClInclude Include="..\thirdparty\gflags\src\gflags_declare.h" />
-    <ClInclude Include="..\thirdparty\gflags\src\mutex.h" />
-    <ClInclude Include="..\thirdparty\gflags\src\util.h" />
-    <ClInclude Include="..\thirdparty\gflags\src\windows_port.h" />
     <ClInclude Include="download_content.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="utf8_form_js.h" />

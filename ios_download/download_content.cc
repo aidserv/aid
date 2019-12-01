@@ -4,7 +4,7 @@
 
 namespace ios_download
 {
-    DownloadContent::DownloadContent(void): net_open_(NULL), net_connect_(NULL), net_request_(NULL){
+    DownloadContent::DownloadContent(void){
 		DownloadDone();
     }
     DownloadContent::~DownloadContent(void){

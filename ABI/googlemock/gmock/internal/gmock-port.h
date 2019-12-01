@@ -51,8 +51,8 @@
 // here, as Google Mock depends on Google Test.  Only add a utility
 // here if it's truly specific to Google Mock.
 
-#include "gtest/internal/gtest-linked_ptr.h"
-#include "gtest/internal/gtest-port.h"
+#include "googletest/gtest/internal/gtest-linked_ptr.h"
+#include "googletest/gtest/internal/gtest-port.h"
 #include "gmock/internal/custom/gmock-port.h"
 
 // For MS Visual C++, check the compiler version. At least VS 2003 is
