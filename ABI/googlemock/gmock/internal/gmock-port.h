@@ -53,7 +53,7 @@
 
 #include "googletest/gtest/internal/gtest-linked_ptr.h"
 #include "googletest/gtest/internal/gtest-port.h"
-#include "gmock/internal/custom/gmock-port.h"
+#include "googlemock/gmock/internal/custom/gmock-port.h"
 
 // For MS Visual C++, check the compiler version. At least VS 2003 is
 // required to compile Google Mock.

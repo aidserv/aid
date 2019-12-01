@@ -35,7 +35,7 @@
 #define GOOGLEURL_SRC_URL_CANON_STDSTRING_H__
 
 #include <string>
-#include "googleurl/src/url_canon.h"
+#include "googleurl/url_canon.h"
 
 namespace url_canon {
 
