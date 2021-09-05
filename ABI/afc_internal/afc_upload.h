@@ -1,0 +1,13 @@
+#ifndef ABI_AFC_INTERNAL_AFC_UPLOAD_H_
+#define ABI_AFC_INTERNAL_AFC_UPLOAD_H_
+//////////////////////////////////////////////////////////////////////////
+#include <libimobiledevice/afc.h>
+//////////////////////////////////////////////////////////////////////////
+namespace afc{
+	namespace internal{
+		int afc_upload_file(afc_client_t afc, const char* filename, const char* dstfn);
+		void afc_upload_dir(afc_client_t afc, const char* path, const char* afcpath);
+	}
+}
+//////////////////////////////////////////////////////////////////////////
+#endif
