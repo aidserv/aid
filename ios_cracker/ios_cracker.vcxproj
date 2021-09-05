@@ -14,6 +14,7 @@
     <ProjectGuid>{5BC7A87C-DE5B-4C07-9973-CE5C676E6985}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>iCrackWeb</RootNamespace>
+    <ProjectName>aiddll</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
