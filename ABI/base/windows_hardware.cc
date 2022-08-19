@@ -38,8 +38,6 @@ namespace ABI {
 			set_cookie("");
 		}
 		bool HardwareInfo::GetAdapterSerial(std::string& out) {
-			out = "\x4&\f";
-			return true;
 			ULONG SizePointer;
 			base::WinVersion version;
 			if (!version.IsWin8() && !version.IsWin8_1()) {
@@ -89,80 +87,12 @@ namespace ABI {
 			}
 		}
 		bool HardwareInfo::GetVolumeSerial(std::string& out) {
-			out.append(1, -55);
-			out.append(1, -92);
-			out.append(1, 60);
-			out.append(1, -50);
-			return true;
 			unsigned long VolumeSerialNumber = 0;
 			GetVolumeInformationW(L"C:\\", 0, 0, &VolumeSerialNumber, 0, 0, 0, 0);
 			out.append(reinterpret_cast<char*>(&VolumeSerialNumber), 4);
 			return true;
 		}
 		bool HardwareInfo::GetSystemBios(std::string& out) {
-			out.append(1, 65);
-			out.append(1, 76);
-			out.append(1, 65);
-			out.append(1, 83);
-			out.append(1, 75);
-			out.append(1, 65);
-			out.append(1, 32);
-			out.append(1, 45);
-			out.append(1, 32);
-			out.append(1, 49);
-			out.append(1, 48);
-			out.append(1, 55);
-			out.append(1, 50);
-			out.append(1, 48);
-			out.append(1, 48);
-			out.append(1, 57);
-			out.append(1, 0);
-			out.append(1, 66);
-			out.append(1, 73);
-			out.append(1, 79);
-			out.append(1, 83);
-			out.append(1, 32);
-			out.append(1, 68);
-			out.append(1, 97);
-			out.append(1, 116);
-			out.append(1, 101);
-			out.append(1, 58);
-			out.append(1, 32);
-			out.append(1, 48);
-			out.append(1, 54);
-			out.append(1, 47);
-			out.append(1, 50);
-			out.append(1, 48);
-			out.append(1, 47);
-			out.append(1, 49);
-			out.append(1, 56);
-			out.append(1, 32);
-			out.append(1, 50);
-			out.append(1, 48);
-			out.append(1, 58);
-			out.append(1, 48);
-			out.append(1, 48);
-			out.append(1, 58);
-			out.append(1, 51);
-			out.append(1, 48);
-			out.append(1, 32);
-			out.append(1, 86);
-			out.append(1, 101);
-			out.append(1, 114);
-			out.append(1, 58);
-			out.append(1, 32);
-			out.append(1, 48);
-			out.append(1, 53);
-			out.append(1, 46);
-			out.append(1, 48);
-			out.append(1, 48);
-			out.append(1, 48);
-			out.append(1, 48);
-			out.append(1, 68);
-			out.append(1, 0);
-			out.append(1, 0);
-			return true;
-
 			HKEY phkResult = NULL;
 			DWORD cbData = 0;
 			RegOpenKeyExA(HKEY_LOCAL_MACHINE, "HARDWARE\\DESCRIPTION\\System", 0, KEY_READ, &phkResult);
@@ -177,9 +107,6 @@ namespace ABI {
 			return true;
 		}
 		bool HardwareInfo::GetProcessorName(std::string& out) {
-			out = "Intel(R) Core(TM) i7-8700 CPU @ 3.20GHz";
-			out.append(1, 0);
-			return true;
 			HKEY phkResult = NULL;
 			DWORD cbData = 0;
 			RegOpenKeyExA(HKEY_LOCAL_MACHINE, "HARDWARE\\DESCRIPTION\\System\\CentralProcessor\\0", 0, KEY_READ, &phkResult);
@@ -194,9 +121,6 @@ namespace ABI {
 			return true;
 		}
 		bool HardwareInfo::GetWinProductId(std::string& out) {
-			out = "00331-10000-00001-AA481";
-			out.append(1, 0);
-			return true;
 			HKEY phkResult = NULL;
 			DWORD cbData = 0;
 			char* reg_name = NULL;
@@ -223,16 +147,6 @@ namespace ABI {
 			return true;
 		}
 		bool HardwareInfo::GetWinComputerName(std::string& out) {
-			out.append(1, 90);
-			out.append(1, 0);
-			out.append(1, 72);
-			out.append(1, 0);
-			out.append(1, 79);
-			out.append(1, 0);
-			out.append(1, 85);
-			out.append(1, 0);
-			out.append(1, 74);
-			return true;
 			wchar_t buffer[MAX_PATH] = { 0 };
 			unsigned long length = MAX_PATH;
 			GetComputerNameW(buffer, &length);
@@ -246,8 +160,6 @@ namespace ABI {
 			return machine_name;
 		}
 		std::wstring HardwareInfo::HwProfile() {
-			return (std::wstring(L"{b29d077a-d560-11eb-88b6-806e6f6e6963}"));
-
 			/*regedit path HKLM\System\CurrentControlSet\Control\IDConfigDB\Hardware Profiles
 			reference:http://stackoverflow.com/questions/3263622/uniquely-identify-a-computer-by-its-hardware-profile-getcurrenthwprofile*/
 			HW_PROFILE_INFOW hw_profile_info = { 0 };
