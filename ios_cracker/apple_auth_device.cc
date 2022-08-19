@@ -38,13 +38,14 @@ namespace ios_cracker{
 		}
 	}
 	bool AppleAuthorizeDevice::AuthorizeMobileDevice(const char* udid){
-		bool state = true;
-		ABI::internal::WaitDeviceUDID(udid);
-		ABI::internal::ConnectIOSDevice(deviceHandleConnected);
-		if(ABI::internal::AuthorizeDevice(deviceHandleConnected)!=ABI::internal::authorize_ok){
-			state = false;
+		bool state = ABI::internal::WaitDeviceUDID(udid);
+		if (state) {
+			ABI::internal::ConnectIOSDevice(deviceHandleConnected);
+			if (ABI::internal::AuthorizeDevice(deviceHandleConnected) != ABI::internal::authorize_ok) {
+				state = false;
+			}
+			ABI::internal::CloseIOSDevice(deviceHandleConnected);
 		}
-		ABI::internal::CloseIOSDevice(deviceHandleConnected);
 		return state;
 	}
 }

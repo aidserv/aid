@@ -16,7 +16,7 @@ namespace iGenAuthRequest{
 		}
 		void GenAuthedResponseFormResuqest(const char* encode,const char* out_file){
 			LoadDlls();
-			ptr_->GenerateAuthRS(ptr_->AnalysisDeviceParam(encode),out_file);
+			//ptr_->GenerateAuthRS(ptr_->AnalysisDeviceParam(encode),out_file);
 		}
 		~AuthRequestHandled(void){
 			ptr_.reset(NULL);

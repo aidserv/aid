@@ -2,3 +2,4 @@
 Debug/**
 *.db
 */.vs/**
+/lib/aidserv.lib

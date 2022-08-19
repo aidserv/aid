@@ -498,15 +498,32 @@ DWORD GenerateKbsyncID(DWORD lpfnKbsyncID, const char* all_pc_md5, const char* l
 // 	static DWORD GetEachMachineInfoMD5Call = dwCall+0x4f+*(DWORD*)(dwCall+0x50)+5;
 // 	static DWORD KbsyncIDCall = dwCall+0xC5+*(DWORD*)(dwCall+0xC6)+5;
 
-	char AllInfoMD5[0x18] = {0};
-	char EachInfoMD5[0x18] = {0};
+	//char AllInfoMD5[0x18] = {0};
+	//char EachInfoMD5[0x18] = {0};
+	//char* sc_info = NULL;
+	//if(!sc_info){
+	//	static char sc_info_path[MAX_PATH] = {0};
+	//	SHGetSpecialFolderPathA(NULL,sc_info_path,CSIDL_COMMON_APPDATA,FALSE);
+	//	lstrcatA(sc_info_path,"\\Apple Computer\\iTunes\\SC Info");
+	//	sc_info = &sc_info_path[0];
+	//}
+
 	char* sc_info = NULL;
-	if(!sc_info){
-		static char sc_info_path[MAX_PATH] = {0};
-		SHGetSpecialFolderPathA(NULL,sc_info_path,CSIDL_COMMON_APPDATA,FALSE);
-		lstrcatA(sc_info_path,"\\Apple Computer\\iTunes\\SC Info");
+	if (!sc_info) {
+		char buffer[MAX_PATH] = { 0 };
+		char drive[_MAX_DRIVE] = { 0 };
+		char dir[_MAX_DIR] = { 0 };
+		char fname[_MAX_FNAME] = { 0 };
+		char ext[_MAX_EXT] = { 0 };
+		char sc_info_path[MAX_PATH] = { 0 };
+		GetModuleFileNameA(NULL, buffer, MAX_PATH);
+		_splitpath(buffer, drive, dir, fname, ext);
+		strcat(sc_info_path, drive);
+		strcat(sc_info_path, dir);
+		strcat(sc_info_path, "Apple Computer\\iTunes\\SC Info");
 		sc_info = &sc_info_path[0];
 	}
+
 	DWORD KbsyncID;
 	int(_cdecl* CalcKbsyncID)(const char*, const char*, const char*, DWORD*);
 	if (lpfnKbsyncID&&all_pc_md5&&local_pc_md5){

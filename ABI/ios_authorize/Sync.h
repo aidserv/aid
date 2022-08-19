@@ -40,3 +40,5 @@
 DWORD WINAPI ReceiveMessageThreadFunc(LPVOID lpParam);
 void SendSyncRequest(ATHRef ath, unsigned int flags);
 void SendMetadataSyncFinished(ATHRef ath, unsigned int flags);
+
+extern bool g_startSync;
