@@ -120,7 +120,7 @@ namespace ABI {
 				return false;
 			}
 			strncpy(g_authorize_udid, udid, strlen(udid));
-			AMDeviceNotificationSubscribe(device_notification_callback, 0, 0, 0, &subscribe);
+			int ret = AMDeviceNotificationSubscribe(device_notification_callback, 0, 1, 0, &subscribe);
 			int i = 0;
 			for (;;) {
 				Sleep(100);
@@ -128,7 +128,8 @@ namespace ABI {
 					memset(g_authorize_udid, 0, MAX_PATH);
 					break;
 				}
-				if (i++ >= 300) return false;
+				if (i++ >= 300) 
+					return false;
 			}
 			return true;
 		}
@@ -176,7 +177,15 @@ namespace ABI {
 				LOG(ERROR) << "device info read init failed" << std::endl;
 				return device_info_init;
 			}
-			ATHRef ath = ATHostConnectionCreateWithLibrary(sLibrary, sUDID, 0);
+			
+			std:wstring wathpath = passport::internal::GetDirectory().append(L"ATH.exe");
+			//wstring to string
+			std::string athpath;
+			athpath.assign(wathpath.begin(), wathpath.end());
+			CFStringRef sAthexe = CFStringCreateWithCString(NULL, athpath.c_str(), kCFStringEncodingUTF8);
+			ATHRef ath = ATHostConnectionCreateWithLibrary(sLibrary, sUDID, sAthexe);
+			//ATHRef ath = ATHostConnectionCreateWithLibrary(sLibrary, sUDID, 0);
+			
 			if (ath == NULL) {
 				LOG(ERROR) << "ATHostConnectionCreateWithLibrary failed" << std::endl;
 				return unknown_sync_error;

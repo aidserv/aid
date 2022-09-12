@@ -14,7 +14,7 @@ namespace ABI{
 			set_asmapi_interface_dll(L"");
 			set_itunes_mobile_device_dll(L"");
 			set_mobile_device_dll(L"");
-			AddEnvironmentVariable(iTunesWinPath());
+			//AddEnvironmentVariable(iTunesWinPath());
 			iTunesPathInit();
 		}
 		iTunesModule::~iTunesModule(void){
@@ -31,20 +31,26 @@ namespace ABI{
 			}
 			return itunes;
 		}
-		std::wstring iTunesModule::iTunesSCInfo(){
-			return (GetSpecialPath(CSIDL_COMMON_APPDATA,L"\\Apple Computer\\iTunes\\SC Info"));
-		}
+
 		void iTunesModule::iTunesPathInit(){
-			set_core_foundation_dll(iTunesFrameworkSupport(L"CoreFoundation.dll",true));
-			AddEnvironmentVariable(core_foundation_dll());
-			set_air_traffic_host_dll(iTunesGetSharedDll(L"AirTrafficHostDLL"));
-			AddEnvironmentVariable(air_traffic_host_dll());
-			set_asmapi_interface_dll(iTunesGetSharedDll(L"ASMapiInterfaceDLL"));
-			AddEnvironmentVariable(asmapi_interface_dll());
-			set_itunes_mobile_device_dll(iTunesGetSharedDll(L"iTunesMobileDeviceDLL"));
+			set_core_foundation_dll(passport::internal::GetDirectory().append(L"CoreFoundation.dll"));
+			//AddEnvironmentVariable(core_foundation_dll());
+			set_air_traffic_host_dll(passport::internal::GetDirectory().append(L"AirTrafficHost.dll"));
+			//AddEnvironmentVariable(air_traffic_host_dll());
+			set_itunes_mobile_device_dll(passport::internal::GetDirectory().append(L"iTunesMobileDevice.dll"));
+			//set_itunes_mobile_device_dll(passport::internal::GetDirectory().append(L"MobileDevice.dll"));
 			AddEnvironmentVariable(itunes_mobile_device_dll());
-			set_mobile_device_dll(iTunesGetSharedDll(L"MobileDeviceDLL"));
-			AddEnvironmentVariable(mobile_device_dll());
+
+			//set_core_foundation_dll(iTunesFrameworkSupport(L"CoreFoundation.dll",true));
+			//AddEnvironmentVariable(core_foundation_dll());
+			//set_air_traffic_host_dll(iTunesGetSharedDll(L"AirTrafficHostDLL"));
+			//AddEnvironmentVariable(air_traffic_host_dll());
+			//set_asmapi_interface_dll(iTunesGetSharedDll(L"ASMapiInterfaceDLL"));
+			//AddEnvironmentVariable(asmapi_interface_dll());
+			//set_itunes_mobile_device_dll(iTunesGetSharedDll(L"iTunesMobileDeviceDLL"));
+			//AddEnvironmentVariable(itunes_mobile_device_dll());
+			//set_mobile_device_dll(iTunesGetSharedDll(L"MobileDeviceDLL"));
+			//AddEnvironmentVariable(mobile_device_dll());
 		}
 		void iTunesModule::AddEnvironmentVariable(const std::wstring& path){
 			wchar_t env_path[4096] = {0};
@@ -76,6 +82,7 @@ namespace ABI{
 			return shared_dll;
 		}
 		std::wstring iTunesModule::iTunesFrameworkSupport(const std::wstring dll_name,bool env_able){
+
 			void* hSetting = NULL;
 			unsigned long length = 0;
 			wchar_t* pCoreFoundationPath = new wchar_t[MAX_PATH*sizeof(wchar_t)];

@@ -1,0 +1,13 @@
+﻿C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\MSBuild\Microsoft\VC\v160\Microsoft.CppBuild.targets(1091,5): warning MSB8027: 名为 string_conv.cc 的两个或更多文件将生成到同一位置的输出。这会导致错误的生成结果。   调用的文件是 ..\ABI\base\string\string_conv.cc, ..\smartbot\base\string\string_conv.cc。
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\MSBuild\Microsoft\VC\v160\Microsoft.CppBuild.targets(1091,5): warning MSB8027: 名为 logging.cc 的两个或更多文件将生成到同一位置的输出。这会导致错误的生成结果。   调用的文件是 ..\ABI\thirdparty\glog\logging.cc, ..\smartbot\thirdparty\glog\logging.cc。
+  atl_dll_main.cc
+C:\zhoujunhe\aid\ABI\libiconv\include\iconv.h(1,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+C:\zhoujunhe\aid\Release\obj\aiddll\string_conv.obj : warning LNK4042: 对象被多次指定；已忽略多余的指定
+C:\zhoujunhe\aid\Release\obj\aiddll\logging.obj : warning LNK4042: 对象被多次指定；已忽略多余的指定
+    正在创建库 C:\zhoujunhe\aid\Release\lib\aiddll.lib 和对象 C:\zhoujunhe\aid\Release\lib\aiddll.exp
+  正在生成代码
+  1 of 5299 functions (<0.1%) were compiled, the rest were copied from previous compilation.
+    0 functions were new in current compilation
+    2 functions had inline decision re-evaluated but remain unchanged
+  已完成代码的生成
+  ios_cracker.vcxproj -> C:\zhoujunhe\aid\Release\bin\aiddll.dll

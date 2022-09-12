@@ -94,7 +94,8 @@ unsigned int (*AFCFileRefWrite)(AFCRef afc, AFCFileRef file, void *buf, unsigned
 
 // AirTrafficHost.dll functions
 //
-ATHRef (*ATHostConnectionCreateWithLibrary)(CFStringRef library, CFStringRef udid, int);
+//ATHRef (*ATHostConnectionCreateWithLibrary)(CFStringRef library, CFStringRef udid, int);
+ATHRef(*ATHostConnectionCreateWithLibrary)(CFStringRef library, CFStringRef udid, CFStringRef athexe);
 void (*ATHostConnectionDestroy)(ATHRef);
 int (*ATHostConnectionSendPowerAssertion)(ATHRef, CFBooleanRef enable);
 void (*ATHostConnectionRetain)(ATHRef);
@@ -144,11 +145,11 @@ bool LoadDlls()
 		return false;
 	}
 	
-	HINSTANCE hITunesDll = LoadLibrary(itunes_module.iTunesDll(L"iTunes.dll").c_str());
-	if (hITunesDll == NULL){
-		ABI::internal::message("Error in loading ITunes.dll\n");
-		return false;
-	}
+	//HINSTANCE hITunesDll = LoadLibrary(itunes_module.iTunesDll(L"iTunes.dll").c_str());
+	//if (hITunesDll == NULL){
+	//	ABI::internal::message("Error in loading ITunes.dll\n");
+	//	return false;
+	//}
 
 	SetDllDirectory(NULL);
 

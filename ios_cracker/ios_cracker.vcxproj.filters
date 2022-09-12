@@ -79,9 +79,6 @@
     <ClCompile Include="atl_dll_main.cc">
       <Filter>ios_cracker</Filter>
     </ClCompile>
-    <ClCompile Include="apple_connection_device.cc">
-      <Filter>ios_cracker</Filter>
-    </ClCompile>
     <ClCompile Include="..\smartbot\cookies\cookie_constants.cc">
       <Filter>smartbot\cookies</Filter>
     </ClCompile>
@@ -370,9 +367,6 @@
       <Filter>ABI\ios_authorize</Filter>
     </ClInclude>
     <ClInclude Include="atl_dll_main.h">
-      <Filter>ios_cracker</Filter>
-    </ClInclude>
-    <ClInclude Include="apple_connection_device.h">
       <Filter>ios_cracker</Filter>
     </ClInclude>
     <ClInclude Include="..\smartbot\cookies\cookie_constants.h">

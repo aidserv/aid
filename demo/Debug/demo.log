@@ -1,2 +1,2 @@
-﻿  demo.cpp
-  demo.vcxproj -> D:\zhoujunhe\aid\Debug\demo.exe
+﻿  LINK : 没有找到 C:\zhoujunhe\aid\Debug\demo.exe 或上一个增量链接没有生成它；正在执行完全链接
+  demo.vcxproj -> C:\zhoujunhe\aid\Debug\demo.exe

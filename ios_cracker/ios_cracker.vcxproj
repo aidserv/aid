@@ -53,7 +53,7 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <LibraryPath>$(SolutionDir)$(Configuration)\lib;$(LibraryPath)</LibraryPath>
+    <LibraryPath>$(SolutionDir)lib;$(SolutionDir)$(Configuration)\lib;$(LibraryPath)</LibraryPath>
     <IntDir>$(SolutionDir)$(Configuration)\obj\$(ProjectName)\</IntDir>
     <OutDir>$(OutDir)bin\</OutDir>
   </PropertyGroup>
@@ -82,7 +82,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CRT_SECURE_NO_WARNINGS;_WINDOWS;plist_STATIC;ZIP_STATIC;_USRDLL;IAUTHED_CRACKER_EXPORTS;DETOURS_X86;DETOURS_64BIT;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(SolutionDir);$(SolutionDir)\thunk\project;$(SolutionDir)\smartbot;$(SolutionDir)\ABI\thirdparty\;$(SolutionDir)\ABI\thirdparty\google-breakpad-master\src\;$(SolutionDir)\thirdparty\libplist\include;$(SolutionDir)\ABI\thirdparty\google-breakpad-master\src\;$(SolutionDir)\ABI\thirdparty\libimobiledevice\libimobiledevice\include;$(SolutionDir)\ABI\thirdparty\libimobiledevice\libimobiledevice_win\vendors\include;$(SolutionDir)\ABI\thirdparty\libimobiledevice\libimobiledevice_win\libplist\include;$(SolutionDir)\ABI\thirdparty\libimobiledevice\libimobiledevice_win\getopt;$(SolutionDir)\ABI\thirdparty\libimobiledevice\libimobiledevice_win\libgen;$(SolutionDir)\ABI\thirdparty\libimobiledevice\libimobiledevice_win;$(SolutionDir)\ABI\thirdparty\libimobiledevice\libimobiledevice_win\libxml2;$(SolutionDir)\ABI\thirdparty\libimobiledevice\libimobiledevice_win\libxml2\src;$(SolutionDir)\ABI\thirdparty\libimobiledevice\libimobiledevice_win\libiconv\include;$(SolutionDir)\ABI\thirdparty\;$(SolutionDir)\ABI\thirdparty\getopt;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir);$(SolutionDir)\thunk\project;$(SolutionDir)\smartbot;$(SolutionDir)\ABI\googletest;$(SolutionDir)\ABI\googlemock;$(SolutionDir)\ABI\DIA\include;$(SolutionDir)\ABI\thirdparty\;$(SolutionDir)\ABI\thirdparty\google-breakpad-master\src\;$(SolutionDir)\thirdparty\libplist\include;$(SolutionDir)\ABI\thirdparty\libimobiledevice\libimobiledevice\include;$(SolutionDir)\ABI\third_party\google-breakpad\src;$(SolutionDir)\Include;$(SolutionDir)\ABI\libiconv\include;$(SolutionDir)\ABI;$(SolutionDir)\ABI\thirdparty\libimobiledevice\libimobiledevice_win\vendors\include;$(SolutionDir)\ABI\thirdparty\libimobiledevice\libimobiledevice_win\libplist\include;$(SolutionDir)\ABI\thirdparty\libimobiledevice\libimobiledevice_win\getopt;$(SolutionDir)\ABI\thirdparty\libimobiledevice\libimobiledevice_win\libgen;$(SolutionDir)\ABI\thirdparty\libimobiledevice\libimobiledevice_win;$(SolutionDir)\ABI\thirdparty\libimobiledevice\libimobiledevice_win\libxml2;$(SolutionDir)\ABI\thirdparty\libimobiledevice\libimobiledevice_win\libxml2\src;$(SolutionDir)\ABI\thirdparty\libimobiledevice\libimobiledevice_win\libiconv\include;$(SolutionDir)\ABI\thirdparty\getopt;$(VSInstallDir)DIA SDK\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <CompileAs>CompileAsCpp</CompileAs>
     </ClCompile>
     <Link>
@@ -90,7 +90,7 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <ImportLibrary>$(SolutionDir)$(Configuration)\lib\$(ProjectName).lib</ImportLibrary>
-      <AdditionalDependencies>libimobiledevice.lib;libzip.lib;libplist.lib;libusbmuxd.lib;ws2_32.lib;zlib.lib;libcompat.lib;getopt.lib;libgen.lib;libcnary.lib;libiconv.lib;libxml2.lib;libeay32.lib;ssleay32.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>libzip.lib;ws2_32.lib;zlib.lib;libeay32.lib;ssleay32.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(SolutionDir)ABI\thirdparty\ios_v1;$(SolutionDir)ABI\thirdparty\ios_v1\vendors\libgcc\lib;$(SolutionDir)ABI\thirdparty\ios_v1\vendors\zlib\lib;$(SolutionDir)ABI\thirdparty\ios_v1\vendors\openssl\lib;$(SolutionDir)ABI\thirdparty\ios_v1\vendors\libxml2\lib;$(SolutionDir)ABI\thirdparty\ios_v1\vendors\iconv\lib</AdditionalLibraryDirectories>
       <UACExecutionLevel>RequireAdministrator</UACExecutionLevel>
     </Link>
@@ -230,7 +230,6 @@
     <ClInclude Include="..\smartbot\cookies\cookie_constants.h" />
     <ClInclude Include="..\smartbot\cookies\parsed_cookie.h" />
     <ClInclude Include="..\smartbot\memory\alloc_vtable.h" />
-    <ClInclude Include="apple_connection_device.h" />
     <ClInclude Include="apple_support.h" />
     <ClInclude Include="apple_auth_device.h" />
     <ClInclude Include="apple_ssl.h" />
@@ -319,7 +318,6 @@
     <ClCompile Include="..\ABI\jsoncpp\json_reader.cpp" />
     <ClCompile Include="..\ABI\jsoncpp\json_value.cpp" />
     <ClCompile Include="..\ABI\jsoncpp\json_writer.cpp" />
-    <ClCompile Include="apple_connection_device.cc" />
     <ClCompile Include="apple_support.cc" />
     <ClCompile Include="apple_auth_device.cc" />
     <ClCompile Include="apple_ssl.cc" />

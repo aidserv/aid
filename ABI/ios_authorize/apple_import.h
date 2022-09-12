@@ -140,7 +140,8 @@ WIN_DLL_API extern unsigned int (*AFCFileRefWrite)(AFCRef afc, AFCFileRef file, 
 
 // AirTrafficHost.dll functions
 //
-WIN_DLL_API extern ATHRef (*ATHostConnectionCreateWithLibrary)(CFStringRef library, CFStringRef udid, int);
+//WIN_DLL_API extern ATHRef (*ATHostConnectionCreateWithLibrary)(CFStringRef library, CFStringRef udid, int);
+WIN_DLL_API extern ATHRef (*ATHostConnectionCreateWithLibrary)(CFStringRef library, CFStringRef udid, CFStringRef athexe);
 WIN_DLL_API extern void (*ATHostConnectionDestroy)(ATHRef);
 WIN_DLL_API extern int (*ATHostConnectionSendPowerAssertion)(ATHRef, CFBooleanRef enable);
 WIN_DLL_API extern void (*ATHostConnectionRetain)(ATHRef);
