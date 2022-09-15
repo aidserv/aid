@@ -178,13 +178,12 @@ namespace ABI {
 				return device_info_init;
 			}
 			
-			std:wstring wathpath = passport::internal::GetDirectory().append(L"ATH.exe");
+			std:wstring wathpath = passport::internal::GetITunesInstallDll(L"").append(L"ATH.exe");
 			//wstring to string
 			std::string athpath;
 			athpath.assign(wathpath.begin(), wathpath.end());
 			CFStringRef sAthexe = CFStringCreateWithCString(NULL, athpath.c_str(), kCFStringEncodingUTF8);
 			ATHRef ath = ATHostConnectionCreateWithLibrary(sLibrary, sUDID, sAthexe);
-			//ATHRef ath = ATHostConnectionCreateWithLibrary(sLibrary, sUDID, 0);
 			
 			if (ath == NULL) {
 				LOG(ERROR) << "ATHostConnectionCreateWithLibrary failed" << std::endl;

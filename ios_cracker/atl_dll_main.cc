@@ -45,7 +45,7 @@ protected:
 BOOL WINAPI DllMain(HMODULE hDllHandle, DWORD dwReason, LPVOID lpreserved){
 	DisableThreadLibraryCalls(hDllHandle);
 	if(dwReason==DLL_PROCESS_ATTACH&&!AtlDllMain::Instance()->is_initialized()){
-		//passport::iTunesNativeInterface::GetInstance();
+		passport::iTunesNativeInterface::GetInstance();
 		LoadDlls();
 		//TODO CHECK!!
 		//libimobiledevice_initialize();
