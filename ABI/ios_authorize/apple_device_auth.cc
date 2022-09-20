@@ -23,11 +23,15 @@ extern char g_sLibraryID[];
 
 namespace ABI {
 	namespace internal {
+		using namespace std;
+
 		const char filename_afsync_rq[] = "/AirFair/sync/afsync.rq";
 		const char filename_afsync_rq_sig[] = "/AirFair/sync/afsync.rq.sig";
 		const char filename_afsync_rs[] = "/AirFair/sync/afsync.rs";
 		const char filename_afsync_rs_sig[] = "/AirFair/sync/afsync.rs.sig";
-		static char g_authorize_udid[MAX_PATH] = { 0 };
+		//static char g_authorize_udid[MAX_PATH] = { 0 };
+		static map<string, am_device*> gudid;
+
 		bool RequestSignatureAuthGenerate(AppleMobileDeviceEx& mobile_device, unsigned char* rq, unsigned long length, unsigned char* sig, unsigned long sig_length) {
 			//remote server generate rs and rs.sig follow:
 			ABI::internal::AppleRemoteAuth auth;
@@ -83,26 +87,28 @@ namespace ABI {
 		void device_notification_callback(struct AMDeviceNotificationCallbackInformation* CallbackInfo)
 		{
 			am_device* deviceHandle = CallbackInfo->deviceHandle;
+			if (deviceHandle->connection_type == CONNECTION_TYPE_NETWORK)  //	CONNECTION_TYPE_NETWORK return
+			{
+				message("不处理网络连接设备 %p \n", deviceHandle);
+				return;
+			}
+			if (deviceHandle->connectid==0)
+				int connret = AMDeviceConnect(deviceHandle);
+
+			ABI::internal::AppleMobileDeviceEx apple_device(deviceHandle);
+			string udid = apple_device.udid();
+
 			switch (CallbackInfo->msgType)
 			{
 			case ADNCI_MSG_CONNECTED:
 				message("Device %p connected\n", deviceHandle);
-				if (deviceHandleConnected == NULL) {
-					AMDeviceConnect(deviceHandle);
-					ABI::internal::AppleMobileDeviceEx apple_device(deviceHandle);
-					if (std::string(g_authorize_udid) != apple_device.udid()) {
-						deviceHandleConnected = NULL;
-					}
-					else {
-						deviceHandleConnected = deviceHandle;
-					}
-					AMDeviceDisconnect(deviceHandle);
-				}
+				gudid[udid] = deviceHandle;
 				break;
 
 			case ADNCI_MSG_DISCONNECTED:
 				message("Device %p disconnected\n", deviceHandle);
-				deviceHandleConnected = NULL;
+				AMDeviceDisconnect(gudid.at(udid));
+				gudid.erase(udid);
 				break;
 
 			case 3:
@@ -114,35 +120,30 @@ namespace ABI {
 				break;
 			}
 		}
-		bool __cdecl WaitDeviceUDID(const char* udid) {
+
+
+		bool __cdecl WaitDeviceUDID() {
 			void* subscribe = nullptr;
-			if (udid == NULL || !udid[0]) {
+			int ret = AMDeviceNotificationSubscribe(device_notification_callback, 0, 0, 0, &subscribe);
+			if (ret) {
+				message("WaitDeviceUDID() failed.\n");
 				return false;
-			}
-			strncpy(g_authorize_udid, udid, strlen(udid));
-			int ret = AMDeviceNotificationSubscribe(device_notification_callback, 0, 1, 0, &subscribe);
-			int i = 0;
-			for (;;) {
-				Sleep(100);
-				if (deviceHandleConnected != NULL) {
-					memset(g_authorize_udid, 0, MAX_PATH);
-					break;
-				}
-				if (i++ >= 300) 
-					return false;
 			}
 			return true;
 		}
-		bool __cdecl ConnectIOSDevice(AMDeviceRef device) {
-			int ret;
-			ret = AMDeviceConnect(device);
-			if (ret) {
-				message("AMDeviceConnect() failed.\n");
+
+
+
+		bool __cdecl IOSDeviceStartSession(AMDeviceRef device) {
+			AMDeviceIsPaired(device);
+			int ret = AMDeviceValidatePairing(device);
+			if (ret)
+			{
+				message("AMDeviceValidatePairing() failed.\n");
 				return false;
 			}
-			AMDeviceIsPaired(device);
-			ret = AMDeviceValidatePairing(device);
-			if (ret == 0) {
+			else
+			{
 				ret = AMDeviceStartSession(device);
 				if (ret) {
 					message("AMDeviceStartSession() failed.\n");
@@ -151,22 +152,42 @@ namespace ABI {
 			}
 			return true;
 		}
-		bool __cdecl CloseIOSDevice(AMDeviceRef device) {
-			int ret;
-			ret = AMDeviceStopSession(device);
+
+		bool __cdecl IOSDeviceStopSession(AMDeviceRef device) {
+			int ret = AMDeviceStopSession(device);
 			if (ret) {
 				message("AMDeviceStopSession() failed.\n");
 				return false;
 			}
-			ret = AMDeviceDisconnect(device);
-			if (ret) {
-				message("AMDeviceDisconnect() failed.\n");
-				return false;
-			}
-			deviceHandleConnected = NULL;
 			return true;
 		}
-		ErrorAuthorize __cdecl AuthorizeDevice(void* deviceHandle) {
+
+
+		ErrorAuthorize __cdecl AuthorizeDevice(const string udid) {
+			int i = 0;
+			for (;;) {
+				Sleep(100);
+				if (gudid[udid] != NULL) {
+					break;
+				}
+				if (i++ >= 30) {
+					gudid.erase(udid);   //remove udid
+					LOG(ERROR) << "设备没有插入，初始化失败。" << std::endl;
+					return device_init_fail;
+				}
+			}
+			AMDeviceRef  deviceHandle = gudid.at(udid);
+			if (deviceHandle == NULL) {
+				LOG(ERROR) << "IOSDeviceStartSession failed" << std::endl;
+				return start_session_fail;
+			}
+
+			if (!IOSDeviceStartSession(deviceHandle))
+			{
+				LOG(ERROR) << "IOSDeviceStartSession failed" << std::endl;
+				return start_session_fail;
+			}
+
 			AFCFileRef fileAfsyncRs = NULL;
 			AFCFileRef fileAfsyncRsSig = NULL;
 			ABI::internal::AppleMobileDeviceEx apple_device(deviceHandle);
@@ -177,6 +198,7 @@ namespace ABI {
 				LOG(ERROR) << "device info read init failed" << std::endl;
 				return device_info_init;
 			}
+
 			
 			std:wstring wathpath = passport::internal::GetITunesInstallDll(L"").append(L"ATH.exe");
 			//wstring to string
@@ -184,11 +206,13 @@ namespace ABI {
 			athpath.assign(wathpath.begin(), wathpath.end());
 			CFStringRef sAthexe = CFStringCreateWithCString(NULL, athpath.c_str(), kCFStringEncodingUTF8);
 			ATHRef ath = ATHostConnectionCreateWithLibrary(sLibrary, sUDID, sAthexe);
-			
 			if (ath == NULL) {
 				LOG(ERROR) << "ATHostConnectionCreateWithLibrary failed" << std::endl;
 				return unknown_sync_error;
 			}
+			CFRelease(sAthexe);
+			CFRelease(sUDID);
+			CFRelease(sLibrary);
 
 			g_startSync = false;
 			HANDLE hThread = CreateThread(NULL, 0, ReceiveMessageThreadFunc, (LPVOID)ath, 0, NULL);
@@ -210,7 +234,6 @@ namespace ABI {
 				while (!g_startSync) Sleep(100);
 				SendSyncRequest(ath, SYNC_KEYBAG);
 			}
-			//ATHostConnectionReadMessage(ath);
 
 			ABI::internal::RQReadBuf rq_reader;
 			rq_reader.RQGenSize(afc);
@@ -227,8 +250,9 @@ namespace ABI {
 				return read_afsync_rq_sig_fail;
 			}
 			else {
-				CFRelease(sUDID);
-				CFRelease(sLibrary);
+				//CFRelease(sUDID);
+				//CFRelease(sLibrary);
+				//CFRelease(sAthexe);
 			}
 			apple_device.set_grappa_sessionid(ath);
 			if (!RequestSignatureAuthGenerate(apple_device, rq_reader.rq_buf(), rq_reader.rq_size(), rq_sig_reader.rq_sig_buf(), rq_sig_reader.rq_sig_size())) {
@@ -264,6 +288,11 @@ namespace ABI {
 			}
 			CloseIOSFileSystem(afc);
 			ATHostConnectionDestroy(ath);
+
+			if (!IOSDeviceStopSession(deviceHandle))
+			{
+				LOG(ERROR) << "IOSDeviceStopSession failed" << std::endl;
+			}
 			return authorize_ok;
 		}
 	}

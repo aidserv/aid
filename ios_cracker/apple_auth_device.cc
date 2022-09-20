@@ -9,6 +9,9 @@
 #include "ABI/base/file/path.h"
 #include "ABI/base/string/string_conv.h"
 
+using namespace ABI::internal;
+
+
 namespace ios_cracker{
 	AppleAuthorizeDevice::AppleAuthorizeDevice(){
 	}
@@ -38,13 +41,11 @@ namespace ios_cracker{
 		}
 	}
 	bool AppleAuthorizeDevice::AuthorizeMobileDevice(const char* udid){
-		bool state = ABI::internal::WaitDeviceUDID(udid);
+		bool state = ABI::internal::WaitDeviceUDID();
 		if (state) {
-			ABI::internal::ConnectIOSDevice(deviceHandleConnected);
-			if (ABI::internal::AuthorizeDevice(deviceHandleConnected) != ABI::internal::authorize_ok) {
+			if (ABI::internal::AuthorizeDevice(udid) != ABI::internal::authorize_ok) {
 				state = false;
 			}
-			ABI::internal::CloseIOSDevice(deviceHandleConnected);
 		}
 		return state;
 	}

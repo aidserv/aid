@@ -230,8 +230,8 @@
     <ClInclude Include="..\smartbot\cookies\cookie_constants.h" />
     <ClInclude Include="..\smartbot\cookies\parsed_cookie.h" />
     <ClInclude Include="..\smartbot\memory\alloc_vtable.h" />
+    <ClInclude Include="aiddll.h" />
     <ClInclude Include="apple_support.h" />
-    <ClInclude Include="apple_auth_device.h" />
     <ClInclude Include="apple_ssl.h" />
     <ClInclude Include="atl_dll_main.h" />
   </ItemGroup>
@@ -318,8 +318,8 @@
     <ClCompile Include="..\ABI\jsoncpp\json_reader.cpp" />
     <ClCompile Include="..\ABI\jsoncpp\json_value.cpp" />
     <ClCompile Include="..\ABI\jsoncpp\json_writer.cpp" />
+    <ClCompile Include="aiddll.cpp" />
     <ClCompile Include="apple_support.cc" />
-    <ClCompile Include="apple_auth_device.cc" />
     <ClCompile Include="apple_ssl.cc" />
     <ClCompile Include="atl_dll_main.cc" />
   </ItemGroup>

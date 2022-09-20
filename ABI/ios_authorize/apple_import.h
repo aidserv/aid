@@ -50,7 +50,7 @@ struct AMDeviceNotificationCallbackInformation {
 	unsigned int msgType;
 } ;
 
-extern am_device *deviceHandleConnected;
+//extern am_device *deviceHandleConnected;
 extern bool found_device;
 extern char *device_id;
 extern CFStringRef last_path;

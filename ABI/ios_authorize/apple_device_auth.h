@@ -5,7 +5,7 @@
 //////////////////////////////////////////////////////////////////////////
 namespace ABI{
 	namespace internal{
-		enum ErrorAuthorize{
+		enum ErrorAuthorize {
 			authorize_ok,
 			open_afsync_rq_fail,
 			read_afsync_rq_fail,
@@ -18,13 +18,16 @@ namespace ABI{
 			wait_object_fail,
 			device_info_init,
 			generate_rs_fail,
-			unknown_sync_error
+			unknown_sync_error,
+			start_session_fail,
+			stop_session_fail,
+			device_init_fail
 		};
 		void message(const char* format,...);
-		bool __cdecl WaitDeviceUDID(const char* udid);
-		bool __cdecl ConnectIOSDevice(AMDeviceRef device);
-		bool __cdecl CloseIOSDevice(AMDeviceRef device);
-		ErrorAuthorize __cdecl AuthorizeDevice(void *deviceHandle);
+		bool __cdecl WaitDeviceUDID();
+		bool __cdecl IOSDeviceStartSession(AMDeviceRef device);
+		bool __cdecl IOSDeviceStopSession(AMDeviceRef device);
+		ErrorAuthorize __cdecl AuthorizeDevice(const string udid);
 	}
 }
 //////////////////////////////////////////////////////////////////////////

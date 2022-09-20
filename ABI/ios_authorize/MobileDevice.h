@@ -126,14 +126,22 @@ typedef void *amd_device_attached_callback;
  * TODO: change to correct type. */
 typedef void (*am_restore_device_notification_callback)(struct
     am_recovery_device *);
- 
+
+/** Type of connection a device is available on */
+enum connection_type {
+    CONNECTION_TYPE_NETWORK = 0,
+    CONNECTION_TYPE_USB = 1
+};
+
 struct am_device {
     unsigned char unknown0[16]; /* 0 - zero */
     unsigned int device_id;     /* 16 */
     unsigned int product_id;    /* 20 - set to AMD_IPHONE_PRODUCT_ID */
     char *serial;               /* 24 - set to AMD_IPHONE_SERIAL */
-    unsigned int unknown1;      /* 28 */
-    unsigned char unknown2[4];  /* 32 */
+    //unsigned int unknown1;      /* 28 */
+    enum connection_type connection_type;      /* 28 */
+    //unsigned char unknown2[4];  /* 32 */
+    unsigned int connectid;        /* 32 */
     unsigned int lockdown_conn; /* 36 */
     unsigned char unknown3[8];  /* 40 */
 };

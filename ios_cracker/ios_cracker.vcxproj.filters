@@ -43,9 +43,6 @@
     <ClCompile Include="apple_support.cc">
       <Filter>ios_cracker</Filter>
     </ClCompile>
-    <ClCompile Include="apple_auth_device.cc">
-      <Filter>ios_cracker</Filter>
-    </ClCompile>
     <ClCompile Include="..\ABI\thirdparty\glog\logging.cc">
       <Filter>ABI\thirdparty\glog</Filter>
     </ClCompile>
@@ -253,6 +250,7 @@
     <ClCompile Include="..\ABI\googletest\gtest-all.cc">
       <Filter>ABI\googletest</Filter>
     </ClCompile>
+    <ClCompile Include="aiddll.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\ABI\base\string\string_case.h">
@@ -301,9 +299,6 @@
       <Filter>ABI\ios_authorize</Filter>
     </ClInclude>
     <ClInclude Include="apple_support.h">
-      <Filter>ios_cracker</Filter>
-    </ClInclude>
-    <ClInclude Include="apple_auth_device.h">
       <Filter>ios_cracker</Filter>
     </ClInclude>
     <ClInclude Include="..\ABI\thirdparty\glog\basictypes.h">
@@ -669,6 +664,7 @@
     <ClInclude Include="..\ABI\googletest\gtest\internal\custom\gtest.h">
       <Filter>ABI\googletest\gtest\internal\custom</Filter>
     </ClInclude>
+    <ClInclude Include="aiddll.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="ABI">

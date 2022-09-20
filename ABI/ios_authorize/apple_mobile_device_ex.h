@@ -111,6 +111,7 @@ namespace ABI {
 					CFRelease(sValue);
 					set_fair_play_device_type(fair_device_type);
 				}
+				CFRelease(sDomain);
 			}
 
 			void* device_handle() const {

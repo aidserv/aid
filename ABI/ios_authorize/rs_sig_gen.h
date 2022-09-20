@@ -17,7 +17,7 @@ namespace ABI{
 			}
 			void reset(){
 				if(data()!=0){
-					free(data());
+					//free(data());
 					set_data(0);
 				}
 				if(length()!=0){

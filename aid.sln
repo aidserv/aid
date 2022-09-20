@@ -5,10 +5,6 @@ VisualStudioVersion = 16.0.29509.3
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "aiddll", "ios_cracker\ios_cracker.vcxproj", "{5BC7A87C-DE5B-4C07-9973-CE5C676E6985}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ios_download", "ios_download\ios_download.vcxproj", "{9EAA32EE-AD53-4C65-8BA1-BF6C4330002C}"
-EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ios_broker", "ios_broker\ios_broker.vcxproj", "{F37FD7C2-A5EF-4772-B67D-67109F917FDB}"
-EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "demo", "demo\demo.vcxproj", "{0805BE19-4BFD-4C0D-A924-D7C614342C68}"
 	ProjectSection(ProjectDependencies) = postProject
 		{5BC7A87C-DE5B-4C07-9973-CE5C676E6985} = {5BC7A87C-DE5B-4C07-9973-CE5C676E6985}
@@ -28,18 +24,6 @@ Global
 		{5BC7A87C-DE5B-4C07-9973-CE5C676E6985}.Release|x64.ActiveCfg = Release|Win32
 		{5BC7A87C-DE5B-4C07-9973-CE5C676E6985}.Release|x86.ActiveCfg = Release|Win32
 		{5BC7A87C-DE5B-4C07-9973-CE5C676E6985}.Release|x86.Build.0 = Release|Win32
-		{9EAA32EE-AD53-4C65-8BA1-BF6C4330002C}.Debug|x64.ActiveCfg = Debug|Win32
-		{9EAA32EE-AD53-4C65-8BA1-BF6C4330002C}.Debug|x86.ActiveCfg = Debug|Win32
-		{9EAA32EE-AD53-4C65-8BA1-BF6C4330002C}.Debug|x86.Build.0 = Debug|Win32
-		{9EAA32EE-AD53-4C65-8BA1-BF6C4330002C}.Release|x64.ActiveCfg = Release|Win32
-		{9EAA32EE-AD53-4C65-8BA1-BF6C4330002C}.Release|x86.ActiveCfg = Release|Win32
-		{9EAA32EE-AD53-4C65-8BA1-BF6C4330002C}.Release|x86.Build.0 = Release|Win32
-		{F37FD7C2-A5EF-4772-B67D-67109F917FDB}.Debug|x64.ActiveCfg = Debug|Win32
-		{F37FD7C2-A5EF-4772-B67D-67109F917FDB}.Debug|x86.ActiveCfg = Debug|Win32
-		{F37FD7C2-A5EF-4772-B67D-67109F917FDB}.Debug|x86.Build.0 = Debug|Win32
-		{F37FD7C2-A5EF-4772-B67D-67109F917FDB}.Release|x64.ActiveCfg = Release|Win32
-		{F37FD7C2-A5EF-4772-B67D-67109F917FDB}.Release|x86.ActiveCfg = Release|Win32
-		{F37FD7C2-A5EF-4772-B67D-67109F917FDB}.Release|x86.Build.0 = Release|Win32
 		{0805BE19-4BFD-4C0D-A924-D7C614342C68}.Debug|x64.ActiveCfg = Debug|x64
 		{0805BE19-4BFD-4C0D-A924-D7C614342C68}.Debug|x64.Build.0 = Debug|x64
 		{0805BE19-4BFD-4C0D-A924-D7C614342C68}.Debug|x86.ActiveCfg = Debug|Win32
