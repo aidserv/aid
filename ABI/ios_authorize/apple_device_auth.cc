@@ -1,7 +1,6 @@
 #include "abi/ios_authorize/apple_device_auth.h"
 #include <cstdio>
 #include <Windows.h>
-#include "ABI/ios_authorize/iTunesInterface.h"
 #include "ABI/ios_authorize/Sync.h"
 #include "ABI/ios_authorize/Universal.h"
 #include "ABI/ios_authorize/itunes_internal_abi.h"

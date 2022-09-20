@@ -12,7 +12,7 @@
 #include "ios_cracker/apple_ssl.h"
 #include "aidserv.h"
 #include <iostream>
-#pragma comment(lib,"aidserv.lib")
+//#pragma comment(lib,"aidserv.lib")
 
 namespace ABI {
 	namespace internal {
