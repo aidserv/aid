@@ -3,3 +3,6 @@ Debug/**
 *.db
 */.vs/**
 /lib/aidserv.lib
+/demo/Release
+/demo/Debug
+/Release
