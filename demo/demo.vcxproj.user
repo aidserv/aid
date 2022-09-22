@@ -4,4 +4,8 @@
     <LocalDebuggerCommandArguments>d5d0e6c0b6a3fe8ecee1ec8f7f43bac5229e5629</LocalDebuggerCommandArguments>
     <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LocalDebuggerCommandArguments>d5d0e6c0b6a3fe8ecee1ec8f7f43bac5229e5629</LocalDebuggerCommandArguments>
+    <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
+  </PropertyGroup>
 </Project>

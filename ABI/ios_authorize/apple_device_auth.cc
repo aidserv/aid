@@ -91,25 +91,35 @@ namespace ABI {
 				message("不处理网络连接设备 %p \n", deviceHandle);
 				return;
 			}
-			if (deviceHandle->connectid==0)
-				int connret = AMDeviceConnect(deviceHandle);
-
-			ABI::internal::AppleMobileDeviceEx apple_device(deviceHandle);
-			string udid = apple_device.udid();
-
 			switch (CallbackInfo->msgType)
 			{
 			case ADNCI_MSG_CONNECTED:
-				message("Device %p connected\n", deviceHandle);
+			{
+				if (deviceHandle->connectid == 0) {
+					int connret = AMDeviceConnect(deviceHandle);
+				}
+				ABI::internal::AppleMobileDeviceEx apple_device(deviceHandle);
+				string udid = apple_device.udid();
 				gudid[udid] = deviceHandle;
+				message("Device %p connected\n", deviceHandle);
 				break;
-
+			}
 			case ADNCI_MSG_DISCONNECTED:
-				message("Device %p disconnected\n", deviceHandle);
-				AMDeviceDisconnect(gudid.at(udid));
+			{
+				string udid;
+				for (auto it : gudid)
+				{
+					if (it.second == deviceHandle)
+					{
+						int iret = AMDeviceDisconnect(it.second);
+						udid = it.first;
+						break;
+					}
+				}
 				gudid.erase(udid);
+				message("Device %p disconnected\n", deviceHandle);
 				break;
-
+			}
 			case 3:
 				message("Unsubscribed\n");
 				break;

@@ -1,5 +1,7 @@
 ﻿#include <iostream>
 #include "ios_cracker/aiddll.h"
+#include <Dimm.h>
+
 
 int main(int argc, char* argv[], char* envp[])
 {
@@ -12,12 +14,19 @@ int main(int argc, char* argv[], char* envp[])
 	}
 	else
 	{
-		ret = aid("00008110-001271A43462801E");
-		std::cout << ret <<std::endl;
-		ret = aid("00008101-0004595C1422001E");
-		std::cout << ret <<std::endl;
-		ret = aid("d5d0e6c0b6a3fe8ecee1ec8f7f43bac5229e5629");
-		std::cout << ret <<std::endl;
+		while (true)
+		{
+			ret = aid("00008110-001271A43462801E");
+			std::cout << ret <<std::endl;
+			Sleep(2000);
+
+			ret = aid("00008101-0004595C1422001E");
+			std::cout << ret <<std::endl;
+			Sleep(2000);
+			ret = aid("d5d0e6c0b6a3fe8ecee1ec8f7f43bac5229e5629");
+			std::cout << ret <<std::endl;
+			Sleep(2000);
+		}
 	}
 	return  ret ? EXIT_SUCCESS : EXIT_FAILURE;
 }
