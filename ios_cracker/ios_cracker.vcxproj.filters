@@ -130,9 +130,6 @@
     <ClCompile Include="..\ios_helper\remote_auth_request_impl.cc">
       <Filter>ios_helper</Filter>
     </ClCompile>
-    <ClCompile Include="..\ABI\jsoncpp\json_reader.cpp" />
-    <ClCompile Include="..\ABI\jsoncpp\json_value.cpp" />
-    <ClCompile Include="..\ABI\jsoncpp\json_writer.cpp" />
     <ClCompile Include="..\ABI\detours\creatwth.cpp">
       <Filter>ABI\detours</Filter>
     </ClCompile>
@@ -251,6 +248,24 @@
       <Filter>ABI\googletest</Filter>
     </ClCompile>
     <ClCompile Include="aiddll.cpp" />
+    <ClCompile Include="..\ABI\jsoncpp\json_reader.cpp">
+      <Filter>ABI\jsoncpp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ABI\jsoncpp\json_value.cpp">
+      <Filter>ABI\jsoncpp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ABI\jsoncpp\json_writer.cpp">
+      <Filter>ABI\jsoncpp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ProtoBuf\GenerateRS\GenerateRS.grpc.pb.cc">
+      <Filter>ProtoBuf\GenerateRS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ProtoBuf\GenerateRS\GenerateRS.pb.cc">
+      <Filter>ProtoBuf\GenerateRS</Filter>
+    </ClCompile>
+    <ClCompile Include="GenerateRS_client.cc">
+      <Filter>ProtoBuf\GenerateRS</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\ABI\base\string\string_case.h">
@@ -665,6 +680,15 @@
       <Filter>ABI\googletest\gtest\internal\custom</Filter>
     </ClInclude>
     <ClInclude Include="aiddll.h" />
+    <ClInclude Include="..\ProtoBuf\GenerateRS\GenerateRS.grpc.pb.h">
+      <Filter>ProtoBuf\GenerateRS</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ProtoBuf\GenerateRS\GenerateRS.pb.h">
+      <Filter>ProtoBuf\GenerateRS</Filter>
+    </ClInclude>
+    <ClInclude Include="GenerateRS_client.h">
+      <Filter>ProtoBuf\GenerateRS</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="ABI">
@@ -771,6 +795,15 @@
     </Filter>
     <Filter Include="ABI\googletest\gtest\internal\custom">
       <UniqueIdentifier>{c27839bb-f4bd-44b3-abdd-8044d828631d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ABI\jsoncpp">
+      <UniqueIdentifier>{824c11f7-94e2-4d6f-bb0b-cf2ab0f9701a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ProtoBuf">
+      <UniqueIdentifier>{acd60040-544c-43b2-aaab-92c93c0e0899}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ProtoBuf\GenerateRS">
+      <UniqueIdentifier>{48793949-008e-43d7-9104-b31f2f27a53e}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

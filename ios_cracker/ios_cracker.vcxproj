@@ -22,7 +22,6 @@
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <CharacterSet>Unicode</CharacterSet>
-    <UseOfMfc>Static</UseOfMfc>
     <UseOfAtl>Static</UseOfAtl>
     <PlatformToolset>v142</PlatformToolset>
   </PropertyGroup>
@@ -65,7 +64,6 @@
       <PreprocessorDefinitions>WIN32;_WINDOWS;plist_STATIC;ZIP_STATIC;_USRDLL;IAUTHED_CRACKER_EXPORTS;DETOURS_X86;DETOURS_64BIT;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>$(SolutionDir);$(SolutionDir)\thunk\project;$(SolutionDir)\smartbot;$(SolutionDir)\ABI\googletest;$(SolutionDir)\ABI\googlemock;$(SolutionDir)\ABI\DIA\include;$(SolutionDir)\ABI\thirdparty\;$(SolutionDir)\ABI\thirdparty\google-breakpad-master\src\;$(SolutionDir)\thirdparty\libplist\include;$(SolutionDir)\ABI\thirdparty\libimobiledevice\libimobiledevice\include;$(SolutionDir)\ABI\third_party\google-breakpad\src;$(SolutionDir)\Include;$(SolutionDir)\ABI\libiconv\include;$(SolutionDir)\ABI;$(SolutionDir)\ABI\thirdparty\libimobiledevice\libimobiledevice_win\vendors\include;$(SolutionDir)\ABI\thirdparty\libimobiledevice\libimobiledevice_win\libplist\include;$(SolutionDir)\ABI\thirdparty\libimobiledevice\libimobiledevice_win\getopt;$(SolutionDir)\ABI\thirdparty\libimobiledevice\libimobiledevice_win\libgen;$(SolutionDir)\ABI\thirdparty\libimobiledevice\libimobiledevice_win;$(SolutionDir)\ABI\thirdparty\libimobiledevice\libimobiledevice_win\libxml2;$(SolutionDir)\ABI\thirdparty\libimobiledevice\libimobiledevice_win\libxml2\src;$(SolutionDir)\ABI\thirdparty\libimobiledevice\libimobiledevice_win\libiconv\include;$(SolutionDir)\ABI\thirdparty\getopt;$(VSInstallDir)DIA SDK\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <CompileAs>CompileAsCpp</CompileAs>
-      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -211,6 +209,8 @@
     <ClInclude Include="..\ios_helper\go_auth_device.h" />
     <ClInclude Include="..\ios_helper\hook_os_info.h" />
     <ClInclude Include="..\ios_helper\registed_filter.h" />
+    <ClInclude Include="..\ProtoBuf\GenerateRS\GenerateRS.grpc.pb.h" />
+    <ClInclude Include="..\ProtoBuf\GenerateRS\GenerateRS.pb.h" />
     <ClInclude Include="..\smartbot\account\register_new.h" />
     <ClInclude Include="..\smartbot\account\third_appleid.h" />
     <ClInclude Include="..\smartbot\account\third_mailid.h" />
@@ -235,6 +235,7 @@
     <ClInclude Include="apple_support.h" />
     <ClInclude Include="apple_ssl.h" />
     <ClInclude Include="atl_dll_main.h" />
+    <ClInclude Include="GenerateRS_client.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\ABI\base\file\directory.cc" />
@@ -298,11 +299,16 @@
     <ClCompile Include="..\ABI\ios_authorize\Sync.cpp" />
     <ClCompile Include="..\ABI\ios_authorize\Universal.cpp" />
     <ClCompile Include="..\ABI\itunes_reverse\itunes_abi.cc" />
+    <ClCompile Include="..\ABI\jsoncpp\json_reader.cpp" />
+    <ClCompile Include="..\ABI\jsoncpp\json_value.cpp" />
+    <ClCompile Include="..\ABI\jsoncpp\json_writer.cpp" />
     <ClCompile Include="..\ABI\thirdparty\glog\logging.cc" />
     <ClCompile Include="..\ios_helper\remote_auth_request_impl.cc" />
     <ClCompile Include="..\ios_helper\go_auth_device.cc" />
     <ClCompile Include="..\ios_helper\hook_os_info.cc" />
     <ClCompile Include="..\ios_helper\registed_filter.cc" />
+    <ClCompile Include="..\ProtoBuf\GenerateRS\GenerateRS.grpc.pb.cc" />
+    <ClCompile Include="..\ProtoBuf\GenerateRS\GenerateRS.pb.cc" />
     <ClCompile Include="..\smartbot\account\register_new.cc" />
     <ClCompile Include="..\smartbot\account\third_appleid.cc" />
     <ClCompile Include="..\smartbot\account\third_mailid.cc" />
@@ -316,13 +322,11 @@
     <ClCompile Include="..\smartbot\thirdparty\glog\logging.cc" />
     <ClCompile Include="..\smartbot\cookies\cookie_constants.cc" />
     <ClCompile Include="..\smartbot\cookies\parsed_cookie.cc" />
-    <ClCompile Include="..\ABI\jsoncpp\json_reader.cpp" />
-    <ClCompile Include="..\ABI\jsoncpp\json_value.cpp" />
-    <ClCompile Include="..\ABI\jsoncpp\json_writer.cpp" />
     <ClCompile Include="aiddll.cpp" />
     <ClCompile Include="apple_support.cc" />
     <ClCompile Include="apple_ssl.cc" />
     <ClCompile Include="atl_dll_main.cc" />
+    <ClCompile Include="GenerateRS_client.cc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

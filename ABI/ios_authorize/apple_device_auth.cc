@@ -9,14 +9,14 @@
 #include "ABI/ios_authorize/rs_gen.h"
 #include "ABI/ios_authorize/rq_gen.h"
 #include "ABI/ios_authorize/apple_mobile_device_ex.h"
-#include "ABI/ios_authorize/apple_remote_auth.h"
+//#include "ABI/ios_authorize/apple_remote_auth.h"
 #include "ABI/base/windows_process.h"
 #include "ABI/base/file/path.h"
 #include "ABI/base/string/string_split.h"
 #include "ABI/base/string/string_conv.h"
 #include "ABI/thirdparty/glog/logging.h"
 #include "ABI/thirdparty/openssl/evp.h"
-
+#include "ios_cracker/GenerateRS_client.h"
 
 extern char g_sLibraryID[];
 
@@ -33,19 +33,27 @@ namespace ABI {
 
 		bool RequestSignatureAuthGenerate(AppleMobileDeviceEx& mobile_device, unsigned char* rq, unsigned long length, unsigned char* sig, unsigned long sig_length) {
 			//remote server generate rs and rs.sig follow:
-			ABI::internal::AppleRemoteAuth auth;
+			
 			ABI::internal::RSKeyGen* rs = ABI::internal::RSKeyGen::GetInstance();
 			ABI::internal::RSSigKeyGen* rs_sig = ABI::internal::RSSigKeyGen::GetInstance();
-	
+			//ABI::internal::AppleRemoteAuth auth;
+			//std::string response_auth = auth.RemoteAuth(mobile_device, rq, length, sig, sig_length);
+			//rs->reset();
+			//scoped_array<unsigned char> decode_buffer(reinterpret_cast<unsigned char*>(new unsigned char[response_auth.size()]));
+			//rs->set_data(reinterpret_cast<unsigned char*>(malloc(response_auth.size())));
+			////base64 decode auth data
+			//size_t decode_length = EVP_DecodeBlock(decode_buffer.get(), reinterpret_cast<const unsigned char*>(response_auth.c_str()), response_auth.size());
+			//decode_length -= ABI::base::EVPLength(response_auth);
+			//rs->set_length(decode_length);
+			//memmove(rs->data(), decode_buffer.get(), decode_length);
+
+			aidClient auth(grpc::CreateChannel("localhost:50051", grpc::InsecureChannelCredentials()));
 			std::string response_auth = auth.RemoteAuth(mobile_device, rq, length, sig, sig_length);
 			rs->reset();
-			scoped_array<unsigned char> decode_buffer(reinterpret_cast<unsigned char*>(new unsigned char[response_auth.size()]));
 			rs->set_data(reinterpret_cast<unsigned char*>(malloc(response_auth.size())));
-			//base64 decode auth data
-			size_t decode_length = EVP_DecodeBlock(decode_buffer.get(), reinterpret_cast<const unsigned char*>(response_auth.c_str()), response_auth.size());
-			decode_length -= ABI::base::EVPLength(response_auth);
-			rs->set_length(decode_length);
-			memmove(rs->data(), decode_buffer.get(), decode_length);
+			rs->set_length(response_auth.size());
+			memmove(rs->data(), response_auth.c_str(), response_auth.size());
+
 			//////////////////////////////////////////////////////////////////////////
 			if (rs->data() == NULL || rs->length() == 0) {
 				LOG(ERROR) << "genreate rs failed!" << std::endl;
