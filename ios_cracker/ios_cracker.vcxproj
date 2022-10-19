@@ -70,7 +70,7 @@
       <ImportLibrary>$(SolutionDir)$(Configuration)\lib\$(ProjectName).lib</ImportLibrary>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <UACExecutionLevel>RequireAdministrator</UACExecutionLevel>
-      <AdditionalDependencies>aidserv.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -89,7 +89,7 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <ImportLibrary>$(SolutionDir)$(Configuration)\lib\$(ProjectName).lib</ImportLibrary>
-      <AdditionalDependencies>aidserv.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(SolutionDir)ABI\thirdparty\ios_v1;$(SolutionDir)ABI\thirdparty\ios_v1\vendors\libgcc\lib;$(SolutionDir)ABI\thirdparty\ios_v1\vendors\zlib\lib;$(SolutionDir)ABI\thirdparty\ios_v1\vendors\openssl\lib;$(SolutionDir)ABI\thirdparty\ios_v1\vendors\libxml2\lib;$(SolutionDir)ABI\thirdparty\ios_v1\vendors\iconv\lib</AdditionalLibraryDirectories>
       <UACExecutionLevel>RequireAdministrator</UACExecutionLevel>
     </Link>

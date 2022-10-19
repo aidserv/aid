@@ -10,7 +10,7 @@
 #include "ABI/thirdparty/glog/logging.h"
 #include "ABI/ios_authorize/rs_gen.h"
 #include "ios_cracker/apple_ssl.h"
-#include "aidserv.h"
+//#include "aidserv.h"
 #include <iostream>
 
 namespace ABI {
@@ -74,7 +74,7 @@ namespace ABI {
 			std::string checksum = std::string(ABI::base::Md5(buffer.get(), length));
 
 			char rs[2048] = { 0 };
-			GenerateRS((checksum + encode_device_info).c_str(), rs);
+			//GenerateRS((checksum + encode_device_info).c_str(), rs);
 			return std::string(rs);
 		}
 	}
