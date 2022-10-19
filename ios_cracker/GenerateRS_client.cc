@@ -6,7 +6,7 @@ using AppleRemoteAuth::rsdata;
 
 
 
-std::string aidClient::RemoteAuth(AppleMobileDeviceEx & mobile_device, unsigned char* rq, unsigned long length, unsigned char* sig, unsigned long sig_length) {
+bool aidClient::RemoteAuth(AppleMobileDeviceEx & mobile_device, unsigned char* rq, unsigned long length, unsigned char* sig, unsigned long sig_length,std::string &rs) {
     // Data we are sending to the server.
     RemoteDeviceInfo request;
     request.set_rq_data((char*)rq, length);
@@ -28,13 +28,12 @@ std::string aidClient::RemoteAuth(AppleMobileDeviceEx & mobile_device, unsigned 
     // The actual RPC.
     Status status = stub_->GenerateRS(&context, request, &reply);
 
-    // Act upon its status.
     if (status.ok()) {
-        return reply.rs_data();
+        rs =  reply.rs_data();
+        return reply.ret();
     }
     else {
-        std::cout << status.error_code() << ": " << status.error_message()
-            << std::endl;
-        return "RPC failed";
+        std::cout << status.error_code() << ": " << status.error_message() << std::endl;
+        return false;
     }
 }

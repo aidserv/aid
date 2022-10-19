@@ -15,7 +15,7 @@ class aidClient {
 public:
 	aidClient(std::shared_ptr<Channel> channel)
 		: stub_(aid::NewStub(channel)) {}
-	std::string RemoteAuth(AppleMobileDeviceEx& mobile_device, unsigned char* rq, unsigned long length, unsigned char* sig, unsigned long sig_length);
+	bool RemoteAuth(AppleMobileDeviceEx& mobile_device, unsigned char* rq, unsigned long length, unsigned char* sig, unsigned long sig_length, std::string &rs);
 private:
 	std::unique_ptr<aid::Stub> stub_;
 };
