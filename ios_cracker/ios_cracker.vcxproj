@@ -28,9 +28,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
-    <UseOfMfc>Static</UseOfMfc>
     <UseOfAtl>Static</UseOfAtl>
     <PlatformToolset>v142</PlatformToolset>
   </PropertyGroup>
@@ -69,7 +67,6 @@
       <SubSystem>Windows</SubSystem>
       <ImportLibrary>$(SolutionDir)$(Configuration)\lib\$(ProjectName).lib</ImportLibrary>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <UACExecutionLevel>RequireAdministrator</UACExecutionLevel>
       <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
@@ -90,7 +87,8 @@
       <OptimizeReferences>true</OptimizeReferences>
       <ImportLibrary>$(SolutionDir)$(Configuration)\lib\$(ProjectName).lib</ImportLibrary>
       <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(SolutionDir)ABI\thirdparty\ios_v1;$(SolutionDir)ABI\thirdparty\ios_v1\vendors\libgcc\lib;$(SolutionDir)ABI\thirdparty\ios_v1\vendors\zlib\lib;$(SolutionDir)ABI\thirdparty\ios_v1\vendors\openssl\lib;$(SolutionDir)ABI\thirdparty\ios_v1\vendors\libxml2\lib;$(SolutionDir)ABI\thirdparty\ios_v1\vendors\iconv\lib</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>
+      </AdditionalLibraryDirectories>
       <UACExecutionLevel>RequireAdministrator</UACExecutionLevel>
     </Link>
   </ItemDefinitionGroup>
