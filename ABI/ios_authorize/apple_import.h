@@ -1,7 +1,7 @@
 #ifndef ABI_IOS_AUTHORIZE_APPLE_IMPORT_H_
 #define ABI_IOS_AUTHORIZE_APPLE_IMPORT_H_
 
-#include "ios_cracker/atl_dll_main.h"
+#include "atl_dll_main.h"
 #include "ABI/ios_authorize/MobileDevice.h"
 
 #ifdef __cplusplus

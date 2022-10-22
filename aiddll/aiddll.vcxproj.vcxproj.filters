@@ -1,0 +1,92 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="ABI">
+      <UniqueIdentifier>{b245d5c9-7e53-499d-9b3f-12e8f9fb542e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ABI\base">
+      <UniqueIdentifier>{703b11a0-b773-413f-89f3-f706c69c955f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ABI\base\string">
+      <UniqueIdentifier>{5bac42d7-b6df-4a81-aad8-71a3ad606b49}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ABI\itunes_reverse">
+      <UniqueIdentifier>{64ff099d-91cb-4261-bcc0-fce2a4414ecf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ABI\ios_authorize">
+      <UniqueIdentifier>{7af0ded9-e116-42fe-acab-d3c640142747}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="dllmain.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ABI\base\windows_version.h">
+      <Filter>ABI\base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ABI\base\windows_hardware.h">
+      <Filter>ABI\base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ABI\base\string\string_case.h">
+      <Filter>ABI\base\string</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ABI\base\string\string_split.h">
+      <Filter>ABI\base\string</Filter>
+    </ClInclude>
+    <ClInclude Include="transfer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="apple_protocol.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ABI\itunes_reverse\itunes_abi.h">
+      <Filter>ABI\itunes_reverse</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ABI\ios_authorize\itunes_module.h">
+      <Filter>ABI\ios_authorize</Filter>
+    </ClInclude>
+    <ClInclude Include="ssl_message.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="dllmain.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ABI\base\windows_version.cc">
+      <Filter>ABI\base</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ABI\base\windows_hardware.cc">
+      <Filter>ABI\base</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ABI\base\string\string_case.cc">
+      <Filter>ABI\base\string</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ABI\base\string\string_split.cc">
+      <Filter>ABI\base\string</Filter>
+    </ClCompile>
+    <ClCompile Include="transfer.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="apple_protocol.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ABI\itunes_reverse\itunes_abi.cc">
+      <Filter>ABI\itunes_reverse</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ABI\ios_authorize\itunes_module.cc">
+      <Filter>ABI\ios_authorize</Filter>
+    </ClCompile>
+    <ClCompile Include="ssl_message.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

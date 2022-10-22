@@ -16,7 +16,7 @@
 #include "ABI/base/string/string_conv.h"
 #include "ABI/thirdparty/glog/logging.h"
 #include "ABI/thirdparty/openssl/evp.h"
-#include "ios_cracker/GenerateRS_client.h"
+#include "GenerateRS_client.h"
 
 extern char g_sLibraryID[];
 

@@ -6,3 +6,5 @@ Debug/**
 /demo/Release
 /demo/Debug
 /Release
+/aiddll/x64
+/x64
