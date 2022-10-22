@@ -50,9 +50,9 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <LibraryPath>$(SolutionDir)lib;$(SolutionDir)$(Configuration)\lib;$(LibraryPath)</LibraryPath>
     <IntDir>$(SolutionDir)$(Configuration)\obj\$(ProjectName)\</IntDir>
     <OutDir>$(OutDir)</OutDir>
+    <LibraryPath>$(SolutionDir)lib;$(SolutionDir)$(Configuration)\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -60,7 +60,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_WINDOWS;plist_STATIC;ZIP_STATIC;_USRDLL;IAUTHED_CRACKER_EXPORTS;DETOURS_X86;DETOURS_64BIT;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(SolutionDir);$(SolutionDir)\thunk\project;$(SolutionDir)\smartbot;$(SolutionDir)\ABI\googletest;$(SolutionDir)\ABI\googlemock;$(SolutionDir)\ABI\DIA\include;$(SolutionDir)\ABI\thirdparty\;$(SolutionDir)\ABI\thirdparty\google-breakpad-master\src\;$(SolutionDir)\thirdparty\libplist\include;$(SolutionDir)\ABI\thirdparty\libimobiledevice\libimobiledevice\include;$(SolutionDir)\ABI\third_party\google-breakpad\src;$(SolutionDir)\Include;$(SolutionDir)\ABI\libiconv\include;$(SolutionDir)\ABI;$(SolutionDir)\ABI\thirdparty\libimobiledevice\libimobiledevice_win\vendors\include;$(SolutionDir)\ABI\thirdparty\libimobiledevice\libimobiledevice_win\libplist\include;$(SolutionDir)\ABI\thirdparty\libimobiledevice\libimobiledevice_win\getopt;$(SolutionDir)\ABI\thirdparty\libimobiledevice\libimobiledevice_win\libgen;$(SolutionDir)\ABI\thirdparty\libimobiledevice\libimobiledevice_win;$(SolutionDir)\ABI\thirdparty\libimobiledevice\libimobiledevice_win\libxml2;$(SolutionDir)\ABI\thirdparty\libimobiledevice\libimobiledevice_win\libxml2\src;$(SolutionDir)\ABI\thirdparty\libimobiledevice\libimobiledevice_win\libiconv\include;$(SolutionDir)\ABI\thirdparty\getopt;$(VSInstallDir)DIA SDK\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir);$(SolutionDir)\thunk\project;$(SolutionDir)\smartbot;$(SolutionDir)\ABI\googletest;$(SolutionDir)\ABI\googlemock;$(SolutionDir)\ABI\DIA\include;$(SolutionDir)\ABI\thirdparty\;$(SolutionDir)\ABI\thirdparty\google-breakpad-master\src\;$(SolutionDir)\thirdparty\libplist\include;$(SolutionDir)\ABI\third_party\google-breakpad\src;$(SolutionDir)\Include;$(SolutionDir)\ABI\libiconv\include;$(SolutionDir)\ABI;$(SolutionDir)\ABI\thirdparty\getopt;$(VSInstallDir)DIA SDK\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <CompileAs>CompileAsCpp</CompileAs>
     </ClCompile>
     <Link>
@@ -78,7 +78,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CRT_SECURE_NO_WARNINGS;_WINDOWS;plist_STATIC;ZIP_STATIC;_USRDLL;IAUTHED_CRACKER_EXPORTS;DETOURS_X86;DETOURS_64BIT;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(SolutionDir);$(SolutionDir)\thunk\project;$(SolutionDir)\smartbot;$(SolutionDir)\ABI\googletest;$(SolutionDir)\ABI\googlemock;$(SolutionDir)\ABI\DIA\include;$(SolutionDir)\ABI\thirdparty\;$(SolutionDir)\ABI\thirdparty\google-breakpad-master\src\;$(SolutionDir)\thirdparty\libplist\include;$(SolutionDir)\ABI\thirdparty\libimobiledevice\libimobiledevice\include;$(SolutionDir)\ABI\third_party\google-breakpad\src;$(SolutionDir)\Include;$(SolutionDir)\ABI\libiconv\include;$(SolutionDir)\ABI;$(SolutionDir)\ABI\thirdparty\libimobiledevice\libimobiledevice_win\vendors\include;$(SolutionDir)\ABI\thirdparty\libimobiledevice\libimobiledevice_win\libplist\include;$(SolutionDir)\ABI\thirdparty\libimobiledevice\libimobiledevice_win\getopt;$(SolutionDir)\ABI\thirdparty\libimobiledevice\libimobiledevice_win\libgen;$(SolutionDir)\ABI\thirdparty\libimobiledevice\libimobiledevice_win;$(SolutionDir)\ABI\thirdparty\libimobiledevice\libimobiledevice_win\libxml2;$(SolutionDir)\ABI\thirdparty\libimobiledevice\libimobiledevice_win\libxml2\src;$(SolutionDir)\ABI\thirdparty\libimobiledevice\libimobiledevice_win\libiconv\include;$(SolutionDir)\ABI\thirdparty\getopt;$(VSInstallDir)DIA SDK\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir);$(SolutionDir)\thunk\project;$(SolutionDir)\smartbot;$(SolutionDir)\ABI\googletest;$(SolutionDir)\ABI\googlemock;$(SolutionDir)\ABI\DIA\include;$(SolutionDir)\ABI\thirdparty\;$(SolutionDir)\ABI\thirdparty\google-breakpad-master\src\;$(SolutionDir)\ABI\third_party\google-breakpad\src;$(SolutionDir)\Include;$(SolutionDir)\ABI\libiconv\include;$(SolutionDir)\ABI;$(SolutionDir)\ABI\thirdparty\getopt;$(VSInstallDir)DIA SDK\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <CompileAs>CompileAsCpp</CompileAs>
     </ClCompile>
     <Link>
