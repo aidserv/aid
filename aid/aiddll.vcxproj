@@ -14,7 +14,7 @@
     <ProjectGuid>{5BC7A87C-DE5B-4C07-9973-CE5C676E6985}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>iCrackWeb</RootNamespace>
-    <ProjectName>aiddll</ProjectName>
+    <ProjectName>aid</ProjectName>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -43,15 +43,11 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IntDir>$(SolutionDir)$(Configuration)\obj\$(ProjectName)\</IntDir>
-    <OutDir>$(OutDir)</OutDir>
     <LinkIncremental>true</LinkIncremental>
     <LibraryPath>$(SolutionDir)lib;$(SolutionDir)$(Configuration)\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <IntDir>$(SolutionDir)$(Configuration)\obj\$(ProjectName)\</IntDir>
-    <OutDir>$(OutDir)</OutDir>
     <LibraryPath>$(SolutionDir)lib;$(SolutionDir)$(Configuration)\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -203,10 +199,6 @@
     <ClInclude Include="..\ABI\thirdparty\glog\basictypes.h" />
     <ClInclude Include="..\ABI\thirdparty\glog\logging.h" />
     <ClInclude Include="..\ABI\thirdparty\glog\scoped_ptr.h" />
-    <ClInclude Include="..\ios_helper\remote_auth_request_impl.h" />
-    <ClInclude Include="..\ios_helper\go_auth_device.h" />
-    <ClInclude Include="..\ios_helper\hook_os_info.h" />
-    <ClInclude Include="..\ios_helper\registed_filter.h" />
     <ClInclude Include="..\ProtoBuf\GenerateRS\GenerateRS.grpc.pb.h" />
     <ClInclude Include="..\ProtoBuf\GenerateRS\GenerateRS.pb.h" />
     <ClInclude Include="..\smartbot\account\register_new.h" />
@@ -299,10 +291,6 @@
     <ClCompile Include="..\ABI\jsoncpp\json_value.cpp" />
     <ClCompile Include="..\ABI\jsoncpp\json_writer.cpp" />
     <ClCompile Include="..\ABI\thirdparty\glog\logging.cc" />
-    <ClCompile Include="..\ios_helper\remote_auth_request_impl.cc" />
-    <ClCompile Include="..\ios_helper\go_auth_device.cc" />
-    <ClCompile Include="..\ios_helper\hook_os_info.cc" />
-    <ClCompile Include="..\ios_helper\registed_filter.cc" />
     <ClCompile Include="..\ProtoBuf\GenerateRS\GenerateRS.grpc.pb.cc" />
     <ClCompile Include="..\ProtoBuf\GenerateRS\GenerateRS.pb.cc" />
     <ClCompile Include="..\smartbot\account\register_new.cc" />

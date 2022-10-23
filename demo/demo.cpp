@@ -1,5 +1,5 @@
 ﻿#include <iostream>
-#include "aiddll/aiddll.h"
+#include "aid/aiddll.h"
 
 int main(int argc, char* argv[], char* envp[])
 {

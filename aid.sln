@@ -8,7 +8,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "demo", "demo\demo.vcxproj",
 		{5BC7A87C-DE5B-4C07-9973-CE5C676E6985} = {5BC7A87C-DE5B-4C07-9973-CE5C676E6985}
 	EndProjectSection
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "aiddll", "aiddll\aiddll.vcxproj", "{5BC7A87C-DE5B-4C07-9973-CE5C676E6985}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "aid", "aid\aiddll.vcxproj", "{5BC7A87C-DE5B-4C07-9973-CE5C676E6985}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

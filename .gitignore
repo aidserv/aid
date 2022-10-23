@@ -8,3 +8,7 @@ Debug/**
 /Release
 /aiddll/x64
 /x64
+/aid/x64
+/aid/Debug
+/aid/Release
+/Debug

@@ -106,20 +106,8 @@
     <ClCompile Include="..\smartbot\base\string\string_conv.cc">
       <Filter>smartbot\base\string</Filter>
     </ClCompile>
-    <ClCompile Include="..\ios_helper\go_auth_device.cc">
-      <Filter>ios_helper</Filter>
-    </ClCompile>
-    <ClCompile Include="..\ios_helper\hook_os_info.cc">
-      <Filter>ios_helper</Filter>
-    </ClCompile>
-    <ClCompile Include="..\ios_helper\registed_filter.cc">
-      <Filter>ios_helper</Filter>
-    </ClCompile>
     <ClCompile Include="..\ABI\exception\exception_dump.cc">
       <Filter>ABI\exception</Filter>
-    </ClCompile>
-    <ClCompile Include="..\ios_helper\remote_auth_request_impl.cc">
-      <Filter>ios_helper</Filter>
     </ClCompile>
     <ClCompile Include="..\ABI\detours\creatwth.cpp">
       <Filter>ABI\detours</Filter>
@@ -422,20 +410,8 @@
     <ClInclude Include="..\smartbot\base\string\string_split.h">
       <Filter>smartbot\base\string</Filter>
     </ClInclude>
-    <ClInclude Include="..\ios_helper\go_auth_device.h">
-      <Filter>ios_helper</Filter>
-    </ClInclude>
-    <ClInclude Include="..\ios_helper\hook_os_info.h">
-      <Filter>ios_helper</Filter>
-    </ClInclude>
-    <ClInclude Include="..\ios_helper\registed_filter.h">
-      <Filter>ios_helper</Filter>
-    </ClInclude>
     <ClInclude Include="..\ABI\exception\exception_dump.h">
       <Filter>ABI\exception</Filter>
-    </ClInclude>
-    <ClInclude Include="..\ios_helper\remote_auth_request_impl.h">
-      <Filter>ios_helper</Filter>
     </ClInclude>
     <ClInclude Include="..\ABI\detours\detours.h">
       <Filter>ABI\detours</Filter>
@@ -728,9 +704,6 @@
     </Filter>
     <Filter Include="smartbot\account">
       <UniqueIdentifier>{8ebb8299-2f0e-4c5e-af82-32a1a2e247a1}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ios_helper">
-      <UniqueIdentifier>{c8ad4eb9-a595-42c1-9dc5-62cfeaf83ab8}</UniqueIdentifier>
     </Filter>
     <Filter Include="ABI\exception">
       <UniqueIdentifier>{c053e060-6e05-4304-b4d4-dcc1c3b94c6d}</UniqueIdentifier>
