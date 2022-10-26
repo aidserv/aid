@@ -12,3 +12,8 @@ Debug/**
 /aid/Debug
 /aid/Release
 /Debug
+/examples/cpp/Release
+/examples/cpp/Debug
+/examples/csharp/obj
+/examples/csharp/Properties
+/examples/csharp/bin
