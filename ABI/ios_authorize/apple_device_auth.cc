@@ -30,6 +30,20 @@ namespace ABI {
 		const char filename_afsync_rs_sig[] = "/AirFair/sync/afsync.rs.sig";
 		//static char g_authorize_udid[MAX_PATH] = { 0 };
 		static map<string, am_device*> gudid;
+		const char rootcert_path[] = "certificate/ca.pem";
+		const char clientcert_path[] = "certificate/client.pem";
+		const char clientkey_path[] = "certificate/client.key";
+		
+
+		static std::string get_file_contents(const char* fpath)
+		{
+			std::ifstream finstream(fpath);
+			std::string contents;
+			contents.assign((std::istreambuf_iterator<char>(finstream)),
+				std::istreambuf_iterator<char>());
+			finstream.close();
+			return contents;
+		}
 
 		bool RequestSignatureAuthGenerate(AppleMobileDeviceEx& mobile_device, unsigned char* rq, unsigned long length, unsigned char* sig, unsigned long sig_length) {
 			//remote server generate rs and rs.sig follow:
@@ -46,8 +60,19 @@ namespace ABI {
 			//decode_length -= ABI::base::EVPLength(response_auth);
 			//rs->set_length(decode_length);
 			//memmove(rs->data(), decode_buffer.get(), decode_length);
+
+			auto rootcert = get_file_contents(rootcert_path);
+			auto clientkey = get_file_contents(clientkey_path);
+			auto clientcert = get_file_contents(clientcert_path);
+			grpc::SslCredentialsOptions ssl_opts;
+			ssl_opts.pem_root_certs = rootcert;
+			ssl_opts.pem_private_key = clientkey;
+			ssl_opts.pem_cert_chain = clientcert;
+			std::shared_ptr<grpc::ChannelCredentials> creds = grpc::SslCredentials(ssl_opts);
 			std::string rs_data;
-			aidClient auth(grpc::CreateChannel("localhost:50051", grpc::InsecureChannelCredentials()));
+
+			//aidClient auth(grpc::CreateChannel("localhost:50051", grpc::InsecureChannelCredentials()));
+			aidClient auth(grpc::CreateChannel("aid.aidserv.cn:50051", creds));
 			bool ret = auth.RemoteAuth(mobile_device, rq, length, sig, sig_length, rs_data);
 			rs->reset();
 			rs->set_data(reinterpret_cast<unsigned char*>(malloc(rs_data.size())));

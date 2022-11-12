@@ -13,7 +13,7 @@
   <PropertyGroup Label="Globals">
     <ProjectGuid>{5BC7A87C-DE5B-4C07-9973-CE5C676E6985}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>iCrackWeb</RootNamespace>
+    <RootNamespace>aid</RootNamespace>
     <ProjectName>aid</ProjectName>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
