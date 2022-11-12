@@ -1,7 +1,7 @@
 #ifndef ABI_IOS_AUTHORIZE_APPLE_IMPORT_H_
 #define ABI_IOS_AUTHORIZE_APPLE_IMPORT_H_
 
-#include "ios_cracker/atl_dll_main.h"
+#include "atl_dll_main.h"
 #include "ABI/ios_authorize/MobileDevice.h"
 
 #ifdef __cplusplus
@@ -50,7 +50,7 @@ struct AMDeviceNotificationCallbackInformation {
 	unsigned int msgType;
 } ;
 
-extern am_device *deviceHandleConnected;
+//extern am_device *deviceHandleConnected;
 extern bool found_device;
 extern char *device_id;
 extern CFStringRef last_path;
@@ -140,7 +140,8 @@ WIN_DLL_API extern unsigned int (*AFCFileRefWrite)(AFCRef afc, AFCFileRef file, 
 
 // AirTrafficHost.dll functions
 //
-WIN_DLL_API extern ATHRef (*ATHostConnectionCreateWithLibrary)(CFStringRef library, CFStringRef udid, int);
+//WIN_DLL_API extern ATHRef (*ATHostConnectionCreateWithLibrary)(CFStringRef library, CFStringRef udid, int);
+WIN_DLL_API extern ATHRef (*ATHostConnectionCreateWithLibrary)(CFStringRef library, CFStringRef udid, CFStringRef athexe);
 WIN_DLL_API extern void (*ATHostConnectionDestroy)(ATHRef);
 WIN_DLL_API extern int (*ATHostConnectionSendPowerAssertion)(ATHRef, CFBooleanRef enable);
 WIN_DLL_API extern void (*ATHostConnectionRetain)(ATHRef);

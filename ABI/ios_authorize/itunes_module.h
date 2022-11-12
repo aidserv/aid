@@ -11,7 +11,6 @@ namespace ABI{
 			iTunesModule(void);
 			~iTunesModule(void);
 			std::wstring iTunesDll(const std::wstring& dll_name);
-			std::wstring iTunesSCInfo();
 			std::wstring core_foundation_dll() const{
 				const std::wstring data = core_foundation_dll_;
 				return data;

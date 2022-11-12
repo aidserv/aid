@@ -1,7 +1,7 @@
 #include "apple_import.h"
 #include "Sync.h"
 char g_sLibraryID[] = "5AC547BA5322B210";  // Where is this come from?
-
+bool g_startSync = false;
 
 void SendSyncRequest(ATHRef ath, unsigned int flags)
 {
@@ -141,7 +141,7 @@ void SendSyncRequest(ATHRef ath, unsigned int flags)
 	CFMutableDictionaryRef dictHostInfo = CFDictionaryCreateMutable(NULL, 0, pkCFTypeDictionaryKeyCallBacks, pkCFTypeDictionaryValueCallBacks);
 
 	CFStringRef sKey = CFStringCreateWithCString(NULL, "Version", kCFStringEncodingUTF8);
-	CFStringRef sValue = CFStringCreateWithCString(NULL, "11.1.0.126", kCFStringEncodingUTF8);
+	CFStringRef sValue = CFStringCreateWithCString(NULL, "12.1.0.71", kCFStringEncodingUTF8);
 	CFDictionaryAddValue(dictHostInfo, sKey, sValue);
 	CFRelease(sKey);
 	CFRelease(sValue);
@@ -297,19 +297,20 @@ DWORD WINAPI ReceiveMessageThreadFunc(LPVOID lpParam)
 {
 	ATHRef ath = (ATHRef)lpParam;
 	ATHostConnectionRetain(ath);
-	for(;;){
+	for (;;) {
 		CFDictionaryRef dict = ATHostConnectionReadMessage(ath);
+		g_startSync = true;
 		CFStringRef sKey = CFStringCreateWithCString(NULL, "Command", kCFStringEncodingUTF8);
 		CFStringRef sValue = CFDictionaryGetValue(dict, sKey);
 		CFIndex len = CFStringGetLength(sValue);
-		char *sCommand = (char *)malloc(len + 1);
+		char* sCommand = (char*)malloc(len + 1);
 		CFStringGetCString(sValue, sCommand, len + 1, kCFStringEncodingUTF8);
 		CFRelease(sKey);
 		CFRelease(sValue);
-		if(strcmp("Ping",sCommand) == 0){
+		if (strcmp("Ping", sCommand) == 0) {
 			ATHostConnectionSendPing(ath);
 		}
-		if(strcmp("SyncFinished", sCommand) == 0){
+		if (strcmp("SyncFinished", sCommand) == 0) {
 			break;
 		}
 	}

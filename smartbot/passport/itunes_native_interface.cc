@@ -105,13 +105,7 @@ namespace passport{
 			return (std::wstring(std::wstring(drive)+std::wstring(dir)));
 		}
 		std::wstring GetITunesInstallDll(const std::wstring dll_name){
-			const std::wstring dll = GetDirectory().append(L"itunes.dll");
-			//date:2015/09/06
-			if(PathFileExistsW(dll.c_str()))
-				return GetDirectory().append(dll_name);//load current directory itunes.dll
-			wchar_t path[MAX_PATH] = { 0 };
-			SHGetSpecialFolderPathW(NULL, path, CSIDL_PROGRAM_FILES, FALSE);
-			return (std::wstring(path) + std::wstring(L"\\iTunes\\") + dll_name);
+			return GetDirectory() + std::wstring(L"iTunes\\") + dll_name;
 		}
 	}
 	iTunesNativeInterface* iTunesNativeInterface::GetInstance(){
@@ -121,23 +115,15 @@ namespace passport{
 			if(InterlockedCompareExchangePointer(reinterpret_cast<PVOID*>(&info),new_info,NULL)){
 				delete new_info;
 			}
-			const std::wstring corefp_dll = internal::GetDirectory().append(L"CoreFP.dll");
-			const std::wstring itunesmobiledevice_dll = internal::GetDirectory().append(L"iTunesMobileDevice.dll");
+			const std::wstring corefp_dll = internal::GetITunesInstallDll(L"CoreFP.dll");
 			if (PathFileExistsW(corefp_dll.c_str()))
 				new_info->HKLMCustomizeModule(CustomizeModule::kCoreFP, corefp_dll.c_str());
-			if (PathFileExistsW(itunesmobiledevice_dll.c_str()))
-				new_info->HKLMCustomizeModule(CustomizeModule::kiTunesMobileDeviceDLL, itunesmobiledevice_dll.c_str());
+			
 		}
 		return info;
 	}
 	iTunesNativeInterface::iTunesNativeInterface(void){
-		internal::AddEnvironmentVariable(internal::GetAppleApplicationSupportDll(L""));
 		internal::AddEnvironmentVariable(internal::GetITunesInstallDll(L""));
-		std::wstring directory = internal::GetAppleMobileDeviceSupportDll(L"AirTrafficHostDLL");
-		if(directory.length()>0){
-			directory[directory.find_last_of(L"\\")+1] = 0;
-			internal::AddEnvironmentVariable(directory);
-		}
 	}
 	iTunesNativeInterface::~iTunesNativeInterface(void){
 
@@ -145,12 +131,14 @@ namespace passport{
 	bool iTunesNativeInterface::HKLMCustomizeModule(const CustomizeModule& customize_module, const wchar_t* module_name){
 		std::wstring sub_key = L"";
 		std::wstring sub_key_name = L"";
+		std::wstring sub_key_name2 = L"";
 		if (customize_module == CustomizeModule::kCoreFP){
-			sub_key = L"SOFTWARE\\Wow6432Node\\Apple Inc.\\CoreFP";
-			sub_key_name = L"LibraryPath";
+			sub_key = L"SOFTWARE\\Apple Inc.\\CoreFP";
+			sub_key_name = L"Libi4CFPath";
+			sub_key_name2 = L"LibiiiiPath";
 		}
 		else if (customize_module == CustomizeModule::kiTunesMobileDeviceDLL){
-			sub_key = L"SOFTWARE\\Wow6432Node\\Apple Inc.\\Apple Mobile Device Support\\Shared";
+			sub_key = L"SOFTWARE\\Apple Inc.\\Apple Mobile Device Support\\Shared";
 			sub_key_name = L"iTunesMobileDeviceDLL";
 		}
 		else{
@@ -167,6 +155,15 @@ namespace passport{
 			(const BYTE*)module_name, 
 			wcslen(module_name)*sizeof(wchar_t)) == ERROR_SUCCESS)
 			is_success = false;
+		if (customize_module == CustomizeModule::kCoreFP) {
+			if (::RegSetValueExW(h_setting,
+				sub_key_name2.c_str(),
+				0,
+				REG_SZ,
+				(const BYTE*)module_name,
+				wcslen(module_name) * sizeof(wchar_t)) == ERROR_SUCCESS)
+				is_success = false;
+		}
 		RegCloseKey(h_setting);
 		return is_success;
 	}
@@ -194,9 +191,9 @@ namespace passport{
 		unsigned long GetMD = 0;
 		unsigned long InitHost = 0;
 		unsigned long EstablishKey = 0;
-		LoadDlls();
+		//LoadDlls();
 		const std::wstring itunes_dll = internal::GetITunesInstallDll(L"iTunes.dll");
-		const std::wstring air_traffic_host_dll = internal::GetAppleMobileDeviceSupportDll(L"AirTrafficHostDLL");
+		const std::wstring air_traffic_host_dll = internal::GetITunesInstallDll(L"AirTrafficHostDLL");
 		const HMODULE itunes_base = LoadLibraryW(itunes_dll.c_str());
 		const HMODULE air_traffic_host_base = LoadLibraryW(air_traffic_host_dll.c_str());
 		if(iTunesDllVersion(L"10.5.0.142")){

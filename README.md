@@ -532,8 +532,13 @@ AFC服务所提供的根目录实际上是AFC2服务/var/mobile/Media目录
 
 
 
+# 同步服务调用顺序
+1. ATHostConnectionCreateWithLibrary
+2. ATHostConnectionReadMessage
+3. ATHostConnectionSendPing
+4. ATHostConnectionSendSyncRequest
+5. ATHostConnectionSendMetadataSyncFinished
 
-
-
+具体实现方法已经在代码中实现，请阅读代码。
 
 

@@ -2,7 +2,7 @@
 #include "abi/ios_authorize/itunes_module.h"
 #include "ABI/ios_authorize/apple_device_auth.h"
 
-am_device *deviceHandleConnected = NULL;
+//am_device *deviceHandleConnected = NULL;
 //struct afc_connection *iPodAFC;
 //struct afc_connection *iPodConnection;
 bool found_device = false;
@@ -94,7 +94,8 @@ unsigned int (*AFCFileRefWrite)(AFCRef afc, AFCFileRef file, void *buf, unsigned
 
 // AirTrafficHost.dll functions
 //
-ATHRef (*ATHostConnectionCreateWithLibrary)(CFStringRef library, CFStringRef udid, int);
+//ATHRef (*ATHostConnectionCreateWithLibrary)(CFStringRef library, CFStringRef udid, int);
+ATHRef(*ATHostConnectionCreateWithLibrary)(CFStringRef library, CFStringRef udid, CFStringRef athexe);
 void (*ATHostConnectionDestroy)(ATHRef);
 int (*ATHostConnectionSendPowerAssertion)(ATHRef, CFBooleanRef enable);
 void (*ATHostConnectionRetain)(ATHRef);
@@ -120,9 +121,7 @@ void LoadFunction(HINSTANCE hDll, LPCSTR sFunc, FARPROC *func)
 		ABI::internal::message("Error in resolve function %s().\n", sFunc);
 	}
 }
-am_device* GetConnectionHandle(){
-	return deviceHandleConnected;
-}
+
 bool LoadDlls()
 {
 	ABI::iTunes::iTunesModule itunes_module;
