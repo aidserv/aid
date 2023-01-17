@@ -144,13 +144,8 @@ namespace ABI {
 			unsigned long grappa_session_id() {
 				return grappa_sessionid_;
 			}
-			void set_grappa_sessionid(ATHRef ath) {
-				if (ath != NULL) {
-					grappa_sessionid_ = ATHostConnectionGetGrappaSessionId(ath);
-				}
-				else {
-					grappa_sessionid_ = NULL;
-				}
+			void set_grappa_sessionid(unsigned long grappa_sessionid) {
+					grappa_sessionid_ = grappa_sessionid;
 			}
 			char* udid() {
 				CFIndex len = 0;
@@ -167,6 +162,18 @@ namespace ABI {
 					CFRelease(sValue);
 				}
 				return udid_;
+			}
+			void set_grappa_data(unsigned char* grappa) {
+				grappa_ = grappa;
+			}
+			void set_grappa_data_len(unsigned long grappa_len) {
+				grappa_len_ = grappa_len;
+			}
+			unsigned char* grappa_data() const {
+				return grappa_;
+			}
+			unsigned long grappa_data_len() const {
+				return grappa_len_;
 			}
 
 		private:
@@ -208,6 +215,8 @@ namespace ABI {
 			char* unique_device_id_;
 			unsigned long grappa_sessionid_;
 			char* udid_;
+			unsigned char* grappa_;
+			unsigned long grappa_len_;
 		};
 	}
 }

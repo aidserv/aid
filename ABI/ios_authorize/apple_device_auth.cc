@@ -3,13 +3,11 @@
 #include <Windows.h>
 #include "ABI/ios_authorize/Sync.h"
 #include "ABI/ios_authorize/Universal.h"
-#include "ABI/ios_authorize/itunes_internal_abi.h"
 #include "ABI/ios_authorize/rs_sig_gen.h"
 #include "ABI/ios_authorize/rq_sig_gen.h"
 #include "ABI/ios_authorize/rs_gen.h"
 #include "ABI/ios_authorize/rq_gen.h"
 #include "ABI/ios_authorize/apple_mobile_device_ex.h"
-//#include "ABI/ios_authorize/apple_remote_auth.h"
 #include "ABI/base/windows_process.h"
 #include "ABI/base/file/path.h"
 #include "ABI/base/string/string_split.h"
@@ -17,6 +15,7 @@
 #include "ABI/thirdparty/glog/logging.h"
 #include "ABI/thirdparty/openssl/evp.h"
 #include "GenerateRS_client.h"
+#include <smartbot/passport/itunes_internal_interface.h>
 
 extern char g_sLibraryID[];
 
@@ -30,50 +29,20 @@ namespace ABI {
 		const char filename_afsync_rs_sig[] = "/AirFair/sync/afsync.rs.sig";
 		//static char g_authorize_udid[MAX_PATH] = { 0 };
 		static map<string, am_device*> gudid;
-		const char rootcert_path[] = "certificate/ca.pem";
-		const char clientcert_path[] = "certificate/client.pem";
-		const char clientkey_path[] = "certificate/client.key";
 		
 
-		static std::string get_file_contents(const char* fpath)
-		{
-			std::ifstream finstream(fpath);
-			std::string contents;
-			contents.assign((std::istreambuf_iterator<char>(finstream)),
-				std::istreambuf_iterator<char>());
-			finstream.close();
-			return contents;
-		}
 
 		bool RequestSignatureAuthGenerate(AppleMobileDeviceEx& mobile_device, unsigned char* rq, unsigned long length, unsigned char* sig, unsigned long sig_length) {
 			//remote server generate rs and rs.sig follow:
-			
+
+			std::string rs_data;
+			std::string rs_sig_data;
 			ABI::internal::RSKeyGen* rs = ABI::internal::RSKeyGen::GetInstance();
 			ABI::internal::RSSigKeyGen* rs_sig = ABI::internal::RSSigKeyGen::GetInstance();
-			//ABI::internal::AppleRemoteAuth auth;
-			//std::string response_auth = auth.RemoteAuth(mobile_device, rq, length, sig, sig_length);
-			//rs->reset();
-			//scoped_array<unsigned char> decode_buffer(reinterpret_cast<unsigned char*>(new unsigned char[response_auth.size()]));
-			//rs->set_data(reinterpret_cast<unsigned char*>(malloc(response_auth.size())));
-			////base64 decode auth data
-			//size_t decode_length = EVP_DecodeBlock(decode_buffer.get(), reinterpret_cast<const unsigned char*>(response_auth.c_str()), response_auth.size());
-			//decode_length -= ABI::base::EVPLength(response_auth);
-			//rs->set_length(decode_length);
-			//memmove(rs->data(), decode_buffer.get(), decode_length);
-
-			auto rootcert = get_file_contents(rootcert_path);
-			auto clientkey = get_file_contents(clientkey_path);
-			auto clientcert = get_file_contents(clientcert_path);
-			grpc::SslCredentialsOptions ssl_opts;
-			ssl_opts.pem_root_certs = rootcert;
-			ssl_opts.pem_private_key = clientkey;
-			ssl_opts.pem_cert_chain = clientcert;
-			std::shared_ptr<grpc::ChannelCredentials> creds = grpc::SslCredentials(ssl_opts);
-			std::string rs_data;
-
-			//aidClient auth(grpc::CreateChannel("localhost:50051", grpc::InsecureChannelCredentials()));
-			aidClient auth(grpc::CreateChannel("aid.aidserv.cn:50051", creds));
-			bool ret = auth.RemoteAuth(mobile_device, rq, length, sig, sig_length, rs_data);
+			//RemoteAuth
+			aidClient* client = aidClient::Instance();
+			bool ret = client->RemoteAuth(mobile_device, rq, length, sig, sig_length, rs_data, rs_sig_data);
+			//rs->set_data
 			rs->reset();
 			rs->set_data(reinterpret_cast<unsigned char*>(malloc(rs_data.size())));
 			rs->set_length(rs_data.size());
@@ -83,8 +52,11 @@ namespace ABI {
 				LOG(ERROR) << "genreate rs failed!" << std::endl;
 				return false;
 			}
+			//rs_sig->set_data
 			rs_sig->reset();
-			rs_sig->GenSignature(mobile_device.grappa_session_id(), rs->data(), rs->length());
+			rs_sig->set_data(reinterpret_cast<unsigned char*>(malloc(rs_sig_data.size())));
+			rs_sig->set_length(rs_sig_data.size());
+			memmove(rs_sig->data(), rs_sig_data.c_str(), rs_sig_data.size());
 			if (rs_sig->data() == NULL || rs_sig->length() == 0) {
 				LOG(ERROR) << "genreate rs.sig failed!" << std::endl;
 				return false;
@@ -228,7 +200,7 @@ namespace ABI {
 				LOG(ERROR) << "IOSDeviceStartSession failed" << std::endl;
 				return start_session_fail;
 			}
-
+			//读取设备信息
 			AFCFileRef fileAfsyncRs = NULL;
 			AFCFileRef fileAfsyncRsSig = NULL;
 			ABI::internal::AppleMobileDeviceEx apple_device(deviceHandle);
@@ -239,8 +211,7 @@ namespace ABI {
 				LOG(ERROR) << "device info read init failed" << std::endl;
 				return device_info_init;
 			}
-
-			
+			//ATHostConnectionCreateWithLibrary
 			std:wstring wathpath = passport::internal::GetITunesInstallDll(L"").append(L"ATH.exe");
 			//wstring to string
 			std::string athpath;
@@ -255,6 +226,17 @@ namespace ABI {
 			CFRelease(sUDID);
 			CFRelease(sLibrary);
 
+			//RemoteGetGrappa
+			aidClient* client = aidClient::Instance();
+			string grappa;
+			unsigned long grappa_session_id;
+			auto rggret = client->RemoteGetGrappa(udid, grappa, grappa_session_id);
+			if (!rggret)
+			{
+				LOG(ERROR) << "RemoteGetGrappa failed" << std::endl;
+				return unknown_sync_error;
+			}
+			//CreateThread
 			g_startSync = false;
 			HANDLE hThread = CreateThread(NULL, 0, ReceiveMessageThreadFunc, (LPVOID)ath, 0, NULL);
 			if (hThread == NULL) {
@@ -264,7 +246,7 @@ namespace ABI {
 			else {
 				WaitForSingleObject(hThread, 5000);
 			}
-
+			//SendSyncRequest
 			AFCRef afc = OpenIOSFileSystem(deviceHandle);
 			if (afc == NULL) {
 				LOG(ERROR) << "OpenIOSFileSystem failed" << std::endl;
@@ -273,7 +255,7 @@ namespace ABI {
 			else {
 				AFCRemovePath(afc, filename_afsync_rq);
 				while (!g_startSync) Sleep(100);
-				SendSyncRequest(ath, SYNC_KEYBAG);
+				SendSyncRequest(ath, SYNC_KEYBAG, grappa);
 			}
 
 			ABI::internal::RQReadBuf rq_reader;
@@ -295,7 +277,9 @@ namespace ABI {
 				//CFRelease(sLibrary);
 				//CFRelease(sAthexe);
 			}
-			apple_device.set_grappa_sessionid(ath);
+			apple_device.set_grappa_sessionid(grappa_session_id);
+			apple_device.set_grappa_data(g_grappa);
+			apple_device.set_grappa_data_len(g_grappa_len);
 			if (!RequestSignatureAuthGenerate(apple_device, rq_reader.rq_buf(), rq_reader.rq_size(), rq_sig_reader.rq_sig_buf(), rq_sig_reader.rq_sig_size())) {
 				LOG(ERROR) << "open with write rs file failed" << std::endl;
 				return generate_rs_fail;

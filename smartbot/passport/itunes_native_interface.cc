@@ -193,7 +193,7 @@ namespace passport{
 		unsigned long EstablishKey = 0;
 		//LoadDlls();
 		const std::wstring itunes_dll = internal::GetITunesInstallDll(L"iTunes.dll");
-		const std::wstring air_traffic_host_dll = internal::GetITunesInstallDll(L"AirTrafficHostDLL");
+		const std::wstring air_traffic_host_dll = internal::GetITunesInstallDll(L"AirTrafficHost.dll");
 		const HMODULE itunes_base = LoadLibraryW(itunes_dll.c_str());
 		const HMODULE air_traffic_host_base = LoadLibraryW(air_traffic_host_dll.c_str());
 		if(iTunesDllVersion(L"10.5.0.142")){
@@ -741,7 +741,7 @@ namespace passport{
 			EstablishKey = 0x7D90u;
 		}
 		else if(AirTrafficHostDllVersion(L"17.492.0.29")){
-			if(!IsMachineAmd64(L"AirTrafficHost.dll",internal::GetAppleMobileDeviceSupportDll(L"").c_str())){
+			if (!IsMachineAmd64(L"AirTrafficHost.dll", internal::GetITunesInstallDll(L"").c_str())) {
 				InitHost = 0x6560u;
 				EstablishKey = 0x8650u;
 			}
@@ -810,7 +810,7 @@ namespace passport{
 	bool iTunesNativeInterface::AirTrafficHostDllVersion(const wchar_t* version){
 		static wchar_t g_version_a[1024] = {0};
 		if(!g_version_a[0]){
-			const std::wstring air_traffic_host_dll = internal::GetAppleMobileDeviceSupportDll(L"AirTrafficHostDLL");
+			const std::wstring air_traffic_host_dll = internal::GetITunesInstallDll(L"AirTrafficHost.dll");
 			wcscpy_s(g_version_a,1023,internal::GetSoftwareReleaseVersion(air_traffic_host_dll.c_str()).c_str());
 		}
 		return (std::wstring(g_version_a)==version);

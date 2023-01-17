@@ -1,9 +1,18 @@
 #include "apple_import.h"
 #include "Sync.h"
+#include <ABI/thirdparty/glog/scoped_ptr.h>
+#include <ABI/thirdparty/openssl/evp.h>
+#include <smartbot/passport/itunes_native_interface.h>
+#include <smartbot/passport/itunes_internal_interface.h>
+#include <smartbot/thirdparty/glog/logging.h>
+
 char g_sLibraryID[] = "5AC547BA5322B210";  // Where is this come from?
 bool g_startSync = false;
+unsigned char* g_grappa = NULL;
+unsigned long g_grappa_len = 0;
+unsigned int g_GrappaID;
 
-void SendSyncRequest(ATHRef ath, unsigned int flags)
+void SendSyncRequest(ATHRef ath, unsigned int flags, string grappa)
 {
 	char sComputerName[256];
 	unsigned long len = 256;
@@ -162,7 +171,32 @@ void SendSyncRequest(ATHRef ath, unsigned int flags)
 	CFRelease(sKey);
 	CFRelease(sValue);
 
-	ATHostConnectionSendSyncRequest(ath, arrDataclasses, dictDataclassAnchors, dictHostInfo);
+	sKey = CFStringCreateWithCString(NULL, "Grappa", kCFStringEncodingUTF8);
+	CFDataRef sValue_grappa = CFDataCreate(NULL, (unsigned char*)grappa.c_str(), grappa.length());
+	CFDictionaryAddValue(dictHostInfo, sKey, sValue_grappa);
+	CFRelease(sKey);
+	CFRelease(sValue_grappa);
+
+
+	CFMutableDictionaryRef dictRsp = CFDictionaryCreateMutable(NULL, 0, pkCFTypeDictionaryKeyCallBacks, pkCFTypeDictionaryValueCallBacks);
+	
+	sKey = CFStringCreateWithCString(NULL, "Dataclasses", kCFStringEncodingUTF8);
+	CFDictionaryAddValue(dictRsp, sKey, arrDataclasses);
+	CFRelease(sKey);
+
+	sKey = CFStringCreateWithCString(NULL, "DataclassAnchors", kCFStringEncodingUTF8);
+	CFDictionaryAddValue(dictRsp, sKey, dictDataclassAnchors);
+	CFRelease(sKey);
+
+	sKey = CFStringCreateWithCString(NULL, "HostInfo", kCFStringEncodingUTF8);
+	CFDictionaryAddValue(dictRsp, sKey, dictHostInfo);
+	CFRelease(sKey);
+
+	sKey = CFStringCreateWithCString(NULL, "RequestingSync", kCFStringEncodingUTF8);
+	auto rspMsg = ATCFMessageCreate(ATHostConnectionGetCurrentSessionNumber(ath), sKey, dictRsp);
+	CFRelease(sKey);
+
+	ATHostConnectionSendMessage(ath, rspMsg);
 
 	CFRelease(arrDataclasses);
 	CFRelease(arrSyncedDataclasses);
@@ -312,6 +346,36 @@ DWORD WINAPI ReceiveMessageThreadFunc(LPVOID lpParam)
 		}
 		if (strcmp("SyncFinished", sCommand) == 0) {
 			break;
+		}
+		if (strcmp("ReadyForSync", sCommand) == 0) {
+
+
+			CFStringRef sKey = CFStringCreateWithCString(NULL, "Params", kCFStringEncodingUTF8);
+			CFDictionaryRef DictParams = CFDictionaryGetValue(dict, sKey);
+			CFRelease(sKey);
+			sKey = nullptr;
+			sKey = CFStringCreateWithCString(NULL, "DeviceInfo", kCFStringEncodingUTF8);
+			CFDictionaryRef DictDeviceInfo = CFDictionaryGetValue(DictParams, sKey);
+			CFRelease(sKey);
+			sKey = nullptr;
+			sKey = CFStringCreateWithCString(NULL, "Grappa", kCFStringEncodingUTF8);
+			CFDataRef DataGrappa = CFDictionaryGetValue(DictDeviceInfo, sKey);
+			CFRelease(sKey);
+			
+			g_grappa_len = CFDataGetLength(DataGrappa);
+			if(g_grappa != NULL) free(g_grappa);
+			g_grappa = (unsigned char*)malloc(g_grappa_len + 1);
+			CFDataGetBytes(DataGrappa, CFRangeMake(0, g_grappa_len), g_grappa);
+			////unsigned char to base64
+			//scoped_array<unsigned char> encode_info(new unsigned char[((g_grappa_len - 1) / 3 + 1) * 4 + 1]);
+			//memset(encode_info.get(), 0, ((g_grappa_len - 1) / 3 + 1) * 4 + 1);
+			//EVP_EncodeBlock(encode_info.get(), g_grappa, g_grappa_len);
+			//std::string grappa_base64(reinterpret_cast<char*>(encode_info.get()));
+			//std::cout << grappa_base64 << endl;
+			
+			CFRelease(DataGrappa);
+			CFRelease(DictDeviceInfo);
+			CFRelease(DictParams);
 		}
 	}
 	ATHostConnectionRelease(ath);

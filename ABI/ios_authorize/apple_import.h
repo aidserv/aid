@@ -60,8 +60,12 @@ WIN_DLL_API extern CFStringRef (*CFStringCreateWithCString)(CFAllocatorRef alloc
 WIN_DLL_API extern CFIndex (*CFStringGetLength)(CFStringRef theString);
 WIN_DLL_API extern Boolean (*CFStringGetCString)(CFStringRef theString, char *buffer, CFIndex bufferSize, CFStringEncoding encoding);
 WIN_DLL_API extern Boolean (*CFNumberGetValue)(CFNumberRef number, CFNumberType theType, void *valuePtr);
+
 WIN_DLL_API extern CFIndex (*CFDataGetLength)(CFDataRef theData);
 WIN_DLL_API extern void (*CFDataGetBytes)(CFDataRef theData, CFRange range, unsigned char *buffer);
+WIN_DLL_API extern CFDataRef(*CFDataCreate)(CFAllocatorRef alloc, unsigned char* bytes, CFIndex length);
+
+
 WIN_DLL_API extern CFMutableArrayRef (*CFArrayCreateMutable)(CFAllocatorRef allocator, CFIndex capacity, const void *callBacks);
 WIN_DLL_API extern void (*CFArrayAppendValue)(CFMutableArrayRef theArray, const void *value);
 WIN_DLL_API extern CFMutableDictionaryRef (*CFDictionaryCreateMutable)(CFAllocatorRef allocator, CFIndex capacity, const void *keyCallBacks, const void *valueCallBacks);
@@ -97,6 +101,9 @@ WIN_DLL_API extern void (*CFRetain)(void *device);
 WIN_DLL_API extern int (*CFUUIDCreate)(int UN);
 WIN_DLL_API extern CFStringRef (*CFStringMakeConstantString)(char* str);
 WIN_DLL_API extern CFStringRef (*CFStringCreateWithFormatAndArguments)(int UN,int UN2,CFStringRef str,void* Key);
+
+
+
 extern CFBooleanRef *pkCFBooleanTrue;
 extern CFBooleanRef *pkCFBooleanFalse;
 extern void *pkCFTypeArrayCallBacks;
@@ -140,7 +147,6 @@ WIN_DLL_API extern unsigned int (*AFCFileRefWrite)(AFCRef afc, AFCFileRef file, 
 
 // AirTrafficHost.dll functions
 //
-//WIN_DLL_API extern ATHRef (*ATHostConnectionCreateWithLibrary)(CFStringRef library, CFStringRef udid, int);
 WIN_DLL_API extern ATHRef (*ATHostConnectionCreateWithLibrary)(CFStringRef library, CFStringRef udid, CFStringRef athexe);
 WIN_DLL_API extern void (*ATHostConnectionDestroy)(ATHRef);
 WIN_DLL_API extern int (*ATHostConnectionSendPowerAssertion)(ATHRef, CFBooleanRef enable);
@@ -151,6 +157,13 @@ WIN_DLL_API extern int (*ATHostConnectionSendSyncRequest)(ATHRef, CFArrayRef, CF
 WIN_DLL_API extern int (*ATHostConnectionSendPing)(ATHRef);
 WIN_DLL_API extern unsigned (*ATHostConnectionGetGrappaSessionId)(ATHRef);
 WIN_DLL_API extern int (*ATHostConnectionSendMetadataSyncFinished)(ATHRef, CFDictionaryRef, CFDictionaryRef);
+
+WIN_DLL_API extern CFDictionaryRef (*ATCFMessageCreate)(uint32_t sesssion, CFStringRef messageType, CFDictionaryRef params);
+WIN_DLL_API extern uint32_t (*ATHostConnectionGetCurrentSessionNumber)(ATHRef ath);
+WIN_DLL_API extern void (*ATProcessLinkSendMessage)(ATHRef ath, CFDictionaryRef mATCFMessage);
+WIN_DLL_API extern void (*ATHostConnectionSendMessage)(ATHRef ath, CFDictionaryRef mATCFMessage);
+WIN_DLL_API extern void (*ATHostConnectionSendHostInfo)(ATHRef ath, CFDictionaryRef mATCFMessage);
+
 
 CFRange CFRangeMake(CFIndex loc, CFIndex len);
 

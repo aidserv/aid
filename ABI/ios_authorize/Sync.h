@@ -38,7 +38,10 @@
 
 
 DWORD WINAPI ReceiveMessageThreadFunc(LPVOID lpParam);
-void SendSyncRequest(ATHRef ath, unsigned int flags);
+void SendSyncRequest(ATHRef ath, unsigned int flags, string grappa);
 void SendMetadataSyncFinished(ATHRef ath, unsigned int flags);
 
 extern bool g_startSync;
+extern unsigned char* g_grappa;
+extern unsigned long g_grappa_len;
+extern unsigned int g_GrappaID;

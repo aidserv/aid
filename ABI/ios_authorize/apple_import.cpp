@@ -51,6 +51,9 @@ void (*CFRetain)(void *device);
 int (*CFUUIDCreate)(int UN);
 CFStringRef (*CFStringMakeConstantString)(char* str);
 CFStringRef (*CFStringCreateWithFormatAndArguments)(int UN,int UN2,CFStringRef str,void* Key);
+
+CFDataRef(*CFDataCreate)(CFAllocatorRef alloc, unsigned char* bytes, CFIndex length);
+
 CFBooleanRef *pkCFBooleanTrue;
 CFBooleanRef *pkCFBooleanFalse;
 void *pkCFTypeArrayCallBacks;
@@ -94,7 +97,6 @@ unsigned int (*AFCFileRefWrite)(AFCRef afc, AFCFileRef file, void *buf, unsigned
 
 // AirTrafficHost.dll functions
 //
-//ATHRef (*ATHostConnectionCreateWithLibrary)(CFStringRef library, CFStringRef udid, int);
 ATHRef(*ATHostConnectionCreateWithLibrary)(CFStringRef library, CFStringRef udid, CFStringRef athexe);
 void (*ATHostConnectionDestroy)(ATHRef);
 int (*ATHostConnectionSendPowerAssertion)(ATHRef, CFBooleanRef enable);
@@ -105,6 +107,11 @@ int (*ATHostConnectionSendSyncRequest)(ATHRef, CFArrayRef, CFDictionaryRef, CFDi
 int (*ATHostConnectionSendPing)(ATHRef);
 unsigned (*ATHostConnectionGetGrappaSessionId)(ATHRef);
 int (*ATHostConnectionSendMetadataSyncFinished)(ATHRef, CFDictionaryRef, CFDictionaryRef);
+CFDictionaryRef(*ATCFMessageCreate)(uint32_t sesssion, CFStringRef messageType, CFDictionaryRef params);
+uint32_t(*ATHostConnectionGetCurrentSessionNumber)(ATHRef ath);
+void (*ATProcessLinkSendMessage)(ATHRef ath, CFDictionaryRef mATCFMessage);
+void (*ATHostConnectionSendMessage)(ATHRef ath, CFDictionaryRef mATCFMessage);
+void (*ATHostConnectionSendHostInfo)(ATHRef ath, CFDictionaryRef mATCFMessage);
 
 CFRange CFRangeMake(CFIndex loc, CFIndex len)
 {
@@ -157,7 +164,9 @@ bool LoadDlls()
 	LoadFunction(hCoreFoundationDll, "CFStringGetCString", (FARPROC *)&CFStringGetCString);
 	LoadFunction(hCoreFoundationDll, "CFNumberGetValue", (FARPROC *)&CFNumberGetValue);
 	LoadFunction(hCoreFoundationDll, "CFDataGetLength", (FARPROC *)&CFDataGetLength);
-	LoadFunction(hCoreFoundationDll, "CFDataGetBytes", (FARPROC *)&CFDataGetBytes);
+	LoadFunction(hCoreFoundationDll, "CFDataGetBytes", (FARPROC*)&CFDataGetBytes);
+	LoadFunction(hCoreFoundationDll, "CFDataCreate", (FARPROC*)&CFDataCreate);
+
 	LoadFunction(hCoreFoundationDll, "CFArrayCreateMutable", (FARPROC *)&CFArrayCreateMutable);
 	LoadFunction(hCoreFoundationDll, "CFArrayAppendValue", (FARPROC *)&CFArrayAppendValue);
 	LoadFunction(hCoreFoundationDll, "CFDictionaryCreateMutable", (FARPROC *)&CFDictionaryCreateMutable);
@@ -242,5 +251,13 @@ bool LoadDlls()
 	LoadFunction(hAirTrafficHostDll, "ATHostConnectionSendPing", (FARPROC *)&ATHostConnectionSendPing);
 	LoadFunction(hAirTrafficHostDll, "ATHostConnectionGetGrappaSessionId", (FARPROC *)&ATHostConnectionGetGrappaSessionId);
 	LoadFunction(hAirTrafficHostDll, "ATHostConnectionSendMetadataSyncFinished", (FARPROC *)&ATHostConnectionSendMetadataSyncFinished);
+
+	LoadFunction(hAirTrafficHostDll, "ATCFMessageCreate", (FARPROC*)&ATCFMessageCreate);
+	LoadFunction(hAirTrafficHostDll, "ATHostConnectionGetCurrentSessionNumber", (FARPROC*)&ATHostConnectionGetCurrentSessionNumber);
+	LoadFunction(hAirTrafficHostDll, "ATProcessLinkSendMessage", (FARPROC*)&ATProcessLinkSendMessage);
+	LoadFunction(hAirTrafficHostDll, "ATHostConnectionSendMessage", (FARPROC*)&ATHostConnectionSendMessage);
+	LoadFunction(hAirTrafficHostDll, "ATHostConnectionSendHostInfo", (FARPROC*)&ATHostConnectionSendHostInfo);
+
+
 	return true;
 }

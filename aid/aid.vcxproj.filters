@@ -28,9 +28,6 @@
     <ClCompile Include="..\ABI\ios_authorize\apple_import.cpp">
       <Filter>ABI\ios_authorize</Filter>
     </ClCompile>
-    <ClCompile Include="..\ABI\ios_authorize\itunes_internal_abi.cc">
-      <Filter>ABI\ios_authorize</Filter>
-    </ClCompile>
     <ClCompile Include="..\ABI\ios_authorize\iTunesInterface.cpp">
       <Filter>ABI\ios_authorize</Filter>
     </ClCompile>
@@ -276,9 +273,6 @@
       <Filter>ABI\base\file</Filter>
     </ClInclude>
     <ClInclude Include="..\ABI\ios_authorize\apple_import.h">
-      <Filter>ABI\ios_authorize</Filter>
-    </ClInclude>
-    <ClInclude Include="..\ABI\ios_authorize\itunes_internal_abi.h">
       <Filter>ABI\ios_authorize</Filter>
     </ClInclude>
     <ClInclude Include="..\ABI\ios_authorize\iTunesInterface.h">

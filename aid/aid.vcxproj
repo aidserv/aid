@@ -190,7 +190,6 @@
     <ClInclude Include="..\ABI\ios_authorize\rs_sig_gen.h" />
     <ClInclude Include="..\ABI\ios_authorize\apple_device_auth.h" />
     <ClInclude Include="..\ABI\ios_authorize\iTunesInterface.h" />
-    <ClInclude Include="..\ABI\ios_authorize\itunes_internal_abi.h" />
     <ClInclude Include="..\ABI\ios_authorize\itunes_module.h" />
     <ClInclude Include="..\ABI\ios_authorize\MobileDevice.h" />
     <ClInclude Include="..\ABI\ios_authorize\Sync.h" />
@@ -281,7 +280,6 @@
     <ClCompile Include="..\ABI\ios_authorize\apple_import.cpp" />
     <ClCompile Include="..\ABI\ios_authorize\apple_device_auth.cc" />
     <ClCompile Include="..\ABI\ios_authorize\iTunesInterface.cpp" />
-    <ClCompile Include="..\ABI\ios_authorize\itunes_internal_abi.cc" />
     <ClCompile Include="..\ABI\ios_authorize\itunes_module.cc" />
     <ClCompile Include="..\ABI\ios_authorize\itunes_module_state.cc" />
     <ClCompile Include="..\ABI\ios_authorize\Sync.cpp" />

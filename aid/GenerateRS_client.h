@@ -15,7 +15,9 @@ class aidClient {
 public:
 	aidClient(std::shared_ptr<Channel> channel)
 		: stub_(aid::NewStub(channel)) {}
-	bool RemoteAuth(AppleMobileDeviceEx& mobile_device, unsigned char* rq, unsigned long length, unsigned char* sig, unsigned long sig_length, std::string &rs);
+	bool aidClient::RemoteGetGrappa(string udid, std::string& grappa, unsigned long& grappa_session_id);
+	bool RemoteAuth(AppleMobileDeviceEx& mobile_device, unsigned char* rq, unsigned long length, unsigned char* sig, unsigned long sig_length, std::string &rs, std::string& rs_sig);
+	static aidClient* Instance();
 private:
 	std::unique_ptr<aid::Stub> stub_;
 };
