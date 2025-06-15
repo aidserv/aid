@@ -1,0 +1,10 @@
+/.vs
+/Debug
+/x64
+/aid2/Debug
+/aid2/x64
+/examples/cpp/Debug
+/examples/cpp/x64
+/examples/cpp/aid2.log
+/examples/cpp/Release
+/aid2/Release
