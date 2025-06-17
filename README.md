@@ -1,5 +1,5 @@
 # aid2: 总览
-Authorize ios device 实现功能和爱思助手一样安装app，使用aid2 授权之后 ，安装的IPA文件不需要输入appid和密码，aid第二版本。
+Authorize ios device 实现功能和爱思助手一样安装app，使用aid2 授权之后 ，安装的IPA文件不需要输入Apple账户和密码。
 
 V2.6 grpc编译的复杂度，改用了http接口调用，方便编译。
 
