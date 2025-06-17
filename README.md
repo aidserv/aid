@@ -1,9 +1,9 @@
 # aid2: 总览
-Authorize ios device 实现功能和爱思助手一样安装app，使用aid2 授权之后 ，安装的IPA文件不需要输入appid和密码，aid第二版本，可以支持windows和mac系统，目前mac系统还没有调通。
+Authorize ios device 实现功能和爱思助手一样安装app，使用aid2 授权之后 ，安装的IPA文件不需要输入appid和密码，aid第二版本。
 
 V2.6 grpc编译的复杂度，改用了http接口调用，方便编译。
 
-需要在linux,mac,安卓或者商业应用的联系邮箱：2277695881@qq.com      qq:2277695881
+需要在linux,mac,安卓或者在树莓派等各类开发版上运行的商业应用请联系邮箱：2277695881@qq.com      qq:2277695881
 # 目录
 
 - [aid2: 总览](#aid2-总览)
