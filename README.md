@@ -1,5 +1,5 @@
 # aid2: 总览
-Authorize ios device 实现功能和爱思助手一样安装app，使用aid2 授权之后 ，安装的IPA文件不需要输入Apple账户和密码。
+Authorize ios device 实现功能和爱思助手，鲨漏验机，3utools一样安装app，使用aid2 授权之后 ，安装的IPA文件不需要输入Apple账户和密码。
 
 V2.6 grpc编译的复杂度，改用了http接口调用，方便编译。
 
@@ -8,25 +8,23 @@ V2.6 grpc编译的复杂度，改用了http接口调用，方便编译。
 
 - [aid2: 总览](#aid2-总览)
 - [目录](#目录)
-- [入门](#入门)
+- [配置编译环境](#配置编译环境)
   - [快速开始: Windows](#快速开始-windows)
-  - [快速开始: Unix](#快速开始-unix)
-  - [安装 macOS Developer Tools](#安装-macos-developer-tools)
 - [编译](#编译)
   - [下载源码](#下载源码)
   - [使用Visual Studio 2022编译](#使用visual-studio-2022编译)
 - [运行](#运行)
   - [调试](#调试)
   - [命令行运行](#命令行运行)
-# 入门
+# 配置编译环境
 
-首先，请阅读以下任一快速入门指南：
+首先，请阅读以下任一快速配置指南：
 [Windows](#快速开始-windows) 或 [macOS ](#快速开始-unix)，
-这取决于您使用的是什么平台。
+
 
 windows 平台支持windows 10之后版本，itunes 安装最新版本或者说安装 itunes 最新版本里的AppleMobileDeviceSupport包，只做过x64平台做过大量测试，编写代码的时候也考虑到x86平台，但没有大量测试，请使用者自行测试或者拉起pull
 
-编译环境需要用到 Vcpkg，grpc,protobuf,openssl
+编译环境需要用到 Vcpkg，openssl
 
 以下配置环境都需要用到科学上网，否则会失败。
 
@@ -51,29 +49,6 @@ windows 平台支持windows 10之后版本，itunes 安装最新版本或者说�
 安装itunes版本，windows 10下载连接
 * [下载 Windows 10（64 位）版 iTunes 12.13.9](https://secure-appldnld.apple.com/itunes12/042-62516-20231023-4B775F51-D1D0-4728-A168-77A5EFB3D51D/iTunes64Setup.exe)
 * [下载 Windows 10（32 位）版 iTunes 12.13.9](https://secure-appldnld.apple.com/itunes12/042-62514-20231023-50B51FD0-68B9-4F27-989D-B226D7A42BEC/iTunesSetup.exe)
-
-## 快速开始: Unix
-
-macOS 平台前置条件:
-- [Apple Developer Tools][getting-started:macos-dev-tools]
-
-首先，请下载 vcpkg 并执行 bootstrap.sh 脚本。
-您可以将 vcpkg 安装在任何地方，但是通常我们建议您使用 vcpkg 作为 CMake 项目的子模块。
-
-```sh
-$ git clone https://github.com/microsoft/vcpkg
-$ ./vcpkg/bootstrap-vcpkg.sh
-$ ./vcpkg/vcpkg install grpc protobuf 
-$ ./vcpkg/vcpkg integrate install
-```
-
-## 安装 macOS Developer Tools
-
-在 macOS 中，您唯一需要做的是在终端中运行以下命令:
-
-```sh
-$ xcode-select --install
-```
 
 # 编译
 
