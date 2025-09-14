@@ -45,7 +45,6 @@
     <ClCompile Include="iTunesApi\simpleApi.cpp">
       <Filter>iTunesApi</Filter>
     </ClCompile>
-    <ClCompile Include="dllmain.cpp" />
     <ClCompile Include="aid2.cpp" />
     <ClCompile Include="Logger.cpp" />
     <ClCompile Include="ATH.cpp" />

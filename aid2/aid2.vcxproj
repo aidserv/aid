@@ -181,7 +181,6 @@
     <ClCompile Include="Afsync.cpp" />
     <ClCompile Include="ATH.cpp" />
     <ClCompile Include="cpp-base64\cpp-base64.cpp" />
-    <ClCompile Include="dllmain.cpp" />
     <ClCompile Include="iOSApplication.cpp" />
     <ClCompile Include="iOSDeviceInfo.cpp" />
     <ClCompile Include="iTunesApi\helper.cpp" />
