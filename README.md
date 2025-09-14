@@ -19,7 +19,7 @@ V2.6 grpc编译的复杂度，改用了http接口调用，方便编译。
 # 配置编译环境
 
 首先，请阅读以下任一快速配置指南：
-[Windows](#快速开始-windows) 或 [macOS ](#快速开始-unix)，
+[Windows](#快速开始-windows)，
 
 
 windows 平台支持windows 10之后版本，itunes 安装最新版本或者说安装 itunes 最新版本里的AppleMobileDeviceSupport包，只做过x64平台做过大量测试，编写代码的时候也考虑到x86平台，但没有大量测试，请使用者自行测试或者拉起pull
