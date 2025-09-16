@@ -168,8 +168,9 @@
     <ClInclude Include="Afsync.h" />
     <ClInclude Include="ATH.h" />
     <ClInclude Include="cpp-base64\cpp-base64.h" />
+    <ClInclude Include="DeviceManager.h" />
     <ClInclude Include="iOSApplication.h" />
-    <ClInclude Include="iOSDeviceInfo.h" />
+    <ClInclude Include="iOSDevice.h" />
     <ClInclude Include="iTunesApi\iTunesApi.h" />
     <ClInclude Include="iTunesApi\simpleApi.h" />
     <ClInclude Include="iTunesApi\unkonwStruct.h" />
@@ -181,8 +182,9 @@
     <ClCompile Include="Afsync.cpp" />
     <ClCompile Include="ATH.cpp" />
     <ClCompile Include="cpp-base64\cpp-base64.cpp" />
+    <ClCompile Include="DeviceManager.cpp" />
     <ClCompile Include="iOSApplication.cpp" />
-    <ClCompile Include="iOSDeviceInfo.cpp" />
+    <ClCompile Include="iOSDevice.cpp" />
     <ClCompile Include="iTunesApi\helper.cpp" />
     <ClCompile Include="iTunesApi\iTunesApi.cpp" />
     <ClCompile Include="iTunesApi\simpleApi.cpp" />

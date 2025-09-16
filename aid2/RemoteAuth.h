@@ -11,32 +11,32 @@ namespace aid2 {
 		 * 构造RemoteAuth
 		 *
 		 * @param url 格式为：schema://host:port
-		 * @deviceHandle 连接手机句柄
+		 * @udid 连接手机udid
 		 */
-		RemoteAuth(const string& url, AMDeviceRef deviceHandle);
+		RemoteAuth(const string& url, const std::string& udid);
 
 		/**
 		 * 构造RemoteAuth
 		 *
 		 * @param url 格式为：schema://host:port
-		 * @deviceHandle 连接手机句柄
+		 * @udid 连接手机udid
 		 * @rootcert 根证书
 		 */
 		RemoteAuth(const string& url, 
-			AMDeviceRef deviceHandle,
+			const std::string& udid,
 			const string& rootcert);
 		
 		/**
 		 * 构造RemoteAuth
 		 *
 		 * @param url 格式为：schema://host:port
-		 * @deviceHandle 连接手机句柄
+		 * @udid 连接手机udid
 		 * @rootcert 根证书
 		 * @client_cert_path client证书路径
 		 * @client_key_path client证书密钥
 		 */
 		RemoteAuth(const string& url, 
-			AMDeviceRef deviceHandle,
+			const std::string& udid,
 			const string& rootcert, 
 			const string& client_cert_path,
 			const string& client_key_path);
@@ -58,7 +58,7 @@ namespace aid2 {
 		 */
 		bool GenerateRs(const string& grappa);
 	private:
-		AMDeviceRef m_deviceHandle;
+		std::string m_udid;
 		unsigned long m_grappa_session_id;  // grappa session id
 		Client* m_cli;
 	};

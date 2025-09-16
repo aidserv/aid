@@ -55,13 +55,6 @@ AID2_API bool StopListen();
 *******************************************************/
 AID2_API AuthorizeReturnStatus AuthorizeDevice(const char * udid);
 
-/*******************************************************
-根据deviceHandle授权
-参数：deviceHandle
-返回值：成功为AuthorizeReturnStatus::AuthorizeSuccess
-*******************************************************/
-AID2_API AuthorizeReturnStatus AuthorizeDeviceEx(void* deviceHandle);
-
 /******************************************************
 * 执行配对信息，首次配对手机上会出现信任和不信任按钮
 返回值：LOCKDOWN_E_PAIRING_DIALOG_RESPONSE_PENDING         = -19           弹出对话框,请在设备端按下“信任”按钮
@@ -71,25 +64,6 @@ AID2_API AuthorizeReturnStatus AuthorizeDeviceEx(void* deviceHandle);
 															   0			配对成功
 ***************************************************************/
 AID2_API int DoPair(const char* udid);
-
-/******************************************************
-* 执行配对信息，首次配对手机上会出现信任和不信任按钮
-返回值：LOCKDOWN_E_PAIRING_DIALOG_RESPONSE_PENDING         = -19           弹出对话框,请在设备端按下“信任”按钮
-		LOCKDOWN_E_USER_DENIED_PAIRING                     = -18			使用者按下了“不信任”按钮。
-		LOCKDOWN_E_PASSWORD_PROTECTED                      = -17			请打开密码锁定，进入ios主界面
-		LOCKDOWN_E_MUX_ERROR                               =  -8			USB数据线断开或者接触不良
-															 0			配对成功
-***************************************************************/
-AID2_API int DoPairEx(void* deviceHandle);
-
-/*******************************************************
-根据udid安装path 的ipa 包
-参数：deviceHandle
-	  ipaPath ipa包的路径
-返回值：成功为true
-*******************************************************/
-AID2_API bool InstallApplicationEx(void* deviceHandle, const char* ipaPath);
-
 
 /*******************************************************
 根据udid安装path 的ipa 包

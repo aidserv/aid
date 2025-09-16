@@ -25,7 +25,6 @@
     <ClInclude Include="Logger.h" />
     <ClInclude Include="ATH.h" />
     <ClInclude Include="Afsync.h" />
-    <ClInclude Include="iOSDeviceInfo.h" />
     <ClInclude Include="iOSApplication.h" />
     <ClInclude Include="RemoteAuth.h" />
     <ClInclude Include="..\cpp-httplib\httplib.h">
@@ -34,6 +33,8 @@
     <ClInclude Include="cpp-base64\cpp-base64.h">
       <Filter>cpp-base64</Filter>
     </ClInclude>
+    <ClInclude Include="iOSDevice.h" />
+    <ClInclude Include="DeviceManager.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="iTunesApi\helper.cpp">
@@ -49,11 +50,12 @@
     <ClCompile Include="Logger.cpp" />
     <ClCompile Include="ATH.cpp" />
     <ClCompile Include="Afsync.cpp" />
-    <ClCompile Include="iOSDeviceInfo.cpp" />
     <ClCompile Include="iOSApplication.cpp" />
     <ClCompile Include="RemoteAuth.cpp" />
     <ClCompile Include="cpp-base64\cpp-base64.cpp">
       <Filter>cpp-base64</Filter>
     </ClCompile>
+    <ClCompile Include="iOSDevice.cpp" />
+    <ClCompile Include="DeviceManager.cpp" />
   </ItemGroup>
 </Project>

@@ -2,7 +2,8 @@
 #include <iostream>
 #include<map>
 #include <future>
-#include "iOSDeviceInfo.h"
+#include "DeviceManager.h"
+#include "iOSDevice.h"
 #include "iOSApplication.h"
 #include "ATH.h"
 #include <httplib.h>
@@ -12,7 +13,6 @@
 
 using namespace std;
 using namespace aid2;
-static map<string, AMDeviceRef> gudid; //udid和设备句柄映射
 static future<void> gfutListen;
 static CFRunLoopRef grunLoop;
 static ConnectCallbackFunc ConnectCallback = nullptr; // 连接回调指针函数指针变量
@@ -32,37 +32,29 @@ void device_notification_callback(struct AMDeviceNotificationCallbackInformation
 		{
 			case ADNCI_MSG_CONNECTECD:
 			{
-				string udid = getUdid(deviceHandle);
-				gudid[udid] = deviceHandle;
-				auto appleInfo = iOSDeviceInfo(deviceHandle);
+                auto appleInfo = DeviceManager::get_device(deviceHandle);
+                string udid = appleInfo->udid();
+				DeviceManager::add_device(udid, deviceHandle);
+				logger.log("Start Device.");
+				logger.log("Device %p connected,udid:%s", deviceHandle, udid.c_str());
 				// 连接回调
 				if (ConnectCallback) { // 连接回调
 					ConnectCallback(udid.c_str(),
-						appleInfo.DeviceName().c_str(),
-						appleInfo.ProductType().c_str(),
-						appleInfo.DeviceEnclosureColor().c_str(),
-						appleInfo.MarketingName().c_str()
+						appleInfo->DeviceName().c_str(),
+						appleInfo->ProductType().c_str(),
+						appleInfo->DeviceEnclosureColor().c_str(),
+						appleInfo->MarketingName().c_str()
 					);
 				}
-				logger.log("Start Device.");
-				logger.log("Device %p connected,udid:%s", deviceHandle, udid.c_str());
 				break; 
 			}
 			case ADNCI_MSG_DISCONNECTED:
 			{
-				string udid;
-				for (auto it : gudid)
-				{
-					if (it.second == deviceHandle)
-					{
-						udid = it.first;
-						break;
-					}
-				}
-				gudid.erase(udid);
+				string udid = DeviceManager::get_udid(deviceHandle);
 				if (DisconnectCallback) {
 					DisconnectCallback(udid.c_str());
 				}
+				DeviceManager::remove_device(udid);
 				logger.log("Device %p disconnected,udid:%s", deviceHandle, udid.c_str());
 				break;
 			}
@@ -81,12 +73,12 @@ void device_notification_callback(struct AMDeviceNotificationCallbackInformation
 
 }
 
-AID2_API void Setaidserv(const char* url)
+void Setaidserv(const char* url)
 {
 	strAidservUrl = url;
 }
 
-AID2_API void TransferCertificate(const char* rootcert, const char* clientkey, const char* clientcert)
+void TransferCertificate(const char* rootcert, const char* clientkey, const char* clientcert)
 {
 	strRootCert = rootcert;
 	strClientKey = clientkey;
@@ -121,12 +113,88 @@ bool StopListen()
 }
 
 AuthorizeReturnStatus AuthorizeDevice(const char* udid) {
+	auto retDoPair = DoPair(udid);
+	if (retDoPair) {
+		if (retDoPair<0) logger.log("信认失败或没有通过。");
+		return (AuthorizeReturnStatus)retDoPair;
+	};
+
+	std::shared_ptr<RemoteAuth> client;
+	if (strRootCert.empty())
+		client = std::make_shared<RemoteAuth>(strAidservUrl, udid);
+	else if (strClientCert.empty())
+		client = std::make_shared<RemoteAuth>(strAidservUrl, udid, strRootCert);
+	else
+		client = std::make_shared<RemoteAuth>(strAidservUrl, udid, strRootCert, strClientCert, strClientKey);
+	string remote_grappa = string();
+	string grappa = string();
+
+	try
+	{
+		ATH ath = ATH(udid);  //new出同步实例
+
+		if (!client->GenerateGrappa(remote_grappa))  //Grappa数据生成
+		{
+			logger.log("udid:%s,RemoteGetGrappa failed.", udid);
+			return AuthorizeReturnStatus::AuthorizeFailed;
+		}
+		logger.log("udid:%s,RemoteGetGrappa success.", udid);
+
+		if (!ath.SyncAllowed()) {  //允许同步
+			logger.log("udid:%s,SyncAllowed message read failed.", udid);
+			return AuthorizeReturnStatus::AuthorizeFailed;
+		}
+		logger.log("udid:%s,SyncAllowed message read success.", udid);
+
+		//请求生成同步信息
+		if (!ath.RequestingSync(remote_grappa)) {
+			logger.log("udid:%s,RequestingSync failed.", udid);
+			return AuthorizeReturnStatus::AuthorizeFailed;
+		};
+		logger.log("udid:%s,RequestingSync success.", udid);
+		// 获取请求同步状态数据
+		if (!ath.ReadyForSync(grappa)) {
+			logger.log("udid:%s,ReadyForSync message read failed.\n", udid);
+			return AuthorizeReturnStatus::AuthorizeFailed;
+		}
+		logger.log("udid:%s,ReadyForSync message read success.", udid);
+		if (!client->GenerateRs(grappa))	//调用远程服务器指令生成afsync.rs和afsync.rs.sig文件
+		{
+			logger.log("udid:%s,GenerateRs failed.", udid);
+			return AuthorizeReturnStatus::AuthorizeFailed;
+		}
+		logger.log("udid:%s,GenerateRs success.", udid);
+		//模拟itunes完成同步指令
+		if (!ath.FinishedSyncingMetadata())
+		{
+			logger.log("udid:%s,FinishedSyncingMetadata failed.", udid);
+			return AuthorizeReturnStatus::AuthorizeFailed;
+		}
+		logger.log("udid:%s,FinishedSyncingMetadata success.", udid);
+		//读取同步状态
+		if (!ath.SyncFinished())
+		{
+			logger.log("udid:%s,SyncFinished message read SyncFailed.", udid);
+			return AuthorizeReturnStatus::AuthorizeFailed;
+		}
+		logger.log("udid:%s,SyncFinished message read ok.", udid);
+		return AuthorizeReturnStatus::AuthorizeSuccess;
+	}
+	catch (const char* e)
+	{
+		logger.log(e);
+		return AuthorizeReturnStatus::AuthorizeFailed;
+	}
+}
+
+int DoPair(const char* udid)
+{
 	int i = 0;
-	map<string, AMDeviceRef>::iterator iter;
+	std::shared_ptr<class iOSDevice> appleInfo;
 	for (;;) {
 		this_thread::sleep_for(chrono::milliseconds(2));
-		iter = gudid.find(udid);
-		if (iter == gudid.end()) {
+		appleInfo = DeviceManager::get_device(udid);
+		if (appleInfo == nullptr) {
 			if (i++ >= 30) {
 				logger.log("设备没有插入，初始化失败。");
 				return AuthorizeReturnStatus::AuthorizeFailed;
@@ -136,125 +204,7 @@ AuthorizeReturnStatus AuthorizeDevice(const char* udid) {
 			break;
 		}
 	}
-	auto deviceHandle = iter->second;
-	return AuthorizeDeviceEx(deviceHandle);
-}
-
-AuthorizeReturnStatus AuthorizeDeviceEx(void* deviceHandle)
-{
-	iOSDeviceInfo appleInfo((AMDeviceRef)deviceHandle);
-	auto retDoPair = appleInfo.DoPair();
-	if (retDoPair) {
-		logger.log("信认失败或没有通过。");
-		return (AuthorizeReturnStatus)retDoPair;
-	};
-
-	RemoteAuth* client;
-	if (strRootCert.empty())
-		client = new RemoteAuth(strAidservUrl, (AMDeviceRef)deviceHandle);
-	else if (strClientCert.empty())
-		client = new RemoteAuth(strAidservUrl, (AMDeviceRef)deviceHandle, strRootCert);
-	else
-		client = new RemoteAuth(strAidservUrl, (AMDeviceRef)deviceHandle, strRootCert, strClientCert, strClientKey);
-	string remote_grappa = string();
-	string grappa = string();
-
-	try
-	{
-		string udid = appleInfo.udid();
-		ATH ath = ATH(udid);  //new出同步实例
-		
-		if (!client->GenerateGrappa(remote_grappa))  //Grappa数据生成
-		{
-			logger.log("udid:%s,RemoteGetGrappa failed.", udid.c_str());
-			delete client;
-			return AuthorizeReturnStatus::AuthorizeFailed;
-		}
-		logger.log("udid:%s,RemoteGetGrappa success.", udid.c_str());
-
-		if (!ath.SyncAllowed()) {  //允许同步
-			logger.log("udid:%s,SyncAllowed message read failed.", udid.c_str());
-			delete client;
-			return AuthorizeReturnStatus::AuthorizeFailed;
-		}
-		logger.log("udid:%s,SyncAllowed message read success.", udid.c_str());
-		
-		//请求生成同步信息
-		if (!ath.RequestingSync(remote_grappa)) {
-			logger.log("udid:%s,RequestingSync failed.", udid.c_str());
-			delete client;
-			return AuthorizeReturnStatus::AuthorizeFailed;
-		};
-		logger.log("udid:%s,RequestingSync success.", udid.c_str());
-		// 获取请求同步状态数据
-		if (!ath.ReadyForSync(grappa)) {
-			logger.log("udid:%s,ReadyForSync message read failed.\n", udid.c_str());
-			delete client;
-			return AuthorizeReturnStatus::AuthorizeFailed;
-		}
-		logger.log("udid:%s,ReadyForSync message read success.", udid.c_str());
-		if (!client->GenerateRs(grappa))	//调用远程服务器指令生成afsync.rs和afsync.rs.sig文件
-		{
-			logger.log("udid:%s,GenerateRs failed.", udid.c_str());
-			delete client;
-			return AuthorizeReturnStatus::AuthorizeFailed;
-		}
-		logger.log("udid:%s,GenerateRs success.", udid.c_str());
-		//模拟itunes完成同步指令
-		if (!ath.FinishedSyncingMetadata())
-		{
-			logger.log("udid:%s,FinishedSyncingMetadata failed.", udid.c_str());
-			delete client;
-			return AuthorizeReturnStatus::AuthorizeFailed;
-		}
-		logger.log("udid:%s,FinishedSyncingMetadata success.", udid.c_str());
-		//读取同步状态
-		if (!ath.SyncFinished())
-		{
-			logger.log("udid:%s,SyncFinished message read SyncFailed.", udid.c_str());
-			delete client;
-			return AuthorizeReturnStatus::AuthorizeFailed;
-		}
-		logger.log("udid:%s,SyncFinished message read ok.", udid.c_str());
-		delete client;
-		return AuthorizeReturnStatus::AuthorizeSuccess;
-	}
-	catch (const char* e)
-	{
-		logger.log(e);
-		delete client;
-		return AuthorizeReturnStatus::AuthorizeFailed;
-	}
-}
-
-
-int DoPair(const char* udid)
-{
-	int i = 0;
-	map<string, AMDeviceRef>::iterator iter;
-	for (;;) {
-		this_thread::sleep_for(chrono::milliseconds(2));
-		iter = gudid.find(udid);
-		if (iter == gudid.end()) {
-			if (i++ >= 30) {
-				logger.log("设备没有插入，初始化失败。");
-				return -1;
-			}
-		}
-		else {
-			break;
-		}
-	}
-	auto deviceHandle = iter->second;
-	return DoPairEx(deviceHandle);
-}
-
-
-int DoPairEx(void* deviceHandle)
-{
-	iOSDeviceInfo iosdevice((AMDeviceRef)deviceHandle);
-	auto rc = iosdevice.DoPair();
-
+	auto rc = appleInfo->DoPair();
 	if (rc == 0xe800001a) { //请打开密码锁定，进入ios主界面
 		return -17;
 	}
@@ -267,33 +217,17 @@ int DoPairEx(void* deviceHandle)
 	return rc;
 }
 
-bool InstallApplicationEx(void* deviceHandle, const char* ipaPath)
-{
-	iOSDeviceInfo appleInfo((AMDeviceRef)deviceHandle);
-
-	if (appleInfo.DoPair()) {
-		if (iOSApplication::InstallCallback) iOSApplication::InstallCallback("fail", 100);
-		logger.log("信认失败或没有通过。");
+bool InstallApplication(const char* udid, const char* ipaPath) {
+	auto retDoPair = DoPair(udid);
+	if (retDoPair) {
+		if (retDoPair < 0) logger.log("信认失败或没有通过。");
 		return false;
 	};
-
-	iOSApplication iosapp = iOSApplication((AMDeviceRef)deviceHandle);
-
+	iOSApplication iosapp = iOSApplication((AMDeviceRef)DeviceManager::get_handle(udid));
 	auto retInstall = iosapp.Install(ipaPath);
 	if (iOSApplication::InstallCallback)
 		iOSApplication::InstallCallback(retInstall ? "success" : "fail", 100);
 	return retInstall;
-}
-
-bool InstallApplication(const char* udid, const char* ipaPath) {
-	auto iter = gudid.find(udid);
-	if (iter == gudid.end())
-	{
-		logger.log("设备没有插入，初始化失败。");
-		return false;
-	}
-	auto deviceHandle = iter->second;
-	return InstallApplicationEx(deviceHandle, ipaPath);
 }
 
 

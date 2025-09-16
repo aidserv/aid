@@ -1,4 +1,4 @@
-#include "iOSDeviceInfo.h"
+#include "iOSDevice.h"
 #include "Logger.h"
 namespace aid2 {
 	//AuthorizeDeviceCallbackFunc iOSDeviceInfo::DoPairCallback = nullptr;
@@ -15,34 +15,34 @@ namespace aid2 {
 		return udid;
 	}
 
-	iOSDeviceInfo::iOSDeviceInfo(AMDeviceRef deviceHandle)
+	iOSDevice::iOSDevice(AMDeviceRef deviceHandle)
 	{
 		m_deviceHandle = deviceHandle;
 		AMDeviceConnect(m_deviceHandle);
-		initializeDevice();
+		//initializeDevice();
 	}
 
-	iOSDeviceInfo::~iOSDeviceInfo()
+	iOSDevice::~iOSDevice()
 	{
 		AMDeviceDisconnect(m_deviceHandle);
 	}
 
-	string iOSDeviceInfo::FairPlayCertificate()
+	string iOSDevice::FairPlayCertificate()
 	{
 		return m_FairPlayCertificate;
 	}
 
-	uint64_t iOSDeviceInfo::FairPlayDeviceType()
+	uint64_t iOSDevice::FairPlayDeviceType()
 	{
 		return m_FairPlayDeviceType;
 	}
 
-	uint64_t iOSDeviceInfo::KeyTypeSupportVersion()
+	uint64_t iOSDevice::KeyTypeSupportVersion()
 	{
 		return m_KeyTypeSupportVersion;
 	}
 
-	string iOSDeviceInfo::DeviceName()
+	string iOSDevice::DeviceName()
 	{
 		if (m_deviceName.empty()) {
 			initializeDevice();
@@ -50,7 +50,7 @@ namespace aid2 {
 		return m_deviceName;
 	}
 
-	string iOSDeviceInfo::ProductType()
+	string iOSDevice::ProductType()
 	{
 		if (m_productType.empty()) {
 			initializeDevice();
@@ -58,7 +58,7 @@ namespace aid2 {
 		return m_productType;
 	}
 
-	string iOSDeviceInfo::DeviceEnclosureColor()
+	string iOSDevice::DeviceEnclosureColor()
 	{
 		if (m_deviceEnclosureColor.empty()) {
 			initializeDevice();
@@ -66,7 +66,7 @@ namespace aid2 {
 		return m_deviceEnclosureColor;
 	}
 
-	string iOSDeviceInfo::MarketingName()
+	string iOSDevice::MarketingName()
 	{
 		if (m_marketingName.empty()) {
 			initializeDevice();
@@ -74,12 +74,12 @@ namespace aid2 {
 		return m_marketingName;
 	}
 
-	uint64_t iOSDeviceInfo::TotalDiskCapacity()
+	uint64_t iOSDevice::TotalDiskCapacity()
 	{
 		return m_totalDiskCapacity;
 	}
 
-	string iOSDeviceInfo::udid()
+	string iOSDevice::udid()
 	{
 		if (m_udid.empty()) {
 			initializeDevice();
@@ -87,7 +87,7 @@ namespace aid2 {
 		return m_udid;
 	}
 
-	void iOSDeviceInfo::initializeDevice()
+	void iOSDevice::initializeDevice()
 	{
 		CFStringRef found_device_id = AMDeviceCopyDeviceIdentifier(m_deviceHandle);
 		auto ilen = CFStringGetLength(found_device_id);
@@ -103,7 +103,7 @@ namespace aid2 {
 		m_deviceName.resize(len);
 		CFStringGetCString(sValue, (char*)m_deviceName.c_str(), len + 1, kCFStringEncodingUTF8);
 		CFRelease(sValue);
-		
+
 		//ProductType
 		sKey = CFStringCreateWithCString(NULL, "ProductType", kCFStringEncodingUTF8);
 		sValue = AMDeviceCopyValue(m_deviceHandle, NULL, sKey);
@@ -112,7 +112,7 @@ namespace aid2 {
 		m_productType.resize(len);
 		CFStringGetCString(sValue, (char*)m_productType.c_str(), len + 1, kCFStringEncodingUTF8);
 		CFRelease(sValue);
-	
+
 		//DeviceEnclosureColor
 		sKey = CFStringCreateWithCString(NULL, "DeviceEnclosureColor", kCFStringEncodingUTF8);
 		sValue = AMDeviceCopyValue(m_deviceHandle, NULL, sKey);
@@ -133,7 +133,7 @@ namespace aid2 {
 
 
 
-	void iOSDeviceInfo::initializeDeviceEx() {
+	void iOSDevice::initializeDeviceEx() {
 		AMDeviceStartSession(m_deviceHandle);
 		//FairPlayCertificate
 		CFStringRef sDomain = CFStringCreateWithCString(NULL, "com.apple.mobile.iTunes", kCFStringEncodingUTF8);
@@ -170,7 +170,7 @@ namespace aid2 {
 		AMDeviceStopSession(m_deviceHandle);
 	}
 
-	int iOSDeviceInfo::DoPair() {
+	int iOSDevice::DoPair() {
 		AMDeviceIsPaired(m_deviceHandle);
 		int rc = AMDeviceValidatePairing(m_deviceHandle);
 		if (rc == 0) {
@@ -185,8 +185,8 @@ namespace aid2 {
 		if (rc == 0) {
 			initializeDeviceEx();
 		}
-        CFRelease(key);
-        CFRelease(dictOptions);
-        return rc;
+		CFRelease(key);
+		CFRelease(dictOptions);
+		return rc;
 	}
 }

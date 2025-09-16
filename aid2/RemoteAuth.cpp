@@ -4,25 +4,25 @@
 #include "RemoteAuth.h"
 #include "Logger.h"
 #include "Afsync.h"
-#include "iOSDeviceInfo.h"
-
+#include "DeviceManager.h"  
+#include "iOSDevice.h"
 
 namespace aid2 {
 	using namespace httplib;
 	using namespace nlohmann;
 
-    RemoteAuth::RemoteAuth(const string& url, AMDeviceRef deviceHandle)
+    RemoteAuth::RemoteAuth(const string& url, const std::string& udid)
     {
-        m_deviceHandle = deviceHandle;
+        m_udid = udid;
         m_cli = new  Client(url);
         m_cli->set_connection_timeout(5);
         m_cli->set_read_timeout(5, 0);
         m_cli->set_write_timeout(5, 0);
     }
 
-    RemoteAuth::RemoteAuth(const string& url, AMDeviceRef deviceHandle, const string& rootcert)
+    RemoteAuth::RemoteAuth(const string& url, const std::string& udid, const string& rootcert)
     {
-        m_deviceHandle = deviceHandle;
+        m_udid = udid;
         m_cli = new  Client(url);
         m_cli->load_ca_cert_store(rootcert.c_str(), rootcert.size());
         m_cli->enable_server_certificate_verification(true); //sll证书验证
@@ -31,9 +31,9 @@ namespace aid2 {
         m_cli->set_write_timeout(5, 0);
     }
 
-    RemoteAuth::RemoteAuth(const string& url, AMDeviceRef deviceHandle, const string& rootcert, const string& client_cert_path, const string& client_key_path)
+    RemoteAuth::RemoteAuth(const string& url, const std::string& udid, const string& rootcert, const string& client_cert_path, const string& client_key_path)
     {
-        m_deviceHandle = deviceHandle;
+        m_udid = udid;
         m_cli = new  Client(url, client_cert_path, client_key_path);
         m_cli->load_ca_cert_store(rootcert.c_str(), rootcert.size());
         m_cli->enable_server_certificate_verification(true); //sll证书验证
@@ -50,8 +50,7 @@ namespace aid2 {
 	{
         bool ret = false;
         json jreq;
-        iOSDeviceInfo iosdevice(m_deviceHandle);
-		jreq["udid"] = iosdevice.udid();
+		jreq["udid"] = m_udid;
 
 		auto res = m_cli->Post("/AppleRemoteAuth.aid/GenerateGrappa", jreq.dump(), "application/json");
         auto err = res.error();
@@ -78,13 +77,12 @@ namespace aid2 {
         bool ret = false;
         try
         {
-            iOSDeviceInfo iosdevice(m_deviceHandle);
-            string udid = iosdevice.udid();
-            if (iosdevice.DoPair()) {
-                logger.log("udid:%s DoPair Not successful!", udid.c_str());
+			auto iosdevice = DeviceManager::get_device(m_udid);
+            if (iosdevice->DoPair()) {
+                logger.log("udid:%s DoPair Not successful!", m_udid.c_str());
                 return ret;
             }
-            Afsync afsync(m_deviceHandle);
+            Afsync afsync(DeviceManager::get_handle(m_udid));
             string rq_data = afsync.ReadRq();
             string rq_sig_data = afsync.ReadRqSig();
 
@@ -93,10 +91,10 @@ namespace aid2 {
             jreq["rq_data"] = base64_encode(rq_data);
             jreq["rq_sig_data"] = base64_encode(rq_sig_data);
             jreq["grappa_session_id"] = m_grappa_session_id;
-            jreq["fair_play_certificate"] = base64_encode(iosdevice.FairPlayCertificate());
-            jreq["fair_device_type"] = iosdevice.FairPlayDeviceType();
-            jreq["KeyTypeSupportVersion"] = iosdevice.KeyTypeSupportVersion();
-            jreq["fair_play_guid"] = udid;
+            jreq["fair_play_certificate"] = base64_encode(iosdevice->FairPlayCertificate());
+            jreq["fair_device_type"] = iosdevice->FairPlayDeviceType();
+            jreq["KeyTypeSupportVersion"] = iosdevice->KeyTypeSupportVersion();
+            jreq["fair_play_guid"] = m_udid;
             jreq["grappa"] = base64_encode(grappa);
             jreq["dsid"] = 0;
             
@@ -112,7 +110,7 @@ namespace aid2 {
                     ret = true;
                 }
                 else {
-                    logger.log("udid:%s genreate rs failed!", udid.c_str());
+                    logger.log("udid:%s genreate rs failed!", m_udid.c_str());
                 }
             }
             else {

@@ -1,18 +1,17 @@
 #pragma once
 #include "iTunesApi/simpleApi.h"
 #include<string>
-#include "aid2.h"
 namespace aid2 {
 	using namespace std;
 
 	//ªÒ»°udid
 	string getUdid(AMDeviceRef deviceHandle);
 
-	class iOSDeviceInfo
+	class iOSDevice
 	{
 	public:
-		iOSDeviceInfo(AMDeviceRef deviceHandle);
-		~iOSDeviceInfo();
+		iOSDevice(AMDeviceRef deviceHandle);
+		~iOSDevice();
 
 		string FairPlayCertificate();
 		uint64_t FairPlayDeviceType();  // FairPlayDeviceType
