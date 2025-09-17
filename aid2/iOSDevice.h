@@ -38,7 +38,7 @@ namespace aid2 {
 		string m_productType;
 		string m_deviceEnclosureColor;
 		string m_marketingName;
-		uint64_t m_totalDiskCapacity;
+		uint64_t m_totalDiskCapacity = 0;
 
 		void initializeDevice();
 		// 带有session信息

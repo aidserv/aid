@@ -1,5 +1,6 @@
 #pragma once
 #include <httplib.h>
+#include <memory> // for std::unique_ptr
 #include "iTunesApi/simpleApi.h"
 namespace aid2 {
 	using namespace std;
@@ -59,7 +60,7 @@ namespace aid2 {
 		bool GenerateRs(const string& grappa);
 	private:
 		std::string m_udid;
-		unsigned long m_grappa_session_id;  // grappa session id
-		Client* m_cli;
+		unsigned long m_grappa_session_id = 0;  // grappa session id
+		std::unique_ptr<Client> m_cli; // use smart pointer for RAII
 	};
 }

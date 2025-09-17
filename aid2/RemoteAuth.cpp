@@ -11,32 +11,32 @@ namespace aid2 {
 	using namespace httplib;
 	using namespace nlohmann;
 
+    // Constructor with url and udid
     RemoteAuth::RemoteAuth(const string& url, const std::string& udid)
+        : m_udid(udid), m_cli(std::make_unique<Client>(url))
     {
-        m_udid = udid;
-        m_cli = new  Client(url);
         m_cli->set_connection_timeout(5);
         m_cli->set_read_timeout(5, 0);
         m_cli->set_write_timeout(5, 0);
     }
 
+    // Constructor with url, udid, and rootcert
     RemoteAuth::RemoteAuth(const string& url, const std::string& udid, const string& rootcert)
+        : m_udid(udid), m_cli(std::make_unique<Client>(url))
     {
-        m_udid = udid;
-        m_cli = new  Client(url);
         m_cli->load_ca_cert_store(rootcert.c_str(), rootcert.size());
-        m_cli->enable_server_certificate_verification(true); //sll证书验证
+        m_cli->enable_server_certificate_verification(true); // SSL certificate verification
         m_cli->set_connection_timeout(5);
         m_cli->set_read_timeout(5, 0);
         m_cli->set_write_timeout(5, 0);
     }
 
+    // Constructor with url, udid, rootcert, client_cert_path, client_key_path
     RemoteAuth::RemoteAuth(const string& url, const std::string& udid, const string& rootcert, const string& client_cert_path, const string& client_key_path)
+        : m_udid(udid), m_cli(std::make_unique<Client>(url, client_cert_path, client_key_path))
     {
-        m_udid = udid;
-        m_cli = new  Client(url, client_cert_path, client_key_path);
         m_cli->load_ca_cert_store(rootcert.c_str(), rootcert.size());
-        m_cli->enable_server_certificate_verification(true); //sll证书验证
+        m_cli->enable_server_certificate_verification(true); // SSL certificate verification
         m_cli->set_connection_timeout(5);
         m_cli->set_read_timeout(5, 0);
         m_cli->set_write_timeout(5, 0);
@@ -44,8 +44,9 @@ namespace aid2 {
 
     RemoteAuth::~RemoteAuth()
     {
-        delete m_cli;
+        // unique_ptr handles cleanup automatically
     }
+
 	bool RemoteAuth::GenerateGrappa(string& grappa)
 	{
         bool ret = false;

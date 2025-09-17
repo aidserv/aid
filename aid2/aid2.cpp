@@ -115,13 +115,13 @@ AuthorizeReturnStatus AuthorizeDevice(const char* udid) {
 		return (AuthorizeReturnStatus)retDoPair;
 	};
 
-	std::shared_ptr<RemoteAuth> client;
+	std::unique_ptr<RemoteAuth> client;
 	if (strRootCert.empty())
-		client = std::make_shared<RemoteAuth>(strAidservUrl, udid);
+		client = std::make_unique<RemoteAuth>(strAidservUrl, udid);
 	else if (strClientCert.empty())
-		client = std::make_shared<RemoteAuth>(strAidservUrl, udid, strRootCert);
+		client = std::make_unique<RemoteAuth>(strAidservUrl, udid, strRootCert);
 	else
-		client = std::make_shared<RemoteAuth>(strAidservUrl, udid, strRootCert, strClientCert, strClientKey);
+		client = std::make_unique<RemoteAuth>(strAidservUrl, udid, strRootCert, strClientCert, strClientKey);
 	string remote_grappa = string();
 	string grappa = string();
 

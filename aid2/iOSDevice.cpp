@@ -5,7 +5,6 @@ namespace aid2 {
 	{
 		m_deviceHandle = deviceHandle;
 		AMDeviceConnect(m_deviceHandle);
-		//initializeDevice();
 	}
 
 	iOSDevice::~iOSDevice()
