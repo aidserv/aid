@@ -78,8 +78,8 @@ int main(int argc, char* argv[], char* envp[])
 
 	TransferCertificate(rootcert.c_str(), "certificate/client.key", "certificate/client2025.pem");  //设置ca根证书
 	Setaidserv("https://aid.aidserv.cn:60080");    //设置调用aidserver
-	StartListen();
+	StartListen();  //开始监听设备插入
 	std::cout << "按回车键停止..." << std::endl;
 	std::cin.get();  // 阻止主线程退出
-	StopListen();
+	StopListen();	 //停止监听
 }
