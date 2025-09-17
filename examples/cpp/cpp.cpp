@@ -1,9 +1,9 @@
 ﻿#include <iostream>
 #include <Windows.h>
-#include "aid2/aid2.h"
-#include <thread>
 #include<string>
 #include <fstream>
+#include "aid2/aid2.h"
+
 
 using namespace std;
 string gudid;
