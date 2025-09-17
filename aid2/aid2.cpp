@@ -1,12 +1,8 @@
-#include <stdio.h>
-#include <iostream>
-#include<map>
 #include <future>
 #include "DeviceManager.h"
 #include "iOSDevice.h"
 #include "iOSApplication.h"
 #include "ATH.h"
-#include <httplib.h>
 #include "RemoteAuth.h"
 #include "Logger.h"
 #include "aid2.h"
@@ -32,13 +28,13 @@ void device_notification_callback(struct AMDeviceNotificationCallbackInformation
 		{
 			case ADNCI_MSG_CONNECTECD:
 			{
-                auto appleInfo = DeviceManager::get_device(deviceHandle);
-                string udid = appleInfo->udid();
+				string udid = DeviceManager::get_udid(deviceHandle);
 				DeviceManager::add_device(udid, deviceHandle);
 				logger.log("Start Device.");
 				logger.log("Device %p connected,udid:%s", deviceHandle, udid.c_str());
 				// 连接回调
 				if (ConnectCallback) { // 连接回调
+					auto appleInfo = DeviceManager::get_device(deviceHandle);
 					ConnectCallback(udid.c_str(),
 						appleInfo->DeviceName().c_str(),
 						appleInfo->ProductType().c_str(),
@@ -189,32 +185,12 @@ AuthorizeReturnStatus AuthorizeDevice(const char* udid) {
 
 int DoPair(const char* udid)
 {
-	int i = 0;
-	std::shared_ptr<class iOSDevice> appleInfo;
-	for (;;) {
-		this_thread::sleep_for(chrono::milliseconds(2));
-		appleInfo = DeviceManager::get_device(udid);
-		if (appleInfo == nullptr) {
-			if (i++ >= 30) {
-				logger.log("设备没有插入，初始化失败。");
-				return AuthorizeReturnStatus::AuthorizeFailed;
-			}
-		}
-		else {
-			break;
-		}
+	auto appleInfo = DeviceManager::get_device(udid);
+	if (appleInfo == nullptr) {
+		logger.log("设备没有插入，初始化失败。");
+		return AuthorizeReturnStatus::AuthorizeFailed;
 	}
-	auto rc = appleInfo->DoPair();
-	if (rc == 0xe800001a) { //请打开密码锁定，进入ios主界面
-		return -17;
-	}
-	else if (rc == 0xe8000096) { //请在设备端按下“信任”按钮
-		return -19;
-	}
-	else if (rc == 0xe8000095) { //使用者按下了“不信任”按钮
-		return -18;
-	}
-	return rc;
+	return appleInfo->DoPair();
 }
 
 bool InstallApplication(const char* udid, const char* ipaPath) {

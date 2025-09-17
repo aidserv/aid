@@ -3,10 +3,6 @@
 #include<string>
 namespace aid2 {
 	using namespace std;
-
-	//ªÒ»°udid
-	string getUdid(AMDeviceRef deviceHandle);
-
 	class iOSDevice
 	{
 	public:

@@ -1,20 +1,6 @@
 #include "iOSDevice.h"
 #include "Logger.h"
 namespace aid2 {
-	//AuthorizeDeviceCallbackFunc iOSDeviceInfo::DoPairCallback = nullptr;
-
-	//获取udid
-	string getUdid(AMDeviceRef deviceHandle)
-	{
-		string udid;
-		CFStringRef found_device_id = AMDeviceCopyDeviceIdentifier(deviceHandle);
-		auto len = CFStringGetLength(found_device_id);
-		udid.resize(len);
-		CFStringGetCString(found_device_id, (char*)udid.c_str(), len + 1, kCFStringEncodingUTF8);
-		CFRelease(found_device_id);
-		return udid;
-	}
-
 	iOSDevice::iOSDevice(AMDeviceRef deviceHandle)
 	{
 		m_deviceHandle = deviceHandle;
@@ -187,6 +173,16 @@ namespace aid2 {
 		}
 		CFRelease(key);
 		CFRelease(dictOptions);
+
+		if (rc == 0xe800001a) { //请打开密码锁定，进入ios主界面
+			return -17;
+		}
+		else if (rc == 0xe8000096) { //请在设备端按下“信任”按钮
+			return -19;
+		}
+		else if (rc == 0xe8000095) { //使用者按下了“不信任”按钮
+			return -18;
+		}
 		return rc;
 	}
 }
