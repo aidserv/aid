@@ -27,7 +27,7 @@ namespace aid2 {
     }
     AMDeviceRef DeviceManager::get_handle(const std::string& udid)
     {
-		//根据udid 获取handle
+		//鏍规嵁udid 鑾峰彇handle
         auto iter = m_udid.find(udid);
         if (iter != m_udid.end()) {
             return iter->second;
