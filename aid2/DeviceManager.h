@@ -8,6 +8,8 @@ namespace aid2 {
     public:
         //根据deviceHandle获取udid
         static std::string get_udid(AMDeviceRef deviceHandle);
+		//根据deviceHandle获取连接方式
+		static ConnectMode get_connect_mode(AMDeviceRef deviceHandle);
         // 获取设备类实例
         static std::shared_ptr<class iOSDevice> get_device(AMDeviceRef deviceHandle);
         /*以下是管理map的方法*/

@@ -14,6 +14,11 @@ namespace aid2 {
         CFRelease(found_device_id);
         return udid;
     }
+    ConnectMode DeviceManager::get_connect_mode(AMDeviceRef deviceHandle)
+    {
+		//根据deviceHandle 获取连接方式
+        return ConnectMode(AMDeviceGetInterfaceType(deviceHandle));
+    }
     std::shared_ptr<class iOSDevice> DeviceManager::get_device(AMDeviceRef deviceHandle) {
         return std::make_shared<iOSDevice>(deviceHandle);  
     }  

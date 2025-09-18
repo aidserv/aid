@@ -22,7 +22,7 @@ static string strClientCert;
 void device_notification_callback(struct AMDeviceNotificationCallbackInformation* CallbackInfo)
 {
 	AMDeviceRef deviceHandle = CallbackInfo->deviceHandle;
-	if ((ConnectMode)AMDeviceGetInterfaceType(deviceHandle) == ConnectMode::USB)
+	if (DeviceManager::get_connect_mode(deviceHandle) == ConnectMode::USB)
 	{
 		switch (CallbackInfo->msgType)
 		{
