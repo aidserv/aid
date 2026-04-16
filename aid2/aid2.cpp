@@ -64,7 +64,7 @@ void device_notification_callback(struct AMDeviceNotificationCallbackInformation
 	}
 	else
 	{
-		logger.log("不处理USB以外连接设备 %p 进行connect.", deviceHandle);
+		logger.log("Do not process connections other than USB using %p.", deviceHandle);
 	}
 
 }
@@ -111,7 +111,7 @@ bool StopListen()
 AuthorizeReturnStatus AuthorizeDevice(const char* udid) {
 	auto retDoPair = DoPair(udid);
 	if (retDoPair) {
-		if (retDoPair<0) logger.log("信认失败或没有通过。");
+		if (retDoPair<0) logger.log("The acceptance failed or was not approved.");
 		return (AuthorizeReturnStatus)retDoPair;
 	};
 
@@ -187,7 +187,7 @@ int DoPair(const char* udid)
 {
 	auto appleInfo = DeviceManager::get_device(udid);
 	if (appleInfo == nullptr) {
-		logger.log("设备没有插入，初始化失败。");
+		logger.log("The device was not inserted; initialization failed.");
 		return AuthorizeReturnStatus::AuthorizeFailed;
 	}
 	return appleInfo->DoPair();
@@ -196,7 +196,7 @@ int DoPair(const char* udid)
 bool InstallApplication(const char* udid, const char* ipaPath) {
 	auto retDoPair = DoPair(udid);
 	if (retDoPair) {
-		if (retDoPair < 0) logger.log("信认失败或没有通过。");
+		if (retDoPair < 0) logger.log("The acceptance failed or was not approved.");
 		return false;
 	};
 	iOSApplication iosapp = iOSApplication((AMDeviceRef)DeviceManager::get_handle(udid));

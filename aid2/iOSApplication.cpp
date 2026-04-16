@@ -55,7 +55,7 @@ namespace aid2 {
 #endif
 		if (AMDeviceTransferApplication(serviceHandle, app_path, NULL, transfer_callback, NULL) != 0)
 		{
-			logger.log("AMDeviceTransferApplication ∑µªÿ ß∞‹°£");
+			logger.log("AMDeviceTransferApplication Returned failure.");
 			ret = false;
 		}
 		sServiceName = CFStringCreateWithCString(NULL, "com.apple.mobile.installation_proxy", kCFStringEncodingUTF8);
@@ -71,7 +71,7 @@ namespace aid2 {
 		};
 		CFDictionaryRef options = CFDictionaryCreate(NULL, keys, values, 1, NULL, NULL);
 		if (AMDeviceInstallApplication(serviceHandle, app_path, options, install_callback, NULL) != 0) {
-			logger.log("AMDeviceInstallApplication ∑µªÿ ß∞‹,ipa:%s", path.c_str());
+			logger.log("AMDeviceInstallApplication Returned failure,ipa:%s", path.c_str());
 			ret = false;
 		}
 		CFRelease(sServiceName);
