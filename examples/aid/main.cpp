@@ -44,7 +44,7 @@ void Connecting(const char* udid, const char* DeviceName, const char* ProductTyp
 	auto ret = AuthorizeDevice(gudid.c_str());
 	std::cout << "iOS devices，udid:" << gudid << (ret== AuthorizeReturnStatus::AuthorizeSuccess ? " Authorization successful" : " Authorization failed") << std::endl;
 	auto retInstall = InstallApplication(gudid.c_str(), gipaPath.c_str());
-	std::cout << "iOS devices，udid:" << gudid << " ipa包：" << gipaPath.c_str() << (retInstall ? " Installation successful" : " Installation failed.") << std::endl;
+	std::cout << "iOS devices，udid:" << gudid << " IPA package:" << gipaPath.c_str() << (retInstall ? " Installation successful" : " Installation failed.") << std::endl;
 }
 
 
