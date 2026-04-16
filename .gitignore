@@ -10,3 +10,6 @@
 /aid2/Release
 /Release
 /aid2/*.user
+/examples/aid/Debug
+/examples/aid/Release
+/examples/aid/x64
