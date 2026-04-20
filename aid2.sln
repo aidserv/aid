@@ -1,16 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.14.36717.8 d17.14
+VisualStudioVersion = 17.14.36717.8
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "aid2", "aid2\aid2.vcxproj", "{A5DB050B-3D3E-4CAF-8D49-189C95C73D99}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "examples", "examples", "{067F53C8-669C-4E67-A758-A2023FB89B5A}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "aid", "examples\aid\aid.vcxproj", "{95EE08FE-8B04-456B-A35C-F36AA07B1803}"
-	ProjectSection(ProjectDependencies) = postProject
-		{A5DB050B-3D3E-4CAF-8D49-189C95C73D99} = {A5DB050B-3D3E-4CAF-8D49-189C95C73D99}
-	EndProjectSection
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "cpp", "examples\cpp\cpp.vcxproj", "{95EE08FE-8B04-456B-A35C-F36AA07B1803}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

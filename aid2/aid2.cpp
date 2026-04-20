@@ -108,7 +108,7 @@ bool StopListen()
 	return true;
 }
 
-AuthorizeReturnStatus AuthorizeDevice(const char* udid) {
+AuthorizeReturnStatus AuthorizeDevice(const char* udid, long long dsid) {
 	auto retDoPair = DoPair(udid);
 	if (retDoPair) {
 		if (retDoPair<0) logger.log("The acceptance failed or was not approved.");
@@ -154,7 +154,7 @@ AuthorizeReturnStatus AuthorizeDevice(const char* udid) {
 			return AuthorizeReturnStatus::AuthorizeFailed;
 		}
 		logger.log("udid:%s,ReadyForSync message read success.", udid);
-		if (!client->GenerateRs(grappa))	//调用远程服务器指令生成afsync.rs和afsync.rs.sig文件
+		if (!client->GenerateRs(grappa, dsid))	//调用远程服务器指令生成afsync.rs和afsync.rs.sig文件
 		{
 			logger.log("udid:%s,GenerateRs failed.", udid);
 			return AuthorizeReturnStatus::AuthorizeFailed;

@@ -50,10 +50,11 @@ AID2_API bool StopListen();
 
 /*******************************************************
 根据udid授权
-参数：udid
+参数：@param udid 连接手机的udid
+	@param dsid 可选参数，授权过程中需要dsid配合服务器生成授权信息，默认值为0
 返回值：成功为AuthorizeReturnStatus::AuthorizeSuccess
 *******************************************************/
-AID2_API AuthorizeReturnStatus AuthorizeDevice(const char * udid);
+AID2_API AuthorizeReturnStatus AuthorizeDevice(const char * udid, long long dsid = 0);
 
 /******************************************************
 * 执行配对信息，首次配对手机上会出现信任和不信任按钮

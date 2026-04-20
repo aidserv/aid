@@ -55,9 +55,10 @@ namespace aid2 {
 		 * 生成Grappa afsync.rs和afsync.rs.sig 文件信息
 		 *
 		 * @param grappa 输入参数，grappa参数
+		 * @param dsid 输入参数，dsid
 		 * @return 成功为true,否则为flase
 		 */
-		bool GenerateRs(const string& grappa);
+		bool GenerateRs(const string& grappa, long long dsid);
 	private:
 		std::string m_udid;
 		unsigned long m_grappa_session_id = 0;  // grappa session id

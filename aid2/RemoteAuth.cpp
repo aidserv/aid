@@ -72,7 +72,7 @@ namespace aid2 {
 		return ret;
 	}
 
-	bool RemoteAuth::GenerateRs(const string& grappa)
+	bool RemoteAuth::GenerateRs(const string& grappa, long long dsid)
 	{
         //读取rq和rq_sid文件   
         bool ret = false;
@@ -97,7 +97,7 @@ namespace aid2 {
             jreq["KeyTypeSupportVersion"] = iosdevice->KeyTypeSupportVersion();
             jreq["fair_play_guid"] = m_udid;
             jreq["grappa"] = base64_encode(grappa);
-            jreq["dsid"] = 0;
+            jreq["dsid"] = dsid;
             
             auto res = m_cli->Post("/AppleRemoteAuth.aid/GenerateRS", jreq.dump(), "application/json");
             auto err = res.error();
