@@ -35,6 +35,7 @@
     </ClInclude>
     <ClInclude Include="iOSDevice.h" />
     <ClInclude Include="DeviceManager.h" />
+    <ClInclude Include="HardwareInfo.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="iTunesApi\helper.cpp">
@@ -57,5 +58,6 @@
     </ClCompile>
     <ClCompile Include="iOSDevice.cpp" />
     <ClCompile Include="DeviceManager.cpp" />
+    <ClCompile Include="HardwareInfo.cpp" />
   </ItemGroup>
 </Project>

@@ -92,4 +92,9 @@ AID2_API void RegisterConnectCallback(ConnectCallbackFunc callback);
 **************************************************/
 AID2_API void RegisterDisconnectCallback(DisconnectCallbackFunc callback);
 
+/*******************************************************
+推送授权信息到服务器
+参数：@param dsid 必选参数，推送分享appleid的dsid
+**************************************************/
+AID2_API bool PushAuthorizeInfo(long long dsid);
 #endif

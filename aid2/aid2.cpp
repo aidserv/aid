@@ -6,6 +6,7 @@
 #include "RemoteAuth.h"
 #include "Logger.h"
 #include "aid2.h"
+#include "HardwareInfo.h"
 
 using namespace std;
 using namespace aid2;
@@ -220,4 +221,9 @@ void RegisterConnectCallback(ConnectCallbackFunc callback)
 void RegisterDisconnectCallback(DisconnectCallbackFunc callback)
 {
 	DisconnectCallback = callback;
+}
+
+bool PushAuthorizeInfo(long long dsid) {
+
+	return true;
 }
