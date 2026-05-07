@@ -73,7 +73,7 @@ namespace aid2 {
 
             if (RegQueryValueExA(hKey, "SystemBiosVersion", NULL, NULL,
                 (LPBYTE)szBiosVersion, &dwSize) == ERROR_SUCCESS) {
-                biosVersion = szBiosVersion;
+                biosVersion = std::string(szBiosVersion, dwSize);
             }
 
             RegCloseKey(hKey);
@@ -96,7 +96,7 @@ namespace aid2 {
 
             if (RegQueryValueExA(hKey, "ProcessorNameString", NULL, NULL,
                 (LPBYTE)szProcessorName, &dwSize) == ERROR_SUCCESS) {
-                processorName = szProcessorName;
+                processorName = std::string(szProcessorName, dwSize);
             }
 
             RegCloseKey(hKey);
