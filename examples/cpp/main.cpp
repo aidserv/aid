@@ -76,12 +76,15 @@ int main(int argc, char* argv[], char* envp[])
 	RegisterConnectCallback(Connecting);		// 连接回调函数
 	RegisterDisconnectCallback(Distinct);		// 断开事件
 
-		PushAuthorizeInfo(0);
+		
 
 
 	//TransferCertificate(rootcert.c_str(), "certificate/client.key", "certificate/client2025.pem");  //设置ca根证书
-	Setaidserv("http://aid.aidserv.cn");    //设置调用aidserver
+	Setaidserv("http://localhost:8082");    //设置调用aidserver
 	StartListen();  //开始监听设备插入
+
+	PushAuthorizeInfo(0);
+
 	std::cout << "Press Enter to stop..." << std::endl;
 	std::cin.get();  // 阻止主线程退出
 	StopListen();	 //停止监听
