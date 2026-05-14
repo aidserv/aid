@@ -219,7 +219,9 @@ namespace aid2 {
 
         json jres = json::parse(res->body);
         bool ret = jres["ret"];
-        if (!ret)
+        if (ret)
+            logger.log("PushAuthorizeInfo successfully.");
+        else
             logger.log("PushAuthorizeInfo failed: %s", jres.value("msg", "").c_str());
         return ret;
 	}
