@@ -9,22 +9,46 @@
 #include <sys/stat.h>
 #include <sys/types.h>
 #endif
-#include <vector>
 #include <fstream>
 #include <chrono>
 #include <thread>
+#include <vector>
+#include <map>
+#include <mutex>
 #include <atomic>
-#include <cstdint>
-
 #include <nlohmann/json.hpp>
 #include "aid2/aid2.h"
-#include <cstdlib>
+
 
 using json = nlohmann::json;
 
+// Device cache populated by connect/disconnect callbacks
+struct DeviceInfo { std::string udid; std::string name; std::string productType; std::string color; std::string marketing; };
+static std::mutex g_devices_mutex;
+static std::map<std::string, DeviceInfo> g_devices;
+
+// Callbacks invoked by aid2 DLL
+extern "C" void __cdecl OnDeviceConnect(const char* udid, const char* DeviceName, const char* ProductType, const char* DeviceEnclosureColor, const char* MarketingName) {
+    if (!udid) return;
+    std::lock_guard<std::mutex> lk(g_devices_mutex);
+    DeviceInfo di;
+    di.udid = udid;
+    if (DeviceName) di.name = DeviceName;
+    if (ProductType) di.productType = ProductType;
+    if (DeviceEnclosureColor) di.color = DeviceEnclosureColor;
+    if (MarketingName) di.marketing = MarketingName;
+    g_devices[di.udid] = std::move(di);
+}
+
+extern "C" void __cdecl OnDeviceDisconnect(const char* udid) {
+    if (!udid) return;
+    std::lock_guard<std::mutex> lk(g_devices_mutex);
+    g_devices.erase(udid);
+}
+
 static std::string get_config_path() {
-    auto get_env_var = [](const char* name)->std::string {
 #ifdef _WIN32
+    auto get_env_var = [](const char* name)->std::string {
         char* buf = nullptr;
         size_t sz = 0;
         if (_dupenv_s(&buf, &sz, name) == 0 && buf) {
@@ -33,11 +57,13 @@ static std::string get_config_path() {
             return s;
         }
         return std::string();
+    };
 #else
+    auto get_env_var = [](const char* name)->std::string {
         const char* v = getenv(name);
         return v ? std::string(v) : std::string();
-#endif
     };
+#endif
 #ifdef _WIN32
     std::string home = get_env_var("USERPROFILE");
 #else
@@ -46,6 +72,7 @@ static std::string get_config_path() {
     if (home.empty()) home = ".";
     return home + "/.aid/config.json";
 }
+
 
 struct Config {
     std::string server;
@@ -136,14 +163,16 @@ static void print_general_help() {
 static void print_command_help(const std::string &cmd) {
 
     if (cmd == "config") {
+        // Placeholder for future configuration handling
         std::cout << "Usage: aid-cli config set [--server <url>] [--dsid <long_long>]\n";
         std::cout << "       aid-cli config get\n";
         std::cout << "Manage persistent configuration saved at ~/.aid/config.json\n";
         return;
     }
     if (cmd == "device") {
-        std::cout << "Usage: aid-cli device\n";
+        std::cout << "Usage: aid-cli device [--json]\n";
         std::cout << "List connected devices: UDID and basic status.\n";
+        std::cout << "  --json    Output a JSON array of objects with fields: udid, name, productType, marketingName\n";
         return;
     }
     if (cmd == "pair") {
@@ -195,6 +224,10 @@ int main(int argc, char** argv)
     if (argc == 2 && helpRequested) { print_general_help(); return 0; }
     if (argc >= 3 && (std::string(argv[2]) == "--help" || std::string(argv[2]) == "-h")) { print_command_help(cmd); return 0; }
 
+    // register callbacks so we maintain live device list when StartListen is active
+    RegisterConnectCallback(OnDeviceConnect);
+    RegisterDisconnectCallback(OnDeviceDisconnect);
+    //配置管理，保存服务器地址和dsid等信息到本地文件，供后续命令使用。配置文件保存在用户目录下的.aid目录中，格式为JSON。
     if (cmd == "config") {
         if (argc >= 3 && std::string(argv[2]) == "set") {
             // set options
@@ -219,6 +252,66 @@ int main(int argc, char** argv)
             return 0;
         }
         std::cout<<"config set|get"<<std::endl;
+        return 0;
+    }
+    //推送授权信息到服务器，供服务器做后续处理。推送的内容是SC Info相关文件的内容以及一些硬件信息。
+    if (cmd == "push") {
+        // push --dsid <n> [--server <url>]
+        int64_t dsid = 0;
+        if (!parse_arg_int64(argc, argv, "--dsid", dsid)) {
+            std::cerr << "push requires --dsid <long_long>" << std::endl; return 1;
+        }
+        std::string server;
+        if (parse_arg_string(argc, argv, "--server", server)) { Setaidserv(server.c_str()); }
+        else if (!cfg.server.empty()) Setaidserv(cfg.server.c_str());
+
+        bool ok = PushAuthorizeInfo(dsid);
+        if (output_json) {
+            json j{ {"dsid", dsid}, {"ok", ok} };
+            print_json(j);
+        }
+        else {
+            if (ok) std::cout << "PushAuthorizeInfo: dsid " << dsid << " succeeded" << std::endl;
+            else std::cout << "PushAuthorizeInfo: dsid " << dsid << " failed" << std::endl;
+        }
+        return ok ? 0 : 1;
+    }
+
+    if (cmd == "device") {
+        // Use callbacks populated by RegisterConnectCallback/RegisterDisconnectCallback.
+        StartListen();  // begin listening; callbacks will populate g_devices
+        // wait briefly for callbacks to run and populate current devices
+        std::this_thread::sleep_for(std::chrono::milliseconds(200));
+
+        std::vector<DeviceInfo> list;
+        {
+            std::lock_guard<std::mutex> lk(g_devices_mutex);
+            list.reserve(g_devices.size());
+            for (const auto &p : g_devices) list.push_back(p.second);
+        }
+
+        if (output_json) {
+            json arr = json::array();
+            for (const auto &d : list) {
+                json item;
+                item["udid"] = d.udid;
+                item["name"] = d.name;
+                item["productType"] = d.productType;
+                item["marketingName"] = d.marketing;
+                arr.push_back(item);
+            }
+            print_json(arr);
+        } else {
+            if (list.empty()) std::cout << "No devices found" << std::endl;
+            for (const auto &d : list) {
+                std::cout << "UDID: " << d.udid
+                          << " | Name: " << d.name
+                          << " | Type: " << d.productType
+                          << " | Marketing: " << d.marketing
+                          << std::endl;
+            }
+        }
+        StopListen();     //停止监听
         return 0;
     }
 
@@ -253,26 +346,7 @@ int main(int argc, char** argv)
         return 0;
     }
 
-    if (cmd == "push") {
-        // push --dsid <n> [--server <url>]
-        int64_t dsid = 0;
-        if (!parse_arg_int64(argc, argv, "--dsid", dsid)) {
-            std::cerr<<"push requires --dsid <long_long>"<<std::endl; return 1;
-        }
-        std::string server;
-        if (parse_arg_string(argc, argv, "--server", server)) { Setaidserv(server.c_str()); }
-        else if (!cfg.server.empty()) Setaidserv(cfg.server.c_str());
 
-        bool ok = PushAuthorizeInfo(dsid);
-        if (output_json) {
-            json j{{"dsid", dsid}, {"ok", ok}};
-            print_json(j);
-        } else {
-            if (ok) std::cout << "PushAuthorizeInfo: dsid " << dsid << " succeeded" << std::endl;
-            else std::cout << "PushAuthorizeInfo: dsid " << dsid << " failed" << std::endl;
-        }
-        return ok ? 0 : 1;
-    }
 
     if (cmd == "pair") {
         if (argc < 3) { std::cerr<<"pair <udid> [--wait <s>]"<<std::endl; return 1; }

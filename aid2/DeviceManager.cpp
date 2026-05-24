@@ -1,9 +1,12 @@
 #include "DeviceManager.h"  
 #include "iOSDevice.h"  
 #include <string>  
+#include <mutex>
+#include <map>
 
 namespace aid2 {  
-	std::map<std::string, am_device*> aid2::DeviceManager::m_udid;
+    std::map<std::string, AMDeviceRef> DeviceManager::m_udid;
+    std::mutex DeviceManager::m_mutex;
     std::string DeviceManager::get_udid(AMDeviceRef deviceHandle)
     {
         string udid;
@@ -24,15 +27,18 @@ namespace aid2 {
     }  
 
     void DeviceManager::add_device(const std::string& udid, AMDeviceRef deviceHandle) {  
+        std::lock_guard<std::mutex> lk(m_mutex);
         m_udid[udid] = deviceHandle;  
     }  
 
     void DeviceManager::remove_device(const std::string& udid) {  
+        std::lock_guard<std::mutex> lk(m_mutex);
         m_udid.erase(udid);  
     }
     AMDeviceRef DeviceManager::get_handle(const std::string& udid)
     {
 		//根据udid 获取handle
+        std::lock_guard<std::mutex> lk(m_mutex);
         auto iter = m_udid.find(udid);
         if (iter != m_udid.end()) {
             return iter->second;
@@ -41,6 +47,7 @@ namespace aid2 {
         }
     }
     std::shared_ptr<class iOSDevice> DeviceManager::get_device(const std::string& udid) {
+        std::lock_guard<std::mutex> lk(m_mutex);
         auto iter = m_udid.find(udid);
         if (iter == m_udid.end()) {
             return nullptr;

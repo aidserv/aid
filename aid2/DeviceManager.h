@@ -2,6 +2,8 @@
 #include <string>
 #include <memory>
 #include <map>  
+#include <vector>
+#include <mutex>
 #include "iTunesApi/simpleApi.h"
 namespace aid2 {
     class DeviceManager {
@@ -23,5 +25,6 @@ namespace aid2 {
         static std::shared_ptr<class iOSDevice> get_device(const std::string& udid);
     private:
         static std::map<std::string, AMDeviceRef> m_udid;
+        static std::mutex m_mutex;
     };
 }
