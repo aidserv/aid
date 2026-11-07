@@ -1,42 +1,53 @@
-# aid2: 总览
-Authorize ios device 实现功能和爱思助手，鲨漏验机，3utools一样安装app，使用aid2 授权之后 ，安装的IPA文件不需要输入Apple账户和密码。
+<p align="center">
+  🌐 <strong>Language:</strong>
+  <a href="./README.md"><strong>English (current)</strong></a>
+  &nbsp;|&nbsp;
+  <a href="./README_zh.md"><strong>简体中文</strong></a>
+</p>
 
-V2.6 grpc编译的复杂度，改用了http接口调用，方便编译。
+# aid2: Overview
 
-需要在linux,mac,安卓或者在树莓派等各类开发版上运行的商业应用请联系邮箱：2277695881@qq.com      qq:2277695881
-# 目录
+aid2 authorizes iOS devices and installs apps in a way similar to i4Tools (AiSi Assistant), ShaLou device inspector, and 3uTools. After a device has been authorized with aid2, installing an IPA file does not require an Apple account or password.
 
-- [aid2: 总览](#aid2-总览)
-- [目录](#目录)
-- [配置编译环境](#配置编译环境)
-  - [快速开始: Windows](#快速开始-windows)
-- [编译](#编译)
-  - [下载源码](#下载源码)
-  - [使用Visual Studio 2022编译](#使用visual-studio-2022编译)
-- [运行](#运行)
-  - [调试](#调试)
-  - [命令行运行](#命令行运行)
-# 配置编译环境
+For commercial applications that need to run on Linux, macOS, Android, Raspberry Pi, and other development boards, please contact:
 
-首先，请阅读以下任一快速配置指南：
-[Windows](#快速开始-windows)，
+- Email: 2277695881@qq.com
+- QQ: 2277695881
 
+## Table of Contents
 
-windows 平台支持windows 10之后版本，itunes 请安装本页提供连接的itunes版本，目前暂不支持从Microsoft Store安装itunes 版本。
+- [aid2: Overview](#aid2-overview)
+- [Table of Contents](#table-of-contents)
+- [Setting Up the Build Environment](#setting-up-the-build-environment)
+  - [Quick Start: Windows](#quick-start-windows)
+- [Build](#build)
+  - [Download the Source Code](#download-the-source-code)
+  - [Build with Visual Studio 2022](#build-with-visual-studio-2022)
+- [Run](#run)
+  - [Debugging](#debugging)
+  - [Command-Line Usage](#command-line-usage)
 
-编译环境需要用到 Vcpkg，openssl，nlohmann-json
+# Setting Up the Build Environment
 
+First, follow the quick setup guide below:
 
-## 快速开始: Windows
+[Windows](#quick-start-windows)
 
-前置条件:
-- Windows 10 或更新的版本
-- [Git][getting-started:git]
-- [Visual Studio][getting-started:visual-studio] 2022  或更新的版本（**包含英文语言包**）
+aid2 supports Windows 10 and later. Install the version of iTunes linked on this page. Versions installed from the Microsoft Store are not currently supported.
 
-首先，**请使用 `git clone vcpkg`** 并执行 bootstrap.bat 脚本。
-您可以将 vcpkg 安装在任何地方，但是通常我们建议您使用 vcpkg 作为 CMake 项目的子模块，并将其全局安装到 Visual Studio 项目中。
-我们建议您使用例如 `C:\src\vcpkg` 或 `C:\dev\vcpkg` 的安装目录，否则您可能遇到某些库构建系统的路径问题。
+The build environment requires Vcpkg, OpenSSL, and nlohmann-json.
+
+## Quick Start: Windows
+
+Prerequisites:
+
+- Windows 10 or later
+- [Git](https://git-scm.com/downloads)
+- [Visual Studio 2022](https://visualstudio.microsoft.com/vs/) or later (**with the English language pack**)
+
+First, **clone Vcpkg with `git clone`** and run the `bootstrap.bat` script.
+You can install Vcpkg in any location. However, we generally recommend using Vcpkg as a submodule of a CMake project and integrating it globally with Visual Studio projects.
+We recommend an installation directory such as `C:\src\vcpkg` or `C:\dev\vcpkg`; other locations may cause path-related issues when building some libraries.
 
 ```cmd
 > git clone https://github.com/microsoft/vcpkg
@@ -45,67 +56,72 @@ windows 平台支持windows 10之后版本，itunes 请安装本页提供连接�
 > .\vcpkg\vcpkg integrate install
 ```
 
-安装itunes版本，普通安装包下载连接
-* [下载 Windows 64位版 iTunes 12.13.9](https://secure-appldnld.apple.com/itunes12/042-62516-20231023-4B775F51-D1D0-4728-A168-77A5EFB3D51D/iTunes64Setup.exe)
-* [下载 Windows 32位版 iTunes 12.13.9](https://secure-appldnld.apple.com/itunes12/042-62514-20231023-50B51FD0-68B9-4F27-989D-B226D7A42BEC/iTunesSetup.exe)
-* [下载 Windows 64位版 iTunes 12.6.5.3（最后一个可下载ipa版本）](https://secure-appldnld.apple.com/itunes12/091-87819-20180912-69177170-B085-11E8-B6AB-C1D03409AD2A6/iTunes64Setup.exe)
-* [下载 MacOS 64位版 iTunes 12.6.5.3（最后一个可下载ipa版本）](https://secure-appldnld.apple.com/itunes12/091-87821-20180912-69177170-B085-11E8-B6AB-C1D03409AD2A/iTunes12.6.5.dmg)
+Download links for standard iTunes installers:
 
+- [Download iTunes 12.13.9 for 64-bit Windows](https://secure-appldnld.apple.com/itunes12/042-62516-20231023-4B775F51-D1D0-4728-A168-77A5EFB3D51D/iTunes64Setup.exe)
+- [Download iTunes 12.13.9 for 32-bit Windows](https://secure-appldnld.apple.com/itunes12/042-62514-20231023-50B51FD0-68B9-4F27-989D-B226D7A42BEC/iTunesSetup.exe)
+- [Download iTunes 12.6.5.3 for 64-bit Windows (the last version that can download IPA files)](https://secure-appldnld.apple.com/itunes12/091-87819-20180912-69177170-B085-11E8-B6AB-C1D03409AD2A6/iTunes64Setup.exe)
+- [Download iTunes 12.6.5.3 for 64-bit macOS (the last version that can download IPA files)](https://secure-appldnld.apple.com/itunes12/091-87821-20180912-69177170-B085-11E8-B6AB-C1D03409AD2A6/iTunes12.6.5.dmg)
 
-# 编译
+# Build
 
-## 下载源码
+## Download the Source Code
 
 ```cmd
 > git clone --recursive https://github.com/aidserv/aid.git
 ```
 
-## 使用Visual Studio 2022编译
-使用 Visual Studio 2022 打开 aid2.sln 文件，平台选择x64,然后编译整个解决方案
+## Build with Visual Studio 2022
 
-# 运行
-## 调试
-    examples目录下面cpp项目为启动项目，就可以进入自动调试状态。当前项目安装设置的为h1.0.25.ipa，请更改你自己想要安装包文件名。
+Open `aid2.sln` in Visual Studio 2022, select `x64` as the platform, and build the entire solution.
 
-## 命令行运行
-   进入编译输出目录，x64\Debug或者x64\Release目录，安装app, 以下命令是安装换机助手，chatgpt，同步助手，由于自定app市场需要大量人力物力，如果需要安装指定的app,请联系上面邮箱或者QQ
+# Run
+
+## Debugging
+
+Set the C++ project under the `examples` directory as the startup project to start debugging automatically. The current project is configured to install `h1.0.25.ipa`; change this to the filename of the package you want to install.
+
+## Command-Line Usage
+
+Go to the build output directory, either `x64\Debug` or `x64\Release`, to install apps. The following commands install Phone Transfer Assistant, ChatGPT, and Sync Assistant. Building a custom app marketplace requires substantial resources; if you need to install a specific app, please contact us using the email address or QQ number above.
+
 ```cmd
 > cpp h1.0.25.ipa
 > cpp ChatGPT 1.2023.21 1.ipa
 > cpp tonbu11.1.0.ipa
 ```
 
-运行以上命令输出：设备名:iPhone 授权成功 就自动授权成功，最后ipa安装成功会弹出安装成功界面，以上例子是每次安装app自动授权，如果需要一次性授权，请把授权和安装代码分开，目前提供两个外部dll函数
+The commands above report `Device name: iPhone` and `Authorization succeeded` when authorization succeeds, then show an installation-success dialog after the IPA is installed. The examples authorize the device for each installation. To authorize only once, separate the authorization and installation code. Two external DLL functions are currently provided.
 
-以上命令安装好，直接在手机屏幕上找到三个app 打开，检测是否需要输入apple id和密码，手机授权之后，需要在次测试，只能把把手机还原到初厂设置，具体操作是【设置】，【通用】，【传输或还原iPhone】，【抹掉所有内容和设置】。
+After the installation is complete, open the three apps on the phone and check whether they prompt for an Apple ID and password. To retest authorization, restore the phone to factory settings. To do this, go to **Settings** > **General** > **Transfer or Reset iPhone** > **Erase All Content and Settings**.
 
-# 主要函数
-```
+# Main Functions
+
+```cpp
 /******************************************************
-* 执行配对信息，首次配对手机上会出现信任和不信任按钮
-返回值：LOCKDOWN_E_PAIRING_DIALOG_RESPONSE_PENDING         = -19           弹出对话框,请在设备端按下“信任”按钮
-		LOCKDOWN_E_USER_DENIED_PAIRING                     = -18			使用者按下了“不信任”按钮。
-		LOCKDOWN_E_PASSWORD_PROTECTED                      = -17			请打开密码锁定，进入ios主界面
-		LOCKDOWN_E_MUX_ERROR                               =  -8			USB数据线断开或者接触不良
-															   0			配对成功
+* Perform pairing. On first-time pairing, the phone displays Trust and Don't Trust buttons.
+* Return values:
+*   LOCKDOWN_E_PAIRING_DIALOG_RESPONSE_PENDING = -19  A dialog is displayed; press "Trust" on the device.
+*   LOCKDOWN_E_USER_DENIED_PAIRING            = -18  The user pressed "Don't Trust".
+*   LOCKDOWN_E_PASSWORD_PROTECTED             = -17  Unlock the device with its passcode and open the iOS home screen.
+*   LOCKDOWN_E_MUX_ERROR                      =  -8  The USB cable is disconnected or has a poor connection.
+*                                              0      Pairing succeeded.
 ***************************************************************/
 int DoPair(const char* udid);
 
 /*******************************************************
-根据udid授权
-参数：udid
-返回值：成功为AuthorizeReturnStatus::AuthorizeSuccess
+* Authorize a device by UDID.
+* Parameter: udid
+* Return value: AuthorizeReturnStatus::AuthorizeSuccess on success.
 *******************************************************/
-AuthorizeReturnStatus AuthorizeDevice(const char * udid);
+AuthorizeReturnStatus AuthorizeDevice(const char* udid);
 
 /*******************************************************
-根据udid安装path 的ipa 包
-参数：udid
-      ipaPath ipa包的路径
-返回值：成功为true
+* Install the IPA package at ipaPath on the device with the given UDID.
+* Parameters:
+*   udid    The device UDID.
+*   ipaPath The path to the IPA package.
+* Return value: true on success.
 *******************************************************/
-bool InstallApplication(const char* udid,const char* ipaPath);
-
+bool InstallApplication(const char* udid, const char* ipaPath);
 ```
-
-
